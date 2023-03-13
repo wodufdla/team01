@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="User" type="com.itkey.vo.UserVO" />
+		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
+		<typeAlias alias="Refund" type="com.itkey.vo.RefundVO" />
+		<typeAlias alias="Service" type="com.itkey.vo.ServiceVO" />
+		<typeAlias alias="Question" type="com.itkey.vo.QuestionVO" />
+	</typeAliases>
+</configuration>
