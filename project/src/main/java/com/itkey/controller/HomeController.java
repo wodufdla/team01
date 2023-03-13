@@ -41,5 +41,10 @@ public class HomeController {
 		return "order";
 	}
 	
-	
+    
+    @RequestMapping("/serviceInfo")
+    public String serviceInfo(Model model) {
+        return "serviceInfo";
+    }
+    
 }
