@@ -40,6 +40,7 @@
 		<input type="submit" value="login">
 		</div>
 	</form>
+	<a href="/register">회원가입</a>
 	<input type="hidden" id="alert" value=${login_result }>
 	<script type="text/javascript">
 	var phone = "";
