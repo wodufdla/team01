@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
     <link rel="stylesheet" href="/resources/css/styles.css">
 </head>
-
-<section id="join" class="section-default" style="background: #994647;">
+<body>
+<jsp:include page="common/header.jsp" />
+<section id="join" class="section-default" style="background: #8C8C8C;">
         <p>범죄 알리미 가입하기</p>
         <hr>
         <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
@@ -60,3 +61,6 @@
             </table>
         </div>
     </section>
+<jsp:include page="common/footer.jsp" />    
+</body>
+</html>    

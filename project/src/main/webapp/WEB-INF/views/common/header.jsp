@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/styles.css">
 
 <nav class="navbar navbar-light navbar-expand-md">
    	<div class="container-fluid">
-   		<a class="navbar-brand" href="#">
+   		<a class="navbar-brand" href="/">
    			<img src="/resources/img/logo.png" style="height: 30px;">
    		</a>
         <a class="nav-link-command" href="javascript:onQna();" style="border: solid 1px #192a5e;color: #192a5e;">문의</a>
