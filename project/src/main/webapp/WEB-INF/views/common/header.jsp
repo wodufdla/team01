@@ -15,7 +15,7 @@
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
-                <li class="nav-item"><a class="nav-link" href="#service">서비스 소개</a></li>
+                <li class="nav-item"><a class="nav-link" href="serviceInfo">서비스 소개</a></li>
                 <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
