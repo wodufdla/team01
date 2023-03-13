@@ -12,6 +12,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
     <link rel="stylesheet" href="/resources/css/styles.css">
+ 
+<!-- 빌링키 사용을 위한 셋팅 -->    
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>    
+var IMP = window.IMP; // 생략 가능
+IMP.init("imp40774547"); // 예시 : imp00000000
+
+function requestPay() {
+    IMP.request_pay({
+      pg: "kcp",
+      pay_method: "card",
+      merchant_uid: "order_no_00001",   // 주문번호
+      name: "알림 정기결제",
+      amount: 1,                         // 숫자 타입
+      buyer_email: "gildong@gmail.com",
+      buyer_name: "홍길동",
+      buyer_tel: "010-4242-4242",
+      buyer_addr: "서울특별시 강남구 신사동",
+      buyer_postcode: "01181"
+    }, function (rsp) { // callback
+       if (rsp.success) {
+            console.log(rsp);
+        } else {
+            console.log(rsp);
+        }
+    });
+  }
+
+    
+    
+</script>
+
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
@@ -47,20 +80,21 @@
                     <td style="color: #fff;padding: 0;">
                             <span>
                                 [홈페이지에서 가입하는 경우]<br>
-                                1. 100원 결제 7일 무료체험(168시간) 이용요금은 무료체험 종료 후 9,900원이 자동 결제됩니다.<br>
-                                2. 홈페이지에서 가입하시는 경우 별도 보상은 없으며 해지는 언제든 가능합니다. (일할금 제외)<br><br>
+                                1. 서비스 가입을 하셔야 이용이 가능하며, 원할 시 언제든 중도 해지 가능합니다.<br>
+                                2. 중도 해지 시 별도로 환불처리는 받을수없습니다
+                                .<br><br>
                                 [홈페이지가 아닌 타 채널을 통해 보상을 받으시고 7일 무료체험을 가입하신 경우]<br>
-                                1. 가입 이후 72시간 이용하는 조건으로 보상을 지급하고 있습니다. (72시간 이후 서비스 해지 가능)<br>
-                                2. 서비스 해지 없이 무료체험 기간(168시간) 경과 후 결제가 이뤄지면 최초 한달간 이용 조건으로 보상을 지급합니다. (한달 의무 사용 약정)<br><br>
+                                1. 가입 즉시 포인트가 발행되며 포인트 결제 시 한달 의무약정 약정 가입이 진행됩니다.<br>
+                                2. 한달 의무 사용 이후 자유롭게 해지가능합니다.<br><br>
                                 * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
                     <td style="padding: 0;">
                         <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
-                        <a id="a-pay" class="a-pay" href="javascript:alert('상품 선택 후 결제를 시도해주세요.');" style="margin-top: 80px;">상품 선택 후<br>결제해주세요.</a></td>
+                        <a id="a-pay" class="a-pay" href="#" onclick="requestPay();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </section>
-<jsp:include page="common/footer.jsp" />    
+<jsp:include page="common/footer.jsp" /> 
 </body>
 </html>    
