@@ -20,7 +20,7 @@ public class UserVO {
 	private String email;
 	private String phone;
 	private Date joinDate;
-	private boolean withdrawal;
+	private String withdrawal;
 		
 	
 }

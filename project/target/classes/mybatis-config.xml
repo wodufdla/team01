@@ -3,6 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<properties>
+		<property name="user_tbl" value="user_tbl" />
+		<property name="phone" value="phone" />
+		<property name="password" value="password" />
+		<property name="email" value="email" />
+		<property name="join_date" value="join_date" />
+		<property name="withdrawal" value="withdrawal" />
+	</properties>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
 	<typeAliases>
 		<typeAlias alias="User" type="com.itkey.vo.UserVO" />
 		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
