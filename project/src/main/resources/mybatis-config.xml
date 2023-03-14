@@ -2,17 +2,8 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<!-- <configuration>
-	<typeAliases>
-		<typeAlias alias="User" type="com.itkey.vo.UserVO" />
-		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
-		<typeAlias alias="Refund" type="com.itkey.vo.RefundVO" />
-		<typeAlias alias="Service" type="com.itkey.vo.ServiceVO" />
-		<typeAlias alias="Question" type="com.itkey.vo.QuestionVO" />
-	</typeAliases>
-</configuration> -->
-
 <configuration>
+
 	<properties>
 		<property name="user_tbl" value="user_tbl" />
 		<property name="phone" value="phone" />
@@ -22,11 +13,20 @@
 		<property name="withdrawal" value="withdrawal" />
 	</properties>
 
+
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-	
+
+	<!-- typealiases 밑에... 위의 세팅 먼저 읽어야한다. -->
 	<typeAliases>
-		<package name="com.itkey.vo"/>
+		<typeAlias alias="User" type="com.itkey.vo.UserVO" />
+		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
+		<typeAlias alias="Refund" type="com.itkey.vo.RefundVO" />
+		<typeAlias alias="Service" type="com.itkey.vo.ServiceVO" />
+		<typeAlias alias="Question" type="com.itkey.vo.QuestionVO" />
 	</typeAliases>
+	
+
+	
 </configuration>

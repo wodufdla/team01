@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.itkey.UserMapper">
 
-	<select id="select_all" resultType="UserVO">
+	<select id="select_all" resultType="User">
 		select * from ${user_tbl}
 		order by ${join_date}
 	</select>
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${phone} = #{phone}
 	</update>
 	
-	<select id="select_login" resultType="UserVO">
+	<select id="select_login" resultType="User">
 		select * from ${user_tbl}
 		where ${phone} = #{phone}
 	</select>

@@ -35,7 +35,7 @@
          변경된 실제 경로는 /WEB-INF/classes/, mybatis-config.xml파일의 특징은 데이터 저장빈 클래스의 객체 별칭을 관리. -->
       <property name="configLocation"   value="classpath:/mybatis-config.xml" />
       <!-- mybatis 매퍼태그 경로 설정 -->
-      <property name="mapperLocations" value="classpath:/mappers/*/*.xml" />
+      <property name="mapperLocations" value="classpath:/mappers/*.xml" />
    </bean>
    
    <!-- 트랜잭션 매니저 설정 -->
