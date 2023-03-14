@@ -10,4 +10,6 @@ public interface UserDAO {
 	int update(UserVO vo);
 	int delete(UserVO vo);
 	UserVO select_login(String phone);
+	//정보수정 황선필
+	int modifyAll(UserVO uv);
 }

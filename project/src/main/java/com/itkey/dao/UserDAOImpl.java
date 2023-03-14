@@ -48,4 +48,17 @@ public class UserDAOImpl implements UserDAO {
 		log.info("select_login() 호출");
 		return sqlSession.selectOne(NAMESPACE + ".select_login", phone);
 	}
+	
+	//정보수정 황선필
+	@Override
+	public int modifyAll(UserVO uv) {
+		
+//		System.out.println("수정phone:"+uv.getPhone());
+//		System.out.println("수정pw:"+uv.getPassword());
+//		System.out.println("수정email:"+uv.getEmail());
+
+		int update1 = (Integer)sqlSession.update("modifyAll", uv);
+
+		return update1;
+	}
 }

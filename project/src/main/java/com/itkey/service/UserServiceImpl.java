@@ -47,5 +47,12 @@ public class UserServiceImpl implements UserService {
 		log.info("read_login() 호출 : phone = " + phone);
 		return userDAO.select_login(phone);
 	}
+	//정보수정 황선필
+	@Override
+	public int modifyAll(UserVO uv) {
+		// TODO Auto-generated method stub
+		int MMI = userDAO.modifyAll(uv);
+		return MMI;
+	}
 	
 }

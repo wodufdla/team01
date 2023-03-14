@@ -17,6 +17,11 @@ $(document).ready(function(){
 		alert("logout 됐습니다!");
 		location.href="logout";
 	});
+	/* modify 추가 황선필 */
+/* 	$("#modify").click(function() {
+		//alert("logout 됐습니다!");
+		location.href="window.open('modify','modify','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');";
+	}); */
 });
 </script>
 
@@ -36,13 +41,23 @@ $(document).ready(function(){
                 <li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
                 <li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
                 <li class="nav-item">
+                
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
                 <c:if test="${phone==null}">
 	                <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
                 </c:if>
+                
                 <c:if test="${phone!=null}">
 	                ${phone} 님 환영합니다!
+	                <!-- <a href="#" id="modify">정보수정</a> -->
+	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">정보수정</a>
 	                <a href="#" id="logout">로그아웃</a>
+	                <!-- session값 확인 -->
+<%-- 	                ${phone}<br>
+	                ${session_password}<br>
+	                ${session_email}<br>
+	                ${session_withdrawal}<br> --%>
+	                
                 </c:if>
                 
             </ul>

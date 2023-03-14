@@ -37,4 +37,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${phone} = #{phone}
 	</select>
 	
+	<!-- 황선필 이미지 제외 모두 수정 -->
+	<update id="modifyAll" parameterType="User">
+	
+		update ${user_tbl}
+		set ${password} = #{password}, ${email} = #{email}
+		where ${phone} = #{phone}
+	
+	</update>
+	
 </mapper>
