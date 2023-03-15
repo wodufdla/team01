@@ -20,6 +20,12 @@ $(document).ready(function(){
 	});
 
 });
+
+function registeralarm() {
+	alert("로그인을 해야 이용 가능합니다!");
+	window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');
+}
+
 </script>
 
 <nav class="navbar navbar-light navbar-expand-md">
@@ -38,20 +44,20 @@ $(document).ready(function(){
 	                <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
                 </c:if>
                 <c:if test="${phone==null}">
-	                <li class="nav-item"><a id="register" class="nav-link" style="cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">서비스 가입</a></li>
+	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
                 </c:if>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                 <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
                 </c:if>
                 <c:if test="${phone==null}">
-                	<li class="nav-item"><a id="register" class="nav-link" style="cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">1:1 문의</a></li>
+                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
                 </c:if>
                 <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
                 </c:if>
                 <c:if test="${phone==null}">
-                	<li class="nav-item"><a id="register" class="nav-link" style="cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">서비스 해지</a></li>
+                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 해지</a></li>
                 </c:if>
                 <!-- 황선필 메뉴 수정 -->
                 <li class="nav-item">
@@ -73,7 +79,6 @@ $(document).ready(function(){
 	                ${session_email}<br>
 	                ${session_withdrawal}<br> --%>
                 </c:if>
-                
                 
             </ul>
         </div>
