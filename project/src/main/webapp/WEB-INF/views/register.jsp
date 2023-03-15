@@ -25,7 +25,7 @@
 				var phone=$("#phone").val();
 				var pw=$("#password").val();
 				var email=$("#email").val();
-				var reemail=$("#reemail").val();
+				var repw=$("#repassword").val();
 				
 				//핸드폰 패턴
 				var patternPhoneNumber=/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -36,7 +36,7 @@
 	            var phone1 = checkReg.test(phone);
 	            
 						//모든 항목 빈칸 확인
-						if(pw ==""|| phone ==""|| email ==""|| reemail ==""){
+						if(pw ==""|| phone ==""|| email ==""|| repw ==""){
 							alert("모든항목을 빈칸없이 작성해 주시기 바랍니다. ");
 							
 						}else{
@@ -54,11 +54,10 @@
 					            if(regEmail.test(email)!=true){
 				                    alert("이메일 양식에 맞춰 작성해주시기 바랍니다.");
 				                    $("#email").focus();
-					            	
 					            }else{
-									//이메일 비교
-									if(email!=reemail){
-										alert("작성된 이메일이 다릅니다. 이메일을 다시 확인하여 주시기 바랍니다.");
+									//비밀번호 비교
+									if(pw!=repw){
+										alert("입력된 비밀번호가 다릅니다. 비밀번호를 다시 확인하여 주시기 바랍니다.");
 									}else{
 										//폰 중복 체크 아작스
 										 $.ajax({
@@ -127,6 +126,7 @@
 	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원가입</span>
 	<form action="registerform" method="post">
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
+		
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
@@ -135,6 +135,7 @@
 	          	<input type="text" id="phone" name="phone" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;" >
 	          </li>
 	      </ul>
+	      
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">비밀번호</span>
@@ -143,6 +144,16 @@
 	          	<input type="password" id="password" name="password" placeholder="비밀번호 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
+	      
+	      <ul style="padding: 0;display: flex;">
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
+	          	<span class="normal-font" style="display: block;padding: 8px;">PW 재입력</span>
+	          </li>
+	          <li style="width: 100%;display: flex;">
+	          	<input type="password" id="repassword" name="repassword" placeholder="비밀번호 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
+	          </li>
+	      </ul>
+	      
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">이메일</span>
@@ -151,14 +162,7 @@
 	          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
-	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px; list-style:none;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">이메일 재입력</span>
-	          </li>
-	          <li style="width: 100%;display: flex;">
-	          	<input type="text" id="reemail" name="reemail" placeholder="이메일 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
-	          </li>
-	      </ul>
+
 	      <!-- 스타일 추가 황선필 -->
 		<input id="register" type="button" value="가입" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		</div>
