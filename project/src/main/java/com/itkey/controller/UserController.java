@@ -68,29 +68,17 @@ public class UserController {
     	return "modify";
     }
 	
-	//정보수정 황선필
+	//실질 정보수정 황선필
 	@ResponseBody
 	@PostMapping("/modifydo")
 	public String modifyAll(UserVO uv ,HttpServletRequest request) {
 		
-/*		MemberDTO regIdCheck2=memberService.regIdCheck(memberDTO);
-		if(regIdCheck2!=null) {
-			return 1;
-		}else {
-			return 0;
-		}*/
-//		System.out.println("수정phone:"+uv.getPhone());
-//		System.out.println("수정pw:"+uv.getPassword());
-//		System.out.println("수정email:"+uv.getEmail());
-		/*System.out.println("file1:"+multi);*/
-		//이미지 빼고 수정
+		//정보 수정
 		int MMI=userService.modifyAll(uv);
-		//System.out.println("수정여부"+MMI);
 		
 		//결과 스트링화
 		String result=String.valueOf(MMI);
 		
-		//세션에 다 등록
 		HttpSession session = request.getSession();
 		//수정 성공시에만 세션 등록
 		if(MMI==1) {
@@ -104,7 +92,6 @@ public class UserController {
 		}
 		
 		return result;
-		
 	}
 	
     //회원가입 화면 접속 황선필
@@ -114,24 +101,25 @@ public class UserController {
     	return "register";
     }
     
-	//회원가입 창
-	//회원가입 번호 중복체크 창
+	//회원가입 번호 중복체크 창 황선필
 	@ResponseBody
 	@PostMapping("/regphonecheck")
 	public String regphonecheck(UserVO uv) {
+		//번호 체크
 		UserVO uvreg=userService.regphonecheck(uv);
+		//찾은 결과 체크 여부
 		if(uvreg!=null) {
 			return "1";
 		}else {
 			return "0";
 		}
-		
 	}
 	
-	//회원가입 모두 등록
+	//회원가입 모두 등록 황선필
 	@ResponseBody
 	@PostMapping("/regAll")
 	public String regAll(UserVO uv,HttpServletRequest request) {
+		
 		//회원가입
 		int regnum=userService.regAll(uv);
 		
@@ -144,15 +132,13 @@ public class UserController {
 			session.setAttribute("session_password", uv.getPassword());
 			session.setAttribute("session_email", uv.getEmail());
 			//session.setAttribute("session_join_date", uv.getJoinDate());
-			session.setAttribute("session_withdrawal", uv.isWithdrawal());
+			//session.setAttribute("session_withdrawal", uv.isWithdrawal());
 			
 		}
-		//스트링화
+		//결과 값 스트링화
 		String sregnum=String.valueOf(regnum);
 		
 		return sregnum;
-		
 	}
-	
 	
 }

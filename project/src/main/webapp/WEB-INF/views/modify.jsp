@@ -17,17 +17,13 @@
     <script type="text/javascript">
 		$(function() {
 			
-			//수정버튼진짜
+			//수정버튼 황선필
 			$("#modify").click(function() {
 				
 				var pw=$("#pw").val();
 				var repw=$("#repw").val();
 				var user_id=$("#user_id").val();
 				var email=$("#email").val();
-/* 				alert("modify"+user_id);
-				alert("modify"+pw);
-				alert("modify"+repw);
-				alert("modify"+email); */
 				
 	            //이메일 체크 양식
 	            var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -50,6 +46,7 @@
 								
 			     				 var regsubmit=confirm("작성한 내용으로 수정이 진행됩니다. 계속하시겠습니까? ");
 			     				 if(regsubmit==true){
+			     					 //실질 수정 기능
 									 $.ajax({
 							     		 url:"./modifydo",
 							     		 type:"post",
@@ -73,6 +70,7 @@
 							     			 alert("error : "+textStatus);
 							     		 }
 							     	  });
+			     					 //아작스
 			     				 }
 							}
 			            }

@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${phone} = #{phone}
 	</select>
 	
-	<!-- 황선필 이미지 제외 모두 수정 -->
+	<!-- 황선필 모두 수정 -->
 	<update id="modifyAll" parameterType="User">
 	
 		update ${user_tbl}
@@ -46,12 +46,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
-	<!--phone 중복 체크 -->
+	<!--phone 중복 체크 황선필 -->
 	<select id="regphonecheck" resultType="User">
 		select * from ${user_tbl} where ${phone} = #{phone}
 	</select>
 	
-	<!-- 회원 등록 -->
+	<!-- 회원 등록 황선필 -->
 	<insert id="regAll" parameterType="User">
 
 		insert into ${user_tbl} (${phone}, ${password}, ${email})

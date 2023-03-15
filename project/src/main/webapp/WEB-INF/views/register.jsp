@@ -19,7 +19,7 @@
     	//jquery
 		$(function() {
 			
-			//등록버튼
+			//등록버튼 황선필
 			$("#register").click(function() {
 				//각 빈칸들 변수
 				var phone=$("#phone").val();
@@ -60,7 +60,7 @@
 									if(email!=reemail){
 										alert("작성된 이메일이 다릅니다. 이메일을 다시 확인하여 주시기 바랍니다.");
 									}else{
-										//ID 중복 체크
+										//폰 중복 체크 아작스
 										 $.ajax({
 								     		 url:"./regphonecheck",
 								     		 type:"post",
@@ -74,6 +74,7 @@
 								     				 alert("사용가능한 번호입니다.");
 								     				 var regsubmit=confirm("작성한 내용으로 가입이 진행됩니다. 계속하시겠습니까? ");
 								     				 if(regsubmit==true){
+								     					 //실질 회원가입 기능
 														 $.ajax({
 												     		 url:"./regAll",
 												     		 type:"post",
@@ -105,7 +106,7 @@
 									     			 location.href="./exception?code="+request.status+"&message="+request.statusText+"&error="+error;
 									     		 }
 								     	  });
-										//ID 중복 체크
+										//폰 중복 체크
 									}
 					            }
 				            }

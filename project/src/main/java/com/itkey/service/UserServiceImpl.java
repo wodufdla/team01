@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
 		log.info("read_login() 호출 : phone = " + phone);
 		return userDAO.select_login(phone);
 	}
+	
 	//정보수정 황선필
 	@Override
 	public int modifyAll(UserVO uv) {
@@ -54,14 +55,16 @@ public class UserServiceImpl implements UserService {
 		int MMI = userDAO.modifyAll(uv);
 		return MMI;
 	}
-	//회원가입 번호 체크
+	
+	//회원가입 번호 체크 황선필
 	@Override
 	public UserVO regphonecheck(UserVO uv) {
 		// TODO Auto-generated method stub
 		UserVO uvreg=userDAO.regphonecheck(uv);
 		return uvreg;
 	}
-	//회원가입 모두 등록
+	
+	//회원가입 모두 등록 황선필
 	@Override
 	public int regAll(UserVO uv) {
 		// TODO Auto-generated method stub

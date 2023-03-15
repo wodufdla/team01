@@ -52,28 +52,26 @@ public class UserDAOImpl implements UserDAO {
 	//정보수정 황선필
 	@Override
 	public int modifyAll(UserVO uv) {
-		
-//		System.out.println("수정phone:"+uv.getPhone());
-//		System.out.println("수정pw:"+uv.getPassword());
-//		System.out.println("수정email:"+uv.getEmail());
 
 		int update1 = (Integer)sqlSession.update("modifyAll", uv);
 
 		return update1;
 	}
 	
-	//회원가입 번호 체크
+	//회원가입 번호 체크 황선필
 	@Override
 	public UserVO regphonecheck(UserVO uv) {
 		// TODO Auto-generated method stub
 		UserVO uvreg=sqlSession.selectOne("regphonecheck", uv);
 		return uvreg;
 	}
-	//회원가입 모두 등록
+	
+	//회원가입 모두 등록 황선필
 	@Override
 	public int regAll(UserVO uv) {
 		// TODO Auto-generated method stub
 		int regnum = sqlSession.insert("regAll", uv);
 		return regnum;
 	}
+	
 }
