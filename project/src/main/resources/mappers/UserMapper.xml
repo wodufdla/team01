@@ -2,11 +2,6 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- <mapper namespace="User">
-
-	
-	
-</mapper> -->
 
 <mapper namespace="com.itkey.UserMapper">
 
@@ -16,13 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert">
-		insert into ${user_tbl} (${phone}, ${password}, ${email})
-		values (#{phone}, #{password}, #{email})
+		insert into ${user_tbl} (${phone}, ${password}, ${email}, ${nickname})
+		values (#{phone}, #{password}, #{email}, #{nickname})
 	</insert>
 	
 	<update id="update">
 		update ${user_tbl}
-		set ${password} = #{password}, ${email} = #{email}
+		set ${password} = #{password}, ${email} = #{email}, ${nickname} = #{nickname}
 		where ${phone} = #{phone}
 	</update>
 	
@@ -39,9 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 황선필 모두 수정 -->
 	<update id="modifyAll" parameterType="User">
-	
 		update ${user_tbl}
-		set ${password} = #{password}, ${email} = #{email}
+		set ${password} = #{password}, ${email} = #{email}, ${nickname} = #{nickname}
 		where ${phone} = #{phone}
 	
 	</update>
@@ -54,8 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원 등록 황선필 -->
 	<insert id="regAll" parameterType="User">
 
-		insert into ${user_tbl} (${phone}, ${password}, ${email})
-		values (#{phone}, #{password}, #{email})
+		insert into ${user_tbl} (${phone}, ${password}, ${email}, ${nickname})
+		values (#{phone}, #{password}, #{email}, ${nickname})
 		
 	</insert>
 	

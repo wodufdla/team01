@@ -11,6 +11,7 @@
 		<property name="email" value="email" />
 		<property name="join_date" value="join_date" />
 		<property name="withdrawal" value="withdrawal" />
+		<property name="nickname" value="nickname"/>
 	</properties>
 
 

@@ -87,7 +87,7 @@ public class UserController {
 			session.setAttribute("session_password", uv.getPassword());
 			session.setAttribute("session_email", uv.getEmail());
 			//session.setAttribute("session_join_date", uv.getJoinDate());
-			session.setAttribute("session_withdrawal", uv.isWithdrawal());
+			session.setAttribute("session_withdrawal", uv.getWithdrawal());
 			
 		}
 		
