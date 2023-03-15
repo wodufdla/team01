@@ -61,4 +61,19 @@ public class UserDAOImpl implements UserDAO {
 
 		return update1;
 	}
+	
+	//회원가입 번호 체크
+	@Override
+	public UserVO regphonecheck(UserVO uv) {
+		// TODO Auto-generated method stub
+		UserVO uvreg=sqlSession.selectOne("regphonecheck", uv);
+		return uvreg;
+	}
+	//회원가입 모두 등록
+	@Override
+	public int regAll(UserVO uv) {
+		// TODO Auto-generated method stub
+		int regnum = sqlSession.insert("regAll", uv);
+		return regnum;
+	}
 }

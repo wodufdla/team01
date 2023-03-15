@@ -54,5 +54,19 @@ public class UserServiceImpl implements UserService {
 		int MMI = userDAO.modifyAll(uv);
 		return MMI;
 	}
+	//회원가입 번호 체크
+	@Override
+	public UserVO regphonecheck(UserVO uv) {
+		// TODO Auto-generated method stub
+		UserVO uvreg=userDAO.regphonecheck(uv);
+		return uvreg;
+	}
+	//회원가입 모두 등록
+	@Override
+	public int regAll(UserVO uv) {
+		// TODO Auto-generated method stub
+		int regnum = userDAO.regAll(uv);
+		return regnum;
+	}
 	
 }

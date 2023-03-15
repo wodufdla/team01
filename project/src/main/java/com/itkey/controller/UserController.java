@@ -86,20 +86,73 @@ public class UserController {
 		//이미지 빼고 수정
 		int MMI=userService.modifyAll(uv);
 		//System.out.println("수정여부"+MMI);
+		
+		//결과 스트링화
 		String result=String.valueOf(MMI);
 		
 		//세션에 다 등록
-		
 		HttpSession session = request.getSession();
-		
-		session.setAttribute("phone", uv.getPhone());
-		session.setAttribute("session_password", uv.getPassword());
-		session.setAttribute("session_email", uv.getEmail());
-		//session.setAttribute("session_join_date", uv.getJoinDate());
-		session.setAttribute("session_withdrawal", uv.isWithdrawal());
+		//수정 성공시에만 세션 등록
+		if(MMI==1) {
+			
+			session.setAttribute("phone", uv.getPhone());
+			session.setAttribute("session_password", uv.getPassword());
+			session.setAttribute("session_email", uv.getEmail());
+			//session.setAttribute("session_join_date", uv.getJoinDate());
+			session.setAttribute("session_withdrawal", uv.isWithdrawal());
+			
+		}
 		
 		return result;
 		
 	}
+	
+    //회원가입 화면 접속 황선필
+    @RequestMapping("/register")
+    public String register() {
+    	
+    	return "register";
+    }
+    
+	//회원가입 창
+	//회원가입 번호 중복체크 창
+	@ResponseBody
+	@PostMapping("/regphonecheck")
+	public String regphonecheck(UserVO uv) {
+		UserVO uvreg=userService.regphonecheck(uv);
+		if(uvreg!=null) {
+			return "1";
+		}else {
+			return "0";
+		}
+		
+	}
+	
+	//회원가입 모두 등록
+	@ResponseBody
+	@PostMapping("/regAll")
+	public String regAll(UserVO uv,HttpServletRequest request) {
+		//회원가입
+		int regnum=userService.regAll(uv);
+		
+		//세션에 다 등록
+		HttpSession session = request.getSession();
+		//등록 성공시에만 세션 등록
+		if(regnum==1) {
+			
+			session.setAttribute("phone", uv.getPhone());
+			session.setAttribute("session_password", uv.getPassword());
+			session.setAttribute("session_email", uv.getEmail());
+			//session.setAttribute("session_join_date", uv.getJoinDate());
+			session.setAttribute("session_withdrawal", uv.isWithdrawal());
+			
+		}
+		//스트링화
+		String sregnum=String.valueOf(regnum);
+		
+		return sregnum;
+		
+	}
+	
 	
 }

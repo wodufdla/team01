@@ -46,4 +46,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
+	<!--phone 중복 체크 -->
+	<select id="regphonecheck" resultType="User">
+		select * from ${user_tbl} where ${phone} = #{phone}
+	</select>
+	
+	<!-- 회원 등록 -->
+	<insert id="regAll" parameterType="User">
+
+		insert into ${user_tbl} (${phone}, ${password}, ${email})
+		values (#{phone}, #{password}, #{email})
+		
+	</insert>
+	
 </mapper>

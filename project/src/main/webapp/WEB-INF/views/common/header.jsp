@@ -45,6 +45,7 @@ $(document).ready(function(){
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
                 <c:if test="${phone==null}">
 	                <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
+	                <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
                 </c:if>
                 
                 <c:if test="${phone!=null}">
