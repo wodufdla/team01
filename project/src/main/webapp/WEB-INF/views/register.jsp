@@ -26,6 +26,7 @@
 				var pw=$("#password").val();
 				var email=$("#email").val();
 				var repw=$("#repassword").val();
+				var nickname=$("#nickname").val();
 				
 				//핸드폰 패턴
 				var patternPhoneNumber=/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -36,7 +37,7 @@
 	            var phone1 = checkReg.test(phone);
 	            
 						//모든 항목 빈칸 확인
-						if(pw ==""|| phone ==""|| email ==""|| repw ==""){
+						if(pw ==""|| phone ==""|| email ==""|| repw ==""|| nickname ==""){
 							alert("모든항목을 빈칸없이 작성해 주시기 바랍니다. ");
 							
 						}else{
@@ -81,6 +82,7 @@
 												     			 "phone":phone,
 												     			 "password":pw,
 												     			 "email":email,
+												     			 "nickname":nickname,
 												     		 },
 												     		 success:function(data){
 												     			 if(data==1){
@@ -160,6 +162,15 @@
 	          </li>
 	          <li style="width: 100%;display: flex;">
 	          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24" style="width: 100%; padding: 5px;">
+	          </li>
+	      </ul>
+	      
+	      <ul style="padding: 0;display: flex;">
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
+	          	<span class="normal-font" style="display: block;padding: 8px;">닉네임</span>
+	          </li>
+	          <li style="width: 100%;display: flex;">
+	          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
 

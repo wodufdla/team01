@@ -95,6 +95,7 @@ public class UserController {
 			session.setAttribute("session_email", uv.getEmail());
 			//session.setAttribute("session_join_date", uv.getJoinDate());
 			session.setAttribute("session_withdrawal", uv.getWithdrawal());
+			session.setAttribute("session_nickname", uv.getNickname());
 			
 		}
 		
@@ -138,6 +139,7 @@ public class UserController {
 			session.setAttribute("phone", uv.getPhone());
 			session.setAttribute("session_password", uv.getPassword());
 			session.setAttribute("session_email", uv.getEmail());
+			session.setAttribute("session_nickname", uv.getNickname());
 			//session.setAttribute("session_join_date", uv.getJoinDate());
 			//session.setAttribute("session_withdrawal", uv.isWithdrawal());
 			
