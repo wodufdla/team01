@@ -32,23 +32,30 @@ public class UserController {
 	@PostMapping("/login")
 	public String loginPOST(String phone, String password, HttpServletRequest request, RedirectAttributes reAttr) {
 		log.info("loginPOST() 호출");
-		UserVO vo = userService.read_login(phone);
-		
-		if (vo == null) {
-			reAttr.addFlashAttribute("login_result", "fail");
+		if(phone.equals("admin") && password.equals("1234")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("admin", phone);
+			reAttr.addFlashAttribute("admin_result", "success");
 			return "redirect:/login";
 		} else {
-			String userPhone = vo.getPhone();
-			String userPassword = vo.getPassword();
-			if(userPhone.equals(phone) && userPassword.equals(password)) {
-				log.info("로그인성공");
-				HttpSession session = request.getSession();
-				session.setAttribute("phone", phone);
-				reAttr.addFlashAttribute("login_result", "successLogin");
+			UserVO vo = userService.read_login(phone);
+			
+			if (vo == null) {
+				reAttr.addFlashAttribute("login_result", "fail");
 				return "redirect:/login";
 			} else {
-				reAttr.addFlashAttribute("login_result", "failLogin");
-				return "redirect:/login";
+				String userPhone = vo.getPhone();
+				String userPassword = vo.getPassword();
+				if(userPhone.equals(phone) && userPassword.equals(password)) {
+					log.info("로그인성공");
+					HttpSession session = request.getSession();
+					session.setAttribute("phone", phone);
+					reAttr.addFlashAttribute("login_result", "successLogin");
+					return "redirect:/login";
+				} else {
+					reAttr.addFlashAttribute("login_result", "failLogin");
+					return "redirect:/login";
+				}
 			}
 		}
 	}

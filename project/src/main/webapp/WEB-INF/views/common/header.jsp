@@ -63,7 +63,7 @@ function registeralarm() {
                 <li class="nav-item">
                 
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
-                <c:if test="${phone==null}">
+                <c:if test="${phone==null && admin == null}">
 	                <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
 	                <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
                 </c:if>
@@ -79,7 +79,10 @@ function registeralarm() {
 	                ${session_email}<br>
 	                ${session_withdrawal}<br> --%>
                 </c:if>
-                
+                <c:if test="${admin != null }">
+                	<span style="font-weight: bold; text-decoration: underline; ">관리자</span><span style="font-weight: bold; " >님 환영합니다!</span>
+	                <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
+                </c:if>
             </ul>
         </div>
     </div>

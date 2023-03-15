@@ -41,6 +41,7 @@
 		</div>
 	</form>
 	<input type="hidden" id="alert" value=${login_result }>
+	<input type="hidden" id="admin_alert" value=${admin_result }>
 	<script type="text/javascript">
 	var phone = "";
 	var regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -75,18 +76,24 @@
 
 	$(document).ready(function(){
 		var result = $('#alert').val();
-		console.log(result)
-		if(result == 'successLogin'){
-			alert('로그인 성공 !')
-			//연창 새로고침 황선필
+		var admin_result = $('#admin_alert').val();
+		if(admin_result == 'success') {
+			alert('관리자 로그인 성공')
 			opener.location.reload();
 			window.close();
-		} else if (result == 'fail') {
-			alert('존재하지 않는 회원입니다. 핸드폰번호를 확인해주세요. ')
-			return
-		} else if(result == 'failLogin') {
-			alert('로그인 실패 ! 비밀번호를 확인해주세요.')
-			return
+		} else {
+			if(result == 'successLogin'){
+				alert('로그인 성공 !')
+				//연창 새로고침 황선필
+				opener.location.reload();
+				window.close();
+			} else if (result == 'fail') {
+				alert('존재하지 않는 회원입니다. 핸드폰번호를 확인해주세요. ')
+				return
+			} else if(result == 'failLogin') {
+				alert('로그인 실패 ! 비밀번호를 확인해주세요.')
+				return
+			}
 		}
 	})
 	
