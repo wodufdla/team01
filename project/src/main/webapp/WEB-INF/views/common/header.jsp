@@ -32,7 +32,7 @@ $(document).ready(function(){
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
-                <li class="nav-item"><a class="nav-link" href="#service">서비스 소개</a></li>
+                <li class="nav-item"><a class="nav-link" href="#serviceInfo">서비스 소개</a></li>
                 <!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
                 <c:if test="${phone!=null}">
 	                <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
@@ -62,11 +62,11 @@ $(document).ready(function(){
 	                <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
                 </c:if>
                 
-                <c:if test="${phone!=null}">
-	                <li class="nav-item">${phone} 님 환영합니다!
+                <c:if test="${phone!=null}"><!-- style 추가 황선필 -->
+	                <span style="font-weight: bold; text-decoration: underline; ">${phone}</span><span style="font-weight: bold; " >님 환영합니다!</span>
 	                <!-- <a href="#" id="modify">정보수정</a> -->
+	                <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
 	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">정보수정</a>
-	                <a href="#" id="logout">로그아웃</a>
 	                <!-- session값 확인 황선필 -->
 <%-- 	                ${phone}<br>
 	                ${session_password}<br>

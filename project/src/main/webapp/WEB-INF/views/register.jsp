@@ -128,23 +128,23 @@
 	<form action="registerform" method="post">
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">Phone</span>
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
+	          	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
 	          </li>
 	          <li style="display: flex;width: 100%;">
 	          	<input type="text" id="phone" name="phone" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;" >
 	          </li>
 	      </ul>
 	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">Password</span>
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
+	          	<span class="normal-font" style="display: block;padding: 8px;">비밀번호</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
 	          	<input type="password" id="password" name="password" placeholder="비밀번호 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
 	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px;">
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">이메일</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
@@ -152,15 +152,15 @@
 	          </li>
 	      </ul>
 	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px;">
+	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">이메일 재입력</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
 	          	<input type="text" id="reemail" name="reemail" placeholder="이메일 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
-	      
-		<input id="register" type="button" value="회원가입">
+	      <!-- 스타일 추가 황선필 -->
+		<input id="register" type="button" value="가입" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		</div>
 	</form>
 
