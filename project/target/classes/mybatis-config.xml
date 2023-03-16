@@ -11,7 +11,10 @@
 		<property name="email" value="email" />
 		<property name="join_date" value="join_date" />
 		<property name="withdrawal" value="withdrawal" />
+<<<<<<< HEAD
 		<property name="nickname" value="nickname"/>
+=======
+>>>>>>> HSA
 	</properties>
 
 
@@ -25,7 +28,7 @@
 		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
 		<typeAlias alias="Refund" type="com.itkey.vo.RefundVO" />
 		<typeAlias alias="Service" type="com.itkey.vo.ServiceVO" />
-		<typeAlias alias="Question" type="com.itkey.vo.QuestionVO" />
+		<typeAlias alias="QuestionVO" type="com.itkey.vo.QuestionVO" />
 	</typeAliases>
 	
 

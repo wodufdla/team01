@@ -48,6 +48,7 @@ function registeralarm() {
 	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
                 </c:if>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+<<<<<<< HEAD
                 <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
                 </c:if>
@@ -61,6 +62,10 @@ function registeralarm() {
                 	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 해지</a></li>
                 </c:if>
                 <!-- 황선필 메뉴 수정 -->
+=======
+                <li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
+>>>>>>> HSA
                 <li class="nav-item">
                 
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
