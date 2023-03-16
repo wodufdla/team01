@@ -20,10 +20,10 @@ $(document).ready(function(){
 	});
 
 });
-//서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 회원가입 창 뜸
+//서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 로그인 창 뜸
 function registeralarm() {
 	alert("로그인을 해야 이용 가능합니다!");
-	window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');
+	window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 
 </script>

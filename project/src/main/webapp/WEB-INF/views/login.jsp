@@ -39,6 +39,7 @@
 	      </ul>
 		<input type="submit" value="login" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		<button type="button" id="btnFind" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">find</button>
+		<button type="button" id="registerbtn" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">회원가입</button>
 		</div>
 	</form>
 	<input type="hidden" id="alert" value=${login_result }>
@@ -99,6 +100,10 @@
 		
 		$("#btnFind").click(function() {
 			location = '/find';
+		});
+		//회원가입 버튼 추가 황선필
+		$("#registerbtn").click(function() {
+			location = '/register';
 		});
 	})
 
