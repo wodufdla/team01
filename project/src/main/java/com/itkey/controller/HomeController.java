@@ -41,10 +41,23 @@ public class HomeController {
 		return "order";
 	}
 	
+	@RequestMapping("/service")
+	public String service(Model model) {
+		return "common/service";
+	}
+	
+	@RequestMapping("/privacy")
+	public String privacy(Model model) {
+		return "common/privacy";
+	}
     
     @RequestMapping("/serviceInfo")
     public String serviceInfo(Model model) {
         return "serviceInfo";
     }
     
+    @RequestMapping("/faq")
+    public String faq(Model model) {
+        return "faq";
+    }
 }
