@@ -47,7 +47,7 @@ function registeralarm() {
                 <c:if test="${phone==null}">
 	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
                 </c:if>
-                <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                 <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
                 </c:if>
