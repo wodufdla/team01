@@ -71,5 +71,11 @@ public class UserServiceImpl implements UserService {
 		int regnum = userDAO.regAll(uv);
 		return regnum;
 	}
+
+	@Override
+	public UserVO find_password(String phone, String email) {
+		log.info("find_password() 호출 : phone = " + phone + " email = " + email);
+		return userDAO.find_password(phone, email);
+	}
 	
 }

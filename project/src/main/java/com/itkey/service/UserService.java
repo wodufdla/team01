@@ -18,5 +18,7 @@ public interface UserService {
 	//회원가입 모두 등록 황선필
 	int regAll(UserVO uv);
 	
+	// 비밀번호 찾기
+	UserVO find_password(String phone, String email);
 	
 }

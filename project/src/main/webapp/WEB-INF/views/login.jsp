@@ -37,7 +37,8 @@
 	          	<input type="password" id="password" name="password" placeholder="비밀번호 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
-		<input type="submit" value="login">
+		<input type="submit" value="login" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<button type="button" id="btnFind" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">find</button>
 		</div>
 	</form>
 	<input type="hidden" id="alert" value=${login_result }>
@@ -95,8 +96,12 @@
 				return
 			}
 		}
+		
+		$("#btnFind").click(function() {
+			location = '/find';
+		});
 	})
-	
+
 	</script>
 </body>
 </html>
