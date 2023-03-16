@@ -56,4 +56,8 @@ public class HomeController {
         return "serviceInfo";
     }
     
+    @RequestMapping("/faq")
+    public String faq(Model model) {
+        return "faq";
+    }
 }
