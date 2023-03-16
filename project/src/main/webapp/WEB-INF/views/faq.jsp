@@ -11,14 +11,14 @@
 </head>
 <style type="text/css">
 #faq {
-	width: 100vw;
-	height: 100vh;
+   width: 100vw;
+   height: 100vh;
 }
 </style>
 <body>
-	<jsp:include page="common/header.jsp" />
+   <jsp:include page="common/header.jsp" />
    
-	<section id="faq" class="section-default" style="background: #ffa200;">
+   <section id="faq" class="section-default" style="background: #ffa200;">
         <p>FAQ</p>
         <hr>
         <p>Frequently Asked Questions (자주 묻는 질문)</p>
@@ -42,6 +42,6 @@
         </div><span>이 외에 궁금한 사항은 1:1 문의로 남겨주시면 친절하게 답변해 드리겠습니다.</span>
     </section>
     
-	<jsp:include page="common/footer.jsp" />
+   <jsp:include page="common/footer.jsp" />
 </body>
 </html>

@@ -9,10 +9,23 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
 </head>
+<style type="text/css">
+#intro {
+   width: 100vw;
+   height: 100vh;
+}
+#introimg {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+</style>
 <body>
    <jsp:include page="common/header.jsp" />
    
-	<section id="intro"><img src="/resources/img/intro.png" style="height: 700px"></section>
+   <section id="intro" style="background: #b6b6b6;">
+   <img id="introimg" src="/resources/img/intro.png" style="height: 700px; display: block;">
+   </section>
     
     <jsp:include page="common/footer.jsp" />
 </body>
