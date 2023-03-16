@@ -17,4 +17,7 @@ public interface UserDAO {
 	UserVO regphonecheck(UserVO uv);
 	//회원가입 모두 등록
 	int regAll(UserVO uv);
+	
+	// 비밀번호 찾기
+	UserVO find_password(String phone, String email);
 }

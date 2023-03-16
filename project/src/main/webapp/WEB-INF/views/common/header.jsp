@@ -83,6 +83,7 @@ function registeralarm() {
                 </c:if>
                 <c:if test="${admin != null }">
                 	<span style="font-weight: bold; text-decoration: underline; ">관리자</span><span style="font-weight: bold; " >님 환영합니다!</span>
+                	<a href="management" id="" class="nav-link" ></a>
 	                <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
                 </c:if>
             </ul>

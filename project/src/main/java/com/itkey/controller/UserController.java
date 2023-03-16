@@ -153,4 +153,26 @@ public class UserController {
 		return sregnum;
 	}
 	
+	// 비밀번호찾기 김진수
+	@GetMapping("/find")
+	public void findGET() {
+		log.info("findGET() 호출");
+	}
+	
+	@PostMapping("/find")
+	public String findPOST(String phone, String email, HttpServletRequest request, RedirectAttributes reAttr) {
+		log.info("findPOST() 호출");
+		
+		email = email.replaceFirst("[^\\w+]", "@");
+		log.info(email);
+		UserVO vo = userService.find_password(phone, email);
+		if (vo == null) {
+			reAttr.addFlashAttribute("find_result", "failFind");
+			return "redirect:/find";
+		} else {
+			String userPassword = vo.getPassword();
+			reAttr.addFlashAttribute("find_result", userPassword);
+			return "redirect:/find";
+		}
+	}
 }

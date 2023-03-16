@@ -1,6 +1,8 @@
 package com.itkey.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -72,6 +74,15 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		int regnum = sqlSession.insert("regAll", uv);
 		return regnum;
+	}
+
+	@Override
+	public UserVO find_password(String phone, String email) {
+		log.info("find_password() 호출");
+		Map<String, String> args = new HashMap<String, String>();
+		args.put("phone", phone);
+		args.put("email", email);
+		return sqlSession.selectOne(NAMESPACE + ".find_password", args);
 	}
 	
 }
