@@ -1,0 +1,62 @@
+/* class명 "btn btn-fill-fcolor " */
+
+
+
+.btn {
+	display: inline-block;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media ( prefers-reduced-motion :reduce) {
+	.btn {
+		transition: none
+	}
+}
+
+.btn:hover {
+	color: #212529
+}
+
+.btn-check:focus+.btn, .btn:focus {
+	outline: 0;
+}
+
+.btn-fill-fcolor {
+	color: #9bbfd9;
+	border-color: #9bbfd9;
+}
+
+.btn-fill-fcolor:hover {
+	color: #fff;
+	background-color: #9bbfd9;
+	border-color: #9bbfd9;
+}
+
+.btn-check:checked+.btn-fill-fcolor, .btn-check:active+.btn-fill-fcolor,
+	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show
+	{
+	color: #fff;
+	background-color: #9bbfd9;
+	border-color: #9bbfd9;
+}
+
+.btn-fill-fcolor:disabled, .btn-fill-fcolor.disabled {
+	color: #9bbfd9;
+	background-color: transparent;
+}

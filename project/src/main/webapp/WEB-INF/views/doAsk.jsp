@@ -1,14 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹®ÀÇÇÏ±â ±Û¾²±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ë¬¸ì˜í•˜ê¸° ê¸€ì“°ê¸°</title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 * {
 	font-family: SUIT-Regular;
@@ -29,7 +31,7 @@ body {
 	justify-content: left;
 	align-items: center;
 }
-.ask_category {
+.askcategory {
 	position: relative;
 	left: 22px;
 	height: 45px;
@@ -37,7 +39,7 @@ body {
 	font-size: 15px;
 	border-radius: 5px;
 }
-.ask_category:hover {
+.askcategory:hover {
 	border-color: #9bbfd9;
 }
 .askAllWrap .contentWrap {
@@ -54,7 +56,7 @@ body {
 .askContent {
 	margin-top: 15px;
 }
-.ask_boxborder {
+.askboxborder {
 	padding: .375rem .75rem;
 	font-size: 15px;
 	font-weight: 400;
@@ -64,17 +66,17 @@ body {
 	border-radius: 5px;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
-.ask_boxborder:hover {
+.askboxborder:hover {
 	border-color: #9bbfd9;
 }
-.ask_boxborder:focus {
+.askboxborder:focus {
 	color: #212529;
 	background-color: #fff;
 	border-color: #9bbfd9;
 	outline: 0;
 	box-shadow: 0 0 0 .10rem #9bbfd9;
 }
-.ask_boxborder-color::-moz-color-swatch {
+.askboxborder-color::-moz-color-swatch {
 	border-radius: 3px;
 }
 .askTop {
@@ -91,38 +93,36 @@ body {
 <body>
 
 <jsp:include page="common/header.jsp" />
-¹®ÀÇÇÏ±â 
+ë¬¸ì˜í•˜ê¸° 
 <form action="doAsk" method="post" id="doAsk">
 		<div class="askAllWrap">
 			<div class="textWrap">
 				<div>
-					<h2 class="askTop">¹®ÀÇ ±Û¾²±â</h2>
+					<h2 class="askTop">ë¬¸ì˜ ê¸€ì“°ê¸°</h2>
 					<hr
 						style="position: relative; bottom: 35; z-index: -1; border: double;">
 				</div>
 				<input type="hidden" name="email" value="${loginInfo.email}" />
 				<div class="titleWrap">
-					<input class="ask_boxborder" type="text" name="ask_title" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä."
-						id="ask_title" style="width: 784px; height: 46px;"> <select
-						size="1" class="ask_category" name="ask_category">
-						<option selected>¹è¼Û</option>
-						<option>°áÁ¦</option>
-						<option>»óÇ°</option>
-						<option>È¯ºÒ</option>
-						<option>Æİµù</option>
-						<option>±âÅ¸</option>
+					<input class="askboxborder" type="text" name="asktitle" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”."
+						id="asktitle" style="width: 784px; height: 46px;"> <select
+						size="1" class="askcategory" name="askcategory">
+						<option selected>í™˜ë¶ˆ</option>
+						<option>ê²°ì œ</option>
+						<option>ìƒí’ˆ</option>
+						<option>ê¸°íƒ€</option>
 					</select>
 				</div>
 				<div class="contentWrap">
 					<div>
-						<textarea class="askContent ask_boxborder" name="ask_content" placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä."
-							id="ask_content" style="width: 900px; height: 352px; resize: none;"></textarea>
+						<textarea class="askContent askboxborder" name="askcontent" placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”."
+							id="askcontent" style="width: 900px; height: 352px; resize: none;"></textarea>
 						<br>
 					</div>
 				</div>
 				<div class="buttonWrap" style="margin-bottom: 100px;">
 					<button class="btn btn-fill-fcolor" type="button"
-						style="width: 206px;" onclick="ask_check();">µî·ÏÇÏ±â</button>
+						style="width: 206px;" onclick="ask_check();">ë“±ë¡í•˜ê¸°</button>
 				</div>
 			</div>
 		</div>
@@ -130,15 +130,15 @@ body {
 	
 	<script>
 		function ask_check() {
-			var title = document.getElementById("ask_title");
-			var content = document.getElementById("ask_content");
+			var title = document.getElementById("asktitle");
+			var content = document.getElementById("askcontent");
 			if (title.value == "") {
-				alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				title.focus();
 				return false;
 			}
 			if (content.value == "") {
-				alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+				alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 				content.focus();
 				return false;
 			}

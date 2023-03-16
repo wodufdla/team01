@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>¹®ÀÇÇÏ±â ¸®½ºÆ®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë¬¸ì˜í•˜ê¸° ë¦¬ìŠ¤íŠ¸</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
@@ -86,7 +87,7 @@
 .allWrap ul, li {
 	list-style: none;
 }
-.allWrap .ask_sort {
+.allWrap .asksort {
 	position: relative;
 	font-size: 15px;
 	color: white;
@@ -96,7 +97,7 @@
 	background-color: chocolate;
 	border: chocolate solid 1.5px;
 }
-.allWrap .reply_end {
+.allWrap .replyend {
 	position: relative;
 	font-size: 15px;
 	color: rgb(250, 250, 250);
@@ -107,7 +108,7 @@
 	border: rgba(147, 135, 252, 0.819) solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
-.allWrap .reply_end2 {
+.allWrap .replyend2 {
 	position: relative;
 	font-size: 15px;
 	color: rgb(250, 250, 250);
@@ -127,23 +128,23 @@
 	text-align: left;
 	font-size:18px;
 }
-.ask_date {
+.askdate {
 	text-align: right;
 	width: 22%;
 	position: relative;
 	left: 1%;
 }
-.ask_delete {
+.askdelete {
 	transition: all .3s;
 	cursor: pointer;
 	width: 80px;
 	position: relative;
 	left: 138px;
 }
-.ask_delete:hover {
+.askdelete:hover {
 	color: #EF9A9A;
 }
-.ask_box {
+.askbox {
 	margin-top: 10px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 	padding: 1px 1px 1px 5px;
@@ -163,7 +164,7 @@ display: none;
 			<p>
 			<p
 				style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">${loginInfo.name}
-				´ÔÀÇ 1:1 ¹®ÀÇ ³»¿ª</p>
+				ë‹˜ì˜ 1:1 ë¬¸ì˜ ë‚´ì—­</p>
 			<hr
 				style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
 			</p>
@@ -172,31 +173,31 @@ display: none;
 			<ul>
 				<li style="display: flex;"><c:if test="${not empty ask}">
 						<a href="<%=request.getContextPath()%>/customerCenter/doAsk">
-							<button class="btn btn-fill-fcolor">¹®ÀÇÇÏ±â</button>
+							<button class="btn btn-fill-fcolor">ë¬¸ì˜í•˜ê¸°</button>
 						</a>
 					</c:if></li>
 
 
 					<c:forEach items="${ask}" var="ask">
 					<form action="deleteAsk.do" method="post" id="deleteAsk">
-						<div class="ask_box" style="position: relative;">
+						<div class="askbox" style="position: relative;">
 							<li style="display: flex; margin-top: 30px;margin-bottom: 10px;">
-								<h2 class="ask01">${ask.ask_title}</h2> <span class="ask_sort">${ask.ask_category}¹®ÀÇ</span>
-								<c:if test="${ask.reply_yn eq 'N'}">
-									<span class="reply_end">´äº¯´ë±â</span>
-								</c:if> <c:if test="${ask.reply_yn eq 'Y'}">
-									<span class="reply_end2">´äº¯¿Ï·á</span>
+								<h2 class="ask01">${ask.asktitle}</h2> <span class="asksort">${ask.askcategory}ë¬¸ì˜</span>
+								<c:if test="${ask.replyyn eq 'N'}">
+									<span class="replyend">ë‹µë³€ëŒ€ê¸°</span>
+								</c:if> <c:if test="${ask.replyyn eq 'Y'}">
+									<span class="replyend2">ë‹µë³€ì™„ë£Œ</span>
 								</c:if> <span class="toggle tg1">&#9660</span> <span class="toggle tg2">&#9650</span>
 							</li>
 							<li class="content">
 								<div style="display: flex;">
-									<span style="width: 75%;">${ask.ask_content}</span>
-									<div class="ask_date">
-										<p>${ask.ask_date}</p>
+									<span style="width: 75%;">${ask.askcontent}</span>
+									<div class="askdate">
+										<p>${ask.askdate}</p>
 
 
-										<p class="ask_delete" id="ask_delete${ask.ask_no}">»èÁ¦ÇÏ±â</p>
-										<input type="hidden" name="ask_no" value="${ask.ask_no}">
+										<p class="askdelete" id="askdelete${ask.askno}">ì‚­ì œí•˜ê¸°</p>
+										<input type="hidden" name="askno" value="${ask.askno}">
 
 
 									</div>
@@ -204,10 +205,10 @@ display: none;
 								<hr style="width: 100%; margin: 20px auto 20px;">
 
 								<h4 style="width: 75%;">
-									<c:if test="${ask.reply_yn eq 'N'}">´äº¯À» ±â´Ù¸®´Â ÁßÀÔ´Ï´Ù. </c:if>
+									<c:if test="${ask.replyyn eq 'N'}">ë‹µë³€ì„ ê¸°ë‹¤ë¦¬ëŠ” ì¤‘ì…ë‹ˆë‹¤. </c:if>
 								</h4>
 								<h4>
-									<c:if test="${ask.reply_yn eq 'Y'}">${ask.ans_content}</c:if>
+									<c:if test="${ask.replyyn eq 'Y'}">${ask.anscontent}</c:if>
 								</h4>
 
 							</li>
@@ -217,11 +218,11 @@ display: none;
 			</ul>
 			<c:if test="${empty ask}">
 				<div style="position: relative; top: 60px;">
-					<h4>µî·ÏµÈ 1:1 ¹®ÀÇ°¡ ¾ø½À´Ï´Ù.</h4>
-					<h4>±Ã±İÇÏ°Å³ª °ÇÀÇÇÒ »çÇ×ÀÌ ÀÖ´Ù¸é ¾ğÁ¦µçÁö ¹®ÀÇÇØÁÖ¼¼¿ä!</h4>
+					<h4>ë“±ë¡ëœ 1:1 ë¬¸ì˜ê°€ ì—†ìŠµë‹ˆë‹¤.</h4>
+					<h4>ê¶ê¸ˆí•˜ê±°ë‚˜ ê±´ì˜í•  ì‚¬í•­ì´ ìˆë‹¤ë©´ ì–¸ì œë“ ì§€ ë¬¸ì˜í•´ì£¼ì„¸ìš”!</h4>
 				</div>
-				<a href="<%=request.getContextPath()%>/customerCenter/doAsk"><button
-						class="btn btn-fill-fcolor" style="position: relative; top: 90px;">¹®ÀÇÇÏ±â</button></a>
+				<a href="<%=request.getContextPath()%>/customerCenter/doAsk">
+				<button class="btn btn-fill-fcolor" style="position: relative; top: 90px;">ë¬¸ì˜í•˜ê¸°</button></a>
 			</c:if>
 		</div>
 	</div>
@@ -234,7 +235,7 @@ display: none;
 			var tDegree = 0;
 			$(".content").hide();
 			
-	/* Åä±Û */
+	/* í† ê¸€ */
 			$(".toggle").click(function() {
 				$(this).parent().next().toggle("fast", "swing");	
 			});
@@ -247,10 +248,10 @@ display: none;
 				$(this).hide();
 			});
 			
-			$("[id^='ask_delete']").click(function() {
+			$("[id^='askdelete']").click(function() {
 				console.log($(this));
 				console.log($(this).parents("form"));
-				if (confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")) {
+				if (confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")) {
 					$(this).parents("form").submit();
 				} else {
 					return false;
