@@ -38,7 +38,7 @@ $(document).ready(function(){
                 <li class="nav-item"><a class="nav-link" href="#service">서비스 소개</a></li>
                 <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
+                <li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
                 <li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
                 <li class="nav-item">
                 
