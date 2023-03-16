@@ -45,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from ${user_tbl} where ${phone} = #{phone}
 	</select>
 	
-	<!-- 회원 등록 황선필 -->
+	<!-- 회원 등록 황선필 --><!-- nickname $를 #으로 수정 -->
 	<insert id="regAll" parameterType="User">
 
 		insert into ${user_tbl} (${phone}, ${password}, ${email}, ${nickname})
-		values (#{phone}, #{password}, #{email}, ${nickname})
+		values (#{phone}, #{password}, #{email}, #{nickname})
 		
 	</insert>
 	

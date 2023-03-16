@@ -50,6 +50,9 @@ public class UserController {
 					log.info("로그인성공");
 					HttpSession session = request.getSession();
 					session.setAttribute("phone", phone);
+					//닉네임 세션에 추가 황선필
+					session.setAttribute("session_nickname", vo.getNickname());
+					
 					reAttr.addFlashAttribute("login_result", "successLogin");
 					return "redirect:/login";
 				} else {
