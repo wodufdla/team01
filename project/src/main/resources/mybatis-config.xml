@@ -12,16 +12,8 @@
 		<property name="join_date" value="join_date" />
 		<property name="withdrawal" value="withdrawal" />
 		<property name="nickname" value="nickname"/>
+	</properties>
 
-		<property name="askno"       value="askno" />
-		<property name="phone"       value="phone" />      
-		<property name="asktitle"    value="asktitle" />
-		<property name="askcategory" value="askcategory" />
-		<property name="askcontent"  value="askcontent" /> 
-		<property name="anscontent"  value="anscontent" />
-		<property name="askdate"     value="askdate" /> 
-		<property name="replyyn"     value="replyyn" />  
-	</properties>        
 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
