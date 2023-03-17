@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
 
-<title>Insert title here</title>
+<title>범죄알리미-서비스 소개</title>
 <style type="text/css">
 #intro {
    width: 100vw;

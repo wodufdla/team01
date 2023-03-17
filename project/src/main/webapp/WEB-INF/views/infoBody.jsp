@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -10,7 +11,7 @@
    border-radius: 2px;
 }
 </style>
-<title></title>
+<title> </title>
 
 </head>
 <body>
@@ -24,13 +25,13 @@
      </ol>
      <div class="carousel-inner">
        <div class="carousel-item active" data-bs-interval="2000">
-         <img src="resources/img/detail01.png" class="d-block w-100" alt="...">
+         <a target="_blank" href="https://www.sexoffender.go.kr/m2s3_7.nsc"><img src="resources/img/detail01.png" class="d-block w-100" alt="..."></a>
        </div>
        <div class="carousel-item" data-bs-interval="2000">
-         <img src="resources/img/detail02.png" class="d-block w-100" alt="...">
+         <a target="_blank" href="https://www.safemap.go.kr/main/smap.do?flag=2"><img src="resources/img/detail02.png" class="d-block w-100" alt="..."></a>
        </div>
        <div class="carousel-item" data-bs-interval="2000">
-         <img src="resources/img/detail03.png" class="d-block w-100" alt="...">
+        <a target="_blank" href="https://www.sexoffender.go.kr/m1s2_login.nsc"><img src="resources/img/detail03.png" class="d-block w-100" alt="..."></a> 
        </div>
           <div class="carousel-item" data-bs-interval="2000">
          <img src="resources/img/detail04.png" class="d-block w-100" alt="...">
