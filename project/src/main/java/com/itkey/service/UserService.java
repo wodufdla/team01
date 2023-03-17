@@ -2,6 +2,7 @@ package com.itkey.service;
 
 import java.util.List;
 
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.UserVO;
 
 public interface UserService {
@@ -20,5 +21,6 @@ public interface UserService {
 	
 	// 비밀번호 찾기
 	UserVO find_password(String phone, String email);
-	
+	List<UserVO> read_list(PageCriteria criteria);
+	int totalCounts();
 }

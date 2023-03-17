@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.UserVO;
 
 @Repository
@@ -83,6 +84,19 @@ public class UserDAOImpl implements UserDAO {
 		args.put("phone", phone);
 		args.put("email", email);
 		return sqlSession.selectOne(NAMESPACE + ".find_password", args);
+	}
+
+	@Override
+	public List<UserVO> select_list(PageCriteria criteria) {
+		log.info("select_list() 호출");
+		log.info("start = " + criteria.getStart() + ", end = " + criteria.getEnd());
+		return sqlSession.selectList(NAMESPACE + ".paging", criteria);
+	}
+
+	@Override
+	public int totalCounts() {
+		log.info("totalcounts() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".total_count");
 	}
 	
 }

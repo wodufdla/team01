@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itkey.dao.UserDAO;
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.UserVO;
 
 @Service
@@ -76,6 +77,19 @@ public class UserServiceImpl implements UserService {
 	public UserVO find_password(String phone, String email) {
 		log.info("find_password() 호출 : phone = " + phone + " email = " + email);
 		return userDAO.find_password(phone, email);
+	}
+
+	@Override
+	public List<UserVO> read_list(PageCriteria criteria) {
+		log.info("read() 호출 : start = " + criteria.getStart());
+		log.info("read() 호출 : end = " + criteria.getEnd());
+		return userDAO.select_list(criteria);
+	}
+
+	@Override
+	public int totalCounts() {
+		log.info("totalCounts() 호출");
+		return userDAO.totalCounts();
 	}
 	
 }
