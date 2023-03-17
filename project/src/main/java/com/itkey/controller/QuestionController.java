@@ -35,7 +35,8 @@ public class QuestionController {
 	@RequestMapping("/question")
 	public ModelAndView selectAsk(ModelAndView mv
 			, HttpSession session
-			, QuestionVO ask, RedirectAttributes rttr
+			//, QuestionVO ask
+			, RedirectAttributes rttr
 			//, @RequestParam(value="phone", required = false) String phone
 			) {
 		
@@ -52,7 +53,7 @@ public class QuestionController {
 		log.debug( "들어온다 ");
 		
 		mv.addObject("ask", questionService.selectAsk());
-		log.debug("나온다. "+ ask.toString());
+		//log.debug("나온다. "+ ask.toString());
 		
 		mv.setViewName("question");
 		

@@ -49,7 +49,7 @@ function registeralarm() {
                 </c:if>
                 <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                 <c:if test="${phone!=null}">
-                	<li class="nav-item"><a class="nav-link" href="javascript:onQna();">1:1 문의</a></li>
+                	<li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
                 </c:if>
                 <c:if test="${phone==null}">
                 	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>

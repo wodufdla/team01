@@ -38,6 +38,7 @@ body {
 	width: 95px;
 	font-size: 15px;
 	border-radius: 5px;
+	text-align: center;
 }
 .askcategory:hover {
 	border-color: #9bbfd9;
@@ -81,7 +82,7 @@ body {
 }
 .askTop {
 	display: flex;
-	width: 102px;
+	width: 120px;
 	font-size: 22px;
 	margin: 20px auto;
 	background: white;
