@@ -1,5 +1,7 @@
 package com.itkey.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,12 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itkey.pageutil.PageCriteria;
+import com.itkey.pageutil.PageMaker;
 import com.itkey.service.UserService;
 import com.itkey.vo.UserVO;
 
@@ -174,8 +179,25 @@ public class UserController {
 	}
 	
 	@GetMapping("/customer")
-	public void customerGET() {
+	public void customerGET(Model model, Integer page, Integer numsPerPage, HttpSession session) {
 		log.info("customerGET() 호출");
+		
+		PageCriteria criteria = new PageCriteria();
+		if(page != null) {
+			criteria.setPage(page);
+		}
+		
+		if(numsPerPage != null) {
+			criteria.setNumsPerPage(numsPerPage);
+		}
+		List<UserVO> list = userService.read_list(criteria);
+		model.addAttribute("list", list);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(userService.totalCounts());
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	@GetMapping("/product")

@@ -2,6 +2,7 @@ package com.itkey.dao;
 
 import java.util.List;
 
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.UserVO;
 
 public interface UserDAO {
@@ -20,4 +21,7 @@ public interface UserDAO {
 	
 	// 비밀번호 찾기
 	UserVO find_password(String phone, String email);
+	// 페이징 처리
+	List<UserVO> select_list(PageCriteria criteria);
+	int totalCounts();
 }

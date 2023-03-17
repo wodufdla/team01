@@ -57,4 +57,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from ${user_tbl} 
 		where ${phone} = #{phone} and ${email} = #{email}
 	</select>
+	
+	<select id="paging" resultType="User">
+		select * from ${user_tbl} orders limit #{start}, #{end}
+	</select>
+	
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from ${user_tbl}
+	</select>
 </mapper>
