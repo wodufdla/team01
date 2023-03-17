@@ -163,7 +163,7 @@ display: none;
 		<div class="top">
 			<p>
 			<p
-				style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">${user.nickname}
+				style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">${loginInfo.name}
 				님의 1:1 문의 내역</p>
 			<hr
 				style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">

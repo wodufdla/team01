@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itkey.service.QuestionService;
-import com.itkey.service.UserService;
 import com.itkey.vo.QuestionVO;
 import com.itkey.vo.UserVO;
 
@@ -29,8 +28,6 @@ public class QuestionController {
 	
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-	private UserService userService;
 
 	//문의하기 목록  
 	
@@ -38,33 +35,31 @@ public class QuestionController {
 	@RequestMapping("/question")
 	public ModelAndView selectAsk(ModelAndView mv
 			, HttpSession session
-			//, QuestionVO ask, RedirectAttributes rttr
+			//, QuestionVO ask
+			, RedirectAttributes rttr
 			//, @RequestParam(value="phone", required = false) String phone
 			) {
 		
 		// 회원 로그인 여부 
-		String phone = (String) session.getAttribute("phone");
-		UserVO user = userService.read_login(phone);
+//		Member member = (Member) session.getAttribute("loginInfo");
 //		if (member == null) {
 //			mv.setViewName("redirect:/member/login");
 //			return mv;
 //		}
 		
-		//QuestionVO.setphone(UserVO.getphone());  // 문의하기 `
 		
+		//QuestionVO.setphone(UserVO.getphone());  // 문의하기 
 		//phone = QuestionVO.getphone();
-		//log.debug( "들어온다 ");
+		log.debug( "들어온다 ");
 		
-		//mv.addObject("ask", questionService.selectAsk());
+		mv.addObject("ask", questionService.selectAsk());
 		//log.debug("나온다. "+ ask.toString());
-		mv.addObject("user", user);
+		
 		mv.setViewName("question");
 		
 		return mv;
 	}
 	
-	
-	/*
 	//문의하기  글쓰기 페이지 이동 
 	@RequestMapping(value = "/doAsk", method = RequestMethod.GET)
 	public ModelAndView pageDoAsk(ModelAndView mv,HttpSession session) {
@@ -143,6 +138,4 @@ public class QuestionController {
 //		return mv;		
 //	}
 	
-	
-	*/
 }
