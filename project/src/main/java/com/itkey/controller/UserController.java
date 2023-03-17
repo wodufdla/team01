@@ -172,4 +172,14 @@ public class UserController {
 			return "redirect:/find";
 		}
 	}
+	
+	@GetMapping("/customer")
+	public void customerGET() {
+		log.info("customerGET() 호출");
+	}
+	
+	@GetMapping("/product")
+	public void productGET() {
+		log.info("productGET() 호출");
+	}
 }
