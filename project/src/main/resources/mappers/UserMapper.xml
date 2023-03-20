@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="select_all" resultType="User">
 		select * from ${user_tbl}
-		order by ${join_date}
+		order by ${join_date} desc
 	</select>
 	
 	<insert id="insert">

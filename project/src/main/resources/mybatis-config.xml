@@ -12,8 +12,19 @@
 		<property name="join_date" value="join_date" />
 		<property name="withdrawal" value="withdrawal" />
 		<property name="nickname" value="nickname"/>
-	</properties>
 
+		<property name="order_tbl" value="order_tbl"/>
+		<property name="order_no" value="order_no"/>
+		<property name="phone" value="phone"/>
+		<property name="prder_cont" value="prder_cont"/>
+		<property name="billing_key" value="billing_key"/>
+		<property name="price" value="price"/>
+		<property name="status" value="status"/>
+		<property name="rqst_time" value="rqst_time"/>
+		<property name="success_time" value="success_time"/>
+		<property name="next_order_date" value="next_order_date"/>
+		<property name="auto_order_date" value="auto_order_date"/>
+	</properties>
 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>

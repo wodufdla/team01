@@ -35,7 +35,7 @@
     					<td>${vo.email }</td>
     					<td>${vo.phone }</td>
     					<td>${vo.withdrawal }</td>
-    					<td>${vo.joinDate }</td>
+    					<td><fmt:formatDate value="${vo.joinDate }" pattern="YYYY.MM.DD HH:mm:ss"/></td>
     				</tr>
     			</c:forEach>
     		</tbody>
@@ -43,14 +43,14 @@
     	<hr>
     	<ul>
 		<c:if test="${pageMaker.hasPrev }">
-			<li><a href="customer?page=${pageMaker.startPageNo - 1 }">이전</a></li>
+			<li><a href="customer?page=${pageMaker.startPageNo - 1 }">&lt;</a></li>
 		</c:if>
 		<c:forEach begin="${pageMaker.startPageNo }"
 			end="${pageMaker.endPageNo }" var="num">
 			<li><a href="customer?page=${num }">${num }</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.hasNext }">
-			<li><a href="customer?page=${pageMaker.endPageNo + 1 }">다음</a></li>
+			<li><a href="customer?page=${pageMaker.endPageNo + 1 }">&gt;</a></li>
 		</c:if>
 	</ul>
     </div>
