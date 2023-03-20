@@ -16,22 +16,25 @@ public class QuestionDAOImpl implements QuestionDAO {
 		
 	@Autowired
 	private SqlSession sqlSession;
-
+	
+	private static final String ASK = "com.itkey.QuestionMapper";
 	
 	//문의하기 목록 조회 selectList
 	@Override
-	public List<QuestionVO> selectAsk() {
-		List<QuestionVO> list = sqlSession.selectList("Question.selectAsk");
-		System.out.println( "QuestionDAOImpl list "+   list);
-		
-		return list;
+	public List<QuestionVO> selectAskList() {
+		log.info("* [DAO] Input  ◀ (Service) : " );
+		List<QuestionVO> out = sqlSession.selectList(ASK + ".selectAskList");
+		log.info("* [DAO] Output ◀ (Mybatis) : " + out.toString());
+		return out;
 	}
 	
 	//문의하기 등록 insert
 	@Override
 	public int insertAsk(QuestionVO ask) {
-	int inask = sqlSession.insert("Question.insertAsk",ask);
-	System.out.println( "QuestionDAOImpl ina "+   inask);
-		return  inask;
+		log.info("* [DAO] Input  ◀ (Service) : " + ask.toString());
+		int result =  sqlSession.insert(ASK +".insertAsk",ask);
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
+		return result;
+		
 	}
 }

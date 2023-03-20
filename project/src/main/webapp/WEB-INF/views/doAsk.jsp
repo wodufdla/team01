@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>문의하기 글쓰기</title>
+<title>문의하기 등록페이지</title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
@@ -94,8 +94,8 @@ body {
 <body>
 
 <jsp:include page="common/header.jsp" />
-문의하기 
-<form action="doAsk" method="post" id="doAsk">
+ 
+<form method="post" id="frmAsk">
 		<div class="askAllWrap">
 			<div class="textWrap">
 				<div>
@@ -103,11 +103,11 @@ body {
 					<hr
 						style="position: relative; bottom: 35; z-index: -1; border: double;">
 				</div>
-				<input type="hidden" name="email" value="${loginInfo.email}" />
+				<input type="hidden" name="phone" value="${phone}" />
 				<div class="titleWrap">
 					<input class="askboxborder" type="text" name="asktitle" placeholder="제목을 입력해주세요."
-						id="asktitle" style="width: 784px; height: 46px;"> <select
-						size="1" class="askcategory" name="askcategory">
+						id="asktitle" style="width: 784px; height: 46px;"> 
+						<select size="1" class="askcategory" name="askcategory">
 						<option selected>환불</option>
 						<option>결제</option>
 						<option>상품</option>
@@ -131,22 +131,41 @@ body {
 	
 	<script>
 		function ask_check() {
-			var title = document.getElementById("asktitle");
-			var content = document.getElementById("askcontent");
-			if (title.value == "") {
-				alert("제목을 입력하세요.");
+			var title =  $("#asktitle").val();
+			var content =  $("#askcontent").val();
+			var formData = $("#frmAsk").serialize();
+			
+			if (title == "") {
+				alert("제목을 입력해 주세요.");
 				title.focus();
 				return false;
 			}
-			if (content.value == "") {
-				alert("내용을 입력하세요.");
+			if (content == "") {
+				alert("내용을 입력해 주세요.");
 				content.focus();
 				return false;
-			}
-			doAsk.submit();
+			} 
+			//문의글 쓰기
+			$.ajax({
+				type: 'get',
+				url : '/doAsk',
+				data: formData,
+				contentType : 'application/text; charset=UTF-8',
+				success : function(data) {
+					if (data == "success") {
+						alert("글 등록이 완료되었습니다.");
+						location.href = "/question"; //문의하기 리스트 이동 
+					}
+					
+				},
+				 error: function (request, status, error) {
+				        console.log("code: " + request.status)
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+				    }
+			});
 		};
 	</script>
-
 
 <jsp:include page="common/footer.jsp" />
 </body>

@@ -19,16 +19,20 @@ public class QuestionServiceImpl implements QuestionService {
 
 	//문의하기 목록 조회 
 	@Override
-	public List<QuestionVO> selectAsk() {
-		//List list = questionDAO.selectAsk();
-	
-		return questionDAO.selectAsk();
+	public List<QuestionVO> selectAskList() {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
+		List<QuestionVO> returnList = questionDAO.selectAskList();
+		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
+		return returnList;
 	}
 
 	//문의하기 등록 insert
 	@Override
 	public int insertAsk(QuestionVO ask) {
-		return questionDAO.insertAsk(ask);
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask.toString());
+		int result = questionDAO.insertAsk(ask);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
+		return result;
 	}
 	
 	
