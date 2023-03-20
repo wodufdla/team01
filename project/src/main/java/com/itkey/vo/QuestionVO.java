@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class QuestionVO {
-
+	public QuestionVO() {}
 	// 1:1문의
 	
 	private int askno;           // 문의번호 
