@@ -2,20 +2,23 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Question">
+<mapper namespace="com.itkey.QuestionMapper">
 
 
-
-<select id="selectAsk" resultType="QuestionVO" >
+<!-- 문의하기 전체 조회  -->
+<select id="selectAskList" resultType="Question" >
 select ask_no,phone,ask_title,ask_content,reply_yn,ask_category,ans_content,date_format(ask_date,'%Y-%m-%d')as ask_date
 		from question_tbl order by ask_no desc		
 </select>
 
-
-<insert id="insertAsk" parameterType="QuestionVO" >
+<!-- 문의하기 본인글쓰기-->
+<insert id="insertAsk" parameterType="Question" >
 insert into question_tbl(phone,ask_title,ask_category,ask_content,ask_date
 		)values(
 		#{phone},#{asktitle},#{askcategory},#{askcontent},now()
 		)
 </insert>
+
+
+
 </mapper>

@@ -172,7 +172,7 @@ display: none;
 		<div class="askWrap" style="width: 90%; margin: 0 auto;">
 			<ul>
 				<li style="display: flex;"><c:if test="${not empty ask}">
-						<a href="<%=request.getContextPath()%>/customerCenter/doAsk">
+						<a href="/doAskView">
 							<button class="btn btn-fill-fcolor">문의하기</button>
 						</a>
 					</c:if></li>
@@ -259,7 +259,7 @@ display: none;
 			});
 		});
 	</script>
-
+<jsp:include page="common/footer.jsp" />
 </body>
 
 </html>
