@@ -22,7 +22,7 @@ $(document).ready(function(){
 });
 //서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 로그인 창 뜸
 function registeralarm() {
-	alert("로그인을 해야 이용 가능합니다!");
+	alert("로그인 후 이용 가능합니다!");
 	window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 
@@ -41,25 +41,20 @@ function registeralarm() {
             <!-- 이해리님 요청 -->
                 <li class="nav-item"><a class="nav-link" href="serviceInfo">서비스 소개</a></li>
                 <!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
-                <c:if test="${phone!=null}">
+               	<!-- 이해리 메뉴 수정(admin) -->
+                <c:if test="${phone!=null || admin!=null}">
 	                <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
-                </c:if>
-                <c:if test="${phone==null}">
-	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
-                </c:if>
-                <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
-                <c:if test="${phone!=null}">
+                	<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                 	<li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
-                </c:if>
-                <c:if test="${phone==null}">
-                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
-                </c:if>
-                <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
                 </c:if>
-                <c:if test="${phone==null}">
+                <c:if test="${phone==null && admin==null}">
+	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
+	                <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
+                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
                 	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 해지</a></li>
                 </c:if>
+
                 <!-- 황선필 메뉴 수정 -->
 
                 <li class="nav-item">
