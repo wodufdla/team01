@@ -10,14 +10,20 @@
 
 <title>범죄알리미-서비스 소개</title>
 <style type="text/css">
+
 #intro {
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 180px;
+}
+/* #intro {
    width: 100vw;
    height: 100vh;
-}
+} */
 #infobody {
    /* border: 1px solid #999; */
    margin-right: auto;
-      margin-left: auto;
+   margin-left: auto;
    padding: 30px;
    width: 50%;
 }
@@ -39,7 +45,7 @@ input:hover {
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
-   <section id="intro" style="background: #8C8C8C;">
+   <div id="intro">
       <section id="infobody">
       <jsp:include page="infoBody.jsp" />
       </section>
@@ -48,7 +54,7 @@ input:hover {
          <!-- <button>가입하기</button> -->
          <input id="btn_join" type="button" value="가입하기" onClick="location.href='order'">
       </div>
-   </section>
+   </div>
 <jsp:include page="common/footer.jsp" />
 </body>
 </html>

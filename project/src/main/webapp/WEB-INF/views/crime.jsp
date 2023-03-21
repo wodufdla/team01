@@ -16,8 +16,9 @@
 
 <style type="text/css">
 #intro {
-   width: 100vw;
-   height: 100vh;
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 180px;
 }
 #introimg {
    display: block;
@@ -29,9 +30,9 @@
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
    <jsp:include page="common/header.jsp" />
    
-   <section id="intro" style="background: #b6b6b6;">
+   <div id="intro" style="background: #b6b6b6;">
    <img id="introimg" src="/resources/img/intro.png" style="height: 700px; display: block;">
-   </section>
+   </div>
     
     <jsp:include page="common/footer.jsp" />
 </body>
