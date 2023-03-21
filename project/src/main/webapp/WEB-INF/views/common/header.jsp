@@ -22,8 +22,8 @@ $(document).ready(function(){
 });
 //서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 로그인 창 뜸
 function registeralarm() {
-	alert("로그인을 해야 이용 가능합니다!");
-	window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');
+	alert("로그인 후 이용 가능합니다!");
+	window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 
 </script>
@@ -41,40 +41,35 @@ function registeralarm() {
             <!-- 이해리님 요청 -->
                 <li class="nav-item"><a class="nav-link" href="serviceInfo">서비스 소개</a></li>
                 <!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
-                <c:if test="${phone!=null}">
+               	<!-- 이해리 메뉴 수정(admin) -->
+                <c:if test="${phone!=null || admin!=null}">
 	                <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
-                </c:if>
-                <c:if test="${phone==null}">
-	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
-                </c:if>
-                <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
-                <c:if test="${phone!=null}">
+                	<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                 	<li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
-                </c:if>
-                <c:if test="${phone==null}">
-                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
-                </c:if>
-                <c:if test="${phone!=null}">
                 	<li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
                 </c:if>
-                <c:if test="${phone==null}">
+                <c:if test="${phone==null && admin==null}">
+	                <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
+	                <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
+                	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
                 	<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 해지</a></li>
                 </c:if>
+
                 <!-- 황선필 메뉴 수정 -->
 
                 <li class="nav-item">
                 
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
                 <c:if test="${phone==null && admin == null}">
-	                <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
-	                <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
+	                <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
+	                <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
                 </c:if>
                 
                 <c:if test="${phone!=null}"><!-- style 추가 황선필 -->
 	                <span style="font-weight: bold; text-decoration: underline; ">${session_nickname}</span><span style="font-weight: bold; " >님 환영합니다!</span>
 	                <!-- <a href="#" id="modify">정보수정</a> -->
 	                <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
-	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=400,location=no,status=no,scrollbars=yes,left=700,top=200');">정보수정</a>
+	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">정보수정</a>
 	                <!-- session값 확인 황선필 -->
 <%-- 	                ${phone}<br>
 	                ${session_password}<br>
