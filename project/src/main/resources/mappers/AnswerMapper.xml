@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itkey.AnswerMapper">
+
+	<!-- 문의하기 답변 -->
+	<insert id="insertAns" parameterType="Answer">
+		insert into answer_tbl(
+		 ans_no
+		,ask_no
+		,ans_content
+		,ans_date
+		)values(#{askno},#{anscontent},now())
+	</insert>
+	<!-- 문의하기 답변 삭제 -->
+	<delete id="deleteAns" parameterType="_int">
+		delete from answer_tbl
+		where ask_no=#{askno} 
+	</delete>
+
+	
+</mapper>
