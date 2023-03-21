@@ -130,6 +130,7 @@ body {
 	</form>
 	
 	<script>
+	/* 등록버튼 클릭시 이벤트 */
 		function ask_check() {
 			var title =  $("#asktitle").val();
 			var content =  $("#askcontent").val();
@@ -145,7 +146,7 @@ body {
 				content.focus();
 				return false;
 			} 
-			//문의글 쓰기
+			//문의글 쓰기: 컨트롤러 doAsk 전달되는 ajax
 			$.ajax({
 				type: 'get',
 				url : '/doAsk',
@@ -153,12 +154,12 @@ body {
 				contentType : 'application/text; charset=UTF-8',
 				success : function(data) {
 					if (data == "success") {
-						alert("글 등록이 완료되었습니다.");
-						location.href = "/question"; //문의하기 리스트 이동 
+						alert("문의하기 글 등록이 완료되었습니다.");
+						location.href = "/question"; //문의하기 url 
 					}
-					
 				},
 				 error: function (request, status, error) {
+					     alert("문의하기 글 등록이 실패하였습니다.");
 				        console.log("code: " + request.status)
 				        console.log("message: " + request.responseText)
 				        console.log("error: " + error);
