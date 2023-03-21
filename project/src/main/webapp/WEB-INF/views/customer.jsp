@@ -6,6 +6,30 @@
 <html>
 <head>
 <style type="text/css">
+select {
+	float: right;
+ 	-moz-appearance: none;
+  	-webkit-appearance: none;
+ 	appearance: none;
+ 	line-height: 1.5;
+
+	color: #444;
+	background-color: #fff;
+	
+	padding: 0.6em 1.4em 0.5em 0.8em;
+	margin: 0;
+	
+	border: 1px solid #aaa;
+	border-radius: 0.5em;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+}
+select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +43,14 @@
 <body>
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
-		<h1>고객 정보</h1>
+	<br>
+	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
+		<option value="">-- 선택 --</option>
+		<option value="3">3 개</option>
+		<option value="5">5 개</option>
+		<option value="7">7 개</option>
+		<option value="10">10 개</option>
+	</select>
    	<table class="table table-striped">
    		<thead>
    			<tr>
@@ -80,6 +111,10 @@
    				paging.classList.remove('active');
    			}
    		}
+   		
+   		function selectChange() {
+			location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val()
+		}
    		
     </script>
 </body>

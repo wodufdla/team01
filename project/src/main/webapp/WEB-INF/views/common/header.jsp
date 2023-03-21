@@ -85,7 +85,7 @@ function registeralarm() {
                 	<span style="font-weight: bold; text-decoration: underline; ">관리자</span><span style="font-weight: bold; " >님 환영합니다!</span>
 	                <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
                 	<a href="product" id="product_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">주문 관리</a>
-                	<a href="customer" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                	
+                	<a href="customer?page=1" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                	
                 </c:if>
             </ul>
         </div>
