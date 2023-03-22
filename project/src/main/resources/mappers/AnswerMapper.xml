@@ -7,8 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 문의하기 답변 -->
 	<insert id="insertAns" parameterType="Answer">
 		insert into answer_tbl(
-		 ans_no
-		,ask_no
+		ask_no
 		,ans_content
 		,ans_date
 		)values(#{askno},#{anscontent},now())
