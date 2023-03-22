@@ -148,7 +148,7 @@ select:focus {
    		const keyword = urlParams.get('keyword');
    		const category = urlParams.get('category');
    		function selectChange() {
-   			if(keyword != ''){
+   			if(keyword != null){
 				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val() + '&keyword=' + keyword + '&category=' + category;
    			} else {
    				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
