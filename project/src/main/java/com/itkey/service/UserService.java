@@ -22,5 +22,5 @@ public interface UserService {
 	// 비밀번호 찾기
 	UserVO find_password(String phone, String email);
 	List<UserVO> read_list(PageCriteria criteria);
-	int totalCounts();
+	int totalCounts(PageCriteria criteria);
 }

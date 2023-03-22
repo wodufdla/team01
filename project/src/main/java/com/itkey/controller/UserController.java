@@ -182,10 +182,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/customer")
-	public void customerGET(Model model, Integer page, Integer numsPerPage, HttpSession session) {
+	public void customerGET(Model model, String keyword, String category, Integer page, Integer numsPerPage, HttpSession session) {
 		log.info("customerGET() 호출");
-		
+		log.info(""+page);
+		log.info(""+numsPerPage);
+		log.info(category);
+		log.info(keyword);
 		PageCriteria criteria = new PageCriteria();
+		if (keyword != null) {
+			criteria.setKeyword(keyword);
+			criteria.setCategory(category);
+		}
 		if(page != null) {
 			criteria.setPage(page);
 		}
@@ -198,7 +205,7 @@ public class UserController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(userService.totalCounts());
+		pageMaker.setTotalCount(userService.totalCounts(criteria));
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 	}

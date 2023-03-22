@@ -59,10 +59,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="paging" resultType="User">
-		select * from ${user_tbl} orders limit #{start}, #{end}
+		select * from ${user_tbl} 
+		<if test="keyword != null">
+			<choose>
+				<when test="category.equals('email')">
+					where ${email} like concat('%',#{keyword},'%' )
+				</when>
+				<when test="category.equals('phone')">
+					where ${phone} like concat('%',#{keyword},'%' )
+				</when>
+				<when test="category.equals('nickname')">
+					where ${nickname} like concat('%',#{keyword},'%' )
+				</when>
+				<otherwise>
+					where ${email} like concat('%',#{keyword},'%' ) or ${phone} like concat('%',#{keyword},'%' ) or ${nickname} like concat('%',#{keyword},'%' )
+				</otherwise>
+			</choose>		
+		</if>
+		limit #{start}, #{end}
 	</select>
 	
 	<select id="total_count" resultType="Integer">
 		select count(*) total_cnt from ${user_tbl}
+		<if test="keyword != null">
+			<choose>
+				<when test="category.equals('email')">
+					where ${email} like concat('%',#{keyword},'%' )
+				</when>
+				<when test="category.equals('phone')">
+					where ${phone} like concat('%',#{keyword},'%' )
+				</when>
+				<when test="category.equals('nickname')">
+					where ${nickname} like concat('%',#{keyword},'%' )
+				</when>
+				<otherwise>
+					where ${email} like concat('%',#{keyword},'%' ) or ${phone} like concat('%',#{keyword},'%' ) or ${nickname} like concat('%',#{keyword},'%' )
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 </mapper>

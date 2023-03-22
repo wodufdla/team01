@@ -23,5 +23,5 @@ public interface UserDAO {
 	UserVO find_password(String phone, String email);
 	// 페이징 처리
 	List<UserVO> select_list(PageCriteria criteria);
-	int totalCounts();
+	int totalCounts(PageCriteria criteria);
 }

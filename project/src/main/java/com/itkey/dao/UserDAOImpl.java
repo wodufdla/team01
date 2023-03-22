@@ -94,9 +94,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int totalCounts() {
+	public int totalCounts(PageCriteria criteria) {
 		log.info("totalcounts() 호출");
-		return sqlSession.selectOne(NAMESPACE + ".total_count");
+		return sqlSession.selectOne(NAMESPACE + ".total_count", criteria);
 	}
 	
 }

@@ -87,9 +87,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int totalCounts() {
+	public int totalCounts(PageCriteria criteria) {
 		log.info("totalCounts() 호출");
-		return userDAO.totalCounts();
+		return userDAO.totalCounts(criteria);
 	}
 	
 }

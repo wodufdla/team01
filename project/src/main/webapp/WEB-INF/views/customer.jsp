@@ -6,7 +6,7 @@
 <html>
 <head>
 <style type="text/css">
-select {
+select, input{
 	float: right;
  	-moz-appearance: none;
   	-webkit-appearance: none;
@@ -44,6 +44,20 @@ select:focus {
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
 	<br>
+	<form action="customer" method="get">
+		<input type="submit" value="검색">	
+		<input type="hidden" name="page" value="1">
+		<input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
+		<input type="text" id="keyword" name="keyword">
+		<select name="category">
+			<option value="all">전체검색</option>
+			<option value="nickname">닉네임</option>
+			<option value="phone">핸드폰</option>
+			<option value="email">E-mail</option>
+		</select>
+	</form>
+	<br>
+	<br>
 	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
 		<option value="">-- 선택 --</option>
 		<option value="3">3 개</option>
@@ -74,20 +88,42 @@ select:focus {
    		</tbody>
    	</table>
    	<br>
-   	<nav aria-label="Page navigation example">
-	   	<ul class="pagination justify-content-center">
-		<c:if test="${pageMaker.hasPrev }">
-			<li class="page-item"><a class="page-link" href="customer?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
-		</c:if>
-		<c:forEach begin="${pageMaker.startPageNo }"
-			end="${pageMaker.endPageNo }" var="num">
-			<li id="page${num}" class="page-item"><a class="page-link" href="customer?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num }</a></li>
-		</c:forEach>
-		<c:if test="${pageMaker.hasNext }">
-			<li class="page-item"><a class="page-link" href="customer?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
-		</c:if>
-		</ul>
-	</nav>
+   	<c:choose>
+	   	<c:when test="${pageMaker.criteria.keyword eq null}">
+		   	<ul class="pagination justify-content-center">
+				<c:if test="${pageMaker.hasPrev }">
+					<li class="page-item"><a class="page-link" href="customer?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPageNo }"
+					end="${pageMaker.endPageNo }" var="num">
+					<li id="page${num}" class="page-item"><a class="page-link" href="customer?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num }</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.hasNext }">
+					<li class="page-item"><a class="page-link" href="customer?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
+				</c:if>
+			</ul>
+		</c:when>
+		<c:otherwise>
+			<ul class="pagination justify-content-center">
+				<c:if test="${pageMaker.hasPrev }">
+					<li class="page-item">
+						<a class="page-link" href="customer?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">&lt;</a>
+					</li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPageNo }"
+					end="${pageMaker.endPageNo }" var="num">
+					<li id="page${num}" class="page-item">
+						<a class="page-link" id="page2${num}" href="customer?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">${num }</a>
+					</li>
+				</c:forEach>
+				<c:if test="${pageMaker.hasNext }">
+					<li class="page-item">
+						<a class="page-link" href="customer?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}}">&gt;</a>
+					</li>
+				</c:if>
+			</ul>
+		</c:otherwise>
+	</c:choose>	
 	</div>
     <jsp:include page="common/footer.jsp" />
     <script type="text/javascript">
@@ -96,25 +132,29 @@ select:focus {
    			location = '/';
    		}
    		
-   		function getParameterByName(name) {
-		  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		  results = regex.exec(location.search);
-		  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		}
-   		var page = getParameterByName('page');
+   		const urlParams = new URL(location.href).searchParams;
+   		const numsPerPage = urlParams.get('numsPerPage');
+   		$('#numsPerPage').val(numsPerPage).attr('selected', 'selelcted');
+   		
+   		const page = urlParams.get('page');
    		var paging = document.getElementById("page" + page);
-   		if($('#page' + page).text() == page) {
+   		if($('#page' + page).text() == page || $('#page2'+page).text() == page) {
    			paging.className = 'page-item active';
    		} else {
    			for (var i = 1; i < 6; i++) {
    				paging.classList.remove('active');
    			}
    		}
-   		
+   		const keyword = urlParams.get('keyword');
+   		const category = urlParams.get('category');
    		function selectChange() {
-			location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val()
+   			if(keyword != ''){
+				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val() + '&keyword=' + keyword + '&category=' + category;
+   			} else {
+   				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
+   			}
 		}
+   		
    		
     </script>
 </body>
