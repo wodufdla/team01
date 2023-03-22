@@ -1,21 +1,17 @@
 package com.itkey.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
+
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itkey.service.QuestionService;
+import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
-
 
 
 @Controller
@@ -89,8 +85,8 @@ public class QuestionController {
 		}
 	}
 
-	// 삭제 하기
-	@PostMapping("/deleteAsk.do")
+	// 문의하기 삭제 하기
+	@PostMapping("/deleteAsk")
 	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askno, RedirectAttributes rttr) {
 
 		mv.addObject("deleteAsk", questionService.deleteAsk(askno));
@@ -99,5 +95,53 @@ public class QuestionController {
 		mv.setViewName("redirect:/question");
 		return mv;
 	}
+	
+	//관리자   문의하기 
+	@RequestMapping(value = "/ask", method = RequestMethod.GET)
+	public ModelAndView selectAsk(ModelAndView mv
+			, HttpSession session
+			, RedirectAttributes rttr
+			) {
+	
 
+		
+		mv.addObject("ask_Y", questionService.selectAskY());
+		mv.addObject("ask_N", questionService.selectAskN());
+		mv.setViewName("askManagement"); 
+		return mv;
+	}
+   
+	@GetMapping("/answer/{askno}")
+	public ModelAndView selectAsk2(ModelAndView mv
+			, HttpSession session
+			, RedirectAttributes rttr
+			,@PathVariable("askno") int askno
+			) {
+
+		log.info("/answer/{askno}: " + askno);
+		
+		mv.addObject("ask", questionService.selectAsk2(askno));
+		mv.setViewName("answer");
+		return mv;
+	}
+
+	//답변 하기
+	@PostMapping("/answer")
+	public ModelAndView insertAns(ModelAndView mv
+			, HttpSession session
+			, HttpServletRequest req
+			, AnswerVo ans
+			, @RequestParam(name ="askno", defaultValue = "0") int askno
+			,RedirectAttributes rttr
+			) {
+		log.info("##########################");
+		log.info("@RequestParam DATA: " + askno);
+		log.info("ans DATA: " + ans);
+
+        mv.addObject("insertAns", questionService.insertAns(ans));
+		mv.addObject("updateAsk", questionService.updateAsk(askno));
+		mv.setViewName("redirect:/ask");
+		return mv;
+	}
+	
 }
