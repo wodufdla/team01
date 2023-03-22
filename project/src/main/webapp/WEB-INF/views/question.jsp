@@ -162,22 +162,21 @@ display: none;
 		<div class="imgWrap"></div>
 		<div class="top">
 			<p>
-			<p
-				style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">${loginInfo.name}
-				님의 1:1 문의 내역</p>
-			<hr
-				style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
+				<p style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">
+				${session_nickname}님의 1:1 문의 내역</p>
+				<input type="hidden" name="phone" value="${phone}" />
+				<hr style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
 			</p>
 		</div>
 		<div class="askWrap" style="width: 90%; margin: 0 auto;">
 			<ul>
-				<li style="display: flex;"><c:if test="${not empty ask}">
+				<li style="display: flex;">
+				    <c:if test="${not empty ask}">
 						<a href="/doAskView">
 							<button class="btn btn-fill-fcolor">문의하기</button>
-						</a>
-					</c:if></li>
-
-
+						 </a>
+					</c:if>
+			    </li>
 					<c:forEach items="${ask}" var="ask">
 					<form action="deleteAsk.do" method="post" id="deleteAsk">
 						<div class="askbox" style="position: relative;">
@@ -194,23 +193,17 @@ display: none;
 									<span style="width: 75%;">${ask.askcontent}</span>
 									<div class="askdate">
 										<p>${ask.askdate}</p>
-
-
 										<p class="askdelete" id="askdelete${ask.askno}">삭제하기</p>
 										<input type="hidden" name="askno" value="${ask.askno}">
-
-
 									</div>
 								</div>
 								<hr style="width: 100%; margin: 20px auto 20px;">
-
 								<h4 style="width: 75%;">
 									<c:if test="${ask.replyyn eq 'N'}">답변을 기다리는 중입니다. </c:if>
 								</h4>
 								<h4>
 									<c:if test="${ask.replyyn eq 'Y'}">${ask.anscontent}</c:if>
 								</h4>
-
 							</li>
 						</div>
 					</form>
@@ -221,7 +214,7 @@ display: none;
 					<h4>등록된 1:1 문의가 없습니다.</h4>
 					<h4>궁금하거나 건의할 사항이 있다면 언제든지 문의해주세요!</h4>
 				</div>
-				<a href="<%=request.getContextPath()%>/customerCenter/doAsk">
+				<a href="<%=request.getContextPath()%>/doAskView">
 				<button class="btn btn-fill-fcolor" style="position: relative; top: 90px;">문의하기</button></a>
 			</c:if>
 		</div>
