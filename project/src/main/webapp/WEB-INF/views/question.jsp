@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
 * {
 	box-sizing: border-box;
@@ -30,6 +31,7 @@
 .allWrap .top {
 	position: relative;
 	top: 100px;
+	
 }
 .allWrap .ask {
 	position: relative;
@@ -45,7 +47,7 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	top: 200px;
+	/*  top: 200px;*/
 }
 .allWrap .content {
 	width: 95%;
@@ -56,6 +58,7 @@
 	background-color: rgba(243, 244, 245, 0.805);
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
+
 .allWrap>.askWrap>li, h2 {
 	margin-left: 10px;
 }
@@ -153,6 +156,27 @@
 .tg2 {
 display: none;
 }
+.askWrap{
+padding:30px;
+}
+/* 버튼 1번 css*/
+.btn1 {
+	border: none;
+	border-radius: 3px;
+	/* background: #b6e0d6; */
+	background-color: #8C8C8C;
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+	width: 160px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.btn1:hover {
+	opacity: 0.5;
+}
+
 </style>
 
 </head>
@@ -160,7 +184,8 @@ display: none;
 <jsp:include page="common/header.jsp" />
  <div class="allWrap">
 		<div class="imgWrap"></div>
-		<div class="top">
+		
+		<div class="top" >
 			<p>
 				<p style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">
 				${session_nickname}님의 1:1 문의 내역</p>
@@ -168,12 +193,13 @@ display: none;
 				<hr style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
 			</p>
 		</div>
-		<div class="askWrap" style="width: 90%; margin: 0 auto;">
+		
+		<div class="askWrap" style="width: 100%; margin: 10% auto;">
 			<ul>
 				<li style="display: flex;">
 				    <c:if test="${not empty ask}">
 						<a href="/doAskView">
-							<button class="btn btn-fill-fcolor">문의하기</button>
+							<button  class= btn1 >문의하기</button>
 						 </a>
 					</c:if>
 			    </li>
@@ -218,7 +244,8 @@ display: none;
 				<button class="btn btn-fill-fcolor" style="position: relative; top: 90px;">문의하기</button></a>
 			</c:if>
 		</div>
-	</div>
+	
+</div>
 
 
 

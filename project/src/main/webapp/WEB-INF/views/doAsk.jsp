@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
+<link rel="stylesheet" href="/resources/css/button.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 * {
@@ -86,6 +87,24 @@ body {
 	background: white;
 	z-index: 999;
 }
+/* 버튼 1번 css*/
+.btn1 {
+	border: none;
+	border-radius: 3px;
+	/* background: #b6e0d6; */
+	background-color: #8C8C8C;
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+	width: 160px;
+	height: 50px;
+	cursor: pointer;
+
+}
+
+.btn1:hover {
+	opacity: 0.5;
+}
 </style>
 </head>
 
@@ -120,7 +139,7 @@ body {
 					</div>
 				</div>
 				<div class="buttonWrap" style="margin-bottom: 100px;">
-					<button class="btn btn-fill-fcolor" type="button"
+					<button class="btn1" type="button"
 						style="width: 206px;" onclick="ask_check();">등록하기</button>
 				</div>
 			</div>
