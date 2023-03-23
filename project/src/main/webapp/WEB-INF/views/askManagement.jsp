@@ -7,13 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 - 1대1 문의 관리</title>
-
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="/resources/css/styles.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 /* header */
@@ -101,16 +95,18 @@ a {
 	font-size: 14px;
 }
 
-#main_body {
+/* #main_body {
 	width: 80%;
 	height: 100%;
-}
+} */
+
 </style>
 <style>
 .tableWrap {
 	position: relative;
 	top: 15%;
 	margin-left: 15px;
+	margin: 10%;
 }
 
 .page_title {
@@ -162,9 +158,9 @@ a {
 	<div class="container">
 
 		<div id="main_body">
-			<h3 class="page_title">1:1 문의내역 관리</h3>
+			
 			<div class="tableWrap">
-				<p style="margin-bottom: 22px;">미응답 문의</p>
+				<p   style="margin-bottom: 22px;">미응답 문의</p>
 				<table class="table table-hover">
 					<thead>
 						<tr>

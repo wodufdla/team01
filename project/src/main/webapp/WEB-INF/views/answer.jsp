@@ -7,10 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title> 관리자 답변 페이지</title>
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="/resources/css/styles.css">
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 /* header */
@@ -58,7 +55,7 @@ a {
 	text-decoration: none;
 }
 
-#container {
+.container {
 	display: flex;
 	flex-flow: row wrap;
 	margin: 0 auto;
@@ -103,6 +100,8 @@ a {
 	/* float: right; */
 	width: 80%;
 	height: 100%;
+	padding :30px;
+	margin: 40px auto 0;
 }
 
 .replyTextareaWrap {
@@ -130,6 +129,24 @@ a {
 	position: relative;
 	resize: none;
 }
+
+/* 버튼 1번 css*/
+.btn1 {
+	border: none;
+	border-radius: 3px;
+	/* background: #b6e0d6; */
+	background-color: #8C8C8C;
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+	width: 160px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.btn1:hover {
+	opacity: 0.5;
+}
 </style>
 </style>
 </head>
@@ -153,15 +170,15 @@ a {
 					<textarea class="replyTextarea" name="anscontent" id="anscontent"></textarea>
 				</div>
 			</form>
-			<div
-				style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; position: relative; right: 110px;">
-				<button type="button" onclick="ans_check();"
+			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; position: relative; right: 110px;">
+				<button class="btn1" type="button" onclick="ans_check();"
 					style="margin-right: 10px;">등록</button>
-				<a href="<%=request.getContextPath()%>/ask"><button>취소</button></a>
+				<a href="<%=request.getContextPath()%>/ask"><button class="btn1" >취소</button></a>
 			</div>
 		</div>
 
 	</div>
+	
 	<jsp:include page="common/footer.jsp" />
 	<script>
 	<%-- var member=  '${phone}';
