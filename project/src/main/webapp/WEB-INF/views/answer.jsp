@@ -9,6 +9,7 @@
 <title> 관리자 답변 페이지</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <style>
 /* header */
 * {
@@ -147,33 +148,59 @@ a {
 .btn1:hover {
 	opacity: 0.5;
 }
-</style>
+#askboxborder {
+	padding: .375rem .75rem;
+	font-size: 15px;
+	font-weight: 400;
+	color: #212529;
+	background-color: #fff;
+	border: 1.8px solid #212529;
+	border-radius: 5px;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+#askboxborder:hover {
+	border-color: #9bbfd9;
+}
+#askboxborder:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #9bbfd9;
+	outline: 0;
+	box-shadow: 0 0 0 .10rem #9bbfd9;
+}
+#askboxborder-color::-moz-color-swatch {
+	border-radius: 3px;
+}
+.anst{
+border: 1.8px solid #212529;
+}
+
 </style>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
 		<div id="main_body">
-			<form action="<%=request.getContextPath()%>/answer" id="answer"
-				method="POST" style="height: 458px;">
+			<form action="<%=request.getContextPath()%>/answer" 
+			id="answer" method="POST" style="height: 458px;">
 				<c:forEach items="${ask}" var="ask">
 					<div class="customerAskWrap">
-						<p>제목: ${ask.asktitle}</p>
+					   <p>제목: ${ask.asktitle}</p>
 						<br>
 						<p>내용: ${ask.askcontent}</p>
-						<input type="hidden" name="email" value="${ask.phone}"> <input
-							type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
+						<input type="hidden" name="email" value="${ask.phone}"> 
+						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
 					</div>
 				</c:forEach>
 				<input type="hidden" name="askno" value="${askno}">
 				<div class="replyTextareaWrap">
-					<textarea class="replyTextarea" name="anscontent" id="anscontent"></textarea>
+					<textarea  id="askboxborder" class="replyTextarea" name="anscontent" id="anscontent" placeholder="문의사항 답변을 작성해주세요."></textarea>
 				</div>
 			</form>
 			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; position: relative; right: 110px;">
 				<button class="btn1" type="button" onclick="ans_check();"
 					style="margin-right: 10px;">등록</button>
-				<a href="<%=request.getContextPath()%>/ask"><button class="btn1" >취소</button></a>
+				<a href="/ask"><button class="btn1" >취소</button></a>
 			</div>
 		</div>
 

@@ -106,7 +106,7 @@ a {
 	position: relative;
 	top: 15%;
 	margin-left: 15px;
-	margin: 10%;
+	margin: 5%;
 }
 
 .page_title {
@@ -151,6 +151,43 @@ a {
 .ansView:hover .contentModal {
 	display: block;
 }
+
+.replyend {
+	position: relative;
+	font-size: 25px;
+	color: rgb(250, 250, 250);
+	top: 5px;
+    padding: 0.375rem 0.75rem;
+	background-color: rgba(147, 135, 252, 0.819);
+	border: rgba(147, 135, 252, 0.819) solid 1.5px;
+	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
+}
+.replyend2 {
+	position: relative;
+	font-size: 25px;
+	color: rgb(250, 250, 250);
+	top: 5px;
+	 padding: 0.375rem 0.75rem;
+	background-color: rgb(89, 179, 248);;
+	border: rgb(89, 179, 248); solid 1.5px;
+	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
+}
+#replyend {
+	position: relative;
+	font-size: 16px;
+	color: rgb(250, 250, 250);
+	top: 5px;
+	background-color: rgba(147, 135, 252, 0.819);
+	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
+}
+#replyend2 {
+	position: relative;
+	font-size: 16px;
+    color: rgb(250, 250, 250);
+	top: 5px;
+	background-color: rgb(89, 179, 248);;
+	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
+}
 </style>
 </head>
 <body>
@@ -160,7 +197,7 @@ a {
 		<div id="main_body">
 			
 			<div class="tableWrap">
-				<p   style="margin-bottom: 22px;">미응답 문의</p>
+				<p class="replyend" style="margin-bottom: 22px;">미응답 문의</p>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -180,7 +217,7 @@ a {
 									<td>${askN.askcategory}</td>
 									<td>${askN.phone}</td>
 									<td>${askN.askdate}</td>
-									<td style="width: 110px;"><a
+									<td  style="width: 110px;"><a id="replyend"
 										href="<%=request.getContextPath()%>/answer/${askN.askno}">답변하러가기</a>
 									</td>
 								</tr>
@@ -192,7 +229,7 @@ a {
 					</tbody>
 				</table>
 
-				<p style="margin-top: 75px; margin-bottom: 22px;">응답완료 문의</p>
+				<p class="replyend2" style="margin-top: 75px; margin-bottom: 22px;">응답완료 문의</p>
 
 				<table class="table table-hover">
 					<thead>
@@ -211,7 +248,8 @@ a {
 								<td>${askY.askcategory}</td>
 								<td>${askY.phone}</td>
 								<td>${askY.askdate}</td>
-								<td class="ansView" style="width: 110px; position: relative;">답변내용확인
+								<td class="ansView"  style="width: 110px; position: relative;">
+								<a id="replyend2" >답변내용확인</a>
 									<div class="contentModal">
 										<p>제목:${askY.asktitle}</p>
 										<p>내용:${askY.askcontent}</p>
@@ -255,7 +293,7 @@ a {
 		
 		  $(".ansView").click(function() {
 		        
-		       	var option= "width=500, height=550";
+		       	var option= "width=700, height=20";
 		       	var m_no = $(this).children().val();
 		       	var url = "<%=request.getContextPath()%>/ask/askno=";
 		       	url += askno;
