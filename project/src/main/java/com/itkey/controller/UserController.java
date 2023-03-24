@@ -57,6 +57,8 @@ public class UserController {
 					session.setAttribute("phone", phone);
 					//닉네임 세션에 추가 황선필
 					session.setAttribute("session_nickname", vo.getNickname());
+					//banner 세션에 추가 황선필
+					session.setAttribute("session_banner", vo.getBanner());
 					
 					reAttr.addFlashAttribute("login_result", "successLogin");
 					return "redirect:/login";
@@ -148,6 +150,7 @@ public class UserController {
 			session.setAttribute("session_password", uv.getPassword());
 			session.setAttribute("session_email", uv.getEmail());
 			session.setAttribute("session_nickname", uv.getNickname());
+			session.setAttribute("session_banner", 2);
 			//session.setAttribute("session_join_date", uv.getJoinDate());
 			//session.setAttribute("session_withdrawal", uv.isWithdrawal());
 			
