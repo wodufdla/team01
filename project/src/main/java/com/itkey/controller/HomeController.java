@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "crime";
+		return "event";
 	}
 		
 	@RequestMapping("/order")
@@ -59,5 +59,15 @@ public class HomeController {
     @RequestMapping("/faq")
     public String faq(Model model) {
         return "faq";
+    }
+    
+    @RequestMapping("/event")
+    public String event(Model model) {
+    	return "event";
+    }
+    
+    @RequestMapping("/eventJoin")
+    public String eventJoin(Model model) {
+    	return "eventJoin";
     }
 }
