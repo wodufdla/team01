@@ -32,12 +32,16 @@
 
 	<!-- typealiases 밑에... 위의 세팅 먼저 읽어야한다. -->
 	<typeAliases>
+	
 		<typeAlias alias="User" type="com.itkey.vo.UserVO" />
 		<typeAlias alias="Order" type="com.itkey.vo.OrderVO" />
 		<typeAlias alias="Refund" type="com.itkey.vo.RefundVO" />
 		<typeAlias alias="Service" type="com.itkey.vo.ServiceVO" />
 		<typeAlias alias="Question" type="com.itkey.vo.QuestionVO" />
 		<typeAlias alias="Answer"  type="com.itkey.vo.AnswerVo" />
+		<!-- 페이먼트  -->
+		<typeAlias alias="Payment"  type="com.itkey.vo.PaymentVO" />
+		
 	</typeAliases>
 	
 

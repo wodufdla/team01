@@ -4,36 +4,106 @@
 <html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>범죄 알리미</title>
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-    <link rel="stylesheet" href="/resources/css/styles.css">
- 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>범죄 알리미</title>
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
+<link rel="stylesheet" href="/resources/css/styles.css">
+
 <!-- 빌링키 사용을 위한 셋팅 -->    
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script>    
+<!-- 아임포트 결제 참고사이트 -->
+<!-- 일반결제 https://tyrannocoding.tistory.com/44 -->
+<!-- 카카오 정기결제 https://tjdqlscjswp.tistory.com/33?category=855326 -->
+<script>
+var buyerEmail = "구매자 이메일";
+var buyerName = "구매자 이름";   //재결제 요청에서 사용
+var buyerTel = "구매자 전화번호";
+var consumPrice = 1;
+let merchantUid='merchant_' + new Date().getTime();
+
 var IMP = window.IMP; // 생략 가능
-IMP.init("imp40774547"); // 예시 : imp00000000
-function request_pay(){
-IMP.request_pay({
-    pg : 'kcp',
-    pay_method : 'card',
-    merchant_uid: 'order_no_0001', // 상점에서 생성한 고유 주문번호
-    name : '주문명:결제테스트',
-    amount : 14000,
-    buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자이름',
-    buyer_tel : '010-1234-5678',
-}, function(rsp) { // callback 로직
-	//* ...중략 (README 파일에서 상세 샘플코드를 확인하세요)... *//
-});
+IMP.init("imp50058027"); // 예시 : imp00000000
+
+function requestPay() {
+    IMP.request_pay({
+      pg: "kcp_billing",
+      pay_method: "card",
+      merchant_uid: merchantUid,   // 주문번호
+      customer_uid: merchantUid, // 카드(빌링키)와 1:1로 대응하는 값, 필수값
+      name: "최초 인증 결제",
+      amount: consumPrice,                         // 숫자 타입
+      buyer_email: buyerEmail,
+      buyer_name: buyerName,
+      buyer_tel: buyerTel,
+      //buyer_addr: "서울특별시 강남구 신사동",
+      //buyer_postcode: "01181",
+   	  //m_redirect_url: "/paymentOk"
+    }, function (rsp) { // callback
+    	if (rsp.success) {
+    		alert("빌링키 발급 성공");
+    		// 빌링키 발급 성공후 실질적인 결제로직
+            pass();
+    	} else {
+    		alert("빌링키 발급 실패");
+    		console.log(rsp.error_msg);
+    	}
+    });
 }
-    
+
+/**
+ * 결제 데이터 DB 저장
+ */
+function pass() {
+    $.ajax({
+        type: "post",
+        url: "/paymentOk",
+        data: {
+            "amount":   consumPrice,
+            "membershipKey":merchantUid,
+            "buyerName":buyerName
+        },
+        success: function (data) {
+            if (data ==1){
+                // 실질적인 결제 및 정액제 유료회원 처리
+                alert("pass2 test : " + data);
+                pass2();
+            }else {
+                console.log("결제 정보 저장 실패");
+            }
+        }
+    });
+}   
+
+/**
+ * 실질적인 결제 및 정액제 유료회원 처리
+ */
+function pass2() {
+    $.ajax({
+        type: "post",
+        url: "/payRegister",
+        data: {
+            "amount":   consumPrice,
+            "membershipKey":merchantUid,
+            "buyerName":buyerName
+        },
+        success: function (data) {
+        	alert("pass2 성공", data);
+            /**
+             * 결제 완료후 갈 url(PC)
+             * @type {string}
+             */
+            location.href = "/payRegisterOk";
+        },
+        fail: function (data){
+            console.log("결제 실패");
+        }
+    });
+}
 </script>
 
 </head>
@@ -48,17 +118,17 @@ IMP.request_pay({
                 <tbody>
                 <tr>
                     <td>7일 100원 결제 체험 후 월정액<td>7일 100원 결제 체험 서비스를 통해 범죄 알리미 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="radio" name="check-link" value="0" onclick="checkLink(this);" id="check-0"><label class="form-check-label" for="check-0">9,900/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="0" onclick="checkLink(this);" id="check-0"><label class="form-check-label" for="check-0">9,900/월</label></div>
                     </td>
                 </tr>
                 <tr>
                     <td>월정액 서비스<td>매월 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="radio" name="check-link" value="1" onclick="checkLink(this);" id="check-1"><label class="form-check-label" for="check-1">9,900/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="1" onclick="checkLink(this);" id="check-1"><label class="form-check-label" for="check-1">9,900/월</label></div>
                     </td>
                 </tr>
                 <tr>
                     <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="radio" name="check-link" value="2" onclick="checkLink(this);" id="check-2"><label class="form-check-label" for="check-2">10,000/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="2" onclick="checkLink(this);" id="check-2"><label class="form-check-label" for="check-2">10,000/월</label></div>
                     </td>
                 </tr>
                 </tbody>
@@ -80,7 +150,7 @@ IMP.request_pay({
                                 * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
                     <td style="padding: 0;">
                         <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
-                        <a id="a-pay" class="a-pay" href="#" onclick="request_pay();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
+                        <a id="a-pay" class="a-pay" href="#" onclick="requestPay();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
                 </tr>
                 </tbody>
             </table>
