@@ -55,13 +55,13 @@ function joinchk(num){
      </ol>
      <div class="carousel-inner">
        <div class="carousel-item active" data-bs-interval="2000">
-         <a target="_blank" href="#" onclick="joinchk(01);"><img src="resources/img/detail01.png" class="d-block w-100" alt="..."></a>
+         <a target="_blank" href="#" onclick="joinchk(1);"><img src="resources/img/detail01.png" class="d-block w-100" alt="..."></a>
        </div>
        <div class="carousel-item" data-bs-interval="2000">
-         <a target="_blank" href="#" onclick="joinchk(01);"><img src="resources/img/detail02.png" class="d-block w-100" alt="..."></a>
+         <a target="_blank" href="#" onclick="joinchk(2);"><img src="resources/img/detail02.png" class="d-block w-100" alt="..."></a>
        </div>
        <div class="carousel-item" data-bs-interval="2000">
-        <a target="_blank" href="#" onclick="joinchk(01);"><img src="resources/img/detail03.png" class="d-block w-100" alt="..."></a> 
+        <a target="_blank" href="#" onclick="joinchk(3);"><img src="resources/img/detail03.png" class="d-block w-100" alt="..."></a> 
        </div>
           <div class="carousel-item" data-bs-interval="2000">
          <img src="resources/img/detail04.png" class="d-block w-100" alt="...">
