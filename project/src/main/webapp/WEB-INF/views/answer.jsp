@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title> 관리자 답변 페이지</title>
-
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <style>
@@ -186,26 +186,7 @@ border: 1.8px solid #212529;
 
 	</div>
 	
-	<jsp:include page="common/footer.jsp" />
-	<script>
-	<%-- var member=  '${phone}';
-	console.log("접근한회원정보: " + member);	
-	
-	if(member == 'admin') {
-		console.log("안녕하세요 관리자님!");
-	} else {
-		alert("관리자 권한이 필요한 페이지입니다.");
-		location.href='<%=request.getContextPath()%>/';}
-		$("#admin_nav ul li a").click(function() {
-			console.log("click()");
-			var before_color = '#444c57';
-			var after_color = '#9bbfd9';
-			// 클릭한 이벤트 객체의 폰트색 변경
-			$(this).css('color', after_color);
-			// 클릭하지 않은 다른 객체들의 폰트색 변경
-			$("#admin_nav > ul> li > a").not(this).css('color', before_color);
-		}); --%>
-	</script>
+
 	<script>
 		function ans_check() {
 			var content = document.getElementById("anscontent");
