@@ -1,7 +1,11 @@
 package com.itkey.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
 
@@ -9,7 +13,7 @@ public interface QuestionDAO {
 	
 	
 	/* 문의사항  본인글 불러오기 */
-	public List<QuestionVO> selectAsk(String Phone);
+	public List<QuestionVO> selectAsk(String phone);
 	/* 문의사항 - 관리자 조회 목록*/
 	public List<QuestionVO> selectAskY();
 	public List<QuestionVO> selectAskN();

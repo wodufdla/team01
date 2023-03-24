@@ -87,23 +87,42 @@ body {
 	background: white;
 	z-index: 999;
 }
-/* 버튼 1번 css*/
-.btn1 {
-	border: none;
-	border-radius: 3px;
-	/* background: #b6e0d6; */
-	background-color: #8C8C8C;
-	color: white;
-	font-weight: 500;
-	font-size: 20px;
-	width: 160px;
-	height: 50px;
-	cursor: pointer;
+/* 버튼  css*/
 
+.btn-check:focus+.btn, .btn:focus {
+	outline: 0;
 }
 
-.btn1:hover {
-	opacity: 0.5;
+.btn-fill-fcolor {
+	color: #fff;
+	background-color: #192a5e;
+	border-color: #364f9b;
+	width: 160px;
+	height: 50px;
+	border-radius: .25rem;
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+
+.btn-fill-fcolor:hover {
+    color:  #fff;
+    background-color: rgb(89 121 217); 
+
+	
+}
+
+.btn-check:checked+.btn-fill-fcolor, .btn-check:active+.btn-fill-fcolor,
+	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show
+	{
+    color: #fff;
+    background-color: #9bbfd9; 
+	border-color: #9bbfd9;
+}
+
+.btn-fill-fcolor:disabled, .btn-fill-fcolor.disabled {
+	color: #9bbfd9;
+	background-color: transparent; 
 }
 </style>
 </head>
@@ -139,7 +158,7 @@ body {
 					</div>
 				</div>
 				<div class="buttonWrap" style="margin-bottom: 100px;">
-					<button class="btn1" type="button"
+					<button class= btn-fill-fcolor type="button"
 						style="width: 206px;" onclick="ask_check();">등록하기</button>
 				</div>
 			</div>

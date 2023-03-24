@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
 
@@ -22,9 +21,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 	private static final String ANS = "com.itkey.AnswerMapper";
 	//문의하기 본인글 조회
 	@Override
-	public List<QuestionVO> selectAsk(String Phone) {
+	public List<QuestionVO> selectAsk(String phone) {
 		log.info("* [DAO] Input  ◀ (Service) : " );
-		List<QuestionVO> result =sqlSession.selectList(ASK + ".selectAsk",Phone);
+		List<QuestionVO> result =sqlSession.selectList(ASK + ".selectAsk", phone);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}
