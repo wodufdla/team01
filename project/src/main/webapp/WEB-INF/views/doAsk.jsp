@@ -105,6 +105,23 @@ body {
 .btn1:hover {
 	opacity: 0.5;
 }
+
+.btn-fill-fcolor {
+	color: #9bbfd9;
+	border-color: #9bbfd9;
+	width: 160px;
+	height: 50px;
+	border-radius: .25rem;
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+
+.btn-fill-fcolor:hover {
+	color: #fff;
+	background-color: #9bbfd9;
+	border-color: #9bbfd9;
+}
 </style>
 </head>
 
@@ -139,7 +156,7 @@ body {
 					</div>
 				</div>
 				<div class="buttonWrap" style="margin-bottom: 100px;">
-					<button class="btn1" type="button"
+					<button class= btn-fill-fcolor type="button"
 						style="width: 206px;" onclick="ask_check();">등록하기</button>
 				</div>
 			</div>

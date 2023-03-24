@@ -180,6 +180,7 @@ a {
 	background-color: rgba(147, 135, 252, 0.819);
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
+
 #replyend2 {
 	position: relative;
 	font-size: 16px;

@@ -118,7 +118,7 @@
 	top: 5px;
 	margin-left: 10px;
 	height: 21px;
-	background-color: rgb(89, 179, 248);;
+	background-color: rgb(89, 179, 248);
 	border: rgb(89, 179, 248); solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
@@ -177,6 +177,68 @@ padding:30px;
 	opacity: 0.5;
 }
 
+/* .btn {
+	display: inline-block;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out, box-shadow .15s ease-in-out
+} */
+
+
+
+.btn:hover {
+	color: #212529
+}
+
+.btn-check:focus+.btn, .btn:focus {
+	outline: 0;
+}
+
+.btn-fill-fcolor {
+	color: #9bbfd9;
+	border-color: #9bbfd9;
+	width: 160px;
+	height: 50px;
+	border-radius: .25rem;
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+
+.btn-fill-fcolor:hover {
+	color: #fff;
+	background-color: #9bbfd9;
+	border-color: #9bbfd9;
+}
+
+.btn-check:checked+.btn-fill-fcolor, .btn-check:active+.btn-fill-fcolor,
+	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show
+	{
+	color: #fff;
+	background-color: #9bbfd9;
+	border-color: #9bbfd9;
+}
+
+.btn-fill-fcolor:disabled, .btn-fill-fcolor.disabled {
+	color: #9bbfd9;
+	background-color: transparent;
+}
+
+
 </style>
 
 </head>
@@ -199,7 +261,7 @@ padding:30px;
 				<li style="display: flex;">
 				    <c:if test="${not empty ask}">
 						<a href="/doAskView">
-							<button  class= btn1 >문의하기</button>
+							<button  class= btn-fill-fcolor >문의하기</button>
 						 </a>
 					</c:if>
 			    </li>
