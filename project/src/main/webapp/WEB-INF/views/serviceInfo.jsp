@@ -38,21 +38,15 @@
    border: none;
    font-size: 40px;
 }
-input:hover {
-   color: white;
-}
 </style>
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
    <div id="intro">
-      <section id="infobody">
       <jsp:include page="infoBody.jsp" />
-      </section>
       <!-- 가입하기 버튼 -->
       <div class="moveJoin">
-         <!-- <button>가입하기</button> -->
-         <input id="btn_join" type="button" value="가입하기" onClick="location.href='order'">
+         <a href="/order" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">서비스 가입하기</a>
       </div>
    </div>
 <jsp:include page="common/footer.jsp" />
