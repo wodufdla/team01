@@ -23,7 +23,7 @@
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">Phone</span>
+	          	<span class="normal-font" style="display: block;padding: 8px;">휴대폰 번호</span>
 	          </li>
 	          <li style="display: flex;width: 100%;">
 	          	<input type="text" id="phone" name="phone" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;">
@@ -31,16 +31,16 @@
 	      </ul>
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">Password</span>
+	          	<span class="normal-font" style="display: block;padding: 8px;">비밀번호</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
 	          	<input type="password" id="password" name="password" placeholder="비밀번호 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
-	      </ul>
-		<input type="submit" value="login" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-		<button type="button" id="btnFind" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">find</button>
+	      </ul><!-- 버튼 크기 조절 황선필 -->
+		<input type="submit" value="로그인" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<button type="button" id="btnFind" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">비밀번호 찾기</button>
 		<!-- 황선필 회원가입 버튼 추가 -->
-		<button type="button" id="registerbtn" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">회원가입</button>
+		<button type="button" id="registerbtn" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">회원가입</button>
 		</div>
 	</form>
 	<input type="hidden" id="alert" value=${login_result }>

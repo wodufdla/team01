@@ -88,7 +88,7 @@
 	<a href="javascript:close();" style="position: absolute;right: 0;">
 		<img src="/resources/img/popup_close.png" style="padding: 14px;width: 50px;">
 	</a>
-	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">정보수정</span>
+	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원수정</span>
 	<form action="modifyform" method="post">
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
@@ -132,7 +132,7 @@
 	          </li>
 	      </ul>
 	      <!-- 스타일 추가 황선필 -->
-		<input id="modify" type="button" value="수정" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="modify" type="button" value="수정" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		</div>
 	</form>
 

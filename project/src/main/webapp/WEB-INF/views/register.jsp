@@ -175,7 +175,7 @@
 	      </ul>
 
 	      <!-- 스타일 추가 황선필 -->
-		<input id="register" type="button" value="가입" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="register" type="button" value="가입" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		</div>
 	</form>
 

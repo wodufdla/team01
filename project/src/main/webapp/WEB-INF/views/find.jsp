@@ -17,12 +17,12 @@
     <a href="javascript:close();" style="position: absolute;right: 0;">
     	<img src="/resources/img/popup_close.png" style="padding: 14px;width: 50px;">
     </a>
-    <span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">FIND</span>
+    <span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">비밀번호 찾기</span>
     <form action="find" method="post">
 	    <div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
 	        <ul style="padding: 0;display: flex;">
 	            <li style="width: 40%;max-width: 100px;">
-	            	<span class="normal-font" style="display: block;padding: 8px;">Phone</span>
+	            	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
 	            </li>
 	            <li style="width: 100%;display: block;">
 	            	<input type="text" id="phone" name="phone" placeholder="휴대폰 번호 입력" maxlength="11" style="width: 100%;padding: 5px;">
@@ -31,7 +31,7 @@
 	        </ul>
 	        <ul style="padding: 0;display: flex;">
 	            <li style="width: 40%;max-width: 100px;">
-	            	<span class="normal-font" style="display: block;padding: 8px;">E-mail</span>
+	            	<span class="normal-font" style="display: block;padding: 8px;">이메일</span>
 	            </li>
 	            <li style="width: 100%;display: flex;">
 					<input type="text" id="email1" name="email" placeholder="이메일 입력" style="width: 100%;padding: 5px;">
@@ -48,8 +48,8 @@
 					</select>
 	            </li>
 	        </ul>
-           	<input type="submit" value="FIND" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-           	<button type="button" id="btnLogin" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">LOGIN</button>
+           	<input type="submit" value="찾기" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+           	<!-- <button type="button" id="btnLogin" style="width: 90%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">로그인</button> -->
 	    </div>
     </form>
     <input type="hidden" id="find_alert" value=${find_result }>
