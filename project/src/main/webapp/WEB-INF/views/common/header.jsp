@@ -13,9 +13,9 @@
 
 $(document).ready(function(){
 	
-	/* logout 추가 황선필 */
+	/* logout 알러트 수정 황선필 */
 	$("#logout").click(function() {
-		alert("logout 됐습니다!");
+		alert("로그아웃 됐습니다!");
 		location.href="logout";
 	});
 
