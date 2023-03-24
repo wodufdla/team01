@@ -21,7 +21,10 @@ public interface QuestionService {
 	public List<QuestionVO> selectAskList();
 	
 	/* 문의사항  본인글 불러오기 */
-	public List<QuestionVO> selectAsk(String Phone);
+	public List<QuestionVO> selectAsk(String phone);
+	
+
+	
 	/* 문의사항 작성하기 */
 	public int insertAsk(QuestionVO ask);
 	/* 문의사항 삭제하기 */

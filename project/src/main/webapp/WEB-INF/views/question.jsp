@@ -93,12 +93,11 @@
 .allWrap .asksort {
 	position: relative;
 	font-size: 15px;
-	color: white;
+	color: #000;
 	top: 5px;
 	margin-left: 10px;
 	height: 21px;
-	background-color: chocolate;
-	border: chocolate solid 1.5px;
+
 }
 .allWrap .replyend {
 	position: relative;
@@ -107,8 +106,8 @@
 	top: 5px;
 	margin-left: 10px;
 	height: 21px;
-	background-color: rgba(147, 135, 252, 0.819);
-	border: rgba(147, 135, 252, 0.819) solid 1.5px;
+	background-color: rgb(242 85 81);
+	border: rgb(242 85 81) solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
 .allWrap .replyend2 {
@@ -118,8 +117,8 @@
 	top: 5px;
 	margin-left: 10px;
 	height: 21px;
-	background-color: rgb(89, 179, 248);
-	border: rgb(89, 179, 248); solid 1.5px;
+	background-color: rgb(89 121 217);
+	border:rgb(89 121 217)  solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
 .allWrap .btn {
@@ -159,58 +158,16 @@ display: none;
 .askWrap{
 padding:30px;
 }
-/* 버튼 1번 css*/
-.btn1 {
-	border: none;
-	border-radius: 3px;
-	/* background: #b6e0d6; */
-	background-color: #8C8C8C;
-	color: white;
-	font-weight: 500;
-	font-size: 20px;
-	width: 160px;
-	height: 50px;
-	cursor: pointer;
-}
-
-.btn1:hover {
-	opacity: 0.5;
-}
-
-/* .btn {
-	display: inline-block;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #212529;
-	text-align: center;
-	text-decoration: none;
-	vertical-align: middle;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-	background-color: transparent;
-	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
-	border-radius: .25rem;
-	transition: color .15s ease-in-out, background-color .15s ease-in-out,
-		border-color .15s ease-in-out, box-shadow .15s ease-in-out
-} */
-
-
-
-.btn:hover {
-	color: #212529
-}
+/* 버튼  css*/
 
 .btn-check:focus+.btn, .btn:focus {
 	outline: 0;
 }
 
 .btn-fill-fcolor {
-	color: #9bbfd9;
-	border-color: #9bbfd9;
+	color: #fff;
+	background-color: #192a5e;
+	border-color: #364f9b;
 	width: 160px;
 	height: 50px;
 	border-radius: .25rem;
@@ -220,22 +177,23 @@ padding:30px;
 }
 
 .btn-fill-fcolor:hover {
-	color: #fff;
-	background-color: #9bbfd9;
-	border-color: #9bbfd9;
+    color:  #fff;
+    background-color: rgb(89 121 217); 
+
+	
 }
 
 .btn-check:checked+.btn-fill-fcolor, .btn-check:active+.btn-fill-fcolor,
 	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show
 	{
-	color: #fff;
-	background-color: #9bbfd9;
+    color: #fff;
+    background-color: #9bbfd9; 
 	border-color: #9bbfd9;
 }
 
 .btn-fill-fcolor:disabled, .btn-fill-fcolor.disabled {
 	color: #9bbfd9;
-	background-color: transparent;
+	background-color: transparent; 
 }
 
 
@@ -249,7 +207,7 @@ padding:30px;
 		
 		<div class="top" >
 			<p>
-				<p style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px;">
+				<p style="top: 20px; position: relative; font-family: SUIT-SemiBold; font-size: 25px; font-weight: 500;">
 				${session_nickname}님의 1:1 문의 내역</p>
 				<input type="hidden" name="phone" value="${phone}" />
 				<hr style="width: 29%; margin: 0 auto; position: relative; top: 30px; border-style: groove;">
@@ -310,8 +268,6 @@ padding:30px;
 </div>
 
 
-
-	
 	<script>
 		$(document).ready(function() {
 			var tDegree = 0;

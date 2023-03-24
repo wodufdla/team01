@@ -16,39 +16,7 @@
 	font-family: SUIT-Regular;
 }
 
-#admin_navigator {
-	border-bottom: 1px solid #ccc;
-	box-sizing: border-box;
-	height: 130px;
-	color: #444c57;
-	padding-top: 20px;
-}
 
-#admin_navigationbar {
-	position: relative;
-	width: 1280px;
-	height: 100px;
-	margin: 0 auto;
-}
-
-#logo_wrap {
-	position: absolute;
-	top: 0;
-	width: 100px;
-}
-
-#logo {
-	width: 95px;
-	height: 65px;
-}
-
-#admin_header_title {
-	position: absolute;
-	top: 30%;
-	left: 150px;
-	font-family: SUIT-SemiBold;
-	font-size: 28px;
-}
 </style>
 <style>
 /* main section */
@@ -115,8 +83,8 @@ a {
 .customerAskWrap {
 	position: relative;
 	margin-top: 45px;
-	width: 1000px;
-	height: 200px;
+	width: 800px;
+	height: 270px;
 }
 
 #answer {
@@ -136,7 +104,7 @@ a {
 	border: none;
 	border-radius: 3px;
 	/* background: #b6e0d6; */
-	background-color: #8C8C8C;
+	background-color: #666666;
 	color: white;
 	font-weight: 500;
 	font-size: 20px;
@@ -156,7 +124,9 @@ a {
 	background-color: #fff;
 	border: 1.8px solid #212529;
 	border-radius: 5px;
-	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 800px; 
+    height: 250px;
 }
 #askboxborder:hover {
 	border-color: #9bbfd9;
@@ -174,7 +144,10 @@ a {
 .anst{
 border: 1.8px solid #212529;
 }
-
+.customerask{
+    font-size: 15px;
+	font-weight: 400;
+}
 </style>
 </head>
 <body>
@@ -185,19 +158,26 @@ border: 1.8px solid #212529;
 			id="answer" method="POST" style="height: 458px;">
 				<c:forEach items="${ask}" var="ask">
 					<div class="customerAskWrap">
+						<div>
+						<h2 class="askTop">답변 글쓰기</h2>
+						<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
+					    </div>
 					   <p>제목: ${ask.asktitle}</p>
 						<br>
 						<p>내용: ${ask.askcontent}</p>
+						
 						<input type="hidden" name="email" value="${ask.phone}"> 
 						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
 					</div>
 				</c:forEach>
 				<input type="hidden" name="askno" value="${askno}">
 				<div class="replyTextareaWrap">
-					<textarea  id="askboxborder" class="replyTextarea" name="anscontent" id="anscontent" placeholder="문의사항 답변을 작성해주세요."></textarea>
+					<textarea  id="askboxborder" class="replyTextarea" name="anscontent"   
+					 placeholder="문의사항 답변을 작성해주세요.">
+					</textarea>
 				</div>
 			</form>
-			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; position: relative; right: 110px;">
+			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; right: 110px;">
 				<button class="btn1" type="button" onclick="ans_check();"
 					style="margin-right: 10px;">등록</button>
 				<a href="/ask"><button class="btn1" >취소</button></a>

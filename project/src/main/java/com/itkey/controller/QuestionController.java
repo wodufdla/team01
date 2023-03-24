@@ -1,6 +1,7 @@
 package com.itkey.controller;
 
 
+
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.itkey.service.QuestionService;
 import com.itkey.vo.AnswerVo;
@@ -40,17 +42,19 @@ public class QuestionController {
 			) {
 		log.info("question List Page Response_GET() 호출");// Logger
 		log.info("1대1문의 페이지  data : " + reqMap);
-		
-		String Phone = (String) session.getAttribute("phone");
+	
+		String phone = (String) session.getAttribute("phone");
 		// 회원 로그Phone인 상태 확인
-		ask.setPhone(Phone);
+		ask.setPhone(phone);
 		
 		log.info("* [CONTROLLER] Input �뼳 (Service) : " + ask);
+		/*Map<String, Object> map = new HashMap<String, Object>();
+		map.put("phone", phone);
+		map.put("criteria", criteria);*/
 		
-		List<QuestionVO> oList = questionService.selectAsk(Phone);// 유저 문의글 조회
-		// List<QuestionVO> allList = questionService.selectAskList();// 총 글 목록 조회
-
-		model.addAttribute("ask", oList); // 화면에 데이터 보내기
+		List<QuestionVO> oList = questionService.selectAsk(phone);// 유저 문의글 조회
+		
+		model.addAttribute("ask", oList);
 		return "question";// jsp 화면이름
 	}
 
@@ -96,18 +100,19 @@ public class QuestionController {
 		return mv;
 	}
 	
-	//관리자   문의하기 
+	//관리자 리스트 목록 
 	@RequestMapping(value = "/ask", method = RequestMethod.GET)
 	public ModelAndView selectAsk(ModelAndView mv
 			, HttpSession session
 			, RedirectAttributes rttr
+			
 			) {
 	
-
 		
 		mv.addObject("ask_Y", questionService.selectAskY());
 		mv.addObject("ask_N", questionService.selectAskN());
 		mv.setViewName("askManagement"); 
+		
 		return mv;
 	}
    

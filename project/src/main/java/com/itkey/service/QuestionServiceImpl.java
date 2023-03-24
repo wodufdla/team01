@@ -1,13 +1,16 @@
 package com.itkey.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itkey.dao.QuestionDAO;
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
 
@@ -37,8 +40,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 	//문의하기 본인글 조회 
 	@Override
-	public List<QuestionVO> selectAsk(String Phone) {
-		List<QuestionVO> result = questionDAO.selectAsk(Phone);
+	public List<QuestionVO> selectAsk(String phone) {
+		List<QuestionVO> result = questionDAO.selectAsk(phone);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result.toString());
 		return result;
 	}
@@ -99,8 +102,7 @@ public class QuestionServiceImpl implements QuestionService {
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
-	
-	
+
 	
 	
 }

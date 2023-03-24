@@ -151,15 +151,15 @@ a {
 .ansView:hover .contentModal {
 	display: block;
 }
-
+/*  목록제목 CSS */
 .replyend {
 	position: relative;
 	font-size: 25px;
 	color: rgb(250, 250, 250);
 	top: 5px;
     padding: 0.375rem 0.75rem;
-	background-color: rgba(147, 135, 252, 0.819);
-	border: rgba(147, 135, 252, 0.819) solid 1.5px;
+	background-color:rgb(242 85 81);
+	border: rgb(242 85 81); solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
 .replyend2 {
@@ -167,27 +167,26 @@ a {
 	font-size: 25px;
 	color: rgb(250, 250, 250);
 	top: 5px;
-	 padding: 0.375rem 0.75rem;
-	background-color: rgb(89, 179, 248);;
-	border: rgb(89, 179, 248); solid 1.5px;
+	padding: 0.375rem 0.75rem;
+	background-color: rgb(89 121 217);
+	border: rgb(89 121 217) solid 1.5px;
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
+/*  답변 글자 CSS  */
 #replyend {
 	position: relative;
 	font-size: 16px;
 	color: rgb(250, 250, 250);
 	top: 5px;
-	background-color: rgba(147, 135, 252, 0.819);
+	background-color: rgb(102 102 102);
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
 
 #replyend2 {
 	position: relative;
 	font-size: 16px;
-    color: rgb(250, 250, 250);
 	top: 5px;
-	background-color: rgb(89, 179, 248);;
-	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
+	
 }
 </style>
 </head>
@@ -270,7 +269,12 @@ a {
 			</div>
 		</div>
 	</div>
+	
+	
+	
 	<jsp:include page="common/footer.jsp" />
+	
+	
 	<script>
 	<%-- var member=  '${Phone}';
 	console.log("접근한회원정보: " + member);	

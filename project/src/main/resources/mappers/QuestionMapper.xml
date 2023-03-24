@@ -5,8 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.itkey.QuestionMapper">
 
 	<!-- 회원 문의 조회 -->
-	<select id="selectAsk" parameterType="string"
-		resultType="Question">
+	<select id="selectAsk"  resultType="Question">
 		   <![CDATA[
 		   select
 		ask_no,phone,ask_title,ask_content,reply_yn,ask_category,ans_content
