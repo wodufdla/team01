@@ -12,6 +12,7 @@
 		<property name="join_date" value="join_date" />
 		<property name="withdrawal" value="withdrawal" />
 		<property name="nickname" value="nickname"/>
+		<property name="banner" value="banner"/>
 
 		<property name="order_tbl" value="order_tbl"/>
 		<property name="order_no" value="order_no"/>

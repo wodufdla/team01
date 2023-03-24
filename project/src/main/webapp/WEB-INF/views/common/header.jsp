@@ -66,7 +66,10 @@ function registeralarm() {
                 </c:if>
                 
                 <c:if test="${phone!=null}"><!-- style 수정 황선필 -->
-	                
+                <!-- banner test -->
+                <c:if test="${session_banner!=null}">
+	                ${session_banner}!TEST
+                </c:if>
 	                <a href="#" id="logout" class="nav-link" style="width: 10%;  float: right;">로그아웃</a>
 	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원수정</a>
 	                <a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">${session_nickname}님 환영합니다!</a>
