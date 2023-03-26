@@ -34,8 +34,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#chkAll").click(function() {
-		if($("#chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-		else $("input[name=chk]").prop("checked", false);
+		if($("#chkAll").is(":checked")) {
+			$("input[name=chk]").prop("checked", true);
+			//alert("allcheck");
+		}
+		else{
+			$("input[name=chk]").prop("checked", false);
+		}
 	});
 	
 	$("input[name=chk]").click(function() {
@@ -43,8 +48,27 @@ $(document).ready(function() {
 		var checked = $("input[name=chk]:checked").length;
 		
 		if(total != checked) $("#chkAll").prop("checked", false);
-		else $("#chkAll").prop("checked", true); 
+		else{
+			$("#chkAll").prop("checked", true); 
+			
+		}
 	});
+	
+	$("#cashBtn").click(function() {
+		var total = $("input[name=chk]").length;
+		var checked = $("input[name=chk]:checked").length;
+		
+		if(total == checked){
+			alert("모두 체크");
+		}else{
+			alert("체크가 덜 되었다");
+			
+		}
+
+		
+		
+	});
+	
 });
 </script>
 <body>
@@ -52,7 +76,7 @@ $(document).ready(function() {
 <section id="faq" class="section-default" style="background-image: url('/resources/img/event.jpg'); background-repeat : no-repeat; background-size : cover;">
 	<div class="event">
 		<img src="resources/img/eventback.jpg"><br><br>
-			<a href="#" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">10,000캐시 받고 내 주변 범죄자 확인</a><br>
+			<a href="#" class="btn btn-dark btn-lg active" role="button" aria-pressed="true" id="cashBtn">10,000캐시 받고 내 주변 범죄자 확인</a><br>
 		
 	<div class="form-check">
 		<input class="form-check-input" type="checkbox" id="chkAll" value="option1" onclick="selectAll(this)">
