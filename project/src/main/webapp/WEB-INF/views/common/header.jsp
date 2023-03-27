@@ -9,6 +9,40 @@
 
 <!-- 제이쿼리 추가 황선필 -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style type="text/css">
+.dropdown{
+  padding: 8px;
+  color: #666666;
+  position: relative;
+  display: inline-block;
+}
+.dropbtn {
+  font-weight: bold;
+}
+.dropdown-content{
+  background-color: #ffffff;
+  width: 145px !important;
+  display: none;
+  position: absolute;
+  z-index: 1; /*다른 요소들보다 앞에 배치*/
+  font-size: 10pt;
+  text-align: left;
+}
+.dropdown-content a{
+  display: block;
+}
+.dropdown-content a:hover{
+  background-color: #ececec
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-item {
+  margin: 1px;
+  padding: 2px;
+  font-weight: bold;
+}
+</style>
 <script>
 
 $(document).ready(function(){
@@ -26,6 +60,33 @@ function registeralarm() {
 	window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 
+// 서비스 소개, 서비스 가입 시 이용 가능
+function joinchk(num){
+
+	// 서비스 가입 여부 확인 후 미가입시 안내창
+	alert("서비스 가입 후 이용 가능합니다.");
+    if(1){
+
+    	switch(num) {
+    	case 1:
+    		window.open("https://www.sexoffender.go.kr/m2s3_7.nsc", "_blank")
+	        /* location.href = "https://www.sexoffender.go.kr/m2s3_7.nsc"; */
+	        break;
+    	case 2:
+    		/* window.open("https://www.safemap.go.kr/main/smap.do?flag=2", "_blank"); */
+	        location.href ="/safetyMap";
+	        break;
+    	case 3:
+    		window.open("https://www.sexoffender.go.kr/m1s2_login.nsc", "_blank");
+	        /* location.href = "https://www.sexoffender.go.kr/m1s2_login.nsc"; */
+	        break;    
+    	}
+        return true;
+    } else {
+        return false;
+    }
+}
+
 </script>
 
 <nav class="navbar navbar-light navbar-expand-md">
@@ -39,7 +100,17 @@ function registeralarm() {
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
             <!-- 이해리님 요청 -->
-                <li class="nav-item"><a class="nav-link" href="serviceInfo">서비스 소개</a></li>
+                <li class="nav-item"><!-- <a class="nav-link" href="serviceInfo">서비스 소개</a> -->
+	                <div class="dropdown">
+				      <span class="dropbtn">서비스 소개</span>
+				      <div class="dropdown-content">
+				      	<a class="dropdown-item" href="#">실시간 공개현황</a>
+				        <a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
+				        <a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
+				        <a class="dropdown-item" href="#" onclick="joinchk(3);">성범죄 대응법</a>
+				      </div>
+				    </div>
+                </li>
                 <!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
                	<!-- 이해리 메뉴 수정(admin) -->
                 <c:if test="${phone!=null || admin!=null}">
@@ -68,7 +139,7 @@ function registeralarm() {
                 <c:if test="${phone!=null}"><!-- style 수정 황선필 -->
                 <!-- banner test -->
                 <c:if test="${session_banner!=null}">
-	                ${session_banner}!TEST
+	                ${session_banner}
                 </c:if>
 	                <a href="#" id="logout" class="nav-link" style="width: 10%;  float: right;">로그아웃</a>
 	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원수정</a>
