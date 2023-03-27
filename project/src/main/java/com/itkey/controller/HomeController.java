@@ -35,6 +35,11 @@ public class HomeController {
 		
 		return "event";
 	}
+	
+	@RequestMapping("/crime")
+	public String crime(Model model) {
+		return "crime";
+	}
 		
 	@RequestMapping("/order")
 	public String order(Model model) {
