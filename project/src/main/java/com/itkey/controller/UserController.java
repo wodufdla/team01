@@ -75,7 +75,7 @@ public class UserController {
     public String logOut(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return "redirect:/order";
+        return "redirect:/crime";
     }
     
     //정보수정 화면 접속 황선필
