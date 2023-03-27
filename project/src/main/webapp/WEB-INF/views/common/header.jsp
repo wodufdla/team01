@@ -86,10 +86,19 @@ function joinchk(num){
 </script>
 
 <nav class="navbar navbar-light navbar-expand-md">
+<<<<<<< HEAD
        <div class="container-fluid">
            <a class="navbar-brand" href="/">
                <img src="/resources/img/logo.png" style="height: 30px;">
            </a>
+=======
+	  <!-- 배너통해서 왔는지 유무 황선필 -->
+	 <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
+   	<div class="container-fluid">
+   		<a class="navbar-brand" href="/">
+   			<img src="/resources/img/logo.png" style="height: 30px;">
+   		</a>
+>>>>>>> HSP
         <a class="nav-link-command" href="javascript:onQna();" style="border: solid 1px #192a5e;color: #192a5e;">문의</a>
         <a class="nav-link-command" href="javascript:onResign();" style="border: solid 1px #bc401e;color: #bc401e;">해지</a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
@@ -134,13 +143,15 @@ function joinchk(num){
                 
                 <c:if test="${phone!=null}"><!-- style 수정 황선필 -->
                 <!-- banner test -->
-                <c:if test="${session_banner!=null}">
-                    ${session_banner}
-                </c:if>
-                    <a href="#" id="logout" class="nav-link" style="width: 10%;  float: right;">로그아웃</a>
-                    <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원수정</a>
-                    <a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">${session_nickname}님 환영합니다!</a>
-                    
+
+<%--                 <c:if test="${session_banner!=null}">
+	                ${session_banner}
+                </c:if> --%>
+	                <a href="#" id="logout" class="nav-link" style="width: 10%;  float: right;">로그아웃</a>
+	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원수정</a>
+	                <a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">${session_nickname}님 환영합니다!</a>
+	                
+
                 </c:if>
                 <c:if test="${admin != null }">
                     <span style="font-weight: bold; text-decoration: underline; ">관리자</span><span style="font-weight: bold; " >님 환영합니다!</span>
