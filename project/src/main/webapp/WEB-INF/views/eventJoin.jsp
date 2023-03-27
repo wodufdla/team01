@@ -58,9 +58,12 @@ $(document).ready(function() {
 		var checked = $("input[name=chk]:checked").length;
 		
 		if(total == checked){
-			alert("모두 체크");
+			alert("회원가입 후 캐시 수령이 가능합니다.");
+			var child;
+			child = window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+			//child.$("#banner").val(1);
 		}else{
-			alert("체크가 덜 되었다");
+			alert("모든 동의가 이루어지지 않았습니다.");
 			
 		}
 
@@ -73,6 +76,9 @@ $(document).ready(function() {
 <body>
 <section id="faq" class="section-default" style="background-image: url('/resources/img/eventJoin.jpg'); background-repeat : no-repeat; background-size : cover;">
 	<div class="event">
+	      <!-- 배너통해서 왔는지 유무 황선필 -->
+	      <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="1">
+	
 		<table class="t board-write margin-top-15">
 			<tr>
 				<td>

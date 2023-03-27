@@ -75,7 +75,7 @@ public class UserController {
     public String logOut(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/crime";
     }
     
     //정보수정 화면 접속 황선필
@@ -150,7 +150,7 @@ public class UserController {
 			session.setAttribute("session_password", uv.getPassword());
 			session.setAttribute("session_email", uv.getEmail());
 			session.setAttribute("session_nickname", uv.getNickname());
-			session.setAttribute("session_banner", 2);
+			session.setAttribute("session_banner", uv.getBanner());
 			//session.setAttribute("session_join_date", uv.getJoinDate());
 			//session.setAttribute("session_withdrawal", uv.isWithdrawal());
 			

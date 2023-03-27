@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="regAll" parameterType="User">
 
 		insert into ${user_tbl} (${phone}, ${password}, ${email}, ${nickname}, ${banner})
-		values (#{phone}, #{password}, #{email}, #{nickname}, 2)
+		values (#{phone}, #{password}, #{email}, #{nickname}, #{banner})
 		
 	</insert>
 	
