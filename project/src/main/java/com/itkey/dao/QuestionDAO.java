@@ -13,14 +13,22 @@ public interface QuestionDAO {
 	
 	
 	/* 문의사항  본인글 불러오기 */
-	public List<QuestionVO> selectAsk(String phone);
+	public List<QuestionVO> selectAsk(PageCriteria criteria);
+	int selectAsktotalCount(PageCriteria criteria);
+	
 	/* 문의사항 - 관리자 조회 목록*/
-	public List<QuestionVO> selectAskY();
-	public List<QuestionVO> selectAskN();
+	/* 문의사항 전체  불러오기 */
+	public List<QuestionVO> selectAskList(PageCriteria criteria);
+	int selectAskListtotalCount(PageCriteria criteria);
+	
+	public List<QuestionVO> selectAskY(PageCriteria criteria);
+	int selectAskYtotalCount(PageCriteria criteria);
+	
+	public List<QuestionVO> selectAskN(PageCriteria criteria);
+	int selectAskNtotalCount(PageCriteria criteria);
 	public List<QuestionVO> selectAsk2(int askno);
 	
-	/* 문의사항 전체  불러오기 */
-	public List<QuestionVO> selectAskList();
+	int askTodayCount();
 	
 	/* 문의사항 작성하기 */
 	public int insertAsk(QuestionVO ask);

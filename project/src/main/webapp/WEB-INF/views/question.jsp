@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -130,7 +131,7 @@
 	text-align: left;
 	font-size:18px;
 }
-.askdate {
+.askDate {
 	text-align: right;
 	width: 22%;
 	position: relative;
@@ -184,8 +185,7 @@ padding:30px;
 }
 
 .btn-check:checked+.btn-fill-fcolor, .btn-check:active+.btn-fill-fcolor,
-	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show
-	{
+	.btn-fill-fcolor:active, .btn-fill-fcolor.active, .btn-fill-fcolor.dropdown-toggle.show {
     color: #fff;
     background-color: #9bbfd9; 
 	border-color: #9bbfd9;
@@ -196,6 +196,9 @@ padding:30px;
 	background-color: transparent; 
 }
 
+.pasgbody{
+padding:30px;
+}
 
 </style>
 
@@ -225,30 +228,35 @@ padding:30px;
 			    </li>
 					<c:forEach items="${ask}" var="ask">
 					<form action="deleteAsk.do" method="post" id="deleteAsk">
+					
+					<input type="hidden" name="page" value="1">
+		            <input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
+		             
 						<div class="askbox" style="position: relative;">
 							<li style="display: flex; margin-top: 30px;margin-bottom: 10px;">
-								<h2 class="ask01">${ask.asktitle}</h2> <span class="asksort">${ask.askcategory}문의</span>
-								<c:if test="${ask.replyyn eq 'N'}">
+								<h2 class="ask01">${ask.askTitle}</h2> <span class="asksort">${ask.askCategory}문의</span>
+								<c:if test="${ask.replyYn eq 'N'}">
 									<span class="replyend">답변대기</span>
-								</c:if> <c:if test="${ask.replyyn eq 'Y'}">
+								</c:if> <c:if test="${ask.replyYn eq 'Y'}">
 									<span class="replyend2">답변완료</span>
 								</c:if> <span class="toggle tg1">&#9660</span> <span class="toggle tg2">&#9650</span>
 							</li>
 							<li class="content">
 								<div style="display: flex;">
-									<span style="width: 75%;">${ask.askcontent}</span>
-									<div class="askdate">
-										<p>${ask.askdate}</p>
-										<p class="askdelete" id="askdelete${ask.askno}">삭제하기</p>
-										<input type="hidden" name="askno" value="${ask.askno}">
+									<span style="width: 75%;">${ask.askContent}</span>
+									<div class="askDate">
+										<p>${ask.askDate}</p>
+										<p class="askdelete" id="askdelete${ask.askNo}">삭제하기</p>
+										
+										<input type="hidden" name="askNo" value="${ask.askNo}">
 									</div>
 								</div>
 								<hr style="width: 100%; margin: 20px auto 20px;">
 								<h4 style="width: 75%;">
-									<c:if test="${ask.replyyn eq 'N'}">답변을 기다리는 중입니다. </c:if>
+									<c:if test="${ask.replyYn eq 'N'}">답변을 기다리는 중입니다. </c:if>
 								</h4>
 								<h4>
-									<c:if test="${ask.replyyn eq 'Y'}">${ask.anscontent}</c:if>
+									<c:if test="${ask.replyYn eq 'Y'}">${ask.ansContent}</c:if>
 								</h4>
 							</li>
 						</div>
@@ -260,15 +268,59 @@ padding:30px;
 					<h4>등록된 1:1 문의가 없습니다.</h4>
 					<h4>궁금하거나 건의할 사항이 있다면 언제든지 문의해주세요!</h4>
 				</div>
-				<a href="<%=request.getContextPath()%>/doAskView">
-				<button class="btn btn-fill-fcolor" style="position: relative; top: 90px;">문의하기</button></a>
+				<a href="/doAskView">
+				<button class="btn-fill-fcolor" style="position: relative; top: 90px;">문의하기</button></a>
 			</c:if>
 		</div>
+
+ </div>
+ <div class="pasgbody">
+    <c:choose>
+
+	   	<c:when test="${pageMaker.criteria eq null}">
+		   	<ul class="pagination justify-content-center">
+				<c:if test="${pageMaker.hasPrev }">
+					<li class="page-item"><a class="page-link" href="question?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPageNo }"
+					end="${pageMaker.endPageNo }" var="num">
+					<li id="page${num}" class="page-item"><a class="page-link" href="question?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num }</a></li>
+				</c:forEach>
+				<c:if test="${pageMaker.hasNext }">
+					<li class="page-item"><a class="page-link" href="question?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
+				</c:if>
+			</ul>
+		</c:when>
 	
-</div>
+		<c:otherwise>
+			<ul class="pagination justify-content-center">
+				<c:if test="${pageMaker.hasPrev }">
+					<li class="page-item">
+						<a class="page-link" href="question?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}">&lt;</a>
+					</li>
+				</c:if>
+				<c:forEach begin="${pageMaker.startPageNo }"
+					end="${pageMaker.endPageNo }" var="num">
+					<li id="page${num}" class="page-item">
+						<a class="page-link" id="page2${num}" href="question?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}">${num }</a>
+					</li>
+				</c:forEach>
+				<c:if test="${pageMaker.hasNext }">
+					<li class="page-item">
+						<a class="page-link" href="question?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria}&category=${pageMaker.criteria}}">&gt;</a>
+					</li>
+				</c:if>
+			</ul>
+		</c:otherwise>
+		
+	</c:choose>	
+ </div>
 
 
-	<script>
+<jsp:include page="common/footer.jsp" />
+
+
+  <script>
 		$(document).ready(function() {
 			var tDegree = 0;
 			$(".content").hide();
@@ -285,7 +337,7 @@ padding:30px;
 				$(this).prev().show();
 				$(this).hide();
 			});
-			
+			/* 삭제 부분 */	
 			$("[id^='askdelete']").click(function() {
 				console.log($(this));
 				console.log($(this).parents("form"));
@@ -295,9 +347,12 @@ padding:30px;
 					return false;
 				}
 			});
+			/* 수정 부분 - 에이작스로 수정예정*/	
+			
+			
+			
 		});
 	</script>
-<jsp:include page="common/footer.jsp" />
 </body>
 
 </html>

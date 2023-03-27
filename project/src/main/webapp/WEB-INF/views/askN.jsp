@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 - 1:1 ask 전체 리스트</title>
+<title>관리자 - 1:1 askN 미응답페이지  </title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -24,7 +24,7 @@ a {
 	flex-flow: row wrap;
 	margin: 0 auto;
 	width: 1250px;
-	height: 800px;
+	height: 900px;
 }
 
 #admin_nav {
@@ -131,7 +131,6 @@ float: right;
 
 }
 .but-titletit {
-
 	color: #444;
 	font-weight: bold;
 	width: 160px;
@@ -163,10 +162,6 @@ padding: 0.6em 1.4em 0.5em 0.8em;
 margin: 3px;
 }
 
-.top{
-display:block;
-}
-
 </style>
 <script type="text/javascript">
 
@@ -178,15 +173,21 @@ function askNBtn(){
 function askYBtn(){
 	location.href = "/askY";	
 }
+function askBtn(){
+	location.href = "/ask";	
+}
 </script>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
+
+
 	<div class="container">
 		<div id="main_body">
+		
 			<div class="tableWrap">
-			 <div class="top"  >
-			<h4 >[ 1:1 문의 _전체목록 ]</h4>
+			<div class="top">
+			<h4 >[ 1:1 문의 _미응답 ]</h4>
 			</div>
 				      <div class="row panel-row">
 							<div class="col">
@@ -218,8 +219,8 @@ function askYBtn(){
 								</div>
 							</div>
 				      </div>
-				      <div  class="butT">
-			    	<button  class="but-titletit" onclick="askNBtn()" >관리자_문의미응답</button>
+				      <div  class=butT>
+			    	<button  class="but-titletit" onclick="askBtn()" >관리자 _문의전체</button>
 				    <button  class="but-titletit" onclick="askYBtn()" >관리자 _문의답변완료</button>
 			    </div>
 				<form action="ask" method="get">
@@ -240,33 +241,20 @@ function askYBtn(){
 					</thead>
 					<tbody>
 					   <form action="answer" method="get" id="answer">
-						<c:forEach items="${ask}" var="ask">
+						<c:forEach items="${ask_N}" var="askN">
 							<tr>
-								<input type="hidden" name="askNo" value="${ask.askNo}">
-									<td>${ask.rowNum}</td>
-									<td>${ask.askTitle}</td>
-									<td>${ask.askCategory}</td>
-									<td>${ask.phone}</td>
-									<td>${ask.askDate}</td>
-									<c:if test="${ask.replyYn eq 'N'}">
+								<input type="hidden" name="askNo" value="${askN.askNo}">
+									<td>${askN.rowNum}</td>
+									<td>${askN.askTitle}</td>
+									<td>${askN.askCategory}</td>
+									<td>${askN.phone}</td>
+									<td>${askN.askDate}</td>
 								    <td style="width: 110px;">
-										<a id="replyend"  href="/answer/${ask.askNo}">답변하러가기</a>  
+										<a id="replyend"  href="/answer/${askN.askNo}">답변하러가기</a>  
 								    </td>
-								    </c:if>
-								    <c:if test="${ask.replyYn eq 'Y'}">
-								    <td class="ansView" style="width: 110px;position: relative;">답변내용확인
-								    <div class="contentModal">
-										<p>제목:${ask.askTitle}</p>
-										<p>내용:${ask.askContent}</p>
-										<br><br>
-										<p>답변내용:${ask.ansContent}</p>
-									 </div>
-									</td>
-								    </c:if>
-								    
 								</tr>
 						</c:forEach>
-						<c:if test="${empty ask}">
+						<c:if test="${empty ask_N}">
 								<td colspan="5" style="font-size: 18px">등록된 문의가 없습니다.</td>
 							</c:if>
 						</form>
@@ -279,16 +267,16 @@ function askYBtn(){
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.hasPrev }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
+							href="askN?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPageNo }"
 						end="${pageMaker.endPageNo }" var="num">
 						<li id="page${num}" class="page-item"><a class="page-link"
-							href="ask?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num}</a></li>
+							href="askN?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.hasNext }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
+							href="askN?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
 					</c:if>
 				</ul>
 			</c:when>
@@ -296,18 +284,18 @@ function askYBtn(){
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.hasPrev }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">&lt;</a>
+							href="askN?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">&lt;</a>
 						</li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPageNo }"
 						end="${pageMaker.endPageNo }" var="num">
 						<li id="page${num}" class="page-item"><a class="page-link" id="page2${num}"
-							href="ask?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">${num}</a>
+							href="askN?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">${num}</a>
 						</li>
 					</c:forEach>
 					<c:if test="${pageMaker.hasNext }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}}">&gt;</a>
+							href="askN?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}}">&gt;</a>
 						</li>
 					</c:if>
 				</ul>
@@ -322,7 +310,7 @@ function askYBtn(){
 		$(".ansView").click(function() {
 			var option = "width=700, height=20";
 			var m_no = $(this).children().val();
-			var url = "/ask/askNo=";
+			var url = "/answer/askNo=";
 			url += askNo;
 			console.log("url: " + url);
 			window.open(url, "popup", option);
