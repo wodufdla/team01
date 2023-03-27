@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
-
+<img src="/resources/img/respond.png">
 <jsp:include page="common/footer.jsp" />
 </body>
 </html>
