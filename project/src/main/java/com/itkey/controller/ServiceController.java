@@ -21,4 +21,13 @@ public class ServiceController {
 		return "safetyMap";
 	}
 	
+	@RequestMapping("/rtPublicStatus")
+	public String rtPublicStatus(Model model) {
+		return "rtPublicStatus";
+	}
+	
+	@RequestMapping("/howRespond")
+	public String howRespond(Model model) {
+		return "howRespond";
+	}
 }
