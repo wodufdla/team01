@@ -25,7 +25,7 @@
 			//등록버튼 황선필
 			$("#register").click(function() {
 				//배너 체크
-				alert(banner);
+				//alert(banner);
 				//각 빈칸들 변수
 				var phone=$("#phone").val();
 				var pw=$("#password").val();
