@@ -4,87 +4,221 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itkey.QuestionMapper">
 
-	<!-- 회원 문의 조회 -->
-	<select id="selectAsk"  resultType="Question">
-		   <![CDATA[
-		   select
-		ask_no,phone,ask_title,ask_content,reply_yn,ask_category,ans_content
-		,date_format(ask_date,'%Y-%m-%d')as ask_date
-		from question_tbl left outer join answer_tbl using(ask_no)
-		where phone=#{phone}
-		order by ask_no desc
-		 ]]>
+	<!-- 유저 1인 문의 조회 -->
+	<select id="selectAsk" resultType="Question">
+		select
+		ask_no,
+		phone,
+		ask_title,
+		ask_content,
+		reply_yn,
+		ask_category,
+		ans_content,
+		date_format(ask_date, '%Y-%m-%d')as ask_date
+		from
+		question_tbl
+		left
+		outer join answer_tbl
+		using(ask_no)
+		where
+		phone = #{keyword}
+		order by
+		ask_no desc
+		limit
+		#{start}, #{end}
+	</select>
+	<!-- 회원 문의 조회 Count-->
+	<select id="selectAsktotalCount" resultType="_int">
+		select
+		count(*) total_cnt
+		from
+		question_tbl
+		where
+		phone =#{keyword}
+	</select>
+	
+		<!-- 회원 문의  오늘  Count-->
+	<select id="askTodayCount" resultType="_int">
+		select
+		count(*) total_cnt
+		from
+		question_tbl
+		where
+		ask_date = date_format(now(),'%Y-%m-%d')
+		
 	</select>
 
 	<!-- 문의하기 본인글쓰기 -->
 	<insert id="insertAsk" parameterType="Question">
-		insert into
-		question_tbl(phone,ask_title,ask_category,ask_content,ask_date
-		)values(
-		#{phone},#{asktitle},#{askcategory},#{askcontent},now()
+	
+		insert
+		into
+		question_tbl(phone,
+		ask_title,
+		ask_category,
+		ask_content,
+		ask_date
 		)
+		values(#{phone},#{asktitle},#{askcategory},#{askcontent},date_format(now(), '%Y-%m-%d %H:%i:%S'))
+		
 	</insert>
 
 	<!-- 문의글 삭제 -->
 	<delete id="deleteAsk" parameterType="_int">
-		delete from question_tbl
-		where ask_no=#{askno}
+		delete
+		from
+		question_tbl
+		where
+		ask_no = #{askno}
 	</delete>
 
 	<!-- 문의글 수정 -->
 	<update id="updateAsk" parameterType="_int">
-		 <![CDATA[ update question_tbl set
-		reply_yn ='Y'
-		where ask_no = #{askno}
-		 ]]>
+		update
+		question_tbl
+		set
+		reply_yn = 'Y'
+		where
+		ask_no =#{askno}
+
 	</update>
 
-	<!-- 문의하기 전체 조회 -->
+	<!-- 관리자 문의하기 전체 조회  N  -->
+	
+	
 	<select id="selectAskList" resultType="Question">
-		   <![CDATA[
-		   select
-		ask_no,phone,ask_title,ask_content,reply_yn,ask_category,ans_content
-		,date_format(ask_date,'%Y-%m-%d')as ask_date
-		from question_tbl
-		order by
-		ask_no desc
-		 ]]>
+	
+ select @rownum:=@rownum+1 row_num, m.* 
+   from (
+		select
+			ask_no,
+			phone,
+			ask_title,
+			ask_content,
+			reply_yn,
+			ask_category,
+			ans_content,
+			date_format(ask_date, '%Y-%m-%d %H:%i:%S') as ask_date
+		from
+			question_tbl
+		left outer join answer_tbl using(ask_no)
+	
+        order by
+		      ask_no desc
+       ) m , 
+       (select @rownum:=0) temp 
+	 limit #{start}, #{end}
+
+	</select>
+	
+	
+	<!-- 회원 문의List   Count -->
+	<select id="selectAskListtotalCount" resultType="_int">
+		select
+		  count(*) total_cnt
+		from
+		    question_tbl 
 	</select>
 
-	<!-- 문의하기 Y -->
+
+	<!-- 문의하기 Y 답변 완료 -->
 	<select id="selectAskY" resultType="Question">
-		   <![CDATA[
-		select ask_no,phone,ask_title,ask_content,reply_yn,ask_category,ans_content
-		,date_format(ask_date,'%Y-%m-%d')as ask_date
-	    from question_tbl left outer join answer_tbl using(ask_no)  
-		where reply_yn = 'Y'
-		order by ask_no desc      
-		  ]]>
+	
+	 select @rownum:=@rownum+1 row_num, m.* 
+   from (
+	
+		select
+			ask_no,
+			phone,
+			ask_title,
+			ask_content,
+			reply_yn,
+			ask_category,
+			ans_content,
+			date_format(ask_date, '%Y-%m-%d %H:%i:%S')as ask_date
+		from
+			question_tbl
+			left outer join answer_tbl
+			using(ask_no)
+		where 
+			reply_yn = 'Y'
+		order by
+			 ask_no
+	) m , 
+	    (select @rownum:=0) temp 
+		limit #{start}, #{end}
 	</select>
+	
+	<!-- 회원 문의List Y Count -->
+	<select id="selectAskYtotalCount" resultType="_int">
+		select
+		  count(*) total_cnt
+		from
+		    question_tbl 
+		where
+		reply_yn = 'Y'
+		order by
+		ask_no desc
+	</select>
+	
+	
 	<!-- 문의하기 N -->
 	<select id="selectAskN" resultType="Question">
-	 <![CDATA[
+select @rownum:=@rownum+1 row_num, m.* 
+   from (
+	  select
+			ask_no,
+			phone,
+			ask_title,
+			ask_content,
+			reply_yn,
+			ask_category,
+			ans_content,
+			date_format(ask_date, '%Y-%m-%d %H:%i:%S')as ask_date
+		from
+			question_tbl
+			left outer join answer_tbl
+			using(ask_no)
+		where 
+			reply_yn = 'N'
+		order by
+			 ask_no desc
+	) m , 
+	    (select @rownum:=0) temp 
+		limit #{start}, #{end}
+	</select>
+	
+		<!-- 회원 문의List N Count -->
+	<select id="selectAskNtotalCount" resultType="_int">
 		select
-		ask_no,phone,ask_title,ask_content,reply_yn,ask_category
-		,date_format(ask_date,'%Y-%m-%d')as ask_date
-		from question_tbl
-		where
-		reply_yn = 'N'
-		order by ask_no desc
-		 ]]>
+		  count(*) total_cnt
+		from
+		    question_tbl 
+	   where
+	   reply_yn = 'N'
+	   order by
+		ask_no desc
 	</select>
 
 	<select id="selectAsk2" parameterType="_int"
 		resultType="Question">
-		 <![CDATA[ 
-		 select
-		ask_no,phone,ask_title,ask_content,reply_yn,ask_category
-		,date_format(ask_date,'%Y-%m-%d')as ask_date
-		from question_tbl
+		select
+		ask_no,
+		phone,
+		ask_title,
+		ask_content,
+		reply_yn,
+		ask_category
+		,
+		date_format(ask_date, '%Y-%m-%d %H:%i:%S')as ask_date
+		from
+		question_tbl
 		where
-		ask_no=#{askno}
-		order by ask_no desc
-		 ]]>
+		ask_no =
+		#{askno}
+		order by
+		ask_no desc
 	</select>
+
 
 </mapper>

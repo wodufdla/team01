@@ -154,25 +154,24 @@ border: 1.8px solid #212529;
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
 		<div id="main_body">
-			<form action="<%=request.getContextPath()%>/answer" 
-			id="answer" method="POST" style="height: 458px;">
+			<form action="/answer" id="answer" method="POST" style="height: 458px;">
 				<c:forEach items="${ask}" var="ask">
 					<div class="customerAskWrap">
 						<div>
 						<h2 class="askTop">답변 글쓰기</h2>
 						<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
 					    </div>
-					   <p>제목: ${ask.asktitle}</p>
+					   <p>제목: ${ask.askTitle}</p>
 						<br>
-						<p>내용: ${ask.askcontent}</p>
+						<p>내용: ${ask.askCategory}</p>
 						
-						<input type="hidden" name="email" value="${ask.phone}"> 
+						<input type="hidden" name="phone" value="${ask.phone}"> 
 						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
 					</div>
 				</c:forEach>
-				<input type="hidden" name="askno" value="${askno}">
+				<input type="hidden" name="askNo" value="${askNo}">
 				<div class="replyTextareaWrap">
-					<textarea  id="askboxborder" class="replyTextarea" name="anscontent"   
+					<textarea  id="askboxborder" class="replyTextarea" name="askContent"  id="askContent" 
 					 placeholder="문의사항 답변을 작성해주세요.">
 					</textarea>
 				</div>
@@ -189,8 +188,8 @@ border: 1.8px solid #212529;
 
 	<script>
 		function ans_check() {
-			var content = document.getElementById("anscontent");
-			if (content.value == "") {
+			var content = $("#askContent").val();
+			if (content == "") {
 				alert("내용을 입력하세요.");
 				content.focus();
 				return false;

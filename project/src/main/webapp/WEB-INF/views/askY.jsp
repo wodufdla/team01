@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 - 1:1 ask 전체 리스트</title>
+<title>관리자 - 1:1 askY 응답완료 페이지 </title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -23,7 +23,7 @@ a {
 	display: flex;
 	flex-flow: row wrap;
 	margin: 0 auto;
-	width: 1250px;
+	width: 1200px;
 	height: 800px;
 }
 
@@ -131,7 +131,6 @@ float: right;
 
 }
 .but-titletit {
-
 	color: #444;
 	font-weight: bold;
 	width: 160px;
@@ -162,15 +161,11 @@ box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
 padding: 0.6em 1.4em 0.5em 0.8em;
 margin: 3px;
 }
-
-.top{
-display:block;
-}
-
 </style>
 <script type="text/javascript">
 
 //문의 미답변 페이지 이동 
+
 function askNBtn(){
 	location.href = "/askN";	
 }
@@ -178,17 +173,23 @@ function askNBtn(){
 function askYBtn(){
 	location.href = "/askY";	
 }
+function askBtn(){
+	location.href = "/ask";	
+}
 </script>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
+
+
 	<div class="container">
 		<div id="main_body">
+		
 			<div class="tableWrap">
-			 <div class="top"  >
-			<h4 >[ 1:1 문의 _전체목록 ]</h4>
+			<div class="top">
+			<h4 >[ 1:1 문의 _답변완료 ]</h4>
 			</div>
-				      <div class="row panel-row">
+			<div class="row panel-row">
 							<div class="col">
 								<div class="overview-div">
 									<h5 class="overview-title">총 문의글 수 </h5>
@@ -218,15 +219,17 @@ function askYBtn(){
 								</div>
 							</div>
 				      </div>
-				      <div  class="butT">
-			    	<button  class="but-titletit" onclick="askNBtn()" >관리자_문의미응답</button>
-				    <button  class="but-titletit" onclick="askYBtn()" >관리자 _문의답변완료</button>
-			    </div>
+			
+				<div  class=butT>
+				   <button class="but-titletit" onclick="askNBtn()" >관리자_문의미응답</button>
+					<button  class="but-titletit" onclick="askBtn()" >관리자 _문의전체</button>
+				</div>
+			    
 				<form action="ask" method="get">
 					<input type="hidden" name="page" value="1"> 
 					<input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
-				
 				</form>
+			
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -239,37 +242,26 @@ function askYBtn(){
 						</tr>
 					</thead>
 					<tbody>
-					   <form action="answer" method="get" id="answer">
-						<c:forEach items="${ask}" var="ask">
-							<tr>
-								<input type="hidden" name="askNo" value="${ask.askNo}">
-									<td>${ask.rowNum}</td>
-									<td>${ask.askTitle}</td>
-									<td>${ask.askCategory}</td>
-									<td>${ask.phone}</td>
-									<td>${ask.askDate}</td>
-									<c:if test="${ask.replyYn eq 'N'}">
-								    <td style="width: 110px;">
-										<a id="replyend"  href="/answer/${ask.askNo}">답변하러가기</a>  
-								    </td>
-								    </c:if>
-								    <c:if test="${ask.replyYn eq 'Y'}">
-								    <td class="ansView" style="width: 110px;position: relative;">답변내용확인
-								    <div class="contentModal">
-										<p>제목:${ask.askTitle}</p>
-										<p>내용:${ask.askContent}</p>
+						<c:forEach items="${ask_Y}" var="askY">
+								<tr>
+								    <td>${askY.rowNum}</td>
+									<td>${askY.askTitle}</td>
+									<td>${askY.askCategory}</td>
+									<td>${askY.phone}</td>
+									<td>${askY.askDate}</td>
+									<td class="ansView" style="width: 110px;position: relative;">답변내용확인
+								     <div class="contentModal">
+										<p>제목:${askY.askTitle}</p>
+										<p>내용:${askY.askContent}</p>
 										<br><br>
-										<p>답변내용:${ask.ansContent}</p>
+										<p>답변내용:${askY.ansContent}</p>
 									 </div>
 									</td>
-								    </c:if>
-								    
 								</tr>
 						</c:forEach>
-						<c:if test="${empty ask}">
-								<td colspan="5" style="font-size: 18px">등록된 문의가 없습니다.</td>
-							</c:if>
-						</form>
+					    <c:if test="${empty ask_Y}">
+							<td colspan="5" style="font-size: 18px">등록된 답변이 없습니다.</td>
+						</c:if>
 					</tbody>
 				</table>
 			</div>
@@ -279,16 +271,16 @@ function askYBtn(){
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.hasPrev }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
+							href="askY?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&lt;</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPageNo }"
 						end="${pageMaker.endPageNo }" var="num">
 						<li id="page${num}" class="page-item"><a class="page-link"
-							href="ask?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num}</a></li>
+							href="askY?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}">${num}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.hasNext }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
+							href="askY?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}">&gt;</a></li>
 					</c:if>
 				</ul>
 			</c:when>
@@ -296,18 +288,18 @@ function askYBtn(){
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageMaker.hasPrev }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">&lt;</a>
+							href="askY?page=${pageMaker.startPageNo - 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">&lt;</a>
 						</li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPageNo }"
 						end="${pageMaker.endPageNo }" var="num">
 						<li id="page${num}" class="page-item"><a class="page-link" id="page2${num}"
-							href="ask?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">${num}</a>
+							href="askY?page=${num }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}">${num}</a>
 						</li>
 					</c:forEach>
 					<c:if test="${pageMaker.hasNext }">
 						<li class="page-item"><a class="page-link"
-							href="ask?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}}">&gt;</a>
+							href="askY?page=${pageMaker.endPageNo + 1 }&numsPerPage=${pageMaker.criteria.numsPerPage}&keyword=${pageMaker.criteria.keyword}&category=${pageMaker.criteria.category}}">&gt;</a>
 						</li>
 					</c:if>
 				</ul>

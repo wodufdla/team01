@@ -144,11 +144,11 @@ body {
 					<input class="askboxborder" type="text" name="asktitle" placeholder="제목을 입력해주세요."
 						id="asktitle" style="width: 784px; height: 46px;"> 
 						<select size="1" class="askcategory" name="askcategory">
-						<option selected>환불</option>
-						<option>결제</option>
-						<option>상품</option>
-						<option>기타</option>
-					</select>
+							<option selected>환불</option>
+							<option>결제</option>
+							<option>상품</option>
+							<option>기타</option>
+					  </select>
 				</div>
 				<div class="contentWrap">
 					<div>
