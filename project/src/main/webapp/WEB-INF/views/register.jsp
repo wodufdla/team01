@@ -19,8 +19,13 @@
     	//jquery
 		$(function() {
 			
+			var banner = opener.$("#banner").val(); //banner 숫자가 뭔지 체크
+			//alert(banner);
+			
 			//등록버튼 황선필
 			$("#register").click(function() {
+				//배너 체크
+				alert(banner);
 				//각 빈칸들 변수
 				var phone=$("#phone").val();
 				var pw=$("#password").val();
@@ -83,12 +88,18 @@
 												     			 "password":pw,
 												     			 "email":email,
 												     			 "nickname":nickname,
+												     			 "banner":banner
 												     		 },
 												     		 success:function(data){
 												     			 if(data==1){
 												     				 alert("회원등록완료");
-												     				opener.location.reload();
-												     				window.close();
+												     				 if(banner==1){
+													     				window.close();
+												     					 opener.location.href="/order";
+												     				 }else if(banner==2){
+													     				opener.location.reload();
+													     				window.close();
+												     				 }
 												     			 }else{
 												     					 alert("회원else");
 												     				 }
@@ -173,6 +184,7 @@
 	          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
+
 
 	      <!-- 스타일 추가 황선필 -->
 		<input id="register" type="button" value="가입" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
