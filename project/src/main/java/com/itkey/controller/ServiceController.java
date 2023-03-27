@@ -56,15 +56,17 @@ public class ServiceController {
 
 		// root tag 
 		doc.getDocumentElement().normalize();
-		System.out.println("Root element: " + doc.getDocumentElement().getNodeName()); // Root element: result
+		//System.out.println("Root element: " + doc.getDocumentElement().getNodeName()); // Root element: result
 		
 		// 파싱할 tag
 		NodeList nList = doc.getElementsByTagName("City");
-		System.out.println("파싱할 리스트 수 : "+ nList.getLength());  // 파싱할 리스트 수 : 18개
+		//System.out.println("파싱할 리스트 수 : "+ nList.getLength());  // 파싱할 리스트 수 : 18개
 		
 		List<Map<String,Object>> list = new ArrayList<Map<String, Object>>();
 		
-		for(int temp = 0; temp < nList.getLength(); temp++){		
+		int total = 0;
+		
+		for(int temp = 0; temp < nList.getLength(); temp++){
 			Node nNode = nList.item(temp);
 			if(nNode.getNodeType() == Node.ELEMENT_NODE){
 								
@@ -73,20 +75,25 @@ public class ServiceController {
 				//System.out.println(eElement.getTextContent());
 
 				String name = getTagValue("city-name", eElement);
-				String count = getTagValue("city-count", eElement);
-				
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("name", name);
-				map.put("count", count);
-				
-				//System.out.println("map" + map);
-				list.add(map);
+				if (!name.equals("기타")) {
+					String count = getTagValue("city-count", eElement);
+					int intCount = Integer.parseInt(count);
+					total += intCount;
+					
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("name", name);
+					map.put("count", count);
+					
+					//System.out.println("map" + map);
+					list.add(map);
+				}
 			}	// for end
 		}	// if end
 		
 		//System.out.println("list" + list);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 		
 		return "rtPublicStatus";
 	}

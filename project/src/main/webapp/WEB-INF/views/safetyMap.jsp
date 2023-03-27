@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
-<iframe src="https://www.safemap.go.kr/main/smap.do?flag=2" width="100%" height="1000px">
+<iframe src="https://www.safemap.go.kr/main/smap.do?flag=2" width="100%" height="900px">
     <p>현재 사용 중인 브라우저는 iframe 요소를 지원하지 않습니다!</p>
 </iframe>
 <jsp:include page="common/footer.jsp" />
