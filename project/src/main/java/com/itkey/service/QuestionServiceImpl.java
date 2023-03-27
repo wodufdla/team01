@@ -17,20 +17,30 @@ import com.itkey.vo.QuestionVO;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 	private static final Logger log = LoggerFactory.getLogger(QuestionServiceImpl.class);
-	
+
 	@Autowired
 	private QuestionDAO questionDAO;
 
-	//문의하기 목록 전체 조회 
+	// 문의하기 본인글 조회
 	@Override
-	public List<QuestionVO> selectAskList() {
-		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
-		List<QuestionVO> returnList = questionDAO.selectAskList();
-		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
-		return returnList;
+	public List<QuestionVO> selectAsk(PageCriteria criteria) {
+		List<QuestionVO> result = questionDAO.selectAsk(criteria);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + result.toString());
+		return result;
+	}
+	
+	@Override
+	public int selectAsktotalCount(PageCriteria criteria) {
+		log.info("totalCounts() 호출");
+		return questionDAO.selectAsktotalCount(criteria);
+	}
+	@Override
+	public int askTodayCount() {
+		log.info("totalCounts() 호출");
+		return questionDAO.askTodayCount();
 	}
 
-	//문의하기 등록 insert
+	// 문의하기 등록 insert
 	@Override
 	public int insertAsk(QuestionVO ask) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask.toString());
@@ -38,47 +48,68 @@ public class QuestionServiceImpl implements QuestionService {
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
-	//문의하기 본인글 조회 
-	@Override
-	public List<QuestionVO> selectAsk(String phone) {
-		List<QuestionVO> result = questionDAO.selectAsk(phone);
-		log.info("* [SERVICE] Output ◀ (DAO) : " + result.toString());
-		return result;
-	}
-	
+
 	/* 문의사항 삭제하기 */
 	@Override
 	public int deleteAsk(int ask_no) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_no);
-		int result= questionDAO.deleteAsk(ask_no);
+		int result = questionDAO.deleteAsk(ask_no);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
-		
+
 	}
-	/* 문의사항  수정하기 */
+
+	/* 문의사항 수정하기 */
 	@Override
 	public int updateAsk(int ask_no) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_no);
-		int result= questionDAO.updateAsk(ask_no);
+		int result = questionDAO.updateAsk(ask_no);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
-	/* 문의사항 - 관리자 조회 목록*/
+
+	/* 문의사항 - 관리자 조회 목록 */
+	// 문의하기 목록 전체 조회
 	@Override
-	public List<QuestionVO> selectAskY() {
+	public List<QuestionVO> selectAskList(PageCriteria criteria) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
-		List<QuestionVO> returnList = questionDAO.selectAskY();
+		List<QuestionVO> returnList = questionDAO.selectAskList(criteria);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
 		return returnList;
+	}
+
+	@Override
+	public int selectAskListtotalCount(PageCriteria criteria) {
+		log.info("totalCounts() 호출");
+		return questionDAO.selectAskListtotalCount(criteria);
 	}
 	
 	@Override
-	public List<QuestionVO> selectAskN() {
+	public List<QuestionVO> selectAskY(PageCriteria criteria) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
-		List<QuestionVO> returnList = questionDAO.selectAskN();
+		List<QuestionVO> returnList = questionDAO.selectAskY(criteria);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
 		return returnList;
 	}
+	@Override
+	public int selectAskYtotalCount(PageCriteria criteria) {
+		log.info("totalCounts() 호출");
+		return questionDAO.selectAskYtotalCount(criteria);
+	}
+
+	@Override
+	public List<QuestionVO> selectAskN(PageCriteria criteria) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
+		List<QuestionVO> returnList = questionDAO.selectAskN(criteria);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
+		return returnList;
+	}
+	@Override
+	public int selectAskNtotalCount(PageCriteria criteria) {
+		log.info("totalCounts() 호출");
+		return questionDAO.selectAskNtotalCount(criteria);
+	}
+
 	@Override
 	public List<QuestionVO> selectAsk2(int ask_no) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
@@ -86,6 +117,7 @@ public class QuestionServiceImpl implements QuestionService {
 		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
 		return returnList;
 	}
+
 	/* 문의사항 답변하기 */
 	@Override
 	public int insertAns(AnswerVo ans) {
@@ -98,11 +130,11 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public int deleteAns(int askno) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + askno);
-		int result= questionDAO.deleteAns(askno);
+		int result = questionDAO.deleteAns(askno);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
 
-	
-	
+
+
 }

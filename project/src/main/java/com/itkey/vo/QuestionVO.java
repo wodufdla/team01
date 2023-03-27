@@ -11,13 +11,14 @@ import lombok.Data;
 @Data
 public class QuestionVO {
 	// 1:1문의
-	private int askno;           // 문의번호 
+	private int rowNum;           //번호
+	private int askNo;           // 문의번호 
 	private String phone;         // 회원id
-	private String asktitle;     // 문의제목
-	private String askcategory;  // 문의카테고리
-	private String askcontent;   // 문의내용
-	private String anscontent;   // 문의답변내용
-	private String askdate;      // 문의작성일자
-	private String replyyn;      // 문의답변여부
+	private String askTitle;     // 문의제목
+	private String askCategory;  // 문의카테고리
+	private String askContent;   // 문의내용
+	private String ansContent;   // 문의답변내용
+	private String askDate;      // 문의작성일자
+	private String replyYn;      // 문의답변여부
 	
 }

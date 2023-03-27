@@ -4,6 +4,7 @@ package com.itkey.service;
 
 import java.util.List;
 
+import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
 
@@ -13,15 +14,24 @@ public interface QuestionService {
 
 	
 	/* 문의사항 - 관리자 조회 목록*/
-	public List<QuestionVO> selectAskY();
-	public List<QuestionVO> selectAskN();
+	
+	public List<QuestionVO> selectAskY(PageCriteria criteria);
+	int selectAskYtotalCount(PageCriteria criteria);
+	
+	int askTodayCount();
+	
+	public List<QuestionVO> selectAskN(PageCriteria criteria);
+	int selectAskNtotalCount(PageCriteria criteria);
+	
 	public List<QuestionVO> selectAsk2(int askno);
 	
-	/* 문의사항 전체  불러오기 */
-	public List<QuestionVO> selectAskList();
+	/* 문의사항 관리자   전체조회  */
+	public List<QuestionVO> selectAskList(PageCriteria criteria);
+	int selectAskListtotalCount(PageCriteria criteria);
 	
 	/* 문의사항  본인글 불러오기 */
-	public List<QuestionVO> selectAsk(String phone);
+	public List<QuestionVO> selectAsk(PageCriteria criteria);
+	int selectAsktotalCount(PageCriteria criteria);
 	
 
 	
