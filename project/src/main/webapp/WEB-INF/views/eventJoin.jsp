@@ -71,7 +71,6 @@ $(document).ready(function() {
 });
 </script>
 <body>
-<jsp:include page="common/header.jsp" />
 <section id="faq" class="section-default" style="background-image: url('/resources/img/eventJoin.jpg'); background-repeat : no-repeat; background-size : cover;">
 	<div class="event">
 		<table class="t board-write margin-top-15">
