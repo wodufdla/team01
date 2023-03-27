@@ -9,12 +9,12 @@
 <style>
 .eventImg {
 	text-align: center;
-	padding: 500px;
+	margin: 100px;	
 }
 </style>
 <body>
 	<div class="eventImg">
-		<img src="/resources/img/event.jpg" style="width:100px; height:100px;" alt="..."><br>
+		<img src="/resources/img/event.jpg" style="width:500px; height:500px;" alt="..."><br><br>
 		<input id="join" type="button" value="참여하고 캐시받기" onClick="location.href='eventJoin'">	
 	</div>	
 </body>
