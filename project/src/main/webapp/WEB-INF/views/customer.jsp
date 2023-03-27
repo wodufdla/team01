@@ -24,11 +24,16 @@ select, input{
 	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
 }
 select:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
-  color: #222;
-  outline: none;
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.container {
+	height: auto;
+	min-height: 100%;
+  	padding-bottom: 90px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -60,14 +65,15 @@ select:focus {
 	<br>
 	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
 		<option value="">-- 선택 --</option>
-		<option value="3">3 개</option>
-		<option value="5">5 개</option>
-		<option value="7">7 개</option>
 		<option value="10">10 개</option>
+		<option value="30">30 개</option>
+		<option value="50">50 개</option>
+		<option value="100">100 개</option>
 	</select>
    	<table class="table table-striped">
    		<thead>
    			<tr>
+   				<th>순번</th>
    				<th>닉네임</th>
    				<th>이메일</th>
    				<th>핸드폰번호</th>
@@ -76,13 +82,14 @@ select:focus {
    			</tr>
    		</thead>
    		<tbody>
-   			<c:forEach var="vo" items="${list }">
+   			<c:forEach var="vo" items="${list }" varStatus="status">
    				<tr>
+   					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
    					<td>${vo.nickname }</td>
    					<td>${vo.email }</td>
    					<td>${vo.phone }</td>
    					<td>${vo.withdrawal }</td>
-   					<td><fmt:formatDate value="${vo.joinDate }" pattern="YYYY.MM.DD HH:mm:ss"/></td>
+   					<td><fmt:formatDate value="${vo.joinDate }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
    				</tr>
    			</c:forEach>
    		</tbody>
