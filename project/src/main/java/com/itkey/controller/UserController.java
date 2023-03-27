@@ -33,6 +33,11 @@ public class UserController {
 	public void loginGET() {
 		log.info("loginGET() 호출");
 	}
+	//login2 추가
+	@GetMapping("/login2")
+	public String login2() {
+		return "/login2";
+	}
 	
 	@PostMapping("/login")
 	public String loginPOST(String phone, String password, HttpServletRequest request, RedirectAttributes reAttr) {
@@ -65,6 +70,42 @@ public class UserController {
 				} else {
 					reAttr.addFlashAttribute("login_result", "failLogin");
 					return "redirect:/login";
+				}
+			}
+		}
+	}
+	
+	@PostMapping("/login2")
+	public String loginPOST2(String phone, String password, HttpServletRequest request, RedirectAttributes reAttr) {
+		log.info("loginPOST2() 호출");
+		if(phone.equals("admin") && password.equals("1234")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("admin", phone);
+			reAttr.addFlashAttribute("admin_result", "success2");
+			return "redirect:/login2";
+		} else {
+			UserVO vo = userService.read_login(phone);
+			
+			if (vo == null) {
+				reAttr.addFlashAttribute("login_result", "fail2");
+				return "redirect:/login2";
+			} else {
+				String userPhone = vo.getPhone();
+				String userPassword = vo.getPassword();
+				if(userPhone.equals(phone) && userPassword.equals(password)) {
+					log.info("로그인성공");
+					HttpSession session = request.getSession();
+					session.setAttribute("phone", phone);
+					//닉네임 세션에 추가 황선필
+					session.setAttribute("session_nickname", vo.getNickname());
+					//banner 세션에 추가 황선필
+					session.setAttribute("session_banner", vo.getBanner());
+					
+					reAttr.addFlashAttribute("login_result", "successLogin2");
+					return "redirect:/login2";
+				} else {
+					reAttr.addFlashAttribute("login_result", "failLogin2");
+					return "redirect:/login2";
 				}
 			}
 		}
