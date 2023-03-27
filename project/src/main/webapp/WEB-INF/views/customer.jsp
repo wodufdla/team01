@@ -35,6 +35,23 @@ select:focus {
 	min-height: 100%;
   	padding-bottom: 90px;
 }
+.table-striped {
+	margin-top: 20px;
+}
+.col{
+	cursor: pointer;
+	border-color: #364f9b;
+	border-radius: .25rem;
+	border: 1px solid #aaa;
+	background-color: #fff;
+	border-radius: 0.5em;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+	padding: 0.6em 1.4em 0.5em 0.8em;
+	margin: 3px;
+}
+.top{
+	display:block;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +65,44 @@ select:focus {
 <body>
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
+	
+	<!-- counting -->
+	<div class="top"  >
+		<h4 >[ 1:1 문의 _전체목록 ]</h4>
+	</div>
+	<div class="row panel-row">
+	<div class="col">
+		<div class="overview-div">
+			<h5 class="overview-title">총 가입회원 수 </h5>
+			<h1 class="overview-content">${mCount }</h1>
+			<i class="far fa-file-alt"></i>
+		</div>
+	</div>
+	<div class="col">
+		<div class="overview-div">
+			<h5 class="overview-title">오늘 가입회원 수 </h5>
+			<h1 class="overview-content"></h1>
+			<i class="fas fa-users"></i>
+		</div>
+	</div>
+	<div class="col">
+		<div class="overview-div">
+			<h5 class="overview-title">서비스 가입회원 수 </h5>
+			<h1 class="overview-content"></h1>
+			<i class="fas fa-file-alt"></i>
+		</div>
+	</div>
+	<div class="col">
+		<div class="overview-div">
+			<h5 class="overview-title">탈퇴한 가입회원 수</h5>
+			<h1 class="overview-content"></h1>
+			<i class="fas fa-user-circle"></i>
+		</div>
+	</div>
+	</div>
+	
+	
+	
 	<br>
 	<form action="customer" method="get">
 		<input type="submit" value="검색">	
@@ -61,15 +116,15 @@ select:focus {
 			<option value="email">E-mail</option>
 		</select>
 	</form>
+ 	<br>
 	<br>
-	<br>
-	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
+<!--	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
 		<option value="">-- 선택 --</option>
 		<option value="10">10 개</option>
 		<option value="30">30 개</option>
 		<option value="50">50 개</option>
 		<option value="100">100 개</option>
-	</select>
+	</select> -->
    	<table class="table table-striped">
    		<thead>
    			<tr>

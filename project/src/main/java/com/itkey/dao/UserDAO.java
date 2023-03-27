@@ -24,4 +24,7 @@ public interface UserDAO {
 	// 페이징 처리
 	List<UserVO> select_list(PageCriteria criteria);
 	int totalCounts(PageCriteria criteria);
+	
+	// 회원 count
+	int  adminMemberCount();
 }

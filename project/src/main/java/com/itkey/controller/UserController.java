@@ -226,7 +226,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/customer")
-	public void customerGET(Model model, String keyword, String category, Integer page, Integer numsPerPage, HttpSession session) {
+	public void customerGET(Model model, String keyword, String category, Integer page, Integer numsPerPage, HttpSession session) throws Exception {
 		log.info("customerGET() 호출");
 		log.info(""+page);
 		log.info(""+numsPerPage);
@@ -246,6 +246,10 @@ public class UserController {
 		}
 		List<UserVO> list = userService.read_list(criteria);
 		model.addAttribute("list", list);
+		
+		// 회원 수 count
+		int mCount = userService.adminMemberCount();
+		model.addAttribute("mCount", mCount);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
