@@ -23,4 +23,6 @@ public interface UserService {
 	UserVO find_password(String phone, String email);
 	List<UserVO> read_list(PageCriteria criteria);
 	int totalCounts(PageCriteria criteria);
+	
+	int  adminMemberCount() throws Exception;
 }

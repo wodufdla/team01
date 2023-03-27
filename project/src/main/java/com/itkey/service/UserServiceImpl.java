@@ -92,4 +92,9 @@ public class UserServiceImpl implements UserService {
 		return userDAO.totalCounts(criteria);
 	}
 	
+	@Override
+	public int  adminMemberCount() throws Exception {
+		int result = userDAO.adminMemberCount();
+		return result;
+	}
 }

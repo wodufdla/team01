@@ -65,6 +65,7 @@ function joinchk(num){
 
     // 서비스 가입 여부 확인 후 미가입시 안내창
     alert("서비스 가입 후 이용 가능합니다.");
+	
     if(1){
 
         switch(num) {
@@ -99,7 +100,7 @@ function joinchk(num){
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
-            <!-- 이해리님 요청 -->
+            	<!-- 이해리 메뉴 수정 -->
                 <li class="nav-item"><!-- <a class="nav-link" href="serviceInfo">서비스 소개</a> -->
                     <div class="dropdown">
                       <span class="dropbtn">서비스 소개</span>
@@ -112,8 +113,8 @@ function joinchk(num){
                     </div>
                 </li>
                 <!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
-                   <!-- 이해리 메뉴 수정(admin) -->
-                <c:if test="${phone!=null || admin!=null}">
+                <!-- 이해리 메뉴 수정(admin) -->
+                <c:if test="${phone!=null}">
                     <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
                     <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
@@ -125,6 +126,7 @@ function joinchk(num){
                     <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
                     <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 해지</a></li>
                 </c:if>
+                <c:if test="${admin!=null}"></c:if>
 
                 <!-- 황선필 메뉴 수정 -->
 
@@ -151,8 +153,8 @@ function joinchk(num){
                 <c:if test="${admin != null }"><!-- 관리자 환영합니다 스타일 수정 황선필-->
                     <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
                     <a href="product" id="product_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">주문 관리</a>
-                    <a href="customer?page=1&numsPerPage=3" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                    
-                	<a href="ask" class="nav-link" style="width: 10%; float: right;cursor : pointer">1대1문의</a>
+                    <a href="customer?page=1&numsPerPage=10" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                    
+                	<a href="ask" class="nav-link" style="width: 10%; float: right;cursor : pointer">1:1 문의</a>
                 	<a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">관리자님 환영합니다!</a>
                 </c:if>
             </ul>

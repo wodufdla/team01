@@ -99,4 +99,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</choose>
 		</if>
 	</select>
+	
+	<!-- 총 가입자 수 -->
+	<select id="adminMemberCount" resultType="int">
+		SELECT count(1) FROM user_tbl
+	</select>
+	
 </mapper>

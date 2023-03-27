@@ -99,4 +99,9 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(NAMESPACE + ".total_count", criteria);
 	}
 	
+	@Override
+	public int  adminMemberCount() {
+		log.info("adminMemberCount() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".adminMemberCount");
+	}
 }
