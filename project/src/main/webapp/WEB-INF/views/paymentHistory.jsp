@@ -89,7 +89,13 @@ a {
 	margin-left: 15px;
 	position: relative;
 }
-
+.container {
+	height: auto;
+	width: 70%;
+	min-height: 100%;
+	padding-top: 60px;
+  	padding-bottom: 140px;
+}
 .table {
 	text-align: center;
 }
@@ -196,64 +202,68 @@ margin: 3px;
 	
 	
 	
-	
-	<h2>결제내역</h2>	
+<div class="container">	
+	<h2> > 결제내역</h2>	
 <table class="table table-hover">
-<thead>
-<tr>
-<th>1.주문번호</th>
-<th>2.폰번호</th>
-<th>3.서비스종류</th>
-<th>4.가격</th>
-<th>5.자동결제상태</th>
-<th>6.서비스구매시간</th>
-<th>7.서비스처리시간</th>
-<th>8.다음결제시간</th>
-<th>9.자동결제시간</th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>${session_orderno}</td>
-<td>${phone}</td>
-
-<td>
-<c:if test="${session_ordercont==1}">
-	100원결제
-</c:if>
-<c:if test="${session_ordercont==2}">
-	일반정기결제
-</c:if>
-
-</td>
-<td>${session_price}</td>
-<td>
-<c:if test="${session_status==1}">
-	자동결제처리안됨
-</c:if>
-<c:if test="${session_status==2}">
-	자동결제처리됨
-</c:if>
-
-</td>
-<td>${session_rqsttime}</td>
-<td>${session_success}</td>
-<td>${session_nextorderdate}</td>
-<td>
-<fmt:formatDate pattern = "yyyy/MM/dd" value="${session_autoorderdate}"/>
-
-</td>
-
-
-</tr>
-</tbody>
-
+	<colgroup>
+		<col width="40%">
+		<col width="60%">
+	</colgroup>
+	<tr>
+		<td>주문번호</td>
+		<td>${session_orderno}</td>
+	</tr>
+	<tr>
+		<td>폰번호</td>
+		<td>${phone}</td>
+	</tr>
+	<tr>
+		<td>서비스종류</td>	
+		<td>
+		<c:if test="${session_ordercont==1}">
+			100원결제
+		</c:if>
+		<c:if test="${session_ordercont==2}">
+			일반정기결제
+		</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td>가격</td>
+		<td>${session_price}</td>
+	</tr>
+	<tr>
+		<td>자동결제상태</td>
+		<td>
+		<c:if test="${session_status==1}">
+			자동결제처리안됨
+		</c:if>
+		<c:if test="${session_status==2}">
+			자동결제처리됨
+		</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td>서비스구매시간</td>
+		<td>${session_rqsttime}</td>
+	</tr>		
+	<tr>
+		<td>서비스처리시간</td>
+		<td>${session_success}</td>
+	</tr>
+	<tr>
+		<td>다음결제시간</td>
+		<td>${session_nextorderdate}</td>
+	</tr>		
+	<tr>
+		<td>자동결제시간</td>
+		<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_autoorderdate}"/></td>
+	</tr>
 </table>	
-		
-	
-	
-
+</div>		
+	<div style="text-align:center;">
+		<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	</body>
     <jsp:include page="common/footer.jsp" />
 
 </body>
