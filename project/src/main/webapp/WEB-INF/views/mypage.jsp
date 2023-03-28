@@ -19,8 +19,8 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		
-		$("#myinfo").click(function() {
-			location.href="./myinfo";
+		$("#modify").click(function() {
+			location.href="./modify2";
 		});
 		
 		$("#paymentHistory").click(function() {
@@ -34,19 +34,77 @@
 	</script>
 
 </head>
-
+<style>
+.container {
+	height: auto;
+	width: 70%;
+	min-height: 100%;
+	padding-top: 60px;
+  	padding-bottom: 140px;
+}
+.table {
+	text-align: center;
+}
+</style>
 <body>
 	<jsp:include page="common/header.jsp" />
 	
+	<div class="container">
+		<h2> > 내 정보</h2>	
+		<table class="table table-hover">
+			<colgroup>
+				<col width="40%">
+				<col width="60%">
+			</colgroup>
+			<tr>
+				<td>핸드폰 번호</td>
+				<td>${phone}</td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td>${session_email}</td>
+			</tr>
+			<tr>
+				<td>가입한 날짜</td>
+				<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_join_date}"/></td>
+			</tr>
+			<tr>
+				<td>닉네임</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>가입경로</td>
+				<td>
+				<c:if test="${session_banner==1}">
+					배너에서 가입
+				</c:if>
+				<c:if test="${session_banner==2}">
+					회사 홈피에서 가입
+				</c:if>
+				</td>
+			</tr>
+			<tr>
+				<td>서비스 가입 유무</td>
+				<td>
+				<c:if test="${serviceYN eq 'Y'}">
+					서비스 가입 완료
+				</c:if>
+				<c:if test="${serviceYN eq 'N'}">
+					서비스 미가입
+				</c:if>
+				</td>
+			</tr>
+		</table>
+		</div>
+
+	<div style="text-align:center;">
+		<input id="modify" type="button" value="정보수정" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="paymentHistory" type="button" value="결제내역" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 	
-<section id="faq" class="section-default" style="background-repeat : no-repeat; background-size : cover;">
+	</div>
+
 	
-		<input id="myinfo" type="button" value="내 정보" style="width: 20%;margin: 50px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-		<input id="paymentHistory" type="button" value="결제내역" style="width: 20%;margin: 50px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-	
-</section>	
-	
-	
+		
 		
 	
 	

@@ -15,7 +15,7 @@
 <body>
 	<div class="eventImg">
 		<img src="/resources/img/event.jpg" style="width:500px; height:500px;" alt="..."><br><br>
-		<input id="join" type="button" value="참여하고 캐시받기" onClick="location.href='eventJoin'">	
+		<input id="join" type="button" value="참여하고 캐시받기" onClick="location.href='eventJoin'" style="background-color: yellow;font-weight: bold;font-size:20px;">	
 	</div>	
 </body>
 </html>
