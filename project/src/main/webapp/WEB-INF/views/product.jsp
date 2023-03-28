@@ -75,28 +75,21 @@ select:focus {
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">서비스 유지중 </h5>
-			<h1 class="overview-content">${statusY } 명 </h1>
+			<h1 class="overview-content">명</h1>
 			<i class="far fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">누적 매출액</h5>
-			<h1 class="overview-content"><fmt:formatNumber value="${totalSales }" pattern="#,###" /></h1>
-			<i class="fas fa-users"></i>
-		</div>
-	</div>
-	<div class="col">
-		<div class="overview-div">
-			<h5 class="overview-title">월 매출액</h5>
-			<h1 class="overview-content"><fmt:formatNumber value="${totalMonths }" pattern="#,###" /></h1>
+			<h1 class="overview-content"></h1>
 			<i class="fas fa-users"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">오늘자 매출액</h5>
-			<h1 class="overview-content"><fmt:formatNumber value="${totalToday }" pattern="#,###" /></h1>
+			<h1 class="overview-content"></h1>
 			<i class="fas fa-users"></i>
 		</div>
 	</div>
@@ -133,7 +126,6 @@ select:focus {
    				<th>순번</th>
    				<th>주문번호</th>
    				<th>가입내용</th>
-   				<th>상태</th>
    				<th>핸드폰번호</th>
    				<th>결제금액</th>
    				<th>결제일자</th>
@@ -150,15 +142,6 @@ select:focus {
    					</c:if>
    					<c:if test="${vo.orderCont eq '2'}">
 	   					<td><c:out value="월 정기결제" /></td>
-   					</c:if>
-  					<c:if test="${vo.status eq '1'}">
-	   					<td><c:out value="정상" /></td>
-   					</c:if>
-   					<c:if test="${vo.status eq '0'}">
-	   					<td><c:out value="만료" /></td>
-   					</c:if>
-   					<c:if test="${vo.status eq '2'}">
-	   					<td><c:out value="해지" /></td>
    					</c:if>
    					<td>${vo.phone }</td>
    					<td><fmt:formatNumber value="${vo.price }" pattern="#,###" /></td>

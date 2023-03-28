@@ -18,8 +18,8 @@ public class OrderVO {
 	private String billingKey;
 	private String price;
 	private String status; 
-	private Date rqstTime;
-	private Date successTime; 
+	private String rqstTime;
+	private String successTime; 
 	private Date nextOrderDate; 
 	private Date autoOrderDate;
 	
