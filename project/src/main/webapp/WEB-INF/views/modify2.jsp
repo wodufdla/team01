@@ -61,8 +61,7 @@
 							     			 //alert("alertmodify:"+data)
 							     			 if(data==1){
 							     				 alert("회원 정보 수정 완료");
-							     				opener.location.reload();
-							     				window.close();
+							     				 location.href="crime";
 							     			 }else{
 							     				 alert("else");
 							     				 }
