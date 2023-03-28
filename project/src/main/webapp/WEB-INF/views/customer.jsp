@@ -74,28 +74,28 @@ select:focus {
 	<div class="row panel-row">
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">총 가입 회원 수 </h5>
+			<h5 class="overview-title">총 가입 회원</h5>
 			<h1 class="overview-content">${mCount }</h1>
 			<i class="far fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">오늘 가입 회원 수 </h5>
+			<h5 class="overview-title">오늘 가입 회원</h5>
 			<h1 class="overview-content">${mTodayCount }</h1>
 			<i class="fas fa-users"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">서비스 가입 회원 수 </h5>
+			<h5 class="overview-title">서비스가입 회원</h5>
 			<h1 class="overview-content">${serviceStatusY }</h1>
 			<i class="fas fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">탈퇴한 회원 수</h5>
+			<h5 class="overview-title">탈퇴한 회원</h5>
 			<h1 class="overview-content">${withdrawal }</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
@@ -103,14 +103,14 @@ select:focus {
 	
 	<div class="col">
 		<div class="overview-div">
-			<h6 class="overview-title">배너 통해 가입한 수</h6>
+			<h6 class="overview-title">배너 통해 가입한 회원</h6>
 			<h1 class="overview-content">${bUserCount}</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">배너를 클릭한 수</h5>
+			<h5 class="overview-title">배너 클릭 횟수</h5>
 			<h1 class="overview-content">${bClickCount}</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
