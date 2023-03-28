@@ -69,7 +69,7 @@ select:focus {
 	
 	<!-- counting -->
 	<div class="top"  >
-		<h4 >[ 주문관리 ]</h4>
+		<h4 >[ 매출관리 ]</h4>
 	</div>
 	<div class="row panel-row">
 	<div class="col">

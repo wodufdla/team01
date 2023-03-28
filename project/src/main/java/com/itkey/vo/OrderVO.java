@@ -11,7 +11,7 @@ import lombok.ToString;
 @Data
 public class OrderVO {
 
-	//주문관리
+	//매출관리
 	private String orderNo; // 결제일자+핸드폰번호 뒤4자리
 	private String phone;
 	private String orderCont; // 가입한 서비스의 no

@@ -283,7 +283,7 @@ public class UserController {
 	
 	@GetMapping("/product")
 	public void productGET(Model model, HttpSession session) {
-		// 주문관리
+		// 매출관리
 		log.info("productGET() 호출");
 		
 		PageCriteria criteria = new PageCriteria();
