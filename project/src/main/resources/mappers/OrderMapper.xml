@@ -9,5 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from ${order_tbl} order by ${rqst_time} desc
 	</select>
 	
+	<select id="select_y" resultType="Order">
+		select order_no, phone, order_cont, billing_key, price, status, rqst_time, success_time, next_order_date, auto_order_date
+		from order_tbl
+		where status = 1
+		order by rqst_time desc
+	</select>
 
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from order_tbl
+	</select>
+	
+	<select id="paging" resultType="Order">
+		select * from order_tbl
+		limit #{start}, #{end}
+	</select>
+	
 </mapper>

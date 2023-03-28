@@ -18,8 +18,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
+import com.itkey.service.OrderService;
 import com.itkey.service.UserService;
 import com.itkey.util.MainInfo;
+import com.itkey.vo.OrderVO;
 import com.itkey.vo.UserVO;
 
 @Controller
@@ -28,7 +30,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private OrderService orderService;
 	
 	@GetMapping("/login")
 	public void loginGET() {
@@ -279,7 +282,32 @@ public class UserController {
 	}
 	
 	@GetMapping("/product")
-	public void productGET() {
+	public void productGET(Model model, HttpSession session) {
+		// 주문관리
 		log.info("productGET() 호출");
+		
+		PageCriteria criteria = new PageCriteria();
+		/*
+		if (keyword != null) {
+			criteria.setKeyword(keyword);
+			criteria.setCategory(category);
+		}
+		if(page != null) {
+			criteria.setPage(page);
+		}
+		
+		if(numsPerPage != null) {
+			criteria.setNumsPerPage(numsPerPage);
+		}
+		*/
+		
+		List<OrderVO> list = orderService.read_list(criteria);
+		model.addAttribute("list", list);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(orderService.totalCounts(criteria));
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
 	}
 }

@@ -3,27 +3,25 @@ package com.itkey.vo;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
+@Data
 public class OrderVO {
 
 	//주문관리
-	private int order_no;
+	private String orderNo; // 결제일자+핸드폰번호 뒤4자리
 	private String phone;
-	private String order_cont;
-	private String billing_key;
+	private String orderCont; // 가입한 서비스의 no
+	private String billingKey;
 	private String price;
-	private boolean status; 
-	private Date rqst_time;
-	private Date success_time; 
-	private Date next_order_date; 
-	private Date auto_order_date;
+	private String status; 
+	private String rqstTime;
+	private String successTime; 
+	private Date nextOrderDate; 
+	private Date autoOrderDate;
 	
 	
 }
