@@ -40,8 +40,9 @@
 	
 	
 <section id="faq" class="section-default" style="background-repeat : no-repeat; background-size : cover;">
-		<button id="myinfo" type="button">내 정보</button>
-		<button id="paymentHistory" type="button">결제 내역</button>
+	
+		<input id="myinfo" type="button" value="내 정보" style="width: 20%;margin: 50px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="paymentHistory" type="button" value="결제내역" style="width: 20%;margin: 50px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 	
 </section>	
 	
