@@ -88,7 +88,8 @@ a {
 }
 
 .table tr th, .table tr td:not(:last-child) {
-	
+	width: 100px;
+	max-width: 100px;
 	overflow: hidden;
 }
 .contentModal {
@@ -114,20 +115,12 @@ a {
 	display: block;
 }
 
-.replyend {
+#replyend {
 	position: relative;
 	font-size: 16px;
 	color: rgb(250, 250, 250);
 	top: 5px;
 	background-color:  rgb(241 85 87);
-	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
-}
-.replyend2 {
-	position: relative;
-	font-size: 16px;
-	color: rgb(250, 250, 250);
-	top: 5px;
-	background-color:  rgb(90 120 219);
 	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
 }
 
@@ -179,14 +172,12 @@ display:block;
 
 //문의 미답변 페이지 이동 
 function askNBtn(){
-	location.href ="/askN";	
+	location.href = "/askN";	
 }
 
 function askYBtn(){
-	location.href ="/askY";	
+	location.href = "/askY";	
 }
-
-
 </script>
 </head>
 <body>
@@ -245,31 +236,25 @@ function askYBtn(){
 							<th>핸드폰</th>
 							<th>작성일</th>
 							<th>결과</th>
-						    <th></th>
 						</tr>
 					</thead>
 					<tbody>
 					   <form action="answer" method="get" id="answer">
-						<c:forEach items="${ask}" var="ask" varStatus="status">
+						<c:forEach items="${ask}" var="ask">
 							<tr>
 								<input type="hidden" name="askNo" value="${ask.askNo}">
-									<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
+									<td>${ask.rowNum}</td>
 									<td>${ask.askTitle}</td>
 									<td>${ask.askCategory}</td>
 									<td>${ask.phone}</td>
 									<td>${ask.askDate}</td>
 									<c:if test="${ask.replyYn eq 'N'}">
 								    <td style="width: 110px;">
-										<a class="replyend"  href="/answer/${ask.askNo}">답변하러가기</a>  
+										<a id="replyend"  href="/answer/${ask.askNo}">답변하러가기</a>  
 								    </td>
-								    <td style="width: 110px;">
-										<a></a>  
-								    </td>
-								    
 								    </c:if>
 								    <c:if test="${ask.replyYn eq 'Y'}">
 								    <td class="ansView" style="width: 110px;position: relative;">답변내용확인
-								    
 								    <div class="contentModal">
 										<p>제목:${ask.askTitle}</p>
 										<p>내용:${ask.askContent}</p>
@@ -277,9 +262,6 @@ function askYBtn(){
 										<p>답변내용:${ask.ansContent}</p>
 									 </div>
 									</td>
-									<td style="width: 110px;">
-								    	<a class="replyend2" href="/ansUpdateView/${ask.askNo}">답변수정</a> 
-								    </td>
 								    </c:if>
 								    
 								</tr>

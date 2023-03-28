@@ -24,7 +24,6 @@ public interface QuestionService {
 	int selectAskNtotalCount(PageCriteria criteria);
 	
 	public List<QuestionVO> selectAsk2(int askNo);
-	public List<QuestionVO> ansUpdateSelect(int askNo);
 	
 	/* 문의사항 관리자   전체조회  */
 	public List<QuestionVO> selectAskList(PageCriteria criteria);
@@ -46,8 +45,7 @@ public interface QuestionService {
 	
 	
 	/* 문의사항 답변하기 */
-	public int insertAns(AnswerVo ans);
-	public int ansUpdate(AnswerVo ans);
+	public int insertAns(AnswerVo ans); 
 	public int deleteAns(int askNo); 
 	
 	

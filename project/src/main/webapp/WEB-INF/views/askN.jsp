@@ -88,7 +88,8 @@ a {
 }
 
 .table tr th, .table tr td:not(:last-child) {
-	
+	width: 100px;
+	max-width: 100px;
 	overflow: hidden;
 }
 .contentModal {
