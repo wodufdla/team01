@@ -387,8 +387,18 @@ public class UserController {
 		return "/paymentHistory";
 	}
 	
-	
-	
+	//paymentHistory 추가 황선필
+	@RequestMapping("/withdrawal")
+	public String withdrawal(UserVO uv,HttpServletRequest request) {
+		System.out.println("phone:"+uv.getPhone());
+        HttpSession session = request.getSession();
+        session.invalidate();
+        int result=userService.userwithdrawal(uv);
+        //System.out.println("resultwith:"+result);
+        
+		return "redirect:/crime";
+	}
+
 	
 	
 	
