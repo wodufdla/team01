@@ -139,6 +139,12 @@ public class UserServiceImpl implements UserService {
 		int result = userDAO.selectBannerUserCount();
 		return result;
 	}
+	//회원탈퇴
+	@Override
+	public int userwithdrawal(UserVO uv) {
+		int result = userDAO.userwithdrawal(uv);
+		return result;
+	}
 	
 	
 	

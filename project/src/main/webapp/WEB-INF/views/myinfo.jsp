@@ -186,6 +186,15 @@ margin: 3px;
 		$("#modify").click(function() {
 			location.href="modify2";
 		});
+		
+		$("#withdrawal").click(function() {
+			var phone = "${phone}"
+			var wc = confirm("정말 회원탈퇴 하시겠습니까?");
+			if(wc==1){
+				alert("회원탈퇴 되었습니다.");
+				location.href="withdrawal?phone="+phone;
+			}
+		});
 
 		
 
@@ -242,6 +251,7 @@ margin: 3px;
 </table>	
 	
 	<button id="modify" type="button">정보 수정</button>
+	<button id="withdrawal" type="button">회원 탈퇴</button>
 	
 	
 
