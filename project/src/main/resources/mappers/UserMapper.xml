@@ -112,7 +112,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 서비스 가입 회원 수 --> 
 	<select id="getserviceStatusY" resultType="int">
-		SELECT count(1) FROM user_tbl where service_YN = 'Y'
+		SELECT count(1) FROM user_tbl where serviceyn = 'Y'
 	</select>
 	
 	<!-- 탈퇴한 회원 수 -->

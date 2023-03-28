@@ -57,10 +57,13 @@ public class UserController {
 			} else {
 				String userPhone = vo.getPhone();
 				String userPassword = vo.getPassword();
+				String serviceYN = vo.getServiceyn();
+				
 				if(userPhone.equals(phone) && userPassword.equals(password)) {
 					log.info("로그인성공");
 					HttpSession session = request.getSession();
 					session.setAttribute("phone", phone);
+					session.setAttribute("serviceYN", serviceYN);
 					//닉네임 세션에 추가 황선필
 					session.setAttribute("session_nickname", vo.getNickname());
 					//banner 세션에 추가 황선필

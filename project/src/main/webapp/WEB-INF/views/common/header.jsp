@@ -64,23 +64,17 @@ function registeralarm() {
 function joinchk(num){
 
     // 서비스 가입 여부 확인 후 미가입시 안내창
-    alert("서비스 가입 후 이용 가능합니다.");
-	
-    if(1){
-
-        switch(num) {
-        case 1:
+    // alert("서비스 가입 후 이용 가능합니다.");
+    if ('<%=(String)session.getAttribute("serviceYN")%>' == 'N'){
+    	alert("서비스 가입 후 이용 가능합니다.");
+    } else {
+    	if (num==1) {
             window.open("https://www.sexoffender.go.kr/m1s2_login.nsc", "_blank")
             /* location.href = "https://www.sexoffender.go.kr/m2s3_7.nsc"; */
-            break;
-        case 2:
+    	} else if (num==2){
             /* window.open("https://www.safemap.go.kr/main/smap.do?flag=2", "_blank"); */
             location.href ="/safetyMap";
-            break;  
-        }
-        return true;
-    } else {
-        return false;
+    	}
     }
 }
 

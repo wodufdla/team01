@@ -15,5 +15,6 @@ public class UserVO {
 	private String withdrawal;
 	private String nickname;
 	private String banner;
+	private String serviceyn;
 	
 }
