@@ -93,13 +93,15 @@
 												     		 success:function(data){
 												     			 if(data==1){
 												     				 alert("회원등록완료");
-												     				 if(banner==1){
+													     				window.close();
+												     					 opener.location.href="/order";
+/* 												     				 if(banner==1){
 													     				window.close();
 												     					 opener.location.href="/order";
 												     				 }else if(banner==2){
 													     				opener.location.reload();
 													     				window.close();
-												     				 }
+												     				 } */
 												     			 }else{
 												     					 alert("회원else");
 												     				 }

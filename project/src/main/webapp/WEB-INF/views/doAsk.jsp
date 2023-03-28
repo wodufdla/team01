@@ -30,7 +30,7 @@ body {
 	justify-content: left;
 	align-items: center;
 }
-.askcategory {
+.askCategory {
 	position: relative;
 	left: 22px;
 	height: 45px;
@@ -39,7 +39,7 @@ body {
 	border-radius: 5px;
 	text-align: center;
 }
-.askcategory:hover {
+.askCategory:hover {
 	border-color: #9bbfd9;
 }
 .askAllWrap .contentWrap {
@@ -141,9 +141,9 @@ body {
 				</div>
 				<input type="hidden" name="phone" value="${phone}" />
 				<div class="titleWrap">
-					<input class="askboxborder" type="text" name="asktitle" placeholder="제목을 입력해주세요."
-						id="asktitle" style="width: 784px; height: 46px;"> 
-						<select size="1" class="askcategory" name="askcategory">
+					<input class="askboxborder" type="text" name="askTitle" placeholder="제목을 입력해주세요."
+						id="askTitle" style="width: 784px; height: 46px;"> 
+						<select size="1" class="askCategory" name="askCategory">
 							<option selected>환불</option>
 							<option>결제</option>
 							<option>상품</option>
@@ -152,8 +152,8 @@ body {
 				</div>
 				<div class="contentWrap">
 					<div>
-						<textarea class="askContent askboxborder" name="askcontent" placeholder="내용을 입력해주세요."
-							id="askcontent" style="width: 900px; height: 352px; resize: none;"></textarea>
+						<textarea class="askContent askboxborder" name="askContent" placeholder="내용을 입력해주세요."
+							id="askContent" style="width: 900px; height: 352px; resize: none;"></textarea>
 						<br>
 					</div>
 				</div>
@@ -168,8 +168,8 @@ body {
 	<script>
 	/* 등록버튼 클릭시 이벤트 */
 		function ask_check() {
-			var title =  $("#asktitle").val();
-			var content =  $("#askcontent").val();
+			var title =  $("#askTitle").val();
+			var content =  $("#askContent").val();
 			var formData = $("#frmAsk").serialize();
 			
 			if (title == "") {

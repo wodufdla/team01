@@ -128,9 +128,9 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public int deleteAns(int askno) {
-		log.info("* [SERVICE] Input  ◀ (Controller) : " + askno);
-		int result = questionDAO.deleteAns(askno);
+	public int deleteAns(int askNo) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + askNo);
+		int result = questionDAO.deleteAns(askNo);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}

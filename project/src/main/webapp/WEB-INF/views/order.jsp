@@ -115,20 +115,15 @@ function pass2() {
         <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
         <div class="table-responsive table-default" style="max-width: 1200px;">
             <table class="table">
-                <tbody>
-                <tr>
-                    <td>7일 100원 결제 체험 후 월정액<td>7일 100원 결제 체험 서비스를 통해 범죄 알리미 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="0" onclick="checkLink(this);" id="check-0"><label class="form-check-label" for="check-0">9,900/월</label></div>
-                    </td>
-                </tr>
+                <tbody>                
                 <tr>
                     <td>월정액 서비스<td>매월 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="1" onclick="checkLink(this);" id="check-1"><label class="form-check-label" for="check-1">9,900/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="1" onclick="checkLink(this);" id="check-1"><label class="form-check-label" for="check-1">10,000/월</label></div>
                     </td>
                 </tr>
                 <tr>
                     <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="2" onclick="checkLink(this);" id="check-2"><label class="form-check-label" for="check-2">10,000/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="2" onclick="checkLink(this);" id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
                     </td>
                 </tr>
                 </tbody>
@@ -149,7 +144,7 @@ function pass2() {
                                 2. 한달 의무 사용 이후 자유롭게 해지가능합니다.<br><br>
                                 * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
                     <td style="padding: 0;">
-                        <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
+                        <!-- <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div> -->
                         <a id="a-pay" class="a-pay" href="#" onclick="requestPay();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
                 </tr>
                 </tbody>

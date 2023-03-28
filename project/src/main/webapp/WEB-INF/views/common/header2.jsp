@@ -90,7 +90,7 @@ function joinchk(num){
 	  <!-- 배너통해서 왔는지 유무 황선필 -->
 	 <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
    	<div class="container-fluid">
-   		<a class="navbar-brand" href="/">
+   		<a class="navbar-brand" href="#">
    			<img src="/resources/img/logo.png" style="height: 30px;">
    		</a>
 
