@@ -96,6 +96,11 @@
 				//연창 새로고침 황선필
 				opener.location.reload();
 				window.close();
+			}else if(result == 'wdstatus') {
+				alert('탈퇴한회원입니다.')
+				
+				location.reload();
+				return
 			} else if (result == 'fail') {
 				alert('존재하지 않는 회원입니다. 핸드폰번호를 확인해주세요. ')
 				
