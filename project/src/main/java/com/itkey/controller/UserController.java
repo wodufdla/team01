@@ -72,6 +72,13 @@ public class UserController {
 					//banner 세션에 추가 황선필
 					session.setAttribute("session_banner", vo.getBanner());
 					
+					
+					//session.setAttribute("session_password", uv.getPassword());
+					session.setAttribute("session_email", vo.getEmail());
+					session.setAttribute("session_join_date", vo.getJoinDate());
+					//session.setAttribute("session_withdrawal", uv.getWithdrawal());
+					
+					
 					reAttr.addFlashAttribute("login_result", "successLogin");
 					return "redirect:/login";
 				} else {
@@ -99,14 +106,22 @@ public class UserController {
 			} else {
 				String userPhone = vo.getPhone();
 				String userPassword = vo.getPassword();
+				String serviceYN = vo.getServiceyn();
 				if(userPhone.equals(phone) && userPassword.equals(password)) {
 					log.info("로그인성공");
 					HttpSession session = request.getSession();
 					session.setAttribute("phone", phone);
+					session.setAttribute("serviceYN", serviceYN);
 					//닉네임 세션에 추가 황선필
 					session.setAttribute("session_nickname", vo.getNickname());
 					//banner 세션에 추가 황선필
 					session.setAttribute("session_banner", vo.getBanner());
+					
+					
+					//session.setAttribute("session_password", uv.getPassword());
+					session.setAttribute("session_email", vo.getEmail());
+					session.setAttribute("session_join_date", vo.getJoinDate());
+					//session.setAttribute("session_withdrawal", uv.getWithdrawal());
 					
 					reAttr.addFlashAttribute("login_result", "successLogin2");
 					return "redirect:/login2";
@@ -148,12 +163,16 @@ public class UserController {
 		//수정 성공시에만 세션 등록
 		if(MMI==1) {
 			
-			session.setAttribute("phone", uv.getPhone());
-			session.setAttribute("session_password", uv.getPassword());
-			session.setAttribute("session_email", uv.getEmail());
-			//session.setAttribute("session_join_date", uv.getJoinDate());
-			session.setAttribute("session_withdrawal", uv.getWithdrawal());
-			session.setAttribute("session_nickname", uv.getNickname());
+			UserVO vo = userService.read_login(uv.getPhone());
+			
+			session.setAttribute("phone", vo.getPhone());
+			//session.setAttribute("session_password", uv.getPassword());
+			session.setAttribute("session_email", vo.getEmail());
+			session.setAttribute("session_join_date", vo.getJoinDate());
+			//session.setAttribute("session_withdrawal", uv.getWithdrawal());
+			session.setAttribute("session_nickname", vo.getNickname());
+			session.setAttribute("session_banner", vo.getBanner());
+			session.setAttribute("serviceYN", vo.getServiceyn());
 			
 		}
 		
@@ -194,13 +213,16 @@ public class UserController {
 		//등록 성공시에만 세션 등록
 		if(regnum==1) {
 			
-			session.setAttribute("phone", uv.getPhone());
-			session.setAttribute("session_password", uv.getPassword());
-			session.setAttribute("session_email", uv.getEmail());
-			session.setAttribute("session_nickname", uv.getNickname());
-			session.setAttribute("session_banner", uv.getBanner());
-			//session.setAttribute("session_join_date", uv.getJoinDate());
-			//session.setAttribute("session_withdrawal", uv.isWithdrawal());
+			UserVO vo = userService.read_login(uv.getPhone());
+			
+			session.setAttribute("phone", vo.getPhone());
+			//session.setAttribute("session_password", uv.getPassword());
+			session.setAttribute("session_email", vo.getEmail());
+			session.setAttribute("session_join_date", vo.getJoinDate());
+			//session.setAttribute("session_withdrawal", uv.getWithdrawal());
+			session.setAttribute("session_nickname", vo.getNickname());
+			session.setAttribute("session_banner", vo.getBanner());
+			session.setAttribute("serviceYN", vo.getServiceyn());
 			
 		}
 		//결과 값 스트링화
@@ -343,7 +365,21 @@ public class UserController {
 		
 	}
 	
-	
+	//mypage 추가 황선필
+	@RequestMapping("/mypage")
+	public String mypage() {
+		return "/mypage";
+	}
+	//myinfo 추가 황선필
+	@RequestMapping("/myinfo")
+	public String myinfo() {
+		return "/myinfo";
+	}
+	//paymentHistory 추가 황선필
+	@RequestMapping("/paymentHistory")
+	public String paymentHistory() {
+		return "/paymentHistory";
+	}
 	
 	
 	
