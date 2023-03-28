@@ -291,6 +291,36 @@ public class UserController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 	
+	@GetMapping("/product")
+	public void productGET(Model model, HttpSession session) {
+		// 매출관리
+		log.info("productGET() 호출");
+		
+		PageCriteria criteria = new PageCriteria();
+		/*
+		if (keyword != null) {
+			criteria.setKeyword(keyword);
+			criteria.setCategory(category);
+		}
+		if(page != null) {
+			criteria.setPage(page);
+		}
+		
+		if(numsPerPage != null) {
+			criteria.setNumsPerPage(numsPerPage);
+		}
+		*/
+		
+		List<OrderVO> list = orderService.read_list(criteria);
+		model.addAttribute("list", list);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(orderService.totalCounts(criteria));
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
+	}
+	
 	//cashClick 황선필
 	@ResponseBody
 	@RequestMapping("/cashClick")
@@ -312,6 +342,22 @@ public class UserController {
 		//System.out.println("result2:"+result2);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
