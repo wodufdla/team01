@@ -81,14 +81,20 @@ public class QuestionController {
 	// 문의하기 글쓰기 insert
 	@ResponseBody
 	@RequestMapping(value = "/doAsk", produces = "text/plain; charset=UTF-8")
-	public String insertDoAsk(@RequestParam Map<String, Object> reqMap, QuestionVO ask) {
+	public String insertDoAsk(@RequestParam Map<String, Object> reqMap ) {
 		log.info("문의하기  ajax data : " + reqMap);
 
-		ask.setAskTitle((String) reqMap.get("asktitle"));
-		ask.setAskContent((String) reqMap.get("askcontent"));
-		ask.setAskCategory((String) reqMap.get("askcategory"));
+	  
+		QuestionVO ask= new QuestionVO();
+		
+		ask.setAskTitle((String) reqMap.get("askTitle"));
+		ask.setAskContent((String) reqMap.get("askContent"));
+		ask.setAskCategory((String) reqMap.get("askCategory"));
 		ask.setPhone((String) reqMap.get("phone"));
 
+		log.info("문의하기  ask data : " + ask);
+		
+		
 		log.info("* insertAsk [CONTROLLER] input �뼳 (Service) : ");
 		int result = questionService.insertAsk(ask);
 		log.info("* insertAsk [CONTROLLER] out �뼳 (Service) : " + result);
@@ -102,10 +108,10 @@ public class QuestionController {
 
 	// 문의하기 삭제 하기
 	@PostMapping("/deleteAsk")
-	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askno, RedirectAttributes rttr) {
+	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askNo, RedirectAttributes rttr) {
 
-		mv.addObject("deleteAsk", questionService.deleteAsk(askno));
-		mv.addObject("deleteAsk", questionService.deleteAns(askno));
+		mv.addObject("deleteAsk", questionService.deleteAsk(askNo));
+		mv.addObject("deleteAsk", questionService.deleteAns(askNo));
 
 		mv.setViewName("redirect:/question");
 		return mv;
@@ -272,12 +278,12 @@ public class QuestionController {
 	public ModelAndView selectAsk2(ModelAndView mv
 			, HttpSession session
 			, RedirectAttributes rttr
-			,@PathVariable("askNo") int askno
+			,@PathVariable("askNo") int askNo
 			) {
 
-		log.info("/answer/{askno}: " + askno);
+		log.info("/answer/{askNo}: " + askNo);
 		
-		mv.addObject("ask", questionService.selectAsk2(askno));
+		mv.addObject("ask", questionService.selectAsk2(askNo));
 		mv.setViewName("answer");
 		return mv;
 	}
@@ -287,16 +293,17 @@ public class QuestionController {
 	public ModelAndView insertAns(ModelAndView mv
 			, HttpSession session
 			, HttpServletRequest req
-			, AnswerVo ans
-			, @RequestParam(name ="askNo", defaultValue = "0") int askno
+			, @RequestParam(name ="askNo", defaultValue = "0") int askNo
 			,RedirectAttributes rttr
 			) {
 		log.info("##########################");
-		log.info("@RequestParam DATA: " + askno);
+		log.info("@RequestParam DATA: " + askNo);
+		
+		AnswerVo ans = new AnswerVo();
 		log.info("ans DATA: " + ans);
-
+		
         mv.addObject("insertAns", questionService.insertAns(ans));
-		mv.addObject("updateAsk", questionService.updateAsk(askno));
+		mv.addObject("updateAsk", questionService.updateAsk(askNo));
 		mv.setViewName("redirect:/ask");
 		return mv;
 	}

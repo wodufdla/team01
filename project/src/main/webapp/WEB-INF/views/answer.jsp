@@ -163,7 +163,7 @@ border: 1.8px solid #212529;
 					    </div>
 					   <p>제목: ${ask.askTitle}</p>
 						<br>
-						<p>내용: ${ask.askCategory}</p>
+						<p>내용: ${ask.askContent}</p>
 						
 						<input type="hidden" name="phone" value="${ask.phone}"> 
 						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
@@ -171,7 +171,7 @@ border: 1.8px solid #212529;
 				</c:forEach>
 				<input type="hidden" name="askNo" value="${askNo}">
 				<div class="replyTextareaWrap">
-					<textarea  id="askboxborder" class="replyTextarea" name="askContent"  id="askContent" 
+					<textarea  id="askboxborder" class="replyTextarea" name="ansContent"  id="ansContent" 
 					 placeholder="문의사항 답변을 작성해주세요.">
 					</textarea>
 				</div>
@@ -188,7 +188,7 @@ border: 1.8px solid #212529;
 
 	<script>
 		function ans_check() {
-			var content = $("#askContent").val();
+			var content = $("#ansContent").val();
 			if (content == "") {
 				alert("내용을 입력하세요.");
 				content.focus();

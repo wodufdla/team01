@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ask_no
 		,ans_content
 		,ans_date
-		)values(#{askno},#{anscontent},now())
+		)values(#{askNo},#{ansContent},date_format(now(), '%Y-%m-%d %H:%i:%S'))
 	</insert>
 	<!-- 문의하기 답변 삭제 -->
 	<delete id="deleteAns" parameterType="_int">
 		delete from answer_tbl
-		where ask_no=#{askno} 
+		where ask_no=#{askNo} 
 	</delete>
 
 	
