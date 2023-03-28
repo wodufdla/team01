@@ -95,18 +95,18 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	@Override
-	public List<QuestionVO> selectAsk2(int askno) {
+	public List<QuestionVO> selectAsk2(int askNo) {
 		log.info("* [DAO] Input  ◀ (Service) : ");
-		List<QuestionVO> result = sqlSession.selectList(ASK + ".selectAsk2", askno);
+		List<QuestionVO> result = sqlSession.selectList(ASK + ".selectAsk2", askNo);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}
 
 	/* 문의사항 삭제하기 */
 	@Override
-	public int deleteAsk(int daskno) {
+	public int deleteAsk(int daskNo) {
 		log.info("* [DAO] Input  ◀ (Service) : ");
-		int result = sqlSession.delete(ASK + ".deleteAsk", daskno);
+		int result = sqlSession.delete(ASK + ".deleteAsk", daskNo);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
@@ -131,9 +131,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	/* 답변 삭제하기 */
 	@Override
-	public int deleteAns(int askno) {
+	public int deleteAns(int askNo) {
 		log.info("* [DAO] Input  ◀ (Service) : ");
-		int result = sqlSession.delete(ANS + ".deleteAns", askno);
+		int result = sqlSession.delete(ANS + ".deleteAns", askNo);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
