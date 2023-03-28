@@ -211,12 +211,12 @@ margin: 3px;
 <table class="table table-hover">
 <thead>
 <tr>
-<th>1.폰번호</th>
-<th>2.이메일</th>
-<th>3.가입한 날짜</th>
-<th>4.닉네임</th>
-<th>5.배너통해서 가입 유무</th>
-<th>6.서비스 가입 유무</th>
+<th>폰번호</th>
+<th>이메일</th>
+<th>가입한 날짜</th>
+<th>닉네임</th>
+<th>배너통해서 가입 유무</th>
+<th>서비스 가입 유무</th>
 
 </tr>
 </thead>
@@ -250,8 +250,9 @@ margin: 3px;
 
 </table>	
 	
-	<button id="modify" type="button">정보 수정</button>
-	<button id="withdrawal" type="button">회원 탈퇴</button>
+	<input id="modify" type="button" value="정보수정" style="width: 20%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	<input id="withdrawal" type="button" value="회원탈퇴" style="width: 20%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	
 	
 	
 
