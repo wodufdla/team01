@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 관리자 답변 페이지</title>
+<title> 관리자 답변 수정페이지</title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -152,42 +152,43 @@ border: 1.8px solid #212529;
 	<jsp:include page="common/header.jsp"/>
 	<div class="container">
 		<div id="main_body">
-			<form action="/answer" method="post" id="answer" style="height: 458px;">
+			<form action="/ansUpdate" method="post"  style="height: 458px;">
 				<c:forEach items="${ask}" var="ask">
 					<div class="customerAskWrap">
 						<div>
-						<h2 class="askTop">답변 글쓰기</h2>
+						<h2 class="askTop">답변 수정하기</h2>
 						<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
 					    </div>
 					   <p>제목: ${ask.askTitle}</p>
 						<br>
 						<p>내용: ${ask.askContent}</p>
 						
-						<input type="hidden" value="${ask.phone}"> 
-						<input type="hidden" value="관리자로부터 문의하신 답변이 도착했습니다.">
+						<input type="hidden" name="phone" value="${ask.phone}"> 
+						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
 					</div>
-				</c:forEach>
+				
 				<input type="hidden" name="askNo" value="${askNo}">
 				<div class="replyTextareaWrap">
-					<textarea  class="replyTextarea" name="ansContent" id="ansContent" placeholder="답변을 신중하게 작성해주세요."></textarea>
+					<textarea  class="replyTextarea" name="ansContent" id="ansContent" placeholder="답변을 신중하게 작성해주세요.">${ask.ansContent}</textarea>
 				</div>
+				</c:forEach>
 			</form>
 			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; right: 110px;">
-				<button class="btn1" type="button" onclick="ans_check();" style="margin-right: 10px;">등록</button>
+				<button class="btn1" type="button" onclick="ansUpdate_check();" style="margin-right: 10px;">수정</button>
 				<a href="/ask"><button class="btn1" >취소</button></a>
 			</div>
 		</div>
 	</div>
 
 	<script>
-	  function ans_check() {
+	  function ansUpdate_check() {
 			var anscontent = $("#ansContent").val();
 			if (anscontent.trim() == "") {
 				alert("답변 내용을 입력하세요.");
 				content.focus();
 				return false;
 			}
-			answer.submit();
+			ansUpdate.submit();
 		};
 	</script>
 </body>

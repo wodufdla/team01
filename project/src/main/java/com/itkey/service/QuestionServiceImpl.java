@@ -51,9 +51,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 	/* 문의사항 삭제하기 */
 	@Override
-	public int deleteAsk(int ask_no) {
-		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_no);
-		int result = questionDAO.deleteAsk(ask_no);
+	public int deleteAsk(int ask_No) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_No);
+		int result = questionDAO.deleteAsk(ask_No);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 
@@ -61,9 +61,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 	/* 문의사항 수정하기 */
 	@Override
-	public int updateAsk(int ask_no) {
-		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_no);
-		int result = questionDAO.updateAsk(ask_no);
+	public int updateAsk(int ask_No) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + ask_No);
+		int result = questionDAO.updateAsk(ask_No);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
@@ -111,9 +111,17 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<QuestionVO> selectAsk2(int ask_no) {
+	public List<QuestionVO> selectAsk2(int ask_No) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
-		List<QuestionVO> returnList = questionDAO.selectAsk2(ask_no);
+		List<QuestionVO> returnList = questionDAO.selectAsk2(ask_No);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
+		return returnList;
+	}
+	
+	@Override
+	public List<QuestionVO> ansUpdateSelect(int ask_No) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
+		List<QuestionVO> returnList = questionDAO.ansUpdateSelect(ask_No);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
 		return returnList;
 	}
@@ -126,6 +134,15 @@ public class QuestionServiceImpl implements QuestionService {
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 		return result;
 	}
+	/* 문의사항 답변수정 */
+	@Override
+	public int ansUpdate(AnswerVo ans) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + ans.toString());
+		int result = questionDAO.ansUpdate(ans);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
+		return result;
+	}
+
 
 	@Override
 	public int deleteAns(int askNo) {
