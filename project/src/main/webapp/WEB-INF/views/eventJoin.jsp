@@ -59,6 +59,28 @@ $(document).ready(function() {
 		
 		if(total == checked){
 			alert("회원가입 후 캐시 수령이 가능합니다.");
+			
+			 //동의 후 클릭한 수
+			 $.ajax({
+	     		 url:"./cashClick",
+	     		type:"post",
+	     		 success:function(data){
+	     			 //alert("alertclick:"+data)
+	     			 if(data==1){
+	     				 //alert("click1");
+	     				//opener.location.reload();
+	     				//window.close();
+	     			 }else{
+	     				 //alert("else");
+	     				 }
+	     			 
+	     		 },
+	     		 error:function(textStatus){
+	     			 alert("error : "+textStatus);
+	     		 }
+	     	  });
+			 //아작스
+			
 			var child;
 			child = window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 			//child.$("#banner").val(1);

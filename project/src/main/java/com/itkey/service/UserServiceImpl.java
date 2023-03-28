@@ -120,4 +120,26 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	//황선필
+	//cashclick
+	@Override
+	public int cashClickCount() {
+		int result = userDAO.cashClickCount();
+		return result;
+	}
+	//cashclickcount
+	@Override
+	public int selectBannerClick() {
+		int result = userDAO.selectBannerClick();
+		return result;
+	}
+	////배너 통해서 가입한 회원수
+	@Override
+	public int selectBannerUserCount() {
+		int result = userDAO.selectBannerUserCount();
+		return result;
+	}
+	
+	
+	
 }

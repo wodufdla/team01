@@ -140,6 +140,29 @@ public class UserDAOImpl implements UserDAO {
 		log.info("getwithdrawalMember() 호출");
 		return sqlSession.selectOne(NAMESPACE + ".getwithdrawalMember");
 	}
+	
+	//황선필
+	//cashClick
+	@Override
+	public int cashClickCount() {
+		int result = sqlSession.update("cashClick");
+		return result;
+	}
+	//cashclickcount
+	@Override
+	public int selectBannerClick() {
+		int result = sqlSession.selectOne("selectBannerClick");
+		return result;
+		
+	}
+	//배너 통해서 가입한 회원수
+	@Override
+	public int selectBannerUserCount() {
+		int result = sqlSession.selectOne("selectBannerUserCount");
+		return result;
+	}
+	
+	
 
 	
 }
