@@ -86,13 +86,13 @@
 		var admin_result = $('#admin_alert').val();
 		if(admin_result == 'success2') {
 			alert('관리자 로그인 성공')
-			opener.location.reload();
+			opener.location.href="/crime";
 			window.close();
 		} else {
 			if(result == 'successLogin2'){
 				alert('로그인 성공 !')
 				//연창 새로고침 황선필
-				opener.location.reload();
+				opener.location.href="/crime";
 				window.close();
 			} else if (result == 'fail2') {
 				alert('존재하지 않는 회원입니다. 핸드폰번호를 확인해주세요. ')
