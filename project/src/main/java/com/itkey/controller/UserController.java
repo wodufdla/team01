@@ -61,6 +61,17 @@ public class UserController {
 				String userPhone = vo.getPhone();
 				String userPassword = vo.getPassword();
 				String serviceYN = vo.getServiceyn();
+				//탈퇴여부
+				String wd = vo.getWithdrawal();
+				if(wd.equals("Y")) {
+					//System.out.println("탈퇴함:"+wd);
+					reAttr.addFlashAttribute("login_result", "wdstatus");
+					return "redirect:/login";
+					
+				}else {
+					//System.out.println("탈퇴안함:"+wd);
+					
+				}
 				
 				if(userPhone.equals(phone) && userPassword.equals(password)) {
 					log.info("로그인성공");
@@ -121,6 +132,20 @@ public class UserController {
 				String userPhone = vo.getPhone();
 				String userPassword = vo.getPassword();
 				String serviceYN = vo.getServiceyn();
+
+				//탈퇴여부
+				String wd = vo.getWithdrawal();
+				if(wd.equals("Y")) {
+					//System.out.println("탈퇴함:"+wd);
+					reAttr.addFlashAttribute("login_result", "wdstatus");
+					return "redirect:/login";
+					
+				}else {
+					//System.out.println("탈퇴안함:"+wd);
+					
+				}
+				
+				
 				if(userPhone.equals(phone) && userPassword.equals(password)) {
 					log.info("로그인성공");
 					HttpSession session = request.getSession();
