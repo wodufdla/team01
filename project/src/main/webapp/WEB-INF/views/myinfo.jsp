@@ -26,15 +26,21 @@
 a {
 	text-decoration: none;
 }
-
-#container {
-	display: flex;
-	flex-flow: row wrap;
-	margin: 0 auto;
-	width: 1250px;
-	height: 900px;
+h2 {
+	margin: 20px;
+	padding-bottom: 30px;
 }
-
+.container {
+	height: auto;
+	width: 70%;
+	min-height: 100%;
+	padding-top: 60px;
+  	padding-bottom: 140px;
+}
+.myinfomenu {
+	margin: 50px;
+	padding: 50px;
+}
 #admin_nav {
 	/* float: left; */
 	width: 20%;
@@ -72,8 +78,7 @@ a {
 	width: 80%;
 	height: 100%;
 } */
-</style>
-<style>
+
 .tableWrap {
 	position: relative;
 	top: 15%;
@@ -172,8 +177,7 @@ margin: 3px;
 
 </style>
 	
-	
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		
 		$("#myinfo").click(function() {
@@ -195,67 +199,68 @@ margin: 3px;
 				location.href="withdrawal?phone="+phone;
 			}
 		});
-
-		
-
-		
 	});
-	</script>
+</script>
 
 </head>
 
 <body>
 	<jsp:include page="common/header.jsp" />
 	
-<h2>내 정보</h2>	
-<table class="table table-hover">
-<thead>
-<tr>
-<th>폰번호</th>
-<th>이메일</th>
-<th>가입한 날짜</th>
-<th>닉네임</th>
-<th>배너통해서 가입 유무</th>
-<th>서비스 가입 유무</th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>${phone}</td>
-<td>${session_email}</td>
-<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_join_date}"/></td>
-<td>${session_nickname}</td>
-<td>
-<c:if test="${session_banner==1}">
-	배너에서 가입
-</c:if>
-<c:if test="${session_banner==2}">
-	회사 홈피에서 가입
-</c:if>
-
-</td>
-<td>
-<c:if test="${serviceYN eq 'Y'}">
-	서비스 가입 완료
-</c:if>
-<c:if test="${serviceYN eq 'N'}">
-	서비스 미가입
-</c:if>
-
-</td>
-
-</tr>
-</tbody>
-
-</table>	
+	<div class="container">
+		<h2> > 내 정보</h2>	
+		<table class="table table-hover">
+			<colgroup>
+				<col width="40%">
+				<col width="60%">
+			</colgroup>
+			<tr>
+				<td>핸드폰 번호</td>
+				<td>${phone}</td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td>${session_email}</td>
+			</tr>
+			<tr>
+				<td>가입한 날짜</td>
+				<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_join_date}"/></td>
+			</tr>
+			<tr>
+				<td>닉네임</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>가입경로</td>
+				<td>
+				<c:if test="${session_banner==1}">
+					배너에서 가입
+				</c:if>
+				<c:if test="${session_banner==2}">
+					회사 홈피에서 가입
+				</c:if>
+				</td>
+			</tr>
+			<tr>
+				<td>서비스 가입 유무</td>
+				<td>
+				<c:if test="${serviceYN eq 'Y'}">
+					서비스 가입 완료
+				</c:if>
+				<c:if test="${serviceYN eq 'N'}">
+					서비스 미가입
+				</c:if>
+				</td>
+			</tr>
+		</table>	
 	
-	<div style="text-align:center;">
+	<div class="myinfomenu" style="text-align:center;">
 	<input id="modify" type="button" value="정보수정" style="width: 20%;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 	<input id="withdrawal" type="button" value="회원탈퇴" style="width: 20%;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 	</div>
 	
 	
+	</div>
 
     <jsp:include page="common/footer.jsp" />
 
