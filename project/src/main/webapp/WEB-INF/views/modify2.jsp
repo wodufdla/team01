@@ -16,7 +16,14 @@
     
     <script type="text/javascript">
 		$(function() {
-			
+			$("#withdrawal").click(function() {
+				var phone = "${phone}"
+				var wc = confirm("정말 회원탈퇴 하시겠습니까?");
+				if(wc==1){
+					alert("회원탈퇴 되었습니다.");
+					location.href="withdrawal?phone="+phone;
+				}
+			});
 			//수정버튼 황선필
 			$("#modify").click(function() {
 				
@@ -85,10 +92,10 @@
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
-
-	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원수정</span>
+	<div style="">
+	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 35%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;margin:10px auto 50px;">정보수정</span>
 	<form action="modifyform" method="post">
-		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
+		<div style="width: 30%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
@@ -130,9 +137,14 @@
 	          </li>
 	      </ul>
 	      <!-- 스타일 추가 황선필 -->
-		<input id="modify" type="button" value="수정" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	     <div style="text-align:center;"> 
+		<input id="modify" type="button" value="수정" style="width: 30%;margin: 50px auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">&nbsp;&nbsp;
+		<input id="withdrawal" type="button" value="회원탈퇴" style="width: 30%;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"style="width: 30%;margin: 0px auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		</div>
 		</div>
 	</form>
+	</div>
  	<jsp:include page="common/footer.jsp" />
 </body>
 </html>

@@ -187,6 +187,7 @@ margin: 3px;
 		$("#paymentHistory").click(function() {
 			location.href="paymentHistory";
 		});
+		
 		$("#modify").click(function() {
 			location.href="modify2";
 		});
