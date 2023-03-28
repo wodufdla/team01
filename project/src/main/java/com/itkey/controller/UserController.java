@@ -147,6 +147,12 @@ public class UserController {
     	
     	return "modify";
     }
+    //정보수정2 화면 접속 황선필
+    @RequestMapping("/modify2")
+    public String modify2() {
+    	
+    	return "modify2";
+    }
 	
 	//실질 정보수정 황선필
 	@ResponseBody

@@ -183,6 +183,9 @@ margin: 3px;
 		$("#paymentHistory").click(function() {
 			location.href="paymentHistory";
 		});
+		$("#modify").click(function() {
+			location.href="modify2";
+		});
 
 		
 
@@ -238,7 +241,7 @@ margin: 3px;
 
 </table>	
 	
-		
+	<button id="modify" type="button">정보 수정</button>
 	
 	
 
