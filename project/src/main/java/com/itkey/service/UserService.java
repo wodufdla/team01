@@ -3,6 +3,7 @@ package com.itkey.service;
 import java.util.List;
 
 import com.itkey.pageutil.PageCriteria;
+import com.itkey.vo.OrderVO;
 import com.itkey.vo.UserVO;
 
 public interface UserService {
@@ -42,6 +43,8 @@ public interface UserService {
 	int selectBannerUserCount();
 	//회원탈퇴
 	int userwithdrawal(UserVO uv);
+	//결제내역
+	OrderVO selectOrder(UserVO vo);
 	
 	
 }

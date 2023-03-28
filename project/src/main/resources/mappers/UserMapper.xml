@@ -150,5 +150,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
+	<!-- 결제내역 -->
+	<select id="selectOrder" parameterType="User" resultType="Order">
+		select * from order_tbl where phone = #{phone}
+	</select>
+	
 	
 </mapper>

@@ -3,6 +3,7 @@ package com.itkey.dao;
 import java.util.List;
 
 import com.itkey.pageutil.PageCriteria;
+import com.itkey.vo.OrderVO;
 import com.itkey.vo.UserVO;
 
 public interface UserDAO {
@@ -44,6 +45,8 @@ public interface UserDAO {
 	int selectBannerUserCount();
 	//회원 탈퇴
 	int userwithdrawal(UserVO uv);
+	//결제내역
+	OrderVO selectOrder(UserVO vo);
 	
 	
 }
