@@ -250,9 +250,10 @@ margin: 3px;
 
 </table>	
 	
-	<input id="modify" type="button" value="정보수정" style="width: 20%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-	<input id="withdrawal" type="button" value="회원탈퇴" style="width: 20%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-	
+	<div style="text-align:center;">
+	<input id="modify" type="button" value="정보수정" style="width: 20%;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	<input id="withdrawal" type="button" value="회원탈퇴" style="width: 20%;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+	</div>
 	
 	
 
