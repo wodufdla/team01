@@ -25,6 +25,12 @@ public interface UserDAO {
 	List<UserVO> select_list(PageCriteria criteria);
 	int totalCounts(PageCriteria criteria);
 	
-	// 회원 count
-	int  adminMemberCount();
+	// 전체 회원 수 count
+	int adminMemberCount();
+	// 오늘 가입 회원 수
+	int selectTodayMemberCount(String today);
+	// 서비스 가입 회원 수
+	int getserviceStatusY();
+	// 탈퇴한 회원 수
+	int getwithdrawalMember();
 }

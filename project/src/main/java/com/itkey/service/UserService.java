@@ -24,5 +24,12 @@ public interface UserService {
 	List<UserVO> read_list(PageCriteria criteria);
 	int totalCounts(PageCriteria criteria);
 	
-	int  adminMemberCount() throws Exception;
+	// 총 가입 회원 수
+	int adminMemberCount() throws Exception;
+	// 오늘 가입 회원 수
+	int getTodayMemberCount(String today) throws Exception;
+	// 서비스 가입 회원 수
+	int getserviceStatusY();
+	// 탈퇴한 회원 수
+	int getwithdrawalMember();
 }

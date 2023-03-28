@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.UserService;
+import com.itkey.util.MainInfo;
 import com.itkey.vo.UserVO;
 
 @Controller
@@ -228,10 +229,14 @@ public class UserController {
 	@GetMapping("/customer")
 	public void customerGET(Model model, String keyword, String category, Integer page, Integer numsPerPage, HttpSession session) throws Exception {
 		log.info("customerGET() 호출");
-		log.info(""+page);
-		log.info(""+numsPerPage);
-		log.info(category);
-		log.info(keyword);
+		//log.info(""+page);
+		//log.info(""+numsPerPage);
+		//log.info(category);
+		//log.info(keyword);
+		
+		MainInfo mInfo = new MainInfo();
+		String today = mInfo.curDate();
+		
 		PageCriteria criteria = new PageCriteria();
 		if (keyword != null) {
 			criteria.setKeyword(keyword);
@@ -247,9 +252,21 @@ public class UserController {
 		List<UserVO> list = userService.read_list(criteria);
 		model.addAttribute("list", list);
 		
-		// 회원 수 count
+		// 전체 가입 회원 수 count
 		int mCount = userService.adminMemberCount();
 		model.addAttribute("mCount", mCount);
+		
+		// 오늘 가입 회원 수 count
+		int mTodayCount = userService.getTodayMemberCount(today);
+		model.addAttribute("mTodayCount", mTodayCount);
+		
+		// 서비스 가입 회원 수
+		int serviceStatusY = userService.getserviceStatusY();
+		model.addAttribute("serviceStatusY", serviceStatusY);
+		
+		// 탈퇴한 회원 수
+		int withdrawal = userService.getwithdrawalMember();
+		model.addAttribute("withdrawal", withdrawal);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);

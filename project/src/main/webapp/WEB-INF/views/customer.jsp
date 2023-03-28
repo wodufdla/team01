@@ -33,6 +33,7 @@ select:focus {
 .container {
 	height: auto;
 	min-height: 100%;
+	padding-top: 50px;
   	padding-bottom: 90px;
 }
 .table-striped {
@@ -68,34 +69,34 @@ select:focus {
 	
 	<!-- counting -->
 	<div class="top"  >
-		<h4 >[ 1:1 문의 _전체목록 ]</h4>
+		<h4 >[ 고객관리 ]</h4>
 	</div>
 	<div class="row panel-row">
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">총 가입회원 수 </h5>
+			<h5 class="overview-title">총 가입 회원 수 </h5>
 			<h1 class="overview-content">${mCount }</h1>
 			<i class="far fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">오늘 가입회원 수 </h5>
-			<h1 class="overview-content"></h1>
+			<h5 class="overview-title">오늘 가입 회원 수 </h5>
+			<h1 class="overview-content">${mTodayCount }</h1>
 			<i class="fas fa-users"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">서비스 가입회원 수 </h5>
-			<h1 class="overview-content"></h1>
+			<h5 class="overview-title">서비스 가입 회원 수 </h5>
+			<h1 class="overview-content">${serviceStatusY }</h1>
 			<i class="fas fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
-			<h5 class="overview-title">탈퇴한 가입회원 수</h5>
-			<h1 class="overview-content"></h1>
+			<h5 class="overview-title">탈퇴한 회원 수</h5>
+			<h1 class="overview-content">${withdrawal }</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
 	</div>

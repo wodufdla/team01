@@ -94,7 +94,30 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int  adminMemberCount() throws Exception {
+		log.info("adminMemberCount() 호출");
 		int result = userDAO.adminMemberCount();
 		return result;
 	}
+	
+	@Override
+	public int getTodayMemberCount(String today) throws Exception {
+		log.info("getTodayMemberCount(String today) 호출");
+		int result = userDAO.selectTodayMemberCount(today);
+		return result;
+	}
+	
+	@Override
+	public int getserviceStatusY() {
+		log.info("getserviceStatusY() 호출");
+		int result = userDAO.getserviceStatusY();
+		return result;
+	}
+
+	@Override
+	public int getwithdrawalMember() {
+		log.info("getwithdrawalMember() 호출");
+		int result = userDAO.getwithdrawalMember();
+		return result;
+	}
+	
 }

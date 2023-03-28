@@ -99,9 +99,47 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(NAMESPACE + ".total_count", criteria);
 	}
 	
+	/*
+	 * 전체 회원 수
+	 * (non-Javadoc)
+	 * @see com.itkey.dao.UserDAO#adminMemberCount()
+	 */
 	@Override
 	public int  adminMemberCount() {
 		log.info("adminMemberCount() 호출");
 		return sqlSession.selectOne(NAMESPACE + ".adminMemberCount");
 	}
+
+	/*
+	 * 오늘 가입 회원 수
+	 */
+	@Override
+	public int selectTodayMemberCount(String today) {
+		log.info("selectTodayMemberCount() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".adminselectTodayMemberCount", today);
+	}
+
+	/*
+	 * 서비스 가입 회원 수
+	 * (non-Javadoc)
+	 * @see com.itkey.dao.UserDAO#getserviceStatusY()
+	 */
+	@Override
+	public int getserviceStatusY() {
+		log.info("getserviceStatusY() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".getserviceStatusY");
+	}
+
+	/*
+	 * 탈퇴한 회원 수
+	 * (non-Javadoc)
+	 * @see com.itkey.dao.UserDAO#getwithdrawalMember()
+	 */
+	@Override
+	public int getwithdrawalMember() {
+		log.info("getwithdrawalMember() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".getwithdrawalMember");
+	}
+
+	
 }
