@@ -89,7 +89,7 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<td>
-					<a href="#" class="btn btn-dark btn-lg active" role="button" aria-pressed="true" id="cashBtn">10,000캐시 받고 내 주변 범죄자 확인</a><br>
+					<a href="javascript:void(0);" class="btn btn-dark btn-lg active" role="button" aria-pressed="true" id="cashBtn">10,000캐시 받고 내 주변 범죄자 확인</a><br>
 				</td>
 			</tr>
 			<tr align="left">
