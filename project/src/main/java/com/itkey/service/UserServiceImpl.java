@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itkey.dao.UserDAO;
 import com.itkey.pageutil.PageCriteria;
+import com.itkey.vo.OrderVO;
 import com.itkey.vo.UserVO;
 
 @Service
@@ -144,6 +145,13 @@ public class UserServiceImpl implements UserService {
 	public int userwithdrawal(UserVO uv) {
 		int result = userDAO.userwithdrawal(uv);
 		return result;
+	}
+	//결제내역
+	@Override
+	public OrderVO selectOrder(UserVO vo) {
+		// TODO Auto-generated method stub
+		OrderVO ov = userDAO.selectOrder(vo);
+		return ov;
 	}
 	
 	

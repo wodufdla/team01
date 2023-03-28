@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itkey.pageutil.PageCriteria;
+import com.itkey.vo.OrderVO;
 import com.itkey.vo.UserVO;
 
 @Repository
@@ -166,6 +167,13 @@ public class UserDAOImpl implements UserDAO {
 	public int userwithdrawal(UserVO uv) {
 		int result = sqlSession.update("userwithdrawal",uv);
 		return result;
+	}
+	//결제내역
+	@Override
+	public OrderVO selectOrder(UserVO vo) {
+		// TODO Auto-generated method stub
+		OrderVO ov = sqlSession.selectOne("selectOrder",vo);
+		return ov;
 	}
 	
 	
