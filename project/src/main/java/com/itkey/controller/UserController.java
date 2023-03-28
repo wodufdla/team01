@@ -274,6 +274,16 @@ public class UserController {
 		int withdrawal = userService.getwithdrawalMember();
 		model.addAttribute("withdrawal", withdrawal);
 		
+
+		//황선필 배너 클릭수, 배너통한 회원가입수
+		int bClick = userService.selectBannerClick();
+		//System.out.println("bclick:"+bClick);
+		int bUserCount = userService.selectBannerUserCount();
+		//System.out.println("bUserCount:"+bUserCount);
+		model.addAttribute("bClickCount", bClick);
+		model.addAttribute("bUserCount", bUserCount);
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
 		pageMaker.setTotalCount(userService.totalCounts(criteria));
@@ -310,4 +320,44 @@ public class UserController {
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+	//cashClick 황선필
+	@ResponseBody
+	@RequestMapping("/cashClick")
+	public String cashClick(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//System.out.println("sesiion:"+session.getAttribute("phone"));
+		//System.out.println("sesiion:"+session.getAttribute("admin"));
+		if(session.getAttribute("phone")==null && session.getAttribute("admin")==null) {
+			
+			int result = userService.cashClickCount();
+			String result2=String.valueOf(result);
+			return result2;
+		}else {
+			return "0";
+		}
+		
+		//결과 스트링화
+		
+		//System.out.println("result2:"+result2);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

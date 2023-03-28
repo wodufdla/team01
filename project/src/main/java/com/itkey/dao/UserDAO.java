@@ -33,4 +33,15 @@ public interface UserDAO {
 	int getserviceStatusY();
 	// 탈퇴한 회원 수
 	int getwithdrawalMember();
+	
+	//황선필
+
+	//cashClick
+	int cashClickCount();
+	//cashclickcount
+	int selectBannerClick();
+	//배너 통해서 가입한 회원수
+	int selectBannerUserCount();
+	
+	
 }

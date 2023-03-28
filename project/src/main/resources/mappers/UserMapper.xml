@@ -119,4 +119,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getwithdrawalMember" resultType="int">
 		SELECT count(1) FROM user_tbl where withdrawal = 'Y'
 	</select>
+	
+	<!-- 황선필 -->
+		<!-- cashclickupadate -->
+	
+	<update id="cashClick" >
+	
+		update click_tbl
+		set click_num = click_num+1
+		where click_no = 1
+	
+	</update>
+	
+	<!-- 총 배너 클릭자 수 -->
+	<select id="selectBannerClick" resultType="int">
+		SELECT click_num FROM click_tbl where click_no = 1
+	</select>
+	
+	<!-- 총 배너 통해 가입한 회원수 -->
+	<select id="selectBannerUserCount" resultType="int">
+		SELECT count(banner) FROM user_tbl where banner = 1
+	</select>
+	
+	
+	
 </mapper>

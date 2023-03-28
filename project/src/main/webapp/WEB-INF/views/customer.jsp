@@ -100,6 +100,22 @@ select:focus {
 			<i class="fas fa-user-circle"></i>
 		</div>
 	</div>
+	
+	<div class="col">
+		<div class="overview-div">
+			<h6 class="overview-title">배너 통해 가입한 수</h6>
+			<h1 class="overview-content">${bUserCount}</h1>
+			<i class="fas fa-user-circle"></i>
+		</div>
+	</div>
+	<div class="col">
+		<div class="overview-div">
+			<h5 class="overview-title">배너를 클릭한 수</h5>
+			<h1 class="overview-content">${bClickCount}</h1>
+			<i class="fas fa-user-circle"></i>
+		</div>
+	</div>
+	
 	</div>
 	
 	
