@@ -161,6 +161,12 @@ public class UserDAOImpl implements UserDAO {
 		int result = sqlSession.selectOne("selectBannerUserCount");
 		return result;
 	}
+	//회원 탈퇴
+	@Override
+	public int userwithdrawal(UserVO uv) {
+		int result = sqlSession.update("userwithdrawal",uv);
+		return result;
+	}
 	
 	
 

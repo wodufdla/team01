@@ -60,6 +60,11 @@ function registeralarm() {
     window.open('login2','login2','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 
+//mypage
+function mypage() {
+	location.href="mypage";
+}
+
 // 서비스 소개, 서비스 가입 시 이용 가능
 function joinchk(num){
 
@@ -142,7 +147,8 @@ function joinchk(num){
 	                ${session_banner}
                 </c:if> --%>
 	                <a href="#" id="logout" class="nav-link" style="width: 10%;  float: right;">로그아웃</a>
-	                <a id="modify" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('modify','modify','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원수정</a>
+	                
+	                <a href="javascript:mypage();" id="mypage" class="nav-link" style="width: 20%; float: right; cursor : pointer;" >마이페이지</a>
 	                <a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">${session_nickname}님 환영합니다!</a>
 	                
 

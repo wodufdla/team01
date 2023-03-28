@@ -42,6 +42,8 @@ public interface UserDAO {
 	int selectBannerClick();
 	//배너 통해서 가입한 회원수
 	int selectBannerUserCount();
+	//회원 탈퇴
+	int userwithdrawal(UserVO uv);
 	
 	
 }

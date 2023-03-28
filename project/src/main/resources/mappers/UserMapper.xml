@@ -141,6 +141,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(banner) FROM user_tbl where banner = 1
 	</select>
 	
+	<!-- 회원탈퇴 -->
+	<update id="userwithdrawal" parameterType="User">
+	
+		update user_tbl
+		set withdrawal = 'Y'
+		where phone = #{phone}
+	
+	</update>
 	
 	
 </mapper>
