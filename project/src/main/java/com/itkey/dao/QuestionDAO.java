@@ -26,7 +26,10 @@ public interface QuestionDAO {
 	
 	public List<QuestionVO> selectAskN(PageCriteria criteria);
 	int selectAskNtotalCount(PageCriteria criteria);
-	public List<QuestionVO> selectAsk2(int askNo);
+	
+	
+	public QuestionVO selectAsk2(int askNo);
+	public QuestionVO ansUpdateSelect(int askNo);
 	
 	int askTodayCount();
 	
@@ -41,7 +44,8 @@ public interface QuestionDAO {
 	
 	/* 답변 작성하기 */
 	public int insertAns(AnswerVo ans);
-	
+	/* 답변 수정 작성하기 */
+	public int ansUpdate(AnswerVo ans);
 	/* 답변 삭제하기 */
 	public int deleteAns(int askNo); 
 

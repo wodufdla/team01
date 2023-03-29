@@ -76,8 +76,9 @@ a {
 .replyTextareaWrap {
 	position: relative;
 	top: -75px;
-	height: 330px;
-	width: 760px;
+	height: 250px;
+	width: 800px;
+	
 }
 
 .customerAskWrap {
@@ -93,12 +94,33 @@ a {
 }
 
 .replyTextarea {
-	width: 760px;
-	height: 330px;
+	width: 800px;
+	height: 250px;
 	position: relative;
 	resize: none;
+	 padding: .375rem .75rem;
+	font-size: 15px;
+	font-weight: 400;
+	color: #212529;
+	background-color: #fff;
+	border-radius: 5px;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    
 }
 
+.replyTextarea:hover {
+	border-color: #9bbfd9;
+}
+.replyTextarea:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #9bbfd9;
+	outline: 0;
+	box-shadow: 0 0 0 .10rem #9bbfd9;
+}
+.replyTextarea-color::-moz-color-swatch {
+	border-radius: 3px;
+}
 /* 버튼 1번 css*/
 .btn1 {
 	border: none;
@@ -116,31 +138,7 @@ a {
 .btn1:hover {
 	opacity: 0.5;
 }
-#askboxborder {
-	padding: .375rem .75rem;
-	font-size: 15px;
-	font-weight: 400;
-	color: #212529;
-	background-color: #fff;
-	border: 1.8px solid #212529;
-	border-radius: 5px;
-	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    width: 800px; 
-    height: 250px;
-}
-#askboxborder:hover {
-	border-color: #9bbfd9;
-}
-#askboxborder:focus {
-	color: #212529;
-	background-color: #fff;
-	border-color: #9bbfd9;
-	outline: 0;
-	box-shadow: 0 0 0 .10rem #9bbfd9;
-}
-#askboxborder-color::-moz-color-swatch {
-	border-radius: 3px;
-}
+
 .anst{
 border: 1.8px solid #212529;
 }
@@ -154,8 +152,8 @@ border: 1.8px solid #212529;
 	<jsp:include page="common/header.jsp" />
 	<div class="container">
 		<div id="main_body">
-			<form action="/answer" id="answer" method="POST" style="height: 458px;">
-				<c:forEach items="${ask}" var="ask">
+			
+			<form method="post" name="frmanswer" id="frmanswer" style="height: 458px;">
 					<div class="customerAskWrap">
 						<div>
 						<h2 class="askTop">답변 글쓰기</h2>
@@ -168,12 +166,12 @@ border: 1.8px solid #212529;
 						<input type="hidden" name="phone" value="${ask.phone}"> 
 						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
 					</div>
-				</c:forEach>
+				
 				<input type="hidden" name="askNo" value="${askNo}">
 				<div class="replyTextareaWrap">
-					<textarea  id="askboxborder" class="replyTextarea" name="ansContent"  id="ansContent" 
-					 placeholder="문의사항 답변을 작성해주세요.">
-					</textarea>
+					<div class="replyTextareaWrap">
+					<textarea  class="replyTextarea" name="ansContent" id="ansContent" placeholder="답변을 신중하게 작성해주세요."></textarea>
+				</div>
 				</div>
 			</form>
 			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; right: 110px;">
@@ -186,7 +184,7 @@ border: 1.8px solid #212529;
 	</div>
 	
 
-	<script>
+<!-- 
 		function ans_check() {
 			var content = $("#ansContent").val();
 			if (content == "") {
@@ -195,6 +193,43 @@ border: 1.8px solid #212529;
 				return false;
 			}
 			answer.submit();
+		};
+ -->
+	
+	<script>
+	  function ans_check() {
+			var anscontent = $("#ansContent").val();
+			var formData = $("#frmanswer").serialize();
+			
+			if (anscontent.trim() == "") {
+				alert("답변 내용을 입력하세요.");
+				content.focus();
+				return false;
+			}
+			console.log('dddd'+formData);
+			//문의글 쓰기: 컨트롤러  전달되는 ajax
+			$.ajax({
+				type: 'get',
+				url : '/answer',
+				data: formData,
+				contentType : 'application/text; charset=UTF-8',
+				success : function(data) {
+					console.log(data);
+					if (data == "success") {
+						alert("문의하기 답변 등록이 완료되었습니다.");
+						location.href = "/ask"; //관리자 문의 url 
+					}
+				},
+				 error: function (request, status, error) {
+					     alert("문의하기 글  답변 등록이 실패하였습니다.");
+				        console.log("code: " + request.status)
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+				    }
+			});
+			
+			
+		
 		};
 	</script>
 </body>

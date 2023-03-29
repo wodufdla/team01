@@ -150,45 +150,67 @@ border: 1.8px solid #212529;
 </head>
 <body>
 	<jsp:include page="common/header.jsp"/>
+	<form method="post" name="frmAnsUpdate" id="frmAnsUpdate" style="height: 458px;">
 	<div class="container">
 		<div id="main_body">
-			<form action="/ansUpdate" method="post"  style="height: 458px;">
-				<c:forEach items="${ask}" var="ask">
-					<div class="customerAskWrap">
-						<div>
-						<h2 class="askTop">답변 수정하기</h2>
-						<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
-					    </div>
-					   <p>제목: ${ask.askTitle}</p>
-						<br>
-						<p>내용: ${ask.askContent}</p>
-						
-						<input type="hidden" name="phone" value="${ask.phone}"> 
-						<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
-					</div>
-				
+				<div class="customerAskWrap">
+					<div>
+					<h2 class="askTop">답변 수정하기</h2>
+					<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
+				    </div>
+				   <p>제목: ${ask.askTitle}</p>
+					<br>
+					<p>내용: ${ask.askContent}</p>
+					
+					<input type="hidden" name="phone" value="${ask.phone}"> 
+					<input type="hidden" name="a_content" value="관리자로부터 문의하신 답변이 도착했습니다.">
+				</div>	
 				<input type="hidden" name="askNo" value="${askNo}">
 				<div class="replyTextareaWrap">
 					<textarea  class="replyTextarea" name="ansContent" id="ansContent" placeholder="답변을 신중하게 작성해주세요.">${ask.ansContent}</textarea>
 				</div>
-				</c:forEach>
-			</form>
 			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; right: 110px;">
 				<button class="btn1" type="button" onclick="ansUpdate_check();" style="margin-right: 10px;">수정</button>
 				<a href="/ask"><button class="btn1" >취소</button></a>
 			</div>
 		</div>
 	</div>
+			</form>
 
 	<script>
 	  function ansUpdate_check() {
 			var anscontent = $("#ansContent").val();
+			var formData = $("#frmAnsUpdate").serialize();
+			
 			if (anscontent.trim() == "") {
 				alert("답변 내용을 입력하세요.");
 				content.focus();
 				return false;
 			}
-			ansUpdate.submit();
+			console.log('dddd'+formData);
+			//문의글 쓰기: 컨트롤러 ansUpdate 전달되는 ajax
+			$.ajax({
+				type: 'get',
+				url : '/ansUpdate',
+				data: formData,
+				contentType : 'application/text; charset=UTF-8',
+				success : function(data) {
+					console.log(data);
+					if (data == "success") {
+						alert("문의하기 답변 등록이 완료되었습니다.");
+						location.href = "/ask"; //관리자 문의 url 
+					}
+				},
+				 error: function (request, status, error) {
+					     alert("문의하기 글  답변 등록이 실패하였습니다.");
+				        console.log("code: " + request.status)
+				        console.log("message: " + request.responseText)
+				        console.log("error: " + error);
+				    }
+			});
+			
+			
+			//ansUpdate.submit();
 		};
 	</script>
 </body>
