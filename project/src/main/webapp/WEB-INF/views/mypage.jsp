@@ -98,8 +98,8 @@
 		</div>
 
 	<div style="text-align:center;">
-		<input id="modify" type="button" value="정보수정" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-		<input id="paymentHistory" type="button" value="결제내역" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="modify" type="button" value="정보수정" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px; cursor: pointer;">
+		<input id="paymentHistory" type="button" value="결제내역" style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px; cursor: pointer;">
 	
 	</div>
 
