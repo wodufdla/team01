@@ -95,9 +95,17 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	@Override
-	public List<QuestionVO> selectAsk2(int askNo) {
+	public QuestionVO selectAsk2(int askNo) {
 		log.info("* [DAO] Input  ◀ (Service) : ");
-		List<QuestionVO> result = sqlSession.selectList(ASK + ".selectAsk2", askNo);
+		QuestionVO result = sqlSession.selectOne(ASK + ".selectAsk2", askNo);
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
+		return result;
+	}
+	
+	@Override
+	public QuestionVO ansUpdateSelect(int askNo) {
+		log.info("* [DAO] Input  ◀ (Service) : ");
+		QuestionVO result = sqlSession.selectOne(ASK + ".ansUpdateSelect", askNo);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
 		return result;
 	}
@@ -113,9 +121,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	/* 문의사항 수정하기 */
 	@Override
-	public int updateAsk(int ask_no) {
+	public int updateAsk(int ask_No) {
 		log.info("* [DAO] Input  ◀ (Service) : ");
-		int result = sqlSession.update(ASK + ".updateAsk", ask_no);
+		int result = sqlSession.update(ASK + ".updateAsk", ask_No);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
@@ -125,6 +133,15 @@ public class QuestionDAOImpl implements QuestionDAO {
 	public int insertAns(AnswerVo ans) {
 		log.info("* [DAO] Input  ◀ (Service) : " + ans.toString());
 		int result = sqlSession.insert(ANS + ".insertAns", ans);
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
+		return result;
+	}
+	
+	/* 답변 수정하기 */
+	@Override
+	public int ansUpdate(AnswerVo ans) {
+		log.info("* [DAO] Input  ◀ (Service) : " + ans.toString());
+		int result = sqlSession.insert(ANS + ".ansUpdate", ans);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 문의하기 답변 -->
 	<insert id="insertAns" parameterType="Answer">
 		insert into answer_tbl(
-		ask_no
+		ask_No
 		,ans_content
 		,ans_date
 		)values(#{askNo},#{ansContent},date_format(now(), '%Y-%m-%d %H:%i:%S'))
@@ -15,8 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 문의하기 답변 삭제 -->
 	<delete id="deleteAns" parameterType="_int">
 		delete from answer_tbl
-		where ask_no=#{askNo} 
+		where ask_No=#{askNo} 
 	</delete>
 
+	<update id="ansUpdate" parameterType="Answer">
+		update
+		answer_tbl
+		set
+		ans_content = #{ansContent},
+		ans_date = date_format(now(), '%Y-%m-%d %H:%i:%S')
+		where
+		ask_No =#{askNo}
+
+	</update>
 	
 </mapper>
