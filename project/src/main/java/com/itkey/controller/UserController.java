@@ -138,7 +138,7 @@ public class UserController {
 				if(wd.equals("Y")) {
 					//System.out.println("탈퇴함:"+wd);
 					reAttr.addFlashAttribute("login_result", "wdstatus");
-					return "redirect:/login";
+					return "redirect:/login2";
 					
 				}else {
 					//System.out.println("탈퇴안함:"+wd);
