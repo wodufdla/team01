@@ -6,23 +6,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 유저 1인 문의 조회 -->
 	<select id="selectAsk" resultType="Question">
-		select
-		ask_No,
-		phone,
-		ask_title,
-		ask_content,
-		reply_yn,
-		ask_category,
 		
-		date_format(ask_date, '%Y-%m-%d %H:%i:%S')as ask_date
+		 select @rownum:=@rownum+1 row_num, m.* 
+   from (
+		select
+			a.ask_No,
+			a.phone,
+			a.ask_title,
+			a.ask_content,
+			a.reply_yn,
+			a.ask_category,
+			b.ans_content,
+			date_format(a.ask_date, '%Y-%m-%d %H:%i:%S') as ask_date
 		from
-		question_tbl
-		where
-		phone = #{keyword}
+			question_tbl a left outer join answer_tbl b on a.ask_No = b.ask_No
+		where 
+			a.phone = #{keyword}
 		order by
-		ask_No desc
-		limit
-		#{start}, #{end}
+			a.ask_No
+	) m , 
+	    (select @rownum:=0) temp 
+		limit #{start}, #{end}
+		
 	</select>
 	<!-- 회원 문의 조회 Count-->
 	<select id="selectAsktotalCount" resultType="_int">
