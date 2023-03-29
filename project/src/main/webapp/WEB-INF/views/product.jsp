@@ -162,7 +162,7 @@ select:focus {
    					</c:if>
    					<td>${vo.phone }</td>
    					<td><fmt:formatNumber value="${vo.price }" pattern="#,###" /></td>
-   					<td><fmt:formatDate value="${vo.autoOrderDate }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
+   					<td><fmt:formatDate value="${vo.successTime }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
    					<td><fmt:formatDate value="${vo.nextOrderDate }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
    				</tr>
    			</c:forEach>

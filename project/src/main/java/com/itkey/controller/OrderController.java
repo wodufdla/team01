@@ -117,19 +117,31 @@ public class OrderController {
 		model.addAttribute("list", list);
 		
 		// 서비스 유지중
-		int statusY = orderService.select_y();
+		Integer statusY = orderService.select_y();
+		if (statusY==null) {
+			statusY=0;
+		}
 		model.addAttribute("statusY", statusY);
 		
 		// 누적 매출액
-		int total = orderService.totalSales();
+		Integer total = orderService.totalSales();
+		if (total==null) {
+			total=0;
+		}
 		model.addAttribute("totalSales", total);
 		
 		// 월 매출액
-		int totalMonths = orderService.totalMonths(thisMonth);
+		Integer totalMonths = orderService.totalMonths(thisMonth);
+		if (totalMonths==null) {
+			totalMonths=0;
+		}
 		model.addAttribute("totalMonths", totalMonths);
 		
 		// 오늘자 매출액
-		int totalToday = orderService.todaySSales(today);
+		Integer totalToday = orderService.todaySSales(today);
+		if (totalToday==null) {
+			totalToday=0;
+		}
 		model.addAttribute("totalToday", totalToday);
 		
 		PageMaker pageMaker = new PageMaker();

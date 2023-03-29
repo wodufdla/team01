@@ -34,27 +34,27 @@ public class OrderServiceImpl implements OrderService {
 
 	// 서비스 유지중
 	@Override
-	public int select_y() {
+	public Integer select_y() {
 		log.info("OrderVO select_y() 호출");
 		return orderDAO.select_y();
 	}
 	// 누적 매출액
 	@Override
-	public int totalSales() {
+	public Integer totalSales() {
 		log.info("OrderVO totalSales() 호출");
 		return orderDAO.totalSales();
 	}
 	
 	// 월 매출액
 	@Override
-	public int totalMonths(String thisMonth) {
+	public Integer totalMonths(String thisMonth) {
 		log.info("OrderVO totalMonths() 호출");
 		return orderDAO.totalMonths(thisMonth);
 	}
 	
 	// 오늘자 매출액
 	@Override
-	public int todaySSales(String today) {
+	public Integer todaySSales(String today) {
 		log.info("OrderVO todaySSales() 호출");
 		return orderDAO.todaySSales(today);
 	}
