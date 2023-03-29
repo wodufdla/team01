@@ -11,14 +11,14 @@ public interface OrderDAO {
 	int totalCounts(PageCriteria criteria);
 	
 	// 서비스 유지중
-	int select_y();
+	Integer select_y();
 	
 	// 누적 매출액
-	int totalSales();
+	Integer totalSales();
 	
 	// 월 매출액
-	int totalMonths(String thisMonth);
+	Integer totalMonths(String thisMonth);
 	
 	// 오늘자 매출액
-	int todaySSales(String today);
+	Integer todaySSales(String today);
 }
