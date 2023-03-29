@@ -245,15 +245,15 @@ margin: 3px;
 	</tr>
 	<tr>
 		<td>서비스구매시간</td>
-		<td>${session_rqsttime}</td>
+		<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_rqsttime}"/></td>
 	</tr>		
 	<tr>
 		<td>서비스처리시간</td>
-		<td>${session_success}</td>
+		<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_success}"/></td>
 	</tr>
 	<tr>
 		<td>다음결제시간</td>
-		<td>${session_nextorderdate}</td>
+		<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_nextorderdate}"/></td>
 	</tr>		
 	<tr>
 		<td>자동결제시간</td>

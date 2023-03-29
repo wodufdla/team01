@@ -70,7 +70,7 @@
 			</tr>
 			<tr>
 				<td>닉네임</td>
-				<td></td>
+				<td>${session_nickname}</td>
 			</tr>
 			<tr>
 				<td>가입경로</td>
