@@ -149,6 +149,20 @@ public class UserController {
 				if(userPhone.equals(phone) && userPassword.equals(password)) {
 					log.info("로그인성공");
 					HttpSession session = request.getSession();
+					
+					OrderVO ov = userService.selectOrder(vo);
+					
+					if(ov!=null) {
+						session.setAttribute("session_orderno", ov.getOrderNo());
+						session.setAttribute("session_ordercont", ov.getOrderCont());
+						session.setAttribute("session_price", ov.getPrice());
+						session.setAttribute("session_status", ov.getStatus());
+						session.setAttribute("session_rqsttime", ov.getRqstTime());
+						session.setAttribute("session_success", ov.getSuccessTime());
+						session.setAttribute("session_nextorderdate", ov.getNextOrderDate());
+						session.setAttribute("session_autoorderdate", ov.getAutoOrderDate());
+					}
+					
 					session.setAttribute("phone", phone);
 					session.setAttribute("serviceYN", serviceYN);
 					//닉네임 세션에 추가 황선필
