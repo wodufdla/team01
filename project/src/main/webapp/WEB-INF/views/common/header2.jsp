@@ -110,7 +110,7 @@ function joinchk(num){
                       <span class="dropbtn">서비스 소개</span>
                       <div class="dropdown-content">
                           <a class="dropdown-item" href="/rtPublicStatus">실시간 공개현황</a>
-                        <a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
+                        <!-- <a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a> -->
                         <a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
                         <a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
                       </div>
