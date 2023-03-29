@@ -171,7 +171,8 @@ border: 1.8px solid #212529;
 				</div>
 			<div style="display: flex; justify-content: center; margin: 0 auto; margin-top: 40px; right: 110px;">
 				<button class="btn1" type="button" onclick="ansUpdate_check();" style="margin-right: 10px;">수정</button>
-				<a href="/ask"><button class="btn1" >취소</button></a>
+				<input  class="btn1"  type="button" value="뒤로가기" onclick="history.go(-1)">
+			
 			</div>
 		</div>
 	</div>
