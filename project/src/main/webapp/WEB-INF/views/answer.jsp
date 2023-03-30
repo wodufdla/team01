@@ -105,7 +105,7 @@ a {
 	background-color: #fff;
 	border-radius: 5px;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    margin-top: 80px;
+    
 }
 
 .replyTextarea:hover {
@@ -184,6 +184,19 @@ border: 1.8px solid #212529;
 
 	</div>
 	
+
+<!-- 
+		function ans_check() {
+			var content = $("#ansContent").val();
+			if (content == "") {
+				alert("내용을 입력하세요.");
+				content.focus();
+				return false;
+			}
+			answer.submit();
+		};
+ -->
+	
 	<script>
 	  function ans_check() {
 			var anscontent = $("#ansContent").val();
@@ -215,6 +228,9 @@ border: 1.8px solid #212529;
 				        console.log("error: " + error);
 				    }
 			});
+			
+			
+		
 		};
 	</script>
 </body>
