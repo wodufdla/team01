@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
     
     <script type="text/javascript">
     
@@ -20,10 +22,12 @@
 		$(function() {
 			
 			var banner = opener.$("#banner").val(); //banner 숫자가 뭔지 체크
+			//var banner = 1;
 			//alert(banner);
 			
 			//등록버튼 황선필
 			$("#register").click(function() {
+				
 				//배너 체크
 				//alert(banner);
 				//각 빈칸들 변수
@@ -87,21 +91,14 @@
 												     			 "phone":phone,
 												     			 "password":pw,
 												     			 "email":email,
-												     			 "nickname":nickname,
+												     			 "nickname":nickname, 	
 												     			 "banner":banner
 												     		 },
 												     		 success:function(data){
 												     			 if(data==1){
 												     				 alert("회원등록완료");
-													     				window.close();
-												     					 opener.location.href="/order";
-/* 												     				 if(banner==1){
-													     				window.close();
-												     					 opener.location.href="/order";
-												     				 }else if(banner==2){
-													     				opener.location.reload();
-													     				window.close();
-												     				 } */
+												     					opener.location.href="/order";
+												     					window.close();
 												     			 }else{
 												     					 alert("회원else");
 												     				 }
@@ -131,6 +128,10 @@
 		})
 		//제이쿼리
 	
+		
+	
+//}
+		
 	</script>
     
 </head>

@@ -20,53 +20,112 @@
 <!-- 일반결제 https://tyrannocoding.tistory.com/44 -->
 <!-- 카카오 정기결제 https://tjdqlscjswp.tistory.com/33?category=855326 -->
 <script>
-var buyerEmail = "구매자 이메일";
-var buyerName = "구매자 이름";   //재결제 요청에서 사용
-var buyerTel = "구매자 전화번호";
-var consumPrice = 1;
-let merchantUid='merchant_' + new Date().getTime();
 
-var IMP = window.IMP; // 생략 가능
-IMP.init("imp50058027"); // 예시 : imp00000000
+$(document).ready(function(){
+	var buyerEmail = "구매자 이메일";
+	var buyerName = "이재열";   //재결제 요청에서 사용
+	var buyerTel = "010-4108-8448";
+	let merchantUid='merchant_' + new Date().getTime();
+	
+	iamport();
+})
 
-function requestPay() {
-    IMP.request_pay({
-      pg: "kcp_billing",
-      pay_method: "card",
-      merchant_uid: merchantUid,   // 주문번호
-      customer_uid: merchantUid, // 카드(빌링키)와 1:1로 대응하는 값, 필수값
-      name: "최초 인증 결제",
-      amount: consumPrice,                         // 숫자 타입
-      buyer_email: buyerEmail,
-      buyer_name: buyerName,
-      buyer_tel: buyerTel,
-      //buyer_addr: "서울특별시 강남구 신사동",
-      //buyer_postcode: "01181",
-   	  //m_redirect_url: "/paymentOk"
-    }, function (rsp) { // callback
-    	if (rsp.success) {
-    		alert("빌링키 발급 성공");
-    		// 빌링키 발급 성공후 실질적인 결제로직
-            pass();
-    	} else {
-    		alert("빌링키 발급 실패");
-    		console.log(rsp.error_msg);
-    	}
-    });
-}
+ 
+
+ 	
+
+//  	function iamport(){
+// // 	var price = 100;
+// 	$("checkLink").on("click", function(){
+// 		$(this).val()
+//   return;
+// });
+	
+	function iamport(){
+
+
+		var order_cont = "2";
+		var id = "tkhyfy_test";
+		var phone = $('#phone').val();
+		var email					= "test@naver.com";
+		var buyerName			= $("#nickname").val();
+		var customer_uid			= "c_2" + id;
+		d = new Date();
+		var merchant_uid = "order" + d.getTime();
+		
+		var itemPrice = 100; /*  가격 */
+		var itemTitle = "범죄알리미 인증";
+		
+		d = new Date();
+		var merchant_uid = "order" + d.getTime();
+		
+		dataP: JSON.stringify({
+			amount : itemPrice,
+			customer_uid : customer_uid,
+			buyerName : buyerName
+		}),
+		
+		IMP.init('imp40774547');
+		IMP.request_pay({
+			pg : 'danal_tpay.9810030929',
+			pay_method : 'card',
+			merchant_uid : merchant_uid,
+
+
+			: customer_uid,
+			name : itemTitle,
+			amount : itemPrice,
+			buyer_email : email,
+			buyer_name : id,
+			buyer_tel : phone
+		}, function(rsp) {
+			if ( rsp.success ) {
+				$.ajax({
+					type:'post',
+					url:'/order',
+					headers:{
+						"Content-Type":"application/json",
+						"X-HTTP-Method-Override":"POST"
+					},
+					dataType:"text",
+					data: JSON.stringify({
+						buyerName : id,
+						merchantUid : customer_uid,
+						amount : itemPrice,
+					}),
+					success:function(token){
+						
+						// 빌링키 ajax
+						$.ajax({
+					        url: "https://api.iamport.kr/subscribe/customers/", 
+					        method: "POST",
+					        headers: { "Content-Type": "application/json",
+					        			"Authorization": token  
+					        	},
+					        data: {
+					          customer_uid: customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
+					        }
+					   }); // 빌링키 ajax
+						alert("가입성공");
+						location.href="/crime";
+					}	
+				});
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+				basicModal(msg);
+			}
+		});
+	}
 
 /**
  * 결제 데이터 DB 저장
  */
-function pass() {
+function pass(dataP) {
     $.ajax({
         type: "post",
         url: "/paymentOk",
-        data: {
-            "amount":   consumPrice,
-            "membershipKey":merchantUid,
-            "buyerName":buyerName
-        },
+        data: dataP,
         success: function (data) {
             if (data ==1){
                 // 실질적인 결제 및 정액제 유료회원 처리
@@ -104,6 +163,15 @@ function pass2() {
         }
     });
 }
+//check
+function checkLink(element) {
+	//alert(element);
+    const checkboxes = document.getElementsByName("check-link");
+    for (var i = 0; i < checkboxes.length; i++) {
+    	checkboxes[i].checked = false;	
+    }
+    element.checked = true;
+}
 </script>
 
 </head>
@@ -118,12 +186,12 @@ function pass2() {
                 <tbody>                
                 <tr>
                     <td>월정액 서비스<td>매월 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="1" onclick="checkLink(this);" id="check-1"><label class="form-check-label" for="check-1">10,000/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" onClick="checkLink(this)" value="10000"  id="check-1"><label class="form-check-label" for="check-1">10,000/월</label></div>
                     </td>
-                </tr>
+                </tr> 
                 <tr>
                     <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" value="2" onclick="checkLink(this);" id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" value="5000"  id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
                     </td>
                 </tr>
                 </tbody>
@@ -145,7 +213,7 @@ function pass2() {
                                 * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
                     <td style="padding: 0;">
                         <!-- <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div> -->
-                        <a id="a-pay" class="a-pay" href="#" onclick="requestPay();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
+                        <a id="a-pay" class="a-pay" href="#" onclick="iamport();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
                 </tr>
                 </tbody>
             </table>
