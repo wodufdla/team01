@@ -45,6 +45,7 @@ public interface UserService {
 	int userwithdrawal(UserVO uv);
 	//결제내역
 	OrderVO selectOrder(UserVO vo);
+	int userwithdrawal_phone(String boardIdx);
 	
 	
 }

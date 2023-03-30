@@ -6,30 +6,6 @@
 <html>
 <head>
 <style type="text/css">
-select, input{
-	float: right;
- 	-moz-appearance: none;
-  	-webkit-appearance: none;
- 	appearance: none;
- 	line-height: 1.5;
-
-	color: #444;
-	background-color: #fff;
-	
-	padding: 0.6em 1.4em 0.5em 0.8em;
-	margin: 0;
-	
-	border: 1px solid #aaa;
-	border-radius: 0.5em;
-	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-}
-select:focus {
-	border-color: #aaa;
-	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-	box-shadow: 0 0 0 3px -moz-mac-focusring;
-	color: #222;
-	outline: none;
-}
 .container {
 	height: auto;
 	min-height: 100%;
@@ -57,6 +33,7 @@ select:focus {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="resources/js/delUser.js"></script>
 <title> </title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
@@ -69,7 +46,7 @@ select:focus {
 	
 	<!-- counting -->
 	<div class="top"  >
-		<h4 >[ 고객관리 ]</h4>
+		<h4 >[ 고객관리 - 탈퇴 ]</h4>
 	</div>
 	<div class="row panel-row">
 	<div class="col">
@@ -119,54 +96,32 @@ select:focus {
 		<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">탈퇴요청 회원</h5>
-			<a href="withdrawalProcessing"><h1 class="overview-content">${reqWithdrawalCount }</h1></a>
+			<h1 class="overview-content">${reqWithdrawalCount }</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
 		</div>
 	</div>
 	<br>
-	<form action="customer" method="get">
-		<input type="submit" value="검색">	
-		<input type="hidden" name="page" value="1">
-		<input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
-		<input type="text" id="keyword" name="keyword">
-		<select name="category">
-			<option value="all">전체검색</option>
-			<option value="nickname">닉네임</option>
-			<option value="phone">핸드폰</option>
-			<option value="email">E-mail</option>
-		</select>
-	</form>
- 	<br>
-	<br>
-<!--	<select name="numsPerPage" id="numsPerPage" onchange="selectChange()">
-		<option value="">-- 선택 --</option>
-		<option value="10">10 개</option>
-		<option value="30">30 개</option>
-		<option value="50">50 개</option>
-		<option value="100">100 개</option>
-	</select> -->
 	
    	<table class="table table-striped">
    		<thead>
    			<tr>
    				<th>순번</th>
-   				<th>닉네임</th>
-   				<th>이메일</th>
    				<th>핸드폰번호</th>
-   				<th>탈퇴여부</th>
-   				<th>가입일자</th>
+   				<th>요청일자</th>
+   				<th>답변여부</th>
+   				<th>탈퇴처리</th>
    			</tr>
    		</thead>
    		<tbody>
-   			<c:forEach var="vo" items="${list }" varStatus="status">
+   				<c:forEach var="vo" items="${reqWithdrawal }" varStatus="status">
    				<tr>
+   					<input type="hidden" name="boardIdx" id="boardIdx" value="${vo.phone }">
    					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
-   					<td>${vo.nickname }</td>
-   					<td>${vo.email }</td>
    					<td>${vo.phone }</td>
-   					<td>${vo.withdrawal }</td>
-   					<td><fmt:formatDate value="${vo.joinDate }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
+   					<td>${vo.askDate}</td>
+					<td>${vo.replyYn }</td>
+					<td><button type="button" value="${vo.phone }" name="delbutton" id="${dto.phone }" onclick="delClick(this)">삭제</button></td>
    				</tr>
    			</c:forEach>
    		</tbody>
@@ -238,8 +193,6 @@ select:focus {
    				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
    			}
 		}
-   		
-   		
     </script>
 </body>
 </html>

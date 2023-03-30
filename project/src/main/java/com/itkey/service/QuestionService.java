@@ -51,5 +51,6 @@ public interface QuestionService {
 	
 	public int deleteAns(int askNo); 
 	
-	
+	/* 탈퇴요청 회원 */
+	public List<QuestionVO> getReqWithdrawal();
 }

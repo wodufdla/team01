@@ -1,5 +1,6 @@
 package com.itkey.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,15 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.OrderService;
+import com.itkey.service.QuestionService;
 import com.itkey.service.UserService;
 import com.itkey.util.MainInfo;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.QuestionVO;
 import com.itkey.vo.UserVO;
 
 @Controller
@@ -32,6 +37,9 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private QuestionService questionService;
+
 	
 	@GetMapping("/login")
 	public void loginGET() {
@@ -355,6 +363,7 @@ public class UserController {
 		int withdrawal = userService.getwithdrawalMember();
 		model.addAttribute("withdrawal", withdrawal);
 		
+		
 
 		//황선필 배너 클릭수, 배너통한 회원가입수
 		int bClick = userService.selectBannerClick();
@@ -364,10 +373,72 @@ public class UserController {
 		model.addAttribute("bClickCount", bClick);
 		model.addAttribute("bUserCount", bUserCount);
 		
+		// 1:1문의->탈퇴 요청 회원
+		List<QuestionVO> reqWithdrawal = questionService.getReqWithdrawal();
+		int  reqWithdrawalCount = reqWithdrawal.size();
+		model.addAttribute("reqWithdrawalCount", reqWithdrawalCount);
+		model.addAttribute("reqWithdrawal", reqWithdrawal);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
 		pageMaker.setTotalCount(userService.totalCounts(criteria));
+		pageMaker.setPageData();
+		model.addAttribute("pageMaker", pageMaker);
+	}
+	
+	@GetMapping("/withdrawalProcessing")
+	public void withdrawalProcessing(Model model, String keyword, String category, Integer page, Integer numsPerPage, HttpSession session) throws Exception {
+		log.info("withdrawalProcessing() 호출");
+		
+		MainInfo mInfo = new MainInfo();
+		String today = mInfo.curDate();
+		
+		PageCriteria criteria = new PageCriteria();
+/*		if (keyword != null) {
+			criteria.setKeyword(keyword);
+			criteria.setCategory(category);
+		}
+		if(page != null) {
+			criteria.setPage(page);
+		}
+		
+		if(numsPerPage != null) {
+			criteria.setNumsPerPage(numsPerPage);
+		}*/
+
+		// 전체 가입 회원 수 count
+		int mCount = userService.adminMemberCount();
+		model.addAttribute("mCount", mCount);
+		
+		// 오늘 가입 회원 수 count
+		int mTodayCount = userService.getTodayMemberCount(today);
+		model.addAttribute("mTodayCount", mTodayCount);
+		
+		// 서비스 가입 회원 수
+		int serviceStatusY = userService.getserviceStatusY();
+		model.addAttribute("serviceStatusY", serviceStatusY);
+		
+		// 탈퇴한 회원 수
+		int withdrawal = userService.getwithdrawalMember();
+		model.addAttribute("withdrawal", withdrawal);
+
+		//황선필 배너 클릭수, 배너통한 회원가입수
+		int bClick = userService.selectBannerClick();
+		//System.out.println("bclick:"+bClick);
+		int bUserCount = userService.selectBannerUserCount();
+		//System.out.println("bUserCount:"+bUserCount);
+		model.addAttribute("bClickCount", bClick);
+		model.addAttribute("bUserCount", bUserCount);
+		
+		// 1:1문의->탈퇴 요청 회원
+		List<QuestionVO> reqWithdrawal = questionService.getReqWithdrawal();
+		int  reqWithdrawalCount = reqWithdrawal.size();
+		model.addAttribute("reqWithdrawalCount", reqWithdrawalCount);
+		model.addAttribute("reqWithdrawal", reqWithdrawal);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(reqWithdrawalCount);
 		pageMaker.setPageData();
 		model.addAttribute("pageMaker", pageMaker);
 	}
@@ -427,7 +498,16 @@ public class UserController {
 	
 	
 	
-	
+	@RequestMapping(value="/adminbDel",  method=RequestMethod.POST)
+	public String adminbDel(@RequestParam(value = "boardIdx") String boardIdx, HttpServletRequest request) throws Exception {
+
+		userService.userwithdrawal_phone(boardIdx);
+		
+        HttpSession session = request.getSession();
+        session.invalidate();
+        
+		return "redirect:withdrawalProcessing";
+	}
 	
 	
 	

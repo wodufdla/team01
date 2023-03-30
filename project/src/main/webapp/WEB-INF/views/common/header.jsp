@@ -155,7 +155,7 @@ function joinchk(num){
                 <c:if test="${admin != null }"><!-- 관리자 환영합니다 스타일 수정 황선필-->
                     <a href="#" id="logout" class="nav-link" style="width: 10%; float: right;">로그아웃</a>
                     <a href="product" id="product_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">매출 관리</a>
-                    <a href="customer?page=1&numsPerPage=10" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                    
+                    <a href="customer" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>                    
                 	<a href="ask" class="nav-link" style="width: 10%; float: right;cursor : pointer">1:1 문의</a>
                 	<a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">관리자님 환영합니다!</a>
                 </c:if>

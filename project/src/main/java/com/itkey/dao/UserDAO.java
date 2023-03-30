@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.QuestionVO;
 import com.itkey.vo.UserVO;
 
 public interface UserDAO {
@@ -47,6 +48,6 @@ public interface UserDAO {
 	int userwithdrawal(UserVO uv);
 	//결제내역
 	OrderVO selectOrder(UserVO vo);
-	
-	
+	int userwithdrawal_phone(String boardIdx);
+
 }
