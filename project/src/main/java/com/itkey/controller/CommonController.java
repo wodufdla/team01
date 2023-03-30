@@ -6,13 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itkey.service.KakaoAPI;
 import com.itkey.vo.KakaoVO;
 
-@RequestMapping("/common")
 @Controller
 public class CommonController{
 
@@ -49,9 +49,15 @@ public class CommonController{
 		     session.setAttribute("kakaoId", userInfo.getKakaoId());
 		   }
             
-        return "common/kakao";
+        return "redirect:/kakao";
     }
 
+  @RequestMapping("/kakao")
+  public String kakao(Model model) {
+  	return "kakao";
+  }
+  
+  
 
 }
 

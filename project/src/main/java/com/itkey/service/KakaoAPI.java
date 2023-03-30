@@ -44,8 +44,8 @@ public class KakaoAPI {
 		            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		            StringBuilder sb = new StringBuilder();
 		            sb.append("grant_type=authorization_code");
-		            sb.append("&client_id=a906d930d312e89e38a73e86d73442e2");
-		            sb.append("&redirect_uri=http://localhost:8080/common/kakaoLogin");
+		            sb.append("&client_id=ce6bfb3119068337a8b67b7871d34cce");
+		            sb.append("&redirect_uri=http://localhost:8080/kakaoLogin");
 		            sb.append("&code=" + authorize_code);
 		            bw.write(sb.toString());
 		            bw.flush();
@@ -144,7 +144,7 @@ public class KakaoAPI {
 		            String email = kakao_account.getAsJsonObject().get("email").getAsString();
 		            String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
 		            String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
-		            String age_range = kakao_account.getAsJsonObject().get("age_range").getAsString();
+		            //String age_range = kakao_account.getAsJsonObject().get("age_range").getAsString();
 		            
 		            System.out.println("id: "+ id);
 		            System.out.println("nickname: "+nickname);
@@ -153,7 +153,7 @@ public class KakaoAPI {
 		            userInfo.setKakaoId(id);
 		            userInfo.setNickname(nickname);
 		            userInfo.setAccount_email(email);
-		            userInfo.setAge_range(age_range);
+		           // userInfo.setAge_range(age_range);
 		            userInfo.setGender(gender);
 		            userInfo.setBirthday(birthday);
 
