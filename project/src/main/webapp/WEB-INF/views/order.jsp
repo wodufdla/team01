@@ -28,13 +28,12 @@ $(document).ready(function(){
 	let merchantUid='merchant_' + new Date().getTime();
 	
 	iamport();
-})
+});
 
  
 
  	
 
-//  	function iamport(){
 // // 	var price = 100;
 // 	$("checkLink").on("click", function(){
 // 		$(this).val()
@@ -44,14 +43,18 @@ $(document).ready(function(){
 	function iamport(){
 
 
-		var order_cont = "2";
-		var id = "tkhyfy_test";
-		var phone = $('#phone').val();
-		var email					= "test@naver.com";
+		var order_cont = "2"; // 1. 단기결제 2. 정기결제
+		var id                        = $('#customerUid').val();
+		console.log("test");
+		console.log(id);
+		
+		var phone                  = $('#phone').val();
+		var email					= $("#Email").val();
 		var buyerName			= $("#nickname").val();
-		var customer_uid			= "c_2" + id;
 		d = new Date();
-		var merchant_uid = "order" + d.getTime();
+		var customer_uid			= "c_" + d.getTime();;
+		
+		var merchant_uid = "order_" + d.getTime();
 		
 		var itemPrice = 100; /*  가격 */
 		var itemTitle = "범죄알리미 인증";
@@ -72,7 +75,7 @@ $(document).ready(function(){
 			merchant_uid : merchant_uid,
 
 
-			: customer_uid,
+			customer_uid : customer_uid,
 			name : itemTitle,
 			amount : itemPrice,
 			buyer_email : email,
