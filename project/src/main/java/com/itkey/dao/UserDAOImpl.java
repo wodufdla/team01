@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.QuestionVO;
 import com.itkey.vo.UserVO;
 
 @Repository
@@ -168,6 +169,12 @@ public class UserDAOImpl implements UserDAO {
 		int result = sqlSession.update("userwithdrawal",uv);
 		return result;
 	}
+	@Override
+	public int userwithdrawal_phone(String boardIdx) {
+		int result = sqlSession.update("userwithdrawal_phone",boardIdx);
+		return result;
+	}
+
 	//결제내역
 	@Override
 	public OrderVO selectOrder(UserVO vo) {
@@ -175,8 +182,4 @@ public class UserDAOImpl implements UserDAO {
 		OrderVO ov = sqlSession.selectOne("selectOrder",vo);
 		return ov;
 	}
-	
-	
-
-	
 }

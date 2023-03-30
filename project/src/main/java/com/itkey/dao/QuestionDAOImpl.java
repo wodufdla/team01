@@ -149,10 +149,19 @@ public class QuestionDAOImpl implements QuestionDAO {
 	/* 답변 삭제하기 */
 	@Override
 	public int deleteAns(int askNo) {
-		log.info("* [DAO] Input  ◀ (Service) : ");
+		log.info("* [DAO] Input  ◀ (Service) : deleteAns");
 		int result = sqlSession.delete(ANS + ".deleteAns", askNo);
 		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
 
+	/* 탈퇴요청 회원 */
+	@Override
+	public List<QuestionVO> getReqWithdrawal() {
+		log.info("* [DAO] Input  ◀ (Service) : getReqWithdrawal");
+		List<QuestionVO> result = sqlSession.selectList(ASK + ".getReqWithdrawal");
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
+		return result;
+	}
+	
 }

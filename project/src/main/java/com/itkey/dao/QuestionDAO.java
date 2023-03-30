@@ -49,4 +49,7 @@ public interface QuestionDAO {
 	/* 답변 삭제하기 */
 	public int deleteAns(int askNo); 
 
+	
+	/* 탈퇴요청 회원 */
+	public List<QuestionVO> getReqWithdrawal();
 }

@@ -143,11 +143,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원탈퇴 -->
 	<update id="userwithdrawal" parameterType="User">
-	
 		update user_tbl
 		set withdrawal = 'Y'
 		where phone = #{phone}
-	
 	</update>
 	
 	<!-- 결제내역 -->
@@ -155,5 +153,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from order_tbl where phone = #{phone}
 	</select>
 	
-	
+		<!-- 회원탈퇴 -->
+	<update id="userwithdrawal_phone" parameterType="String">
+		update user_tbl
+		set withdrawal = 'Y'
+		where phone = #{boardIdx}
+	</update>
 </mapper>

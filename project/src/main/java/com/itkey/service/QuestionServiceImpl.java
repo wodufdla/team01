@@ -152,6 +152,15 @@ public class QuestionServiceImpl implements QuestionService {
 		return result;
 	}
 
+	/* 탈퇴요청 회원 */
+	@Override
+	public List<QuestionVO> getReqWithdrawal() {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());
+		List<QuestionVO> returnList = questionDAO.getReqWithdrawal();
+		log.info("* [SERVICE] Output ◀ (DAO) : " + returnList.toString());
+		return returnList;
+	}
+
 
 
 }

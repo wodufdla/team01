@@ -146,6 +146,12 @@ public class UserServiceImpl implements UserService {
 		int result = userDAO.userwithdrawal(uv);
 		return result;
 	}
+	@Override
+	public int userwithdrawal_phone(String boardIdx) {
+		int result = userDAO.userwithdrawal_phone(boardIdx);
+		return result;
+	}
+
 	//결제내역
 	@Override
 	public OrderVO selectOrder(UserVO vo) {
@@ -153,7 +159,5 @@ public class UserServiceImpl implements UserService {
 		OrderVO ov = userDAO.selectOrder(vo);
 		return ov;
 	}
-	
-	
 	
 }
