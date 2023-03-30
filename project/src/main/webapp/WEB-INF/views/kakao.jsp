@@ -10,6 +10,10 @@
 
 <button type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=ce6bfb3119068337a8b67b7871d34cce&redirect_uri=http://localhost:8080/kakaoLogin'">카카오 로그인</button>
 
+<p>카카오톡 닉네임:${nickname}</p>
+<p>카카오톡 토큰:${access_Token}</p>
+<p>카카오톡 아이디:${kakaoId}</p>
+
 
 </body>
 </html>
