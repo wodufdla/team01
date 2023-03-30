@@ -242,9 +242,9 @@ function askBtn(){
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${ask_Y}" var="askY">
+						<c:forEach items="${ask_Y}" var="askY" varStatus="status">
 								<tr>
-								    <td>${askY.rowNum}</td>
+								    <td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
 									<td>${askY.askTitle}</td>
 									<td>${askY.askCategory}</td>
 									<td>${askY.phone}</td>
