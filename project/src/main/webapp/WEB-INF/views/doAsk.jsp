@@ -147,6 +147,7 @@ body {
 							<option selected>환불</option>
 							<option>결제</option>
 							<option>상품</option>
+							<option>탈퇴</option>
 							<option>기타</option>
 					  </select>
 				</div>
