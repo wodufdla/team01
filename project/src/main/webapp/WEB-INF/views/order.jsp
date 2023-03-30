@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -27,33 +29,34 @@ $(document).ready(function(){
 	var buyerTel = "010-4108-8448";
 	let merchantUid='merchant_' + new Date().getTime();
 	
-	iamport();
+	//iamport();
 });
 
+// $("input[name=check-link]").click(function(){
+// 	alert("회ffff");
+// 	 var boardWriterIdx = $(this).attr('data-idx');
+//      alert("회ffff");
+//      alert(boardWriterIdx);
+     
+
+   if( $("check-link").is(":checked") == true ){
+	   log.info(checkVal);
+      var checkVal = $(this).val();
+      log.info(checkVal); 
+    }
  
-
- 	
-
-// // 	var price = 100;
-// 	$("checkLink").on("click", function(){
-// 		$(this).val()
-//   return;
-// });
 	
 	function iamport(){
 
 
 		var order_cont = "2"; // 1. 단기결제 2. 정기결제
 		var id                        = $('#customerUid').val();
-		console.log("test");
 		console.log(id);
-		
 		var phone                  = $('#phone').val();
 		var email					= $("#Email").val();
 		var buyerName			= $("#nickname").val();
 		d = new Date();
 		var customer_uid			= "c_" + d.getTime();;
-		
 		var merchant_uid = "order_" + d.getTime();
 		
 		var itemPrice = 100; /*  가격 */
@@ -180,7 +183,48 @@ function checkLink(element) {
 </head>
 <body>
 <jsp:include page="common/header.jsp" />
-<section id="join" class="section-default" style="background: #8C8C8C;">
+<!-- 서비스 가입 시 -->
+<c:if test="${not empty session_orderno }">
+<div class="container">   
+   <h2> 서비스 가입/이용 중입니다.</h2>   
+   <table class="table table-hover">
+      <colgroup>
+         <col width="40%">
+         <col width="60%">
+      </colgroup>
+      <tr>
+         <td>가입 번호</td>
+         <td>${phone}</td>
+      </tr>
+      <tr>
+         <td>서비스 종류</td>   
+         <td>
+         <c:if test="${session_ordercont==1}">
+            100원결제
+         </c:if>
+         <c:if test="${session_ordercont==2}">
+            일반정기결제
+         </c:if>
+         </td>
+      </tr>
+      <tr>
+         <td>결제 금액</td>
+         <td>${session_price} 원</td>
+      </tr>
+      <tr>
+         <td>결제 일자</td>
+         <td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_rqsttime}"/></td>
+      </tr>      
+      <tr>
+         <td>다음 결제일자</td>
+         <td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_nextorderdate}"/></td>
+      </tr>      
+   </table>   
+</div>   
+</c:if>
+<!-- 서비스 미가입 시 -->
+<c:if test="${empty session_orderno }">
+   <section id="join" class="section-default" style="background: #8C8C8C;">
         <p>범죄 알리미 가입하기</p>
         <hr>
         <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
@@ -194,7 +238,7 @@ function checkLink(element) {
                 </tr> 
                 <tr>
                     <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
-                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" value="5000"  id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" dataid="5000" value="5000"  id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
                     </td>
                 </tr>
                 </tbody>
@@ -215,13 +259,57 @@ function checkLink(element) {
                                 2. 한달 의무 사용 이후 자유롭게 해지가능합니다.<br><br>
                                 * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
                     <td style="padding: 0;">
-                        <!-- <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div> -->
+                        <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
                         <a id="a-pay" class="a-pay" href="#" onclick="iamport();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </section>
+</c:if>
+
+<!-- <section id="join" class="section-default" style="background: #8C8C8C;">
+        <p>범죄 알리미 가입하기</p>
+        <hr>
+        <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
+        <div class="table-responsive table-default" style="max-width: 1200px;">
+            <table class="table">
+                <tbody>                
+                <tr>
+                    <td>월정액 서비스<td>매월 범죄 알리미의 컨텐츠 이용<td>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" onClick="checkLink(this)" value="10000"  id="check-1"><label class="form-check-label" for="check-1">10,000/월</label></div>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" dataid="5000" value="5000"  id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive table-default" style="max-width: 1200px;background-color: rgba(0,0,0,0);padding: 0;">
+            <table class="table">
+                <tbody>
+                <tr style="border-bottom: solid 0px rgba(0,0,0,0);">
+                    <td style="color: #fff;padding: 0;">
+                            <span>
+                                [홈페이지에서 가입하는 경우]<br>
+                                1. 서비스 가입을 하셔야 이용이 가능하며, 원할 시 언제든 중도 해지 가능합니다.<br>
+                                2. 중도 해지 시 별도로 환불처리는 받을수없습니다
+                                .<br><br>
+                                [홈페이지가 아닌 타 채널을 통해 보상을 받으시고 7일 무료체험을 가입하신 경우]<br>
+                                1. 가입 즉시 포인트가 발행되며 포인트 결제 시 한달 의무약정 약정 가입이 진행됩니다.<br>
+                                2. 한달 의무 사용 이후 자유롭게 해지가능합니다.<br><br>
+                                * 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
+                    <td style="padding: 0;">
+                        <div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
+                        <a id="a-pay" class="a-pay" href="#" onclick="iamport();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section> -->
 <jsp:include page="common/footer.jsp" /> 
 </body>
 </html>    
