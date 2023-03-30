@@ -56,8 +56,7 @@
     <span style="margin-top: 10px;border-top: solid 1px #1a374f;width: 100%;display: block;text-align: center;padding: 30px 10px;font-size: 12px;font-weight: bold;">가입하신 핸드폰과 이메일로 찾아주시기 바랍니다.</span>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/script.js"></script>
+    
 </body>
 <script>
 	var regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
