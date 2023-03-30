@@ -18,11 +18,12 @@
 		$(function() {
 			$("#withdrawal").click(function() {
 				var phone = "${phone}"
-				var wc = confirm("정말 회원탈퇴 하시겠습니까?");
+				alert("1:1 문의 게시판을 이용해주세요.");
+/* 				var wc = confirm("정말 회원탈퇴 하시겠습니까?");
 				if(wc==1){
 					alert("회원탈퇴 되었습니다.");
 					location.href="withdrawal?phone="+phone;
-				}
+				} */
 			});
 			//수정버튼 황선필
 			$("#modify").click(function() {
