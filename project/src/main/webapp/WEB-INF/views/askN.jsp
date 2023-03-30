@@ -88,8 +88,7 @@ a {
 }
 
 .table tr th, .table tr td:not(:last-child) {
-	width: 100px;
-	max-width: 100px;
+	
 	overflow: hidden;
 }
 .contentModal {
@@ -241,10 +240,10 @@ function askBtn(){
 					</thead>
 					<tbody>
 					   <form action="answer" method="get" id="answer">
-						<c:forEach items="${ask_N}" var="askN">
+						<c:forEach items="${ask_N}" var="askN" varStatus="status">
 							<tr>
 								<input type="hidden" name="askNo" value="${askN.askNo}">
-									<td>${askN.rowNum}</td>
+									<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
 									<td>${askN.askTitle}</td>
 									<td>${askN.askCategory}</td>
 									<td>${askN.phone}</td>

@@ -126,7 +126,6 @@ body {
 }
 </style>
 </head>
-
 <body>
 
 <jsp:include page="common/header.jsp" />
@@ -146,8 +145,8 @@ body {
 						<select size="1" class="askCategory" name="askCategory">
 							<option selected>환불</option>
 							<option>결제</option>
-							<option>상품</option>
 							<option>기타</option>
+							<option>탈퇴</option>
 					  </select>
 				</div>
 				<div class="contentWrap">
@@ -164,6 +163,7 @@ body {
 			</div>
 		</div>
 	</form>
+	
 	
 	<script>
 	/* 등록버튼 클릭시 이벤트 */

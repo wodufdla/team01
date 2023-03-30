@@ -14,7 +14,6 @@
 * {
 	font-family: SUIT-Regular;
 }
-
 a {
 	text-decoration: none;
 }
@@ -91,6 +90,7 @@ a {
 	
 	overflow: hidden;
 }
+/* 조정 하자   */
 .contentModal {
 	position: absolute;
 	width: 319px;
@@ -104,6 +104,7 @@ a {
 	border-radius: 18px;
 	overflow: auto;
 	display: none;
+	
 }
 
 .ansView {

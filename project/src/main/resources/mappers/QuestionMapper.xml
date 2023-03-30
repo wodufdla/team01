@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from
 			question_tbl a left outer join answer_tbl b on a.ask_No = b.ask_No
 		order by
-			a.ask_No
+			a.ask_No desc
        ) m , 
        (select @rownum:=0) temp 
 	 limit #{start}, #{end}
@@ -138,7 +138,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where 
 			a.reply_yn = 'Y'
 		order by
-			a.ask_No
+			a.ask_No desc
 	) m , 
 	    (select @rownum:=0) temp 
 		limit #{start}, #{end}
@@ -174,7 +174,7 @@ select @rownum:=@rownum+1 row_num, m.*
 		where 
 			reply_yn = 'N'
 		order by
-			 ask_No
+			 ask_No desc
 	) m , 
 	    (select @rownum:=0) temp 
 		limit #{start}, #{end}

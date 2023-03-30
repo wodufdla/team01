@@ -88,8 +88,7 @@ a {
 }
 
 .table tr th, .table tr td:not(:last-child) {
-	width: 100px;
-	max-width: 100px;
+
 	overflow: hidden;
 }
 .contentModal {
@@ -114,7 +113,7 @@ a {
 .ansView:hover .contentModal {
 	display: block;
 }
-
+ 
 #replyend {
 	position: relative;
 	font-size: 16px;
@@ -176,6 +175,8 @@ function askYBtn(){
 function askBtn(){
 	location.href = "/ask";	
 }
+
+
 </script>
 </head>
 <body>
@@ -239,13 +240,15 @@ function askBtn(){
 							<th>핸드폰</th>
 							<th>작성일</th>
 							<th>결과</th>
+							
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${ask_Y}" var="askY">
+						<c:forEach items="${ask_Y}" var="askY" varStatus="status">
 								<tr>
-								    <td>${askY.rowNum}</td>
-									<td>${askY.askTitle}</td>
+								    <td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" />
+								    	<input type="hidden" name="askNo" id="ansAskNO" value="${askY.askNo}"></td>
+									<td>${askY.askTitle} </td>
 									<td>${askY.askCategory}</td>
 									<td>${askY.phone}</td>
 									<td>${askY.askDate}</td>
@@ -257,6 +260,7 @@ function askBtn(){
 										<p>답변내용:${askY.ansContent}</p>
 									 </div>
 									</td>
+									
 								</tr>
 						</c:forEach>
 					    <c:if test="${empty ask_Y}">
@@ -311,14 +315,23 @@ function askBtn(){
 
 	<jsp:include page="common/footer.jsp" />
 		<script>
-		$(".ansView").click(function() {
+		/* 유니크한 값 설정  
+		$("#ansViewT").click(function() {
+			var askNo = $("#ansAskNO").val();
 			var option = "width=700, height=20";
 			var m_no = $(this).children().val();
-			var url = "/ask/askNo=";
+			var url = "/answer/askNo=";
 			url += askNo;
 			console.log("url: " + url);
-			window.open(url, "popup", option);
-		});
+			 window.open(url, "popup", option);		});
+		*/
+			 
+			 /* 화면 생성 화면 post */
+			/* $(".contentModal").display */
+			
+			 
+
+
 	</script>
  <script type="text/javascript">
    		var admin = '<%=(String)session.getAttribute("admin")%>';
