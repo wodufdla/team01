@@ -65,7 +65,7 @@ public class QuestionController {
 		return "question";
 	}
 
-	// 문의하기 글쓰기 페이지 이동
+	// 문의하기 글쓰기 pag 이동 
 	@RequestMapping(value = "/doAskView", method = RequestMethod.GET)
 	public ModelAndView pageDoAsk(ModelAndView mv, HttpSession session) {
 		log.info("doAsk Page_GET() 호출");
@@ -100,7 +100,7 @@ public class QuestionController {
 		}
 	}
 
-	// 답변하기 화면
+	// 답변하기 pag 이동 
 	@GetMapping("/answer/{askNo}")
 	public ModelAndView selectAsk2(ModelAndView mv, HttpSession session, RedirectAttributes rttr,
 			@PathVariable("askNo") int askNo
@@ -118,7 +118,7 @@ public class QuestionController {
 		return mv;
 	}
 
-	// 답변수정화면
+	// 답변수정 pag 이동 
 	@GetMapping("/ansUpdateView/{askNo}")
 	public ModelAndView ansUpdateSelect(ModelAndView mv, HttpSession session, RedirectAttributes rttr,
 			@PathVariable("askNo") int askNo) {
@@ -130,7 +130,7 @@ public class QuestionController {
 		return mv;
 	}
 
-	// 답변 하기
+	// 답변 하기.do
 	@ResponseBody
 	@RequestMapping(value = "/answer", produces = "text/plain; charset=UTF-8")
 	public String insertAns(@RequestParam Map<String, Object> reqMap) {
@@ -161,7 +161,7 @@ public class QuestionController {
 
 	}
 
-	// 답변 수정
+	// 답변 수정.do
 	@ResponseBody
 	@RequestMapping(value = "/ansUpdate", produces = "text/plain; charset=UTF-8")
 	public String ansUpdate(@RequestParam Map<String, Object> reqMap) {
@@ -182,8 +182,10 @@ public class QuestionController {
 		}
 
 	}
+	
+		
 
-	// 문의하기 삭제 하기
+	// 문의하기 삭제 하기.do
 	@PostMapping("/deleteAsk")
 	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askNo, RedirectAttributes rttr) {
 
@@ -194,7 +196,7 @@ public class QuestionController {
 		return mv;
 	}
 
-	// 관리자 _문의하기 전체
+	// 관리자 _문의하기 전체 목록
 	@RequestMapping(value = "/ask", method = RequestMethod.GET)
 	public ModelAndView selectAsk(ModelAndView mv, HttpSession session, RedirectAttributes rttr, String keyword,
 			String category, Integer page, Integer numsPerPage
@@ -240,7 +242,7 @@ public class QuestionController {
 
 		return mv;
 	}
-
+	// 관리자 _문의하기 AskY 목록(응답완료)
 	@RequestMapping(value = "/askY", method = RequestMethod.GET)
 	public ModelAndView selectAskY(ModelAndView mv, HttpSession session, RedirectAttributes rttr, String keyword,
 			String category, Integer page, Integer numsPerPage

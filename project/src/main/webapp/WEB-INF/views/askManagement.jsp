@@ -188,9 +188,11 @@ function askYBtn(){
 
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
+	
 	<div class="container">
 		<div id="main_body">
 			<div class="tableWrap">
@@ -231,6 +233,33 @@ function askYBtn(){
 			    	<button  class="but-titletit" onclick="askNBtn()" >관리자_문의미응답</button>
 				    <button  class="but-titletit" onclick="askYBtn()" >관리자 _문의답변완료</button>
 			    </div>
+			    
+			    <canvas id="bar-chart-horizontal" width="600" height="250"></canvas>
+	
+	<script type="text/javascript">
+	new Chart(document.getElementById("bar-chart-horizontal"), {
+	    type: 'horizontalBar',
+	    data: {
+	      labels: ["총 문의글 수", "오늘 문의글 수", "미답변 문의글 수","답변완료 문의글 수",""],
+	      datasets: [
+	        {
+	          label: "Population (millions)",
+	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f" ,"#e8c3b9","#c45850"],
+	          data: [${askTotalCount},${askTodayCount},${askNTotalCount},${askYTotalCount},'0']
+	        }
+	      ]
+	    },
+	    options: {
+	      legend: { display: false },
+	      title: {
+	        display: true,
+	        text: '문의 관리'
+	      }
+	    }
+	});
+	
+</script>
+			    
 				<form action="ask" method="get">
 					<input type="hidden" name="page" value="1"> 
 					<input type="hidden" name="numsPerPage" value="${pageMaker.criteria.numsPerPage}">
@@ -268,8 +297,7 @@ function askYBtn(){
 								    
 								    </c:if>
 								    <c:if test="${ask.replyYn eq 'Y'}">
-								    <td class="ansView" style="width: 110px;position: relative;">답변내용확인
-								    
+								    <td class="ansView"  style="width:110px;position: relative;">답변내용확인
 								    <div class="contentModal">
 										<p>제목:${ask.askTitle}</p>
 										<p>내용:${ask.askContent}</p>
@@ -332,19 +360,17 @@ function askYBtn(){
 			</c:otherwise>
 		</c:choose>
 	</div>
-
-
-
 	<jsp:include page="common/footer.jsp" />
 		<script>
-		$(".ansView").click(function() {
+		 /* $(".ansView").click(function() {
+		     var askNo = $('input[name=askNo]').val(); 
 			var option = "width=700, height=20";
 			var m_no = $(this).children().val();
-			var url = "/ask/askNo=";
-			url += askNo;
+			var url = "/ask/askNo="+ askNo ;
+		      url += askNo
 			console.log("url: " + url);
 			window.open(url, "popup", option);
-		});
+		});  */
 	</script>
  <script type="text/javascript">
    		var admin = '<%=(String)session.getAttribute("admin")%>';
@@ -362,7 +388,7 @@ function askYBtn(){
    			paging.className = 'page-item active';
    		} else {
    			for (var i = 1; i < 6; i++) {
-   				paging.classList.remove('active');
+   				//paging.classList.remove('active');
    			}
    		}
    		const keyword = urlParams.get('keyword');
