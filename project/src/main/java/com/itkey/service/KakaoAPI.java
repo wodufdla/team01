@@ -21,7 +21,7 @@ public class KakaoAPI {
 
 	//컨트롤러에서 사용할 메서드 만들기 
 		//화면에서 파라미터로 넘겨준 code값을 받아오고 POST로 요청을 보내서 토큰을 발급받기 
-		 public String getAccessToken (String authorize_code) {
+		 public String getAccessToken (String authorize_code,String apikey1) {
 		     System.out.println("----------------------------토큰발급---------------------------");
 			 String access_Token = "";
 		     String refresh_Token = "";
@@ -44,7 +44,7 @@ public class KakaoAPI {
 		            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		            StringBuilder sb = new StringBuilder();
 		            sb.append("grant_type=authorization_code");
-		            sb.append("&client_id=ce6bfb3119068337a8b67b7871d34cce");
+		            sb.append("&client_id="+apikey1);
 		            sb.append("&redirect_uri=http://localhost:8080/kakaoLogin");
 		            sb.append("&code=" + authorize_code);
 		            bw.write(sb.toString());

@@ -47,5 +47,7 @@ public interface UserService {
 	OrderVO selectOrder(UserVO vo);
 	int userwithdrawal_phone(String boardIdx);
 	
+	int regAll2(UserVO uv);
+	
 	
 }

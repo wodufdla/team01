@@ -159,4 +159,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set withdrawal = 'Y'
 		where phone = #{boardIdx}
 	</update>
+	
+	
+		<!-- 회원 등록 카카오통해서 -->
+	<insert id="regAll2" parameterType="User">
+
+		insert into user_tbl (phone, email, nickname, banner)
+		values (#{phone}, #{email}, #{nickname}, #{banner})
+		
+	</insert>
+	
+	
+	
+	
+	
+	
+	
 </mapper>
