@@ -82,6 +82,15 @@
 								     			 }else{
 								     				 alert("사용가능한 번호입니다.");
 								     				 var regsubmit=confirm("작성한 내용으로 가입이 진행됩니다. 계속하시겠습니까? ");
+								     				 
+								     				 /*
+								     				 // 100원 결제창 띄우고, 결제 성공시 회원 가입하도록 처리
+								     				 if(regsubmit==true){
+								     					window.close();												     					
+								     					window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
+								     				 }
+								     				 */
+
 								     				 if(regsubmit==true){
 								     					 //실질 회원가입 기능
 														 $.ajax({
@@ -96,9 +105,10 @@
 												     		 },
 												     		 success:function(data){
 												     			 if(data==1){
-												     				 alert("회원등록완료");
-												     					opener.location.href="/order";
-												     					window.close();
+												     				alert("회원등록완료");
+												     					window.close();												     					
+												     					window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
+												     					//opener.location.href="/orderEvent";
 												     			 }else{
 												     					 alert("회원else");
 												     				 }
@@ -124,14 +134,10 @@
 						}
 			})
 			//등록버튼
+
 			
 		})
 		//제이쿼리
-	
-		
-	
-//}
-		
 	</script>
     
 </head>
