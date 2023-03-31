@@ -24,20 +24,9 @@
 <script>
 
 $(document).ready(function(){
-	var buyerEmail = "구매자 이메일";
-	var buyerName = "이재열";   //재결제 요청에서 사용
-	var buyerTel = "010-4108-8448";
-	let merchantUid='merchant_' + new Date().getTime();
-	
 	//iamport();
 });
-
-// $("input[name=check-link]").click(function(){
-// 	alert("회ffff");
-// 	 var boardWriterIdx = $(this).attr('data-idx');
-//      alert("회ffff");
-//      alert(boardWriterIdx);
-     
+  
 
    if( $("check-link").is(":checked") == true ){
 	   log.info(checkVal);
@@ -47,23 +36,30 @@ $(document).ready(function(){
  
 	
 	function iamport(){
-
-
+		  const query = 'input[name="check-link"]:checked';
+		  const selectedEls = 
+		      document.querySelectorAll(query);
+		  
+		  // 선택된 목록에서 value 찾기
+		  let result = '';
+		  selectedEls.forEach((el) => {
+		    result += el.value + ' ';
+		  });
+		  
+		  // 출력
+		console.log("result : " + result);
+		  
+		var itemPrice = result; // 체크박스의 value 가져와서 넣어주기
+		
 		var order_cont = "2"; // 1. 단기결제 2. 정기결제
-		var id                        = $('#customerUid').val();
-		console.log(id);
-		var phone                  = $('#phone').val();
-		var email					= $("#Email").val();
-		var buyerName			= $("#nickname").val();
-		d = new Date();
-		var customer_uid			= "c_" + d.getTime();;
-		var merchant_uid = "order_" + d.getTime();
-		
-		var itemPrice = 100; /*  가격 */
-		var itemTitle = "범죄알리미 인증";
-		
-		d = new Date();
-		var merchant_uid = "order" + d.getTime();
+		var id =  '<c:out value="${session_nickname}"/>';
+		var phone = '<c:out value="${phone}"/>';
+		var email = '<c:out value="${session_email}"/>';
+		var buyerName = '<c:out value="${session_nickname}"/>';
+		var customer_uid = "c_" + new Date().getTime();
+		var merchant_uid = "order_" + new Date().getTime();
+		var itemTitle = "Test";
+		itemPrice = itemPrice; /*  가격 */
 		
 		dataP: JSON.stringify({
 			amount : itemPrice,
@@ -75,10 +71,8 @@ $(document).ready(function(){
 		IMP.request_pay({
 			pg : 'danal_tpay.9810030929',
 			pay_method : 'card',
-			merchant_uid : merchant_uid,
-
-
 			customer_uid : customer_uid,
+			merchant_uid : merchant_uid,
 			name : itemTitle,
 			amount : itemPrice,
 			buyer_email : email,
@@ -230,7 +224,7 @@ function checkLink(element) {
         <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
         <div class="table-responsive table-default" style="max-width: 1200px;">
             <table class="table">
-                <tbody>                
+                <tbody>            
                 <tr>
                     <td>월정액 서비스<td>매월 범죄 알리미의 컨텐츠 이용<td>
                         <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link" onClick="checkLink(this)" value="10000"  id="check-1"><label class="form-check-label" for="check-1">10,000/월</label></div>
@@ -239,6 +233,11 @@ function checkLink(element) {
                 <tr>
                     <td>단품결제<td>14일 동안 범죄 알리미의 컨텐츠 이용<td>
                         <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" dataid="5000" value="5000"  id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>단품결제<td>7일 범죄 알리미의 컨텐츠 이용 체험<td>
+                        <div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"  onclick="checkLink(this)" dataid="100" value="100"  id="check-3"><label class="form-check-label" for="check-3">100/월</label></div>
                     </td>
                 </tr>
                 </tbody>
