@@ -182,4 +182,11 @@ public class UserDAOImpl implements UserDAO {
 		OrderVO ov = sqlSession.selectOne("selectOrder",vo);
 		return ov;
 	}
+	//카카오회원가입
+	@Override
+	public int regAll2(UserVO uv) {
+		// TODO Auto-generated method stub
+		int regnum = sqlSession.insert("regAll2", uv);
+		return regnum;
+	}
 }

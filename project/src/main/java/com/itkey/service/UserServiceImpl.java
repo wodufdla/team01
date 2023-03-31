@@ -159,5 +159,12 @@ public class UserServiceImpl implements UserService {
 		OrderVO ov = userDAO.selectOrder(vo);
 		return ov;
 	}
+	//카카오 회원가입
+	@Override
+	public int regAll2(UserVO uv) {
+		// TODO Auto-generated method stub
+		int regnum = userDAO.regAll2(uv);
+		return regnum;
+	}
 	
 }
