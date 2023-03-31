@@ -100,6 +100,32 @@ public class QuestionController {
 		}
 	}
 
+	//회원탈퇴 부분 진행 
+		@ResponseBody
+		@RequestMapping(value="/adminbDel", method= {RequestMethod.GET,RequestMethod.POST})
+		public String adminbDel(@RequestParam Map<String, Object> reqMap, HttpServletRequest request
+				) throws Exception {
+			log.info("adminbDel  data : "+ reqMap);
+			
+		     
+
+			//userService.userwithdrawal_phone(boardIdx);
+			
+	        HttpSession session = request.getSession();
+	        session.invalidate();
+	        
+	        
+	        int result = 1;
+			
+
+			if (result == 1) {
+				return "success";
+			} else {
+				return "FAIL";
+			}
+		
+		}
+	
 	// 답변하기 pag 이동 
 	@GetMapping("/answer/{askNo}")
 	public ModelAndView selectAsk2(ModelAndView mv, HttpSession session, RedirectAttributes rttr,
@@ -129,6 +155,29 @@ public class QuestionController {
 		mv.setViewName("ansUpdate");
 		return mv;
 	}
+	
+	
+	//  Delete.do
+		@ResponseBody
+		@RequestMapping(value = "/Delete", produces = "text/plain; charset=UTF-8")
+		public String Delete(@RequestParam Map<String, Object> reqMap) {
+
+			log.info("##########################");
+			log.info("@RequestParam DATA: " + reqMap);
+
+
+			//Integer askNo = Integer.parseInt(reqMap.get("askNo").toString());
+
+			int result = 1;
+		
+
+			if (result == 1) {
+				return "success";
+			} else {
+				return "FAIL";
+			}
+
+		}
 
 	// 답변 하기.do
 	@ResponseBody
@@ -190,9 +239,7 @@ public class QuestionController {
 	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askNo, RedirectAttributes rttr) {
 
 		mv.addObject("deleteAsk", questionService.deleteAsk(askNo));
-		mv.addObject("deleteAsk", questionService.deleteAns(askNo));
-
-		mv.setViewName("redirect:/question");
+		mv.addObject("deleteAsk", questionService.deleteAns(askNo)); // 삭제 부분 
 		return mv;
 	}
 

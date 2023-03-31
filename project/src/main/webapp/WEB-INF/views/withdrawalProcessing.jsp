@@ -102,6 +102,7 @@
 		</div>
 	</div>
 	<br>
+
 	
    	<table class="table table-striped">
    		<thead>
@@ -121,11 +122,47 @@
    					<td>${vo.phone }</td>
    					<td>${vo.askDate}</td>
 					<td>${vo.replyYn }</td>
-					<td><button type="button" value="${vo.phone }" name="delbutton" id="${dto.phone }" onclick="delClick(this)">삭제</button></td>
+					<td><button type="button" name="deletBtn" data-idx="${vo.phone}" >삭제</button></td>
    				</tr>
    			</c:forEach>
    		</tbody>
    	</table>
+  <script type="text/javascript">
+   //회원탈퇴 버튼 클릭시 
+     $("button[name=deletBtn]").on("click",function(e){
+    	 var boardIdx = $(this).attr('data-idx');
+    	
+    	 alert("회원을 탈퇴처리");
+    	 alert(boardIdx);
+    	//boardWriterIdx 가지고 가기 
+	    deleteWrite(boardIdx);
+    	 
+    	 });
+
+    //회원 탈퇴처리 이벤트(값 가지고) 
+    function deleteWrite(boardIdx){
+    
+    	$.ajax({
+    		type : "get",
+    		url : "adminbDel",
+    		data : {
+            	boardIdx: boardIdx
+            },
+    		
+    		success : function(data) {
+    			if (data == "success") {
+    				alert("회원탈퇴 완료되었습니다.");
+    				location.reload();
+    			}
+    		},
+    		error : function(data) {
+    			alert("회원정보 탈되 실패 하였습니다.");
+    			console.log(data);
+    		}
+    	});
+    }
+     
+     </script>
    	<br>
    	<c:choose>
 	   	<c:when test="${pageMaker.criteria.keyword eq null}">
@@ -165,6 +202,11 @@
 	</c:choose>	
 	</div>
     <jsp:include page="common/footer.jsp" />
+    
+     
+     
+     
+     
     <script type="text/javascript">
    		var admin = '<%=(String)session.getAttribute("admin")%>';
    		if (admin == 'null') {
@@ -194,5 +236,7 @@
    			}
 		}
     </script>
+    
+   
 </body>
 </html>
