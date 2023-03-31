@@ -152,7 +152,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return result;
 	}
 
-	/* 탈퇴요청 회원 */
+	/* 탈퇴요청 회원 리스트 */
 	@Override
 	public List<QuestionVO> getReqWithdrawal() {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + toString());

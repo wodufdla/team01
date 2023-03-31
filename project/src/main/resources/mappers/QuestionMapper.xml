@@ -230,9 +230,19 @@ select @rownum:=@rownum+1 row_num, m.*
 
 	<!-- 탈퇴요청 회원 리스트 -->
 	<select id="getReqWithdrawal" resultType="Question">
-		select
-			ask_no, phone, ask_title, ask_category, ask_content, ask_date, reply_yn
-		from question_tbl where ask_category = "탈퇴"
+		 select
+			a.ask_No,
+			a.phone,
+			a.ask_title,
+			a.ask_content,
+			a.reply_yn,
+			a.ask_category,
+			date_format(a.ask_date, '%Y-%m-%d %H:%i:%S') as ask_date,
+			b.withdrawal
+		from
+			question_tbl a  join user_tbl b on a.phone = b.phone
+		where 
+			ask_category = "탈퇴";
 	</select>
 	
 </mapper>
