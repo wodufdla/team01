@@ -90,17 +90,17 @@ function withdrawal() {
 
 <nav class="navbar navbar-light navbar-expand-md">
 
-	  <!-- 배너통해서 왔는지 유무 황선필 -->
-	 <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
+	<!-- 배너통해서 왔는지 유무 황선필 -->
+	<input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
    	<div class="container-fluid">   		
-   		<a class="navbar-brand" href="crime">
-   			<img src="/resources/img/logo.png" style="height: 30px;">
-   		</a>
-		
-		
+   		<a class="navbar-brand" href="crime"><img src="/resources/img/logo.png" style="height: 30px;"></a>
+   		
+        <!-- 
         <a class="nav-link-command" href="javascript:onQna();" style="border: solid 1px #192a5e;color: #192a5e;">문의</a>
         <a class="nav-link-command" href="javascript:onResign();" style="border: solid 1px #bc401e;color: #bc401e;">해지</a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
+         -->
+        
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
             	<!-- 이해리 메뉴 수정 -->
