@@ -82,21 +82,25 @@ function joinchk(num){
     }
 }
 
+function withdrawal() {
+	alert("1:1 문의 게시판을 이용해주세요.");
+}
+
 </script>
 
 <nav class="navbar navbar-light navbar-expand-md">
 
-	  <!-- 배너통해서 왔는지 유무 황선필 -->
-	 <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
+	<!-- 배너통해서 왔는지 유무 황선필 -->
+	<input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="2">
    	<div class="container-fluid">   		
-   		<a class="navbar-brand" href="crime">
-   			<img src="/resources/img/logo.png" style="height: 30px;">
-   		</a>
-		
-		
+   		<a class="navbar-brand" href="crime"><img src="/resources/img/logo.png" style="height: 30px;"></a>
+   		
+        <!-- 
         <a class="nav-link-command" href="javascript:onQna();" style="border: solid 1px #192a5e;color: #192a5e;">문의</a>
         <a class="nav-link-command" href="javascript:onResign();" style="border: solid 1px #bc401e;color: #bc401e;">해지</a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol"><span class="visually-hidden"></span><span class="navbar-toggler-icon"></span></button>
+         -->
+        
         <div class="collapse navbar-collapse" id="navcol">
             <ul class="navbar-nav" style="width: 100%;">
             	<!-- 이해리 메뉴 수정 -->
@@ -104,8 +108,8 @@ function joinchk(num){
                     <div class="dropdown">
                       <span class="dropbtn">서비스 소개</span>
                       <div class="dropdown-content">
-                          <a class="dropdown-item" href="/rtPublicStatus">실시간 공개현황</a>
-                        <!-- <a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a> -->
+                      	<a class="dropdown-item" href="/rtPublicStatus">실시간 공개현황</a>
+                        <a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
                         <a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
                         <a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
                       </div>
@@ -117,7 +121,7 @@ function joinchk(num){
                     <li class="nav-item"><a class="nav-link" href="order">서비스 가입</a></li>
                     <li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="question">1:1 문의</a></li>
-                    <li class="nav-item"><a class="nav-link" href="javascript:onResign();">서비스 해지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="withdrawal();">서비스 해지</a></li>
                 </c:if>
                 <c:if test="${phone==null && admin==null}">
                     <li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>

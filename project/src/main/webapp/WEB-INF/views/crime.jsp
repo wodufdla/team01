@@ -18,12 +18,11 @@
 #intro {
 	height: auto;
 	min-height: 100%;
-	padding-bottom: 180px;
 }
 #introimg {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
 <body>
@@ -31,7 +30,7 @@
    <jsp:include page="common/header.jsp" />
    
    <div id="intro" style="background: #b6b6b6;">
-   <img id="introimg" src="/resources/img/intro.png" style="height: 700px; display: block;">
+   <img id="introimg" src="/resources/img/intro.png" style="height: 100%; width: 100%; display: block;">
    </div>
     
     <jsp:include page="common/footer.jsp" />
