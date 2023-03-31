@@ -214,7 +214,7 @@ margin: 3px;
 		<td>${session_orderno}</td>
 	</tr>
 	<tr>
-		<td>폰번호</td>
+		<td>카카오톡 아이디 값</td>
 		<td>${phone}</td>
 	</tr>
 	<tr>
