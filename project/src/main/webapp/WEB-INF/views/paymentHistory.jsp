@@ -198,10 +198,19 @@ margin: 3px;
 </head>
 
 <body>
-	<jsp:include page="common/header.jsp" />
-	
-	
-	
+<jsp:include page="common/header.jsp" />
+<c:if test="${empty session_orderno}">
+<div class="container">	
+	<h2> > 결제내역</h2>
+	결제내역이 없습니다.<br><br><br><br><br>
+	<div style="text-align:center;">
+	<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px; cursor: pointer;">
+	</div>
+</div>
+</c:if>
+
+
+<c:if test="${not empty session_orderno}">
 <div class="container">	
 	<h2> > 결제내역</h2>	
 <table class="table table-hover">
@@ -262,9 +271,11 @@ margin: 3px;
 </table>	
 </div>		
 	<div style="text-align:center;">
-		<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px; cursor: pointer;">
-	</body>
-    <jsp:include page="common/footer.jsp" />
+	<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"style="width: 20%;margin: 0px auto 50px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px; cursor: pointer;">
+	</div>
+</c:if>
+
+<jsp:include page="common/footer.jsp" />
 
 </body>
 </html>

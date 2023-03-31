@@ -6,9 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <title>실시간 공개현황</title>
 <style type="text/css">
 .contain {
@@ -51,7 +53,6 @@ th:first-child, td:first-child {
 	<span>통계는 실제 거주지 주소 공개자 수입니다.</span>
 	</p>
 	</div>
-	
 	<div>
 		<table summary="특별시＊광역시/도,성범죄자 수 순서로 성범죄자 통계를를 나타낸 표 입니다">
 			<colgroup>
