@@ -57,7 +57,8 @@ $(document).ready(function(){
 //서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 로그인 창 뜸
 function registeralarm() {
     alert("로그인 후 이용 가능합니다!");
-    window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+    window.open('kakao','kakao','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+    
 }
 //mypage
 function mypage() {
@@ -134,7 +135,7 @@ function joinchk(num){
                 <!-- 로그인 상태인지 아닌지 상태 추가 황선필 -->
                 <c:if test="${phone==null && admin == null}">
                     <a id="login" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">로그인</a>
-                    <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
+                    <a id="register" class="nav-link" style="width: 10%; float: right; cursor : pointer;" onclick="window.open('kakao','kakao','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
                 </c:if>
                 
                 <c:if test="${phone!=null}"><!-- style 수정 황선필 -->
