@@ -64,7 +64,7 @@ $(document).ready(function() {
 					<col width="60%">
 				</colgroup>
 				<tr>
-					<td>카카오톡 아이디 값</td>
+					<td>폰 번호</td>
 					<td>${phone}</td>
 				</tr>
 				<tr>

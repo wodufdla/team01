@@ -84,7 +84,7 @@ $(document).ready(function() {
 			var child1;
 			var child2;
 			//child1 = window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
-			child2 = window.open('kakao','kakao','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+			child2 = window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 			//child.$("#banner").val(1);
 		}else{
 			alert("모든 동의가 이루어지지 않았습니다.");

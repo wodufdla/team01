@@ -99,7 +99,7 @@
 		<div style="width: 30%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">카카오톡 아이디 값</span>
+	          	<span class="normal-font" style="display: block;padding: 8px;">폰 번호</span>
 	          </li>
 	          <li style="display: flex;width: 100%;">
 	          	<input type="text" id="user_id" name="user_id" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;" readonly="readonly" value="${phone}">
@@ -126,7 +126,7 @@
 	          	<span class="normal-font" style="display: block;padding: 8px;">이메일</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
-	          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24" readonly="readonly" style="width: 100%; padding: 5px;">
+	          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
 	      <ul style="padding: 0;display: flex;">
@@ -134,7 +134,7 @@
 	          	<span class="normal-font" style="display: block;padding: 8px;">닉네임</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
-	          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24" readonly="readonly" style="width: 100%; padding: 5px;">
+	          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
 	      <!-- 스타일 추가 황선필 -->
