@@ -46,6 +46,11 @@ public class HomeController {
 		return "order";
 	}
 	
+	@RequestMapping("/orderEvent")
+	public String orderEvent(Model model) {
+		return "orderEvent";
+	}
+	
 	@RequestMapping("/service")
 	public String service(Model model) {
 		return "common/service";
