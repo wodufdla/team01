@@ -68,28 +68,28 @@
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">총 회원</h5>
-			<h1 class="overview-content">${mCount }</h1>
+			<h1 class="overview-content">${mCount}</h1>
 			<i class="far fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">오늘 가입 회원</h5>
-			<h1 class="overview-content">${mTodayCount }</h1>
+			<h1 class="overview-content">${mTodayCount}</h1>
 			<i class="fas fa-users"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">서비스가입 회원</h5>
-			<h1 class="overview-content">${serviceStatusY }</h1>
+			<h1 class="overview-content">${serviceStatusY}</h1>
 			<i class="fas fa-file-alt"></i>
 		</div>
 	</div>
 	<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">탈퇴한 회원</h5>
-			<h1 class="overview-content">${withdrawal }</h1>
+			<h1 class="overview-content">${withdrawal}</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
 	</div>
@@ -112,61 +112,63 @@
 		<div class="col">
 		<div class="overview-div">
 			<h5 class="overview-title">탈퇴요청 회원</h5>
-			<h1 class="overview-content">${reqWithdrawalCount }</h1>
+			<h1 class="overview-content">${reqWithdrawalCount}</h1>
 			<i class="fas fa-user-circle"></i>
 		</div>
 		</div>
 	</div>
 	<br>
 
-	
+	<form method="post"   id="frmadminbDel" >
    	<table class="table table-striped">
    		<thead>
    			<tr>
    				<th>순번</th>
    				<th>핸드폰번호</th>
    				<th>요청일자</th>
+   				<th>문의분류</th>
+   				<th>문의답변여부</th>
    				<th>탈퇴여부</th>
    				<th>탈퇴처리</th>
    			</tr>
    		</thead>
    		<tbody>
-   				<c:forEach var="vo" items="${reqWithdrawal }" varStatus="status">
+   				<c:forEach var="vo" items="${reqWithdrawal}" varStatus="status">
    				<tr>
-   					<input type="hidden" name="boardIdx" id="boardIdx" value="${vo.phone }">
+   					<input type="hidden" name="phone" id="phone" value="${vo.phone}">
    					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
-   					<td>${vo.phone }</td>
+   					<td>${vo.phone}</td>
    					<td>${vo.askDate}</td>
-					<td>${vo.replyYn }</td>
+   					<td>${vo.askCategory}</td>
+   					<td>${vo.replyYn}</td>
+   					<td>${vo.withdrawal}</td>
 					<td><button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button></td>
    				</tr>
    			</c:forEach>
    		</tbody>
    	</table>
+   	</form>
   <script type="text/javascript">
    //회원탈퇴 버튼 클릭시 
      $("button[name=deletBtn]").on("click",function(e){
-    	 var boardIdx = $(this).attr('data-idx');
-    	
+    	 var formData = $("#frmadminbDel").serialize();
     	 alert("회원을 탈퇴처리");
-    	// alert(boardIdx);
-	    deleteWrite(boardIdx);//boardIdx 가지고 가기 
-    	 });
+	     deleteWrite(formData);//phone 가지고 가기 
+     });
 
     //회원 탈퇴처리 이벤트(값 가지고) 
-    function deleteWrite(boardIdx){
+    function deleteWrite(data){
     
     	$.ajax({
     		type : "get",
-    		url : "adminbDel",
-    		data : {
-            	boardIdx: boardIdx
-            },
+    		url : "abc",
+    		data : data,
+    		contentType : 'application/text; charset=UTF-8',
     		success : function(data) {
     			if (data == "success") {
     				alert("회원탈퇴 완료되었습니다.");
-    				location.reload();
-    			}
+    				location.href = "/withdrawalProcessing";
+    			}//탈퇴 회원 리스트 화면 
     		},
     		error : function(data) {
     			alert("회원정보 탈되 실패 하였습니다.");
@@ -220,7 +222,7 @@
      
      
      
-    <script type="text/javascript">
+ <%--    <script type="text/javascript">
    		var admin = '<%=(String)session.getAttribute("admin")%>';
    		if (admin == 'null') {
    			location = '/';
@@ -248,7 +250,7 @@
    				location = 'customer?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
    			}
 		}
-    </script>
+    </script> --%>
     
    
 </body>

@@ -155,13 +155,13 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return result;
 	}
 
-	/* 탈퇴요청 회원 */
+	/* 탈퇴요청 회원 리스트 */
 	@Override
 	public List<QuestionVO> getReqWithdrawal() {
 		log.info("* [DAO] Input  ◀ (Service) : getReqWithdrawal");
-		List<QuestionVO> result = sqlSession.selectList(ASK + ".getReqWithdrawal");
-		log.info("* [DAO] Output ◀ (Mybatis) : " + result.toString());
-		return result;
+		List<QuestionVO> returnList = sqlSession.selectList(ASK + ".getReqWithdrawal");
+		log.info("* [DAO] Output ◀ (Mybatis) : " + returnList.toString());
+		return returnList;
 	}
 	
 }

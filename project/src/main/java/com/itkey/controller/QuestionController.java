@@ -26,8 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.QuestionService;
+import com.itkey.service.UserService;
 import com.itkey.vo.AnswerVo;
 import com.itkey.vo.QuestionVO;
+import com.itkey.vo.UserVO;
 
 @Controller
 public class QuestionController {
@@ -35,6 +37,9 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
+
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/question", produces = "text/plain; charset=UTF-8")
 	public String selectQuestion(Model model, HttpSession session, Integer page, Integer numsPerPage) {
@@ -65,7 +70,7 @@ public class QuestionController {
 		return "question";
 	}
 
-	// 문의하기 글쓰기 pag 이동 
+	// 문의하기 글쓰기 pag 이동
 	@RequestMapping(value = "/doAskView", method = RequestMethod.GET)
 	public ModelAndView pageDoAsk(ModelAndView mv, HttpSession session) {
 		log.info("doAsk Page_GET() 호출");
@@ -100,33 +105,7 @@ public class QuestionController {
 		}
 	}
 
-	//회원탈퇴 부분 진행 
-		@ResponseBody
-		@RequestMapping(value="/adminbDel", method= {RequestMethod.GET,RequestMethod.POST})
-		public String adminbDel(@RequestParam Map<String, Object> reqMap, HttpServletRequest request
-				) throws Exception {
-			log.info("adminbDel  data : "+ reqMap);
-			
-		     
-
-			//userService.userwithdrawal_phone(boardIdx);
-			
-	        HttpSession session = request.getSession();
-	        session.invalidate();
-	        
-	        
-	        int result = 1;
-			
-
-			if (result == 1) {
-				return "success";
-			} else {
-				return "FAIL";
-			}
-		
-		}
-	
-	// 답변하기 pag 이동 
+	// 답변하기 pag 이동
 	@GetMapping("/answer/{askNo}")
 	public ModelAndView selectAsk2(ModelAndView mv, HttpSession session, RedirectAttributes rttr,
 			@PathVariable("askNo") int askNo
@@ -144,7 +123,7 @@ public class QuestionController {
 		return mv;
 	}
 
-	// 답변수정 pag 이동 
+	// 답변수정 pag 이동
 	@GetMapping("/ansUpdateView/{askNo}")
 	public ModelAndView ansUpdateSelect(ModelAndView mv, HttpSession session, RedirectAttributes rttr,
 			@PathVariable("askNo") int askNo) {
@@ -155,29 +134,6 @@ public class QuestionController {
 		mv.setViewName("ansUpdate");
 		return mv;
 	}
-	
-	
-	//  Delete.do
-		@ResponseBody
-		@RequestMapping(value = "/Delete", produces = "text/plain; charset=UTF-8")
-		public String Delete(@RequestParam Map<String, Object> reqMap) {
-
-			log.info("##########################");
-			log.info("@RequestParam DATA: " + reqMap);
-
-
-			//Integer askNo = Integer.parseInt(reqMap.get("askNo").toString());
-
-			int result = 1;
-		
-
-			if (result == 1) {
-				return "success";
-			} else {
-				return "FAIL";
-			}
-
-		}
 
 	// 답변 하기.do
 	@ResponseBody
@@ -231,15 +187,13 @@ public class QuestionController {
 		}
 
 	}
-	
-		
 
 	// 문의하기 삭제 하기.do
 	@PostMapping("/deleteAsk")
 	public ModelAndView deleteAsk(ModelAndView mv, HttpSession session, int askNo, RedirectAttributes rttr) {
 
 		mv.addObject("deleteAsk", questionService.deleteAsk(askNo));
-		mv.addObject("deleteAsk", questionService.deleteAns(askNo)); // 삭제 부분 
+		mv.addObject("deleteAsk", questionService.deleteAns(askNo)); // 삭제 부분
 		return mv;
 	}
 
@@ -254,6 +208,7 @@ public class QuestionController {
 		log.info("" + numsPerPage);
 		log.info(category);
 		log.info(keyword);
+
 		PageCriteria criteria = new PageCriteria();
 		if (keyword != null) {
 			criteria.setKeyword(keyword);
@@ -289,6 +244,7 @@ public class QuestionController {
 
 		return mv;
 	}
+
 	// 관리자 _문의하기 AskY 목록(응답완료)
 	@RequestMapping(value = "/askY", method = RequestMethod.GET)
 	public ModelAndView selectAskY(ModelAndView mv, HttpSession session, RedirectAttributes rttr, String keyword,

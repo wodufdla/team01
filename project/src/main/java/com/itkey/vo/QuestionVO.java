@@ -20,5 +20,6 @@ public class QuestionVO {
 	private String ansContent;   // 문의답변내용
 	private String askDate;      // 문의작성일자
 	private String replyYn;      // 문의답변여부
+	private String withdrawal;   // 탈퇴여부
 	
 }

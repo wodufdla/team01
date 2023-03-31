@@ -85,7 +85,7 @@ a {
 	position: relative;
 	margin-top: 45px;
 	width: 800px;
-	height: 270px;
+	height: 350px;
 }
 
 #answer {
@@ -146,6 +146,7 @@ border: 1.8px solid #212529;
     font-size: 15px;
 	font-weight: 400;
 }
+
 </style>
 </head>
 <body>
@@ -159,7 +160,7 @@ border: 1.8px solid #212529;
 						<h2 class="askTop">답변 글쓰기</h2>
 						<hr style="position: relative; bottom: 35; z-index: -1; border: double;">
 					    </div>
-					   <p>제목: ${ask.askTitle}</p>
+					    <p>제목: ${ask.askTitle}</p>
 						<br>
 						<p>내용: ${ask.askContent}</p>
 						
