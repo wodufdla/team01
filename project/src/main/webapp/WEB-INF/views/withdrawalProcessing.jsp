@@ -29,6 +29,22 @@
 .top{
 	display:block;
 }
+/* 버튼 1번 css*/
+.btn1 {
+	border: none;
+	border-radius: 3px;
+	background-color: #666666;
+	color: white;
+	font-weight: 500;
+	font-size: 15px;
+	width: 120px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.btn1:hover {
+	opacity: 0.5;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,7 +126,7 @@
    				<th>순번</th>
    				<th>핸드폰번호</th>
    				<th>요청일자</th>
-   				<th>답변여부</th>
+   				<th>탈퇴여부</th>
    				<th>탈퇴처리</th>
    			</tr>
    		</thead>
@@ -122,7 +138,7 @@
    					<td>${vo.phone }</td>
    					<td>${vo.askDate}</td>
 					<td>${vo.replyYn }</td>
-					<td><button type="button" name="deletBtn" data-idx="${vo.phone}" >삭제</button></td>
+					<td><button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button></td>
    				</tr>
    			</c:forEach>
    		</tbody>
@@ -133,10 +149,8 @@
     	 var boardIdx = $(this).attr('data-idx');
     	
     	 alert("회원을 탈퇴처리");
-    	 alert(boardIdx);
-    	//boardWriterIdx 가지고 가기 
-	    deleteWrite(boardIdx);
-    	 
+    	// alert(boardIdx);
+	    deleteWrite(boardIdx);//boardIdx 가지고 가기 
     	 });
 
     //회원 탈퇴처리 이벤트(값 가지고) 
@@ -148,7 +162,6 @@
     		data : {
             	boardIdx: boardIdx
             },
-    		
     		success : function(data) {
     			if (data == "success") {
     				alert("회원탈퇴 완료되었습니다.");
