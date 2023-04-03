@@ -6,12 +6,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
-
 <!-- 제이쿼리 추가 황선필 -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style type="text/css">
 .dropdown{
-  padding: 8px;
+  padding: 8px 8px 8px 0;
   color: #666666;
   position: relative;
   display: inline-block;
@@ -44,8 +43,20 @@
 }
 </style>
 <script>
+/* 모바일 버전 체크 */
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+console.log("isMobile : "+isMobile);
 
 $(document).ready(function(){
+	
+    if(!isMobile) {
+        //PC
+  	 console.log("main.js / isMobile / PC : "+isMobile);
+   } else {
+        //MOBILE
+  	 console.log("main.js / isMobile / MOBILE : "+isMobile);
+   }
+   
     
     /* logout 알러트 수정 황선필 */
     $("#logout").click(function() {
