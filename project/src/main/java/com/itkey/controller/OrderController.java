@@ -33,10 +33,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.OrderService;
-import com.itkey.service.PaymentService;
+
 import com.itkey.util.MainInfo;
 import com.itkey.vo.OrderVO;
-import com.itkey.vo.PaymentVO;
+
 
 @EnableScheduling
 @Controller
@@ -48,13 +48,31 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private PaymentService paymentService;
+
+	
 	
 	@RequestMapping(value="/paymentOk", method=RequestMethod.POST)
 	@ResponseBody
 	public String paymentOk(@RequestBody HashMap<String, Object> param) throws Exception {
-		PaymentVO pmVO = new PaymentVO();
+		
+		
+		log.info("paymentOk data : " + param);
+		
+		OrderVO odVo = new OrderVO();
+		String amount = param.get("amount").toString();
+		String merchantUid = param.get("customer_uid").toString();
+		String buyerName = param.get("buyerName").toString();
+		odVo.setAmount(amount);
+		odVo.setMerchantUid(merchantUid);
+		odVo.setBuyerName(buyerName);
+		// db에 저장
+		
+		log.info("* [CONTROLLER] Input �뼳 (Service) : " + odVo.toString());
+		int result = orderService.insertPayment(odVo);
+		log.debug("* [CONTROLLER] output �뼳 (Service) : " + result);
+		
+		/*
+		 * PaymentVO pmVO = new PaymentVO();
 		String amount = param.get("amount").toString();
 		String merchantUid = param.get("customer_uid").toString();
 		String buyerName = param.get("buyerName").toString();
@@ -63,12 +81,8 @@ public class OrderController {
 		pmVO.setMerchantUid(merchantUid);
 		pmVO.setBuyerName(buyerName);
 		
-		System.out.println("amount :" + amount);
-		System.out.println("merchantUid :" + merchantUid);
-		System.out.println("buyerName :" + buyerName);
-		
 		// db에 저장
-		int result = paymentService.insertPayment(pmVO);
+		int result = paymentService.insertPayment(odVo);*/
 		
 		System.out.println("DB저장결과 : " + result);
 		String result2=String.valueOf(result);
@@ -162,17 +176,31 @@ public class OrderController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 	
-
+    
 	@ResponseBody
 	@PostMapping(value="/order", consumes="application/json",
 				produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> orderInsert(@RequestBody Map<String, Object> map) throws Exception{
-			
-		PaymentVO pmVO = new PaymentVO();
+		
+		log.info("orderInsert data : " + map);
+		OrderVO odVo = new OrderVO();
+		String amount = map.get("amount").toString();
+		String merchantUid = map.get("merchantUid").toString();
+		String buyerName = map.get("buyerName").toString();
+		odVo.setAmount(amount);
+		odVo.setMerchantUid(merchantUid);
+		odVo.setBuyerName(buyerName);
+		// db에 저장
+		
+		log.info("* [CONTROLLER] Input �뼳 (Service) : " + odVo.toString());
+		int result = orderService.insertPayment(odVo);
+		log.info("* [CONTROLLER] output �뼳 (Service) : " + result);
+		
+		
+	/*	PaymentVO pmVO = new PaymentVO();
 		String amount = map.get("amount").toString();
 		String billing_key = map.get("merchantUid").toString();
 		String buyerName = map.get("buyerName").toString();
-		
 		pmVO.setAmount(amount);
 		pmVO.setMerchantUid(billing_key);
 		pmVO.setBuyerName(buyerName);
@@ -182,14 +210,13 @@ public class OrderController {
 		System.out.println("buyerName :" + buyerName);
 		
 		// db에 저장
-		int result = paymentService.insertPayment(pmVO);
+		int result = paymentService.insertPayment(pmVO);*/
 		
 		System.out.println("DB저장결과 : " + result);
 		String result2=String.valueOf(result);
 		
 //		 	System.out.println("/order : "  + map);
 //		 	
-//				
 //				Map<String, Object> param = new HashMap<String, Object>();
 //				String id = (String)map.get("id");
 //				String cuid = "c_" + id;

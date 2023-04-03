@@ -5,6 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.itkey.OrderMapper">
 
+
+<!-- INSERT -->
+	<insert id="insertPayment2" parameterType="Order" >
+	INSERT INTO order_tbl( merchantUid, amount, buyerName
+		) VALUES ( #{merchantUid}, #{amount}, #{buyerName} )
+	</insert>
+	
+	
 	<select id="select_all" resultType="Order">
 		select * from ${order_tbl} order by ${rqst_time} desc
 	</select>
@@ -53,5 +61,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from order_tbl
         where DATE_FORMAT(success_time, "%Y-%m-%d") = #{today}
 	</select>
+	
 	
 </mapper>

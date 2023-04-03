@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.PaymentVO;
+import com.itkey.vo.QuestionVO;
 
 public interface OrderService {
 
@@ -29,4 +31,13 @@ public interface OrderService {
 	public String getToken() throws Exception;
 	
 	public String bilingCredit(Map<String,Object> param) throws Exception;
+	
+	
+	//주문 insert paymentOk 
+	
+	public int insertPayment(OrderVO odVo) throws Exception;
+	
+	
+
+	
 }

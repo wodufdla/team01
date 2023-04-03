@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.PaymentVO;
+import com.itkey.vo.QuestionVO;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -59,5 +61,12 @@ public class OrderDAOImpl implements OrderDAO {
 		log.info("OrderVO todaySSales 호출");
 		return sqlSession.selectOne(NAMESPACE + ".todaySSales", today);
 	}
-	
+	//
+	@Override
+	public int insertPayment(OrderVO odVo) throws Exception {
+		log.debug("* [SERVICE] Input  ◀ (Controller) : " + odVo.toString());
+		int result = sqlSession.insert(NAMESPACE+ ".insertPayment2",odVo);
+		log.debug("* [SERVICE] Output ◀ (vo) : " + result);
+	return result;
+	}
 }

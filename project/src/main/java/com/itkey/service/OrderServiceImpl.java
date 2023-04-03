@@ -29,6 +29,7 @@ import com.google.gson.JsonObject;
 import com.itkey.dao.OrderDAO;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.QuestionVO;
 import com.itkey.vo.UserVO;
 
 @Service
@@ -245,6 +246,14 @@ public class OrderServiceImpl implements OrderService {
 			e.printStackTrace();
 		}
 		return result_txt;
+	}
+
+	@Override
+	public int insertPayment(OrderVO odVo) throws Exception {
+		log.debug("* [SERVICE] Input  ◀ (Controller) : " + odVo.toString());
+		int result = orderDAO.insertPayment(odVo);
+		log.debug("* [SERVICE] Output ◀ (vo) : " + result);
+		return result;
 	}
 	
 }

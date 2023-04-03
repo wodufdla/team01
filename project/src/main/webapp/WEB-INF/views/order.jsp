@@ -94,7 +94,7 @@ $(document).ready(function(){
 						amount : itemPrice,
 					}),
 					success:function(token){
-						
+						console.info(token);
 						// 빌링키 ajax
 						$.ajax({
 					        url: "https://api.iamport.kr/subscribe/customers/", 
@@ -127,6 +127,7 @@ function pass(dataP) {
         url: "/paymentOk",
         data: dataP,
         success: function (data) {
+        	console.log(data);
             if (data ==1){
                 // 실질적인 결제 및 정액제 유료회원 처리
                 alert("pass2 test : " + data);
