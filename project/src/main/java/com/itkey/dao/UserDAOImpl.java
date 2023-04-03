@@ -166,14 +166,12 @@ public class UserDAOImpl implements UserDAO {
 	//회원 탈퇴
 	@Override
 	public int userwithdrawal(UserVO uv) {
+		log.info("* [DAO] Input  ◀ (Service) : " + uv.toString());
 		int result = sqlSession.update("userwithdrawal",uv);
+		log.info("* [DAO] Output ◀ (Mybatis) : " + result);
 		return result;
 	}
-	@Override
-	public int userwithdrawal_phone(String boardIdx) {
-		int result = sqlSession.update("userwithdrawal_phone",boardIdx);
-		return result;
-	}
+
 
 	//결제내역
 	@Override
@@ -189,4 +187,6 @@ public class UserDAOImpl implements UserDAO {
 		int regnum = sqlSession.insert("regAll2", uv);
 		return regnum;
 	}
+
+	
 }

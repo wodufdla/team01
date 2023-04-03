@@ -48,7 +48,7 @@ public interface UserDAO {
 	int userwithdrawal(UserVO uv);
 	//결제내역
 	OrderVO selectOrder(UserVO vo);
-	int userwithdrawal_phone(String boardIdx);
+
 	//카카오회원가입
 	int regAll2(UserVO uv);
 
