@@ -41,6 +41,8 @@ public class QuestionController {
 	@Autowired
 	private UserService userService;
 
+	
+	//내 문의글 리스트 조회 
 	@RequestMapping(value = "/question", produces = "text/plain; charset=UTF-8")
 	public String selectQuestion(Model model, HttpSession session, Integer page, Integer numsPerPage) {
 		log.info("question List Page Response_GET() 호출");// Logger

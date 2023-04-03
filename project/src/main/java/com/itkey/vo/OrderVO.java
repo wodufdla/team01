@@ -12,9 +12,9 @@ import lombok.ToString;
 public class OrderVO {
 
 	//매출관리
-	private String orderNo; // 결제일자+핸드폰번호 뒤4자리
-	private String phone;
-	private String orderCont; // 가입한 서비스의 no
+	private String orderNo;    // 결제일자+핸드폰번호 뒤4자리
+	private String phone;   
+	private String orderCont;  // 가입한 서비스의 no
 	private String billingKey;
 	private String price;
 	private String status; 
@@ -23,5 +23,9 @@ public class OrderVO {
 	private Date nextOrderDate; 
 	private Date autoOrderDate;
 	
+	private String amount;
+	private String merchantUid;
+	private String buyerName;
 	
+
 }
