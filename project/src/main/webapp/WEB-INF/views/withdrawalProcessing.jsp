@@ -151,18 +151,24 @@
   <script type="text/javascript">
    //회원탈퇴 버튼 클릭시 
      $("button[name=deletBtn]").on("click",function(e){
-    	 var formData = $("#frmadminbDel").serialize();
-    	 alert("회원을 탈퇴처리");
-	     deleteWrite(formData);//phone 가지고 가기 
+    	// var formData = $("#frmadminbDel").serialize();
+    	var phone = $(this).attr('data-idx');
+    	 if (!confirm("탈퇴처리 하시겠습니까?")) {
+			 location.reload();
+	    } else {
+	    	//boardWriterIdx 가지고 가기 
+	    	deleteWrite(phone);
+	    }
+    	
      });
 
     //회원 탈퇴처리 이벤트(값 가지고) 
-    function deleteWrite(data){
+    function deleteWrite(phone){
     
     	$.ajax({
     		type : "get",
     		url : "abc",
-    		data : data,
+    		data :{phone : phone},
     		contentType : 'application/text; charset=UTF-8',
     		success : function(data) {
     			if (data == "success") {

@@ -143,14 +143,13 @@ public class UserServiceImpl implements UserService {
 	//회원탈퇴
 	@Override
 	public int userwithdrawal(UserVO uv) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + uv.toString());
 		int result = userDAO.userwithdrawal(uv);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
+		
 		return result;
 	}
-	@Override
-	public int userwithdrawal_phone(String boardIdx) {
-		int result = userDAO.userwithdrawal_phone(boardIdx);
-		return result;
-	}
+
 
 	//결제내역
 	@Override

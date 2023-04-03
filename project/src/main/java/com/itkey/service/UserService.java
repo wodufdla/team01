@@ -41,13 +41,18 @@ public interface UserService {
 	int selectBannerClick();
 	//배너 통해서 가입한 회원수
 	int selectBannerUserCount();
+	
+	
 	//회원탈퇴
 	int userwithdrawal(UserVO uv);
+	
+	
 	//결제내역
 	OrderVO selectOrder(UserVO vo);
-	int userwithdrawal_phone(String boardIdx);
+
 	
 	int regAll2(UserVO uv);
+		
 	
 	
 }

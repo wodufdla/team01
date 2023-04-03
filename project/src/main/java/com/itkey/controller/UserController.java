@@ -495,19 +495,7 @@ public class UserController {
 		return "redirect:/crime";
 	}
 
-	
-	
-	
-	@RequestMapping(value="/adminbDel",  method=RequestMethod.POST)
-	public String adminbDel(@RequestParam(value = "boardIdx") String boardIdx, HttpServletRequest request) throws Exception {
 
-		userService.userwithdrawal_phone(boardIdx);
-		
-        HttpSession session = request.getSession();
-        session.invalidate();
-        
-		return "redirect:withdrawalProcessing";
-	}
 	
 	
 	
