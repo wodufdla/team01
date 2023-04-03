@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 - 1:1 askN 미응답페이지  </title>
+<title>관리자 - 1:1 askN 미응답 페이지  </title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

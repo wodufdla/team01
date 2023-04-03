@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title></title>
+    <title>로그인 2 : 회원가입버튼만 없음 (팝업 화면) > 메인페이지 crime 이동 - 중복된 루틴</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
