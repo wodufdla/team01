@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 - 1:1 ask 전체 리스트</title>
+<title>관리자 문의하기- 1:1 ask 전체 리스트</title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
