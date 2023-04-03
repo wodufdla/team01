@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120889e69f4a494d50b65ad4326cafe2"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="/resources/css/styles.css">
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <title>실시간 공개현황</title>
 <style type="text/css">
@@ -54,7 +56,39 @@ th:first-child, td:first-child {
 	</p>
 	</div>
 	<div>
-		<table summary="특별시＊광역시/도,성범죄자 수 순서로 성범죄자 통계를를 나타낸 표 입니다">
+		<div id="map" style="width:800px;height:400px;"></div>
+	    <script type="text/javascript">
+	    $(document).ready(function() {
+	    	
+	    	//https://apis.map.kakao.com/web/sample/customOverlay1/
+	    	$('#map').width($('#tblSummary').width()+'px');
+	    	
+	    	var container	= document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	    	var options		= { //지도를 생성할 때 필요한 기본 옵션
+	    		center			: new kakao.maps.LatLng(35.450701, 126.570667), //지도의 중심좌표.
+	    		level			: 15 //지도의 레벨(확대, 축소 정도)
+	    	};
+	    	var map			= new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+/*	    	
+	    	var content		='<div class ="label"><span class="left"></span><span class="center">'
+	    					+"tjdnf"
+	    					+'</span><span class="right"></span></div>';
+	    	var position	= new kakao.maps.LatLng(35.450701, 126.570667);  
+
+	    	var cOverlay	= new kakao.maps.CustomOverlay({
+	    	    position: position,
+	    	    content: content   
+	    	});
+
+	    	// 커스텀 오버레이를 지도에 표시합니다
+	    	cOverlay.setMap(map);
+*/	    	
+	    	
+	    });	
+	    
+	    </script>
+	
+		<table summary="특별시＊광역시/도,성범죄자 수 순서로 성범죄자 통계를를 나타낸 표 입니다" id="tblSummary">
 			<colgroup>
 				<col width="40%">
 				<col width="60%">
