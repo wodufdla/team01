@@ -5,6 +5,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<title>관리자 _매출관리</title>
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
+<link rel="stylesheet" href="/resources/css/styles.css">
 <style type="text/css">
 select, input{
 	float: right;
@@ -54,14 +62,7 @@ select:focus {
 	display:block;
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<title> </title>
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-<link rel="stylesheet" href="/resources/css/styles.css">
+
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
@@ -145,12 +146,14 @@ select:focus {
    				<tr>
    					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
    					<td>${vo.orderNo }</td>
+   					
    					<c:if test="${vo.orderCont eq '1'}">
 	   					<td><c:out value="7일 체험" /></td>
    					</c:if>
    					<c:if test="${vo.orderCont eq '2'}">
 	   					<td><c:out value="월 정기결제" /></td>
    					</c:if>
+   					
   					<c:if test="${vo.status eq '1'}">
 	   					<td><c:out value="정상" /></td>
    					</c:if>

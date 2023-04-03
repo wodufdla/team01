@@ -50,7 +50,7 @@ public class OrderController {
 	private OrderService orderService;
 
 	
-	
+	  
 	@RequestMapping(value="/paymentOk", method=RequestMethod.POST)
 	@ResponseBody
 	public String paymentOk(@RequestBody HashMap<String, Object> param) throws Exception {
@@ -115,6 +115,7 @@ public class OrderController {
 		return mv;
 	}
 	
+	//관리자_매출관리 페이지 화면 
 	@GetMapping("/product")
 	public void productGET(Model model, HttpSession session) {
 		// 매출관리
@@ -177,6 +178,7 @@ public class OrderController {
 	}
 	
     
+	//
 	@ResponseBody
 	@PostMapping(value="/order", consumes="application/json",
 				produces= {MediaType.TEXT_PLAIN_VALUE})
@@ -213,7 +215,7 @@ public class OrderController {
 		int result = paymentService.insertPayment(pmVO);*/
 		
 		System.out.println("DB저장결과 : " + result);
-		String result2=String.valueOf(result);
+		String result2 = String.valueOf(result);
 		
 //		 	System.out.println("/order : "  + map);
 //		 	
