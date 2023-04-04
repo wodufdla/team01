@@ -231,8 +231,8 @@ a {
 				<tr>
 					<td>서비스종류</td>
 					<td>
-					<c:if test="${session_ordercont==1}">100원결제</c:if>
-					<c:if test="${session_ordercont==2}">일반정기결제</c:if>
+					<c:if test="${session_ordercont==1}">범죄알리미 서비스(이벤트가입)</c:if> <!--  100원 결제 7일 서비스 -->
+					<c:if test="${session_ordercont==2}">범죄알리미 서비스(정기결제)</c:if> <!--  29900원 결제 정기한달 서비스 -->
 					</td>
 				</tr>
 				<tr>
