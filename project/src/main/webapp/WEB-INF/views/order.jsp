@@ -38,7 +38,7 @@
 		selectedEls.forEach((el) => {
 			result += el.value + ' ';
 		});
-		// 출력
+		/* 출력 */ 
 		console.log("result : " + result);
 		if (result == undefined || result == "") {
 			return alert("결제하실 상품을 선택해주세요.");
@@ -85,7 +85,7 @@
 			customer_uid	: customer_uid,				// 빌링킹 대응 하는 정기결제 키번호 
 			merchant_uid	: merchant_uid,				// 상점에서 관리하는 주문 번호
 			name			: itemTitle,
-			amount			: itemPrice,				//금액
+			amount			: itemPrice,				//가격 ( 100원 7일 단위, 5000원 14일단위, 10000원30일 단위  )
 			buyer_email		: email,
 			buyer_name		: id,
 			buyer_tel		: phone
@@ -100,10 +100,13 @@
 					},
 					dataType:"text",
 					data: JSON.stringify({
-						buyerName	: id,				//닉네임
-						merchantUid : customer_uid,	// 빌링킹 대응 하는	정기결제 키번호 
-						amount		: itemPrice,
-						rqstPeriod	: rqstPeriod,
+						//세션에 있는 값 넣기 
+						phone : phone,
+						buyerName : buyerName ,       //닉네임
+						merchantUid : merchant_uid,   // 주문번호
+						customer_uid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호                         
+						amount : itemPrice,           // 가격 ( 100원 7일 단위, 5000원 14일단위, 10000원30일 단위  )
+						rqstPeriod	: rqstPeriod,     // 결제 금액에 따라 결정
 						
 					}),
 					success:function(token){
@@ -119,7 +122,7 @@
 								customer_uid: customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
 							}
 						}); // 빌링키 ajax
-						alert("가입성공");
+						alert("범죄알리미 서비스 성공적으로 가입되었습니다.");
 						location.href="/crime";
 					}	
 				});
