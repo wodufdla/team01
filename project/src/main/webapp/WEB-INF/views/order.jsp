@@ -24,7 +24,7 @@
 <script>
 
 $(document).ready(function(){
-	//iamport();
+	//iamport(); //결제창 열리기 
 });
   
 
@@ -79,6 +79,8 @@ $(document).ready(function(){
 			buyer_name : id,
 			buyer_tel : phone
 		}, function(rsp) {
+			console.info(rsp);
+			
 			if ( rsp.success ) {
 				$.ajax({
 					type:'post',
@@ -89,8 +91,11 @@ $(document).ready(function(){
 					},
 					dataType:"text",
 					data: JSON.stringify({
-						buyerName : id,              //닉네임
-						merchantUid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호 
+						//세션에 있는 값 넣기 
+						phone : phone,
+						buyerName : buyerName ,              //닉네임
+						merchantUid : merchant_uid, // 빌링킹 대응 하는  정기결제 키번호 
+						customer_uid : customer_uid,                          
 						amount : itemPrice,
 						
 					}),
@@ -107,8 +112,8 @@ $(document).ready(function(){
 					          customer_uid: customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
 					        }
 					   }); // 빌링키 ajax
-						alert("가입성공");
-						location.href="/crime";
+						alert("결제에 성공하였습니다.");
+						location.href="/crime"; // 메인페이지 이동 
 					}	
 				});
 			} else {
@@ -181,8 +186,10 @@ function checkLink(element) {
 <jsp:include page="common/header.jsp" />
 <!-- 서비스 가입 시 -->
 <c:if test="${not empty session_orderno }">
+
 <div class="container">   
-   <h2> 서비스 가입/이용 중입니다.</h2>   
+   <h2> 서비스 가입/이용 중입니다.</h2>
+  <input type="text" name="phone" value="${phone}" /> <!-- 황선애: session : 회원id  -->     
    <table class="table table-hover">
       <colgroup>
          <col width="40%">
@@ -222,6 +229,7 @@ function checkLink(element) {
 <c:if test="${empty session_orderno }">
    <section id="join" class="section-default" style="background: #8C8C8C;">
         <p>범죄 알리미 가입하기</p>
+         <input type="hidden" name="phone" value="${phone}" />  <!-- 황선애: session : 회원id  --> 
         <hr>
         <p>가입하고 싶으신 서비스를 선택 후 결제하여 범죄를 미리 예방하세요</p>
         <div class="table-responsive table-default" style="max-width: 1200px;">

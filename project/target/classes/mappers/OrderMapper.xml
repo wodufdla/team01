@@ -2,8 +2,99 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Order">
 
+<mapper namespace="com.itkey.OrderMapper">
+
+
+
+<!-- INSERT  결제 후  insert-->
+	<insert id="insertPayment2" parameterType="Order" >
+		INSERT INTO order_tbl ( 
+ 		phone               ,
+ 		order_cont          ,
+ 		billing_key         ,
+ 		price               ,
+ 		rqst_time           ,
+ 		success_time        ,
+ 		next_order_date     ,
+ 		auto_order_date     ,
+ 		temp_date           ,
+ 		merchantUid         ,
+ 		amount              ,
+ 		buyerName           ,
+ 		paymentDate         ,
+ 		successTime         
+ 	) VALUES (
+ 		#{phone},
+ 		'2',
+ 		#{billingKey},
+ 		#{amount},
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_add(success_time, INTERVAL 30 DAY),
+ 		date_add(success_time, INTERVAL 30 DAY),
+ 		date_format(now(), '%Y-%m-%d'),
+ 		#{merchantUid},
+ 		#{amount},
+ 		#{buyerName},
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S')     
+ 	)
+	</insert>
+	
 	
 
+	
+	
+	<select id="select_all" resultType="Order">
+		select * from ${order_tbl} order by ${rqst_time} desc
+	</select>
+	
+<!-- 	<select id="select_y" resultType="Order">
+		select order_no, phone, order_cont, billing_key, price, status, rqst_time, success_time, next_order_date, auto_order_date
+		from order_tbl
+		where status = 1
+		order by rqst_time desc
+	</select> -->
+
+	<!-- 서비스 정상 유지중인 인원 -->
+	<select id="select_y" resultType="int">
+		select count(*)
+		from order_tbl
+		where status = 1
+	</select>
+	
+	<!-- 전체 내역(count) -->
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from order_tbl
+	</select>
+	
+	
+	<select id="paging" resultType="Order">
+		select * from order_tbl
+		order by success_time desc
+		limit #{start}, #{end}
+	</select>
+	
+	<!-- 누적 매출액 -->
+	<select id="totalSales" resultType="int">
+        select sum(price) sum
+		from order_tbl;
+	</select>
+	
+	<!-- 월 매출액 -->
+	<select id="totalMonths" resultType="int">
+		select sum(price) sum
+		from order_tbl
+        where DATE_FORMAT(success_time, "%Y-%m") = #{thisMonth}
+	</select>
+	
+	<!-- 오늘자 매출액 -->
+	<select id="todaySSales" resultType="int">
+		select sum(price) sum
+		from order_tbl
+        where DATE_FORMAT(success_time, "%Y-%m-%d") = #{today}
+	</select>
+	
+	
 </mapper>
