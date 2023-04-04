@@ -210,8 +210,12 @@ public class UserController {
     }
     //정보수정2 화면 접속 황선필
     @RequestMapping("/modify2")
-    public String modify2() {
-    	
+    public String modify2(Model model, HttpServletRequest request) {
+    	HttpSession session = request.getSession();
+		String phone = (String) session.getAttribute("phone");
+		UserVO uv = userService.read_login(phone);
+		
+		model.addAttribute("user", uv);
     	return "modify2";
     }
 	
@@ -467,7 +471,13 @@ public class UserController {
 	
 	//mypage 추가 황선필
 	@RequestMapping("/mypage")
-	public String mypage() {
+	public String mypage(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String phone = (String) session.getAttribute("phone");
+		UserVO uv = userService.read_login(phone);
+		
+		model.addAttribute("user", uv);
+		
 		return "/mypage";
 	}
 	//myinfo 추가 황선필
@@ -477,8 +487,14 @@ public class UserController {
 	}
 	//paymentHistory 추가 황선필
 	@RequestMapping("/paymentHistory")
-	public String paymentHistory() {
+	public String paymentHistory(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String phone = (String) session.getAttribute("phone");
+		UserVO uv = userService.read_login(phone);
+		OrderVO ov = userService.selectOrder(uv);
 		
+		model.addAttribute("user", uv);
+		model.addAttribute("order", ov);
 		
 		return "/paymentHistory";
 	}
