@@ -339,9 +339,9 @@ function askBtn(){
    		const category = urlParams.get('category');
    		function selectChange() {
    			if(keyword != null){
-				location = 'ask?page=' + page + '&numsPerPage=' + $('#numsPerPage').val() + '&keyword=' + keyword + '&category=' + category;
+				location = 'askN?page=' + page + '&numsPerPage=' + $('#numsPerPage').val() + '&keyword=' + keyword + '&category=' + category;
    			} else {
-   				location = 'ask?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
+   				location = 'askN?page=' + page + '&numsPerPage=' + $('#numsPerPage').val();
    			}
 		}
    		
