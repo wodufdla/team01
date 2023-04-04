@@ -109,8 +109,8 @@ $(document).ready(function(){
 					          customer_uid: customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
 					        }
 					   }); // 빌링키 ajax
-						alert("가입성공");
-						location.href="/crime";
+						alert("범죄 알리미 가입되었습니다.");
+						location.href="/crime"; //가입완료 후 서비스 가입 부분 변경 안되고, 결제 내역에 확인 할 수 없음 
 					}	
 				});
 			} else {
