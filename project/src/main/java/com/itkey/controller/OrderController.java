@@ -20,6 +20,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +48,6 @@ public class OrderController {
 /*	@Setter(onMethod_ = @Autowired)
 	private ImportPay pay;*/
 	
-	
 	@Autowired
 	private OrderService orderService;
 
@@ -58,15 +59,17 @@ public class OrderController {
 			
 			log.info("orderInsert data : " + map);
 			OrderVO odVo = new OrderVO();
-			
+			 
+			if(ObjectUtils.isEmpty(map)) {
+				String token =  orderService.getToken();
+				return new ResponseEntity<String>(token, HttpStatus.BAD_REQUEST);
+			}
 			String phone = map.get("phone").toString();             // 회원id
 			String amount = map.get("amount").toString();           // 결제 금액
 			String merchantUid = map.get("merchantUid").toString(); // 주문번호
 			String billingKey = map.get("customer_uid").toString(); // billingKey 결제건마다 고유번호 
 			String buyerName = map.get("buyerName").toString();     // 닉네임
-			
-			int i = (int) Double.parseDouble(map.get("rqstPeriod").toString()) + 0;  // 실수로 변환 후, 정수로 캐스팅, 그리고 1을 더하기
-		    //System.out.println(i);
+			int rqstPeriod = (int) Double.parseDouble(map.get("rqstPeriod").toString()) + 0;  // 실수로 변환 후, 정수로 캐스팅, 그리고 1을 더하기
 		 
 			odVo.setPhone(phone);
 			odVo.setAmount(amount);
@@ -74,7 +77,7 @@ public class OrderController {
 			odVo.setBillingKey(billingKey);
 			odVo.setBuyerName(buyerName);
 			odVo.setPrice(amount);
-			odVo.setRqstPeriod(i);
+			odVo.setRqstPeriod(rqstPeriod);
 			// db에 저장
 			
 			log.info("* [CONTROLLER] Input �뼳 (Service) : " + odVo.toString());

@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>문의하기_등록 페이지</title>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
@@ -148,6 +149,7 @@ body {
 							<option>결제</option>
 							<option>상품</option>
 							<option>탈퇴</option>
+							<option>서비스해지</option>
 							<option>기타</option>
 					  </select>
 				</div>
