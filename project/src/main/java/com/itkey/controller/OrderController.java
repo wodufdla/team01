@@ -186,12 +186,18 @@ public class OrderController {
 		
 		log.info("orderInsert data : " + map);
 		OrderVO odVo = new OrderVO();
+		String phone = map.get("phone").toString();
 		String amount = map.get("amount").toString();
 		String merchantUid = map.get("merchantUid").toString();
+		String billingKey = map.get("customer_uid").toString();
 		String buyerName = map.get("buyerName").toString();
+		
+		odVo.setPhone(phone);
 		odVo.setAmount(amount);
 		odVo.setMerchantUid(merchantUid);
+		odVo.setBillingKey(billingKey);
 		odVo.setBuyerName(buyerName);
+		odVo.setPrice(amount);
 		// db에 저장
 		
 		log.info("* [CONTROLLER] Input �뼳 (Service) : " + odVo.toString());

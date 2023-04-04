@@ -89,10 +89,12 @@ $(document).ready(function(){
 					},
 					dataType:"text",
 					data: JSON.stringify({
-						buyerName : id,              //닉네임
-						merchantUid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호 
+						//세션에 있는 값 넘겨 주기  ( rsp 넘겨 줘도 되나 지금은 화면창 세션 부분을 사용 )
+						phone : phone,
+						buyerName : buyerName ,              //닉네임
+						merchantUid : merchant_uid, // 빌링킹 대응 하는  정기결제 키번호 
+						customer_uid : customer_uid,                          
 						amount : itemPrice,
-						
 					}),
 					success:function(token){
 						console.info(token);

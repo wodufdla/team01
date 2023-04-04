@@ -242,8 +242,8 @@ a {
 				<tr>
 					<td>자동결제상태</td>
 					<td>
-					<c:if test="${session_status==1}">자동결제처리안됨</c:if> 
-					<c:if test="${session_status==2}">자동결제처리됨</c:if>
+					<c:if test="${session_status==1}">자동결제처리됨</c:if> 
+					<c:if test="${session_status==2}">자동결제처리안됨</c:if>
 					</td>
 				</tr>
 				<tr>
