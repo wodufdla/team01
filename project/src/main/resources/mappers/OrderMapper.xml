@@ -6,10 +6,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.itkey.OrderMapper">
 
 
+
 <!-- INSERT -->
 	<insert id="insertPayment2" parameterType="Order" >
-	INSERT INTO order_tbl( merchantUid, amount, buyerName
-		) VALUES ( #{merchantUid}, #{amount}, #{buyerName} )
+		INSERT INTO order_tbl ( 
+ 		phone               ,
+ 		order_cont          ,
+ 		billing_key         ,
+ 		price               ,
+ 		rqst_time           ,
+ 		success_time        ,
+ 		next_order_date     ,
+ 		auto_order_date     ,
+ 		temp_date           ,
+ 		merchantUid         ,
+ 		amount              ,
+ 		buyerName           ,
+ 		paymentDate         ,
+ 		successTime         
+ 	) VALUES (
+ 		#{phone},
+ 		'2',
+ 		#{billingKey},
+ 		#{amount},
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_add(success_time, INTERVAL 30 DAY),
+ 		date_add(success_time, INTERVAL 30 DAY),
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		#{merchantUid},
+ 		#{amount},
+ 		#{buyerName},
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S'),
+ 		date_format(now(), '%Y-%m-%d %H:%i:%S')     
+ 	)
 	</insert>
 	
 	
