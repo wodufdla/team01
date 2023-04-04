@@ -52,13 +52,13 @@ $(document).ready(function(){
 		var itemPrice = result; // 체크박스의 value 가져와서 넣어주기
 		
 		var order_cont = "2"; // 1. 단기결제 2. 정기결제
-		var id =  '<c:out value="${session_nickname}"/>';
-		var phone = '<c:out value="${phone}"/>';
-		var email = '<c:out value="${session_email}"/>';
-		var buyerName = '<c:out value="${session_nickname}"/>';
-		var customer_uid = "c_" + new Date().getTime();
+		var id =  '<c:out value="${session_nickname}"/>'; //닉네임
+		var phone = '<c:out value="${phone}"/>';          //폰번호 
+		var email = '<c:out value="${session_email}"/>';  //이메일
+		var buyerName = '<c:out value="${session_nickname}"/>';  //닉네임
+		var customer_uid = "c_" + new Date().getTime();      //
 		var merchant_uid = "order_" + new Date().getTime();
-		var itemTitle = "Test";
+		var itemTitle = "Test";  
 		itemPrice = itemPrice; /*  가격 */
 		
 		dataP: JSON.stringify({
@@ -71,10 +71,10 @@ $(document).ready(function(){
 		IMP.request_pay({
 			pg : 'danal_tpay.9810030929',
 			pay_method : 'card',
-			customer_uid : customer_uid,
-			merchant_uid : merchant_uid,
+			customer_uid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호 
+			merchant_uid : merchant_uid, // 상점에서 관리하는 주문 번호
 			name : itemTitle,
-			amount : itemPrice,
+			amount : itemPrice,          //금액
 			buyer_email : email,
 			buyer_name : id,
 			buyer_tel : phone
@@ -89,9 +89,10 @@ $(document).ready(function(){
 					},
 					dataType:"text",
 					data: JSON.stringify({
-						buyerName : id,
-						merchantUid : customer_uid,
+						buyerName : id,              //닉네임
+						merchantUid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호 
 						amount : itemPrice,
+						
 					}),
 					success:function(token){
 						console.info(token);
