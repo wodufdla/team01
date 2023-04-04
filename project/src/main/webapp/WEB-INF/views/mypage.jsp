@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -65,39 +64,39 @@ $(document).ready(function() {
 					<col width="60%">
 				</colgroup>
 				<tr>
-					<td>핸드폰 번호</td>
-					<td><c:set var="phone" value="${user.phone}" />${fn:substring(phone,0,3) }-${fn:substring(phone,3,7) }-${fn:substring(phone,7,13) }</td>
+					<td>폰 번호</td>
+					<td>${phone}</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td>${user.email}</td>
+					<td>${session_email}</td>
 				</tr>
 				<tr>
 					<td>가입한 날짜</td>
-					<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${user.joinDate}"/></td>
+					<td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_join_date}"/></td>
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td>${user.nickname}</td>
+					<td>${session_nickname}</td>
 				</tr>
 				<tr>
 					<td>가입경로</td>
 					<td>
-					<c:if test="${user.banner==1}">
-						배너 통해서 가입
+					<c:if test="${session_banner==1}">
+						배너에서 가입
 					</c:if>
-					<c:if test="${user.banner==2}">
-						회사 홈페이지에서 가입
+					<c:if test="${session_banner==2}">
+						회사 홈피에서 가입
 					</c:if>
 					</td>
 				</tr>
 				<tr>
 					<td>서비스 가입 유무</td>
 					<td>
-					<c:if test="${user.serviceyn eq 'Y'}">
+					<c:if test="${serviceYN eq 'Y'}">
 						서비스 가입 완료
 					</c:if>
-					<c:if test="${user.serviceyn eq 'N'}">
+					<c:if test="${serviceYN eq 'N'}">
 						서비스 미가입
 					</c:if>
 					</td>

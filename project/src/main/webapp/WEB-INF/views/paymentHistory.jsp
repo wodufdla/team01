@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -196,9 +195,9 @@ a {
 
 <body>
 	<jsp:include page="common/header.jsp" />
-	<c:if test="${empty order.orderNo}">
+	<c:if test="${empty session_orderno}">
 		<div class="container">
-			<h2>> 결제내역</h2><br><br>
+			<h2>> 결제내역</h2>
 			결제내역이 없습니다.<br>
 			<br>
 			<br>
@@ -213,7 +212,7 @@ a {
 	</c:if>
 
 
-	<c:if test="${not empty order.orderNo}">
+	<c:if test="${not empty session_orderno}">
 		<div class="container">
 			<h2>> 결제내역</h2>
 			<table class="table table-hover">
@@ -223,44 +222,48 @@ a {
 				</colgroup>
 				<tr>
 					<td>주문번호</td>
-					<td>${order.orderNo}</td>
+					<td>${session_orderno}</td>
 				</tr>
 				<tr>
-					<td>핸드폰 번호</td>
-					<td><c:set var="phone" value="${order.phone}" />${fn:substring(phone,0,3) }-${fn:substring(phone,3,7) }-${fn:substring(phone,7,13) }</td>
+					<td>폰 번호</td>
+					<td>${phone}</td>
 				</tr>
 				<tr>
 					<td>서비스종류</td>
 					<td>
-					<c:if test="${order.orderCont==1}">7일 체험</c:if>
-					<c:if test="${order.orderCont==2}">한달 이용</c:if>
+					<c:if test="${session_ordercont==1}">100원결제</c:if>
+					<c:if test="${session_ordercont==2}">일반정기결제</c:if>
 					</td>
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><fmt:formatNumber value="${order.price }" pattern="#,###" /></td>
+					<td>${session_price}</td>
 				</tr>
 				<tr>
-					<td>서비스 유효 여부</td>
+					<td>자동결제상태</td>
 					<td>
-					<c:if test="${order.status==0}">만료</c:if>
-					<c:if test="${order.status==1}">유지 중</c:if> 
-					<c:if test="${order.status==2}">해지</c:if>
+					<c:if test="${session_status==1}">자동결제처리됨</c:if> 
+					<c:if test="${session_status==2}">자동결제처리안됨</c:if>
 					</td>
 				</tr>
 				<tr>
 					<td>서비스구매시간</td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${order.rqstTime}" />
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${session_rqsttime}" />
 					</td>
 				</tr>
 				<tr>
 					<td>서비스처리시간</td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${order.successTime}" />
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${session_success}" />
 					</td>
 				</tr>
 				<tr>
 					<td>다음결제시간</td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${order.nextOrderDate}"/>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${session_nextorderdate}"/>
+					</td>
+				</tr>
+				<tr>
+					<td>자동결제시간</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${session_autoorderdate}" />
 					</td>
 				</tr>
 			</table>
