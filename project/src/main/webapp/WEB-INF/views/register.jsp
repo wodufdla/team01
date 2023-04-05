@@ -105,8 +105,8 @@
 												     		 success:function(data){
 												     			 if(data==1){
 												     				alert("회원등록완료");
-												     					window.close();												     					
 												     					window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
+												     					window.close();												     					
 // 												     					opener.location.href="/orderEvent";
 												     			 }else{
 												     					 alert("회원else");

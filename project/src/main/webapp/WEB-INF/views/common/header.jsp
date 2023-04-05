@@ -289,11 +289,10 @@ function withdrawal() {
 		</c:if>
 		<div class="">
 			<ul class="" style="width: 100%;">
-				<li class="nav-item"><a class="nav-link_m" href="#service">서비스 소개</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="#join">서비스 가입</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="#faq">FAQ</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="javascript:onQna();">1:1 문의</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="javascript:onResign();">서비스 해지</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="order">서비스 가입</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="faq">FAQ</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="question">1:1 문의</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="#" onclick="withdrawal();">서비스 해지</a></li>
 			</ul>
 		</div>
 	</div>
