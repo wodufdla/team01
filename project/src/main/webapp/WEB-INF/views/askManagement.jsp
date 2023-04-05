@@ -234,8 +234,7 @@ function askYBtn(){
 				    <button  class="but-titletit" onclick="askYBtn()" >관리자 _문의답변완료</button>
 			    </div>
 			    
-			    <canvas id="bar-chart-horizontal" width="600" height="250"></canvas>
-	
+			  <%--   <canvas id="bar-chart-horizontal" width="600" height="250"></canvas>
 	<script type="text/javascript">
 	new Chart(document.getElementById("bar-chart-horizontal"), {
 	    type: 'horizontalBar',
@@ -258,7 +257,7 @@ function askYBtn(){
 	    }
 	});
 	
-</script>
+</script> --%>
 			    
 				<form action="ask" method="get">
 					<input type="hidden" name="page" value="1"> 
