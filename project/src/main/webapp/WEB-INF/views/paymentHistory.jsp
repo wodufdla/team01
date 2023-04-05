@@ -85,7 +85,7 @@ a {
 			<br>
 			<div style="text-align: center;">
 				<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"
-					style="width: 20%; margin: 0px auto 50px auto; background-color: #1a374f; 
+					style="width: 20%; margin: 130px auto 50px auto; background-color: #1a374f; 
 					color: #fff; font-size: 1em; font-weight: bold; text-align: center; height: 50px; line-height: 50px; cursor: pointer;">
 			</div>
 		</div>
