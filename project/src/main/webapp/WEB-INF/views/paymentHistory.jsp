@@ -36,63 +36,6 @@ a {
 	width: 1250px;
 	height: 900px;
 }
-
-#admin_nav {
-	/* float: left; */
-	width: 20%;
-	height: 100%;
-}
-
-#admin_nav ul {
-	border-right: 1px solid #ccc;
-	width: 200px;
-	height: 600px;
-	padding-top: 50px;
-}
-
-#admin_nav li {
-	margin: 25px;
-}
-
-#admin_nav li a {
-	color: #444c57;
-}
-
-.main_menu {
-	font-family: SUIT-SemiBold;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.sub_menu {
-	padding-left: 30px;
-	font-family: SUIT-Regular;
-	font-size: 14px;
-}
-
-/* #main_body {
-	width: 80%;
-	height: 100%;
-} */
-</style>
-<style>
-.tableWrap {
-	position: relative;
-	top: 15%;
-	margin-left: 15px;
-	margin: 5%;
-}
-
-.page_title {
-	border-bottom: 1px solid #ccc;
-	height: 40px;
-	font-family: SUIT-SemiBold;
-	font-size: 25px;
-	top: 70px;
-	margin-left: 15px;
-	position: relative;
-}
-
 .container {
 	height: auto;
 	width: 70%;
@@ -100,6 +43,11 @@ a {
 	padding-top: 60px;
 	/* padding-bottom: 140px; */
 }
+
+/* #main_body {
+	width: 80%;
+	height: 100%;
+} */
 
 .table {
 	text-align: center;
@@ -109,60 +57,6 @@ a {
 	width: 100px;
 	max-width: 100px;
 	overflow: hidden;
-}
-
-.contentModal {
-	position: absolute;
-	width: 319px;
-	height: 247px;
-	background: #c1c1c1e4;
-	bottom: -2px;
-	right: 159px;
-	padding: 16px;
-	text-align: left;
-	border: solid 1.7px;
-	border-radius: 18px;
-	overflow: auto;
-	display: none;
-}
-
-.ansView {
-	cursor: pointer;
-}
-
-.ansView:hover .contentModal {
-	display: block;
-}
-
-#replyend {
-	position: relative;
-	font-size: 16px;
-	color: rgb(250, 250, 250);
-	top: 5px;
-	background-color: rgb(241, 85, 87);
-	box-shadow: 0px 2px 4px -1px #0000000f, 0px 4px 6px -1px #0000001a;
-}
-
-.butT {
-	padding: 10px;
-	float: right;
-}
-
-.but-titletit {
-	color: #444;
-	font-weight: bold;
-	width: 160px;
-	height: 50px;
-	border-radius: .25rem;
-	cursor: pointer;
-	font-size: 15px;
-	border: 1px solid #dee2e6;
-	background-color: #dee2e6;
-}
-
-.but-titletit:hover {
-	background-color: rgba(0, 0, 0, 0.04);
-	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .col {
@@ -177,21 +71,6 @@ a {
 	margin: 3px;
 }
 </style>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-
-		$("#myinfo").click(function() {
-			location.href = "myinfo";
-		});
-
-		$("#paymentHistory").click(function() {
-			location.href = "paymentHistory";
-		});
-
-	});
-</script>
-
 </head>
 
 <body>
@@ -267,7 +146,7 @@ a {
 		</div>
 		<div style="text-align: center;">
 			<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)"
-				style="width: 20%; margin: 0px auto 50px auto; background-color: #1a374f; 
+				style="width: 22%; margin: 10px auto 50px auto; background-color: #1a374f; 
 				color: #fff; font-size: 20px; font-weight: bold; text-align: center; height: 50px; line-height: 50px; cursor: pointer;">
 		</div>
 	</c:if>
