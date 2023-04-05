@@ -101,7 +101,7 @@ $(document).ready(function() {
  <!-- 배너통해서 왔는지 유무 황선필 -->
  <input type="hidden" id="banner" name="banner" placeholder="banner 입력"  maxlength="24" style="width: 100%; padding: 5px;" value="1">
 <!-- 헤더 재 추가 -->
-<jsp:include page="common/header2.jsp" />
+<jsp:include page="common/header.jsp" />
 <section id="faq" class="section-default" style="background-image: url('/resources/img/eventJoin.jpg'); background-repeat : no-repeat; background-size : cover;">
 	<div class="event">
 	
