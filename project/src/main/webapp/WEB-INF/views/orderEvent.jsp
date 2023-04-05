@@ -33,7 +33,7 @@ function iamport(){
 	var customer_uid = "c_" + new Date().getTime();
 	var merchant_uid = "order_" + new Date().getTime();
 	var itemTitle = "Test";
-	var itemPrice = 100; /*  가격 */
+	var itemPrice = 100; /*가격 */
 	
 	dataP: JSON.stringify({
 		amount : itemPrice,
@@ -63,9 +63,14 @@ function iamport(){
 				},
 				dataType:"text",
 				data: JSON.stringify({
-					buyerName : id,
-					merchantUid : customer_uid,
-					amount : itemPrice,
+					//세션에 있는 값 넣기 
+					phone : phone,
+					buyerName : buyerName ,       //닉네임
+					merchantUid : merchant_uid,   // 주문번호
+					customer_uid : customer_uid,  // 빌링킹 대응 하는  정기결제 키번호                         
+					amount : itemPrice,           // 가격 ( 100원 7일 단위, 5000원 14일단위, 10000원30일 단위  )
+					rqstPeriod	: rqstPeriod,     // 결제 금액에 따라 결정
+					
 				}),
 				success:function(token){
 					
@@ -80,7 +85,7 @@ function iamport(){
 				          customer_uid: customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
 				        }
 				   }); // 빌링키 ajax
-					alert("가입성공");
+					alert("이벤트 참여하고 캐시받기 성공적으로 범죄알리미 가입되었습니다.");
 					location.href="/crime";
 				}	
 			});
