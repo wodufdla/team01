@@ -45,6 +45,19 @@
 .btn1:hover {
 	opacity: 0.5;
 }
+
+/* 버튼 2번 css*/
+.btn2 {
+	border: none;
+	border-radius: 3px;
+	background-color:#f55451;
+	color: white;
+	font-weight: 500;
+	font-size: 15px;
+	width: 120px;
+	height: 50px;
+	cursor: pointer;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +75,7 @@
 	
 	<!-- counting -->
 	<div class="top"  >
-		<h4 >[ 고객관리 - 탈퇴 ]</h4>
+		<h4 >[ 고객관리 - 탈퇴 & 서비스해지 ]</h4>
 	</div>
 	<div class="row panel-row">
 	<div class="col">
@@ -129,7 +142,8 @@
    				<th>문의분류</th>
    				<th>문의답변여부</th>
    				<th>탈퇴여부</th>
-   				<th>탈퇴처리</th>
+   				<th>서비스가입여부</th>
+   				<th>요청처리</th>
    			</tr>
    		</thead>
    		<tbody>
@@ -140,9 +154,40 @@
    					<td>${vo.phone}</td>
    					<td>${vo.askDate}</td>
    					<td>${vo.askCategory}</td>
-   					<td>${vo.replyYn}</td>
-   					<td>${vo.withdrawal}</td>
-					<td><button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button></td>
+   					<td>
+   					<c:if test="${vo.replyYn eq 'Y'}">
+						문의답변 완료
+					</c:if>
+					<c:if test="${vo.replyYn eq 'N'}">
+						문의 미답변
+					</c:if>
+   					</td>
+   					<td>
+   					<c:if test="${vo.withdrawal eq 'Y'}">
+						탈퇴 완료
+					</c:if>
+					<c:if test="${vo.withdrawal eq 'N'}">
+						회원 
+					</c:if>
+   					</td>
+   					<td>
+   					<c:if test="${vo.serviceyn eq 'N'}">
+						서비스 가입
+					</c:if>
+					<c:if test="${vo.serviceyn eq 'Y'}">
+						서비스 해지
+   					</c:if>
+   					
+   					</td>
+   					<td>
+   					<c:if test="${vo.withdrawal eq 'Y'}">
+   					<!-- <a>탈퇴 완료</a> -->
+					<button type="button" class="btn2">탈퇴 완료</button> 
+					</c:if>
+					<c:if test="${vo.serviceyn eq 'N'}">
+						<button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button>
+   					</c:if>
+					</td>
    				</tr>
    			</c:forEach>
    		</tbody>

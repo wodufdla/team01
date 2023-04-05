@@ -238,11 +238,13 @@ select @rownum:=@rownum+1 row_num, m.*
 			a.reply_yn,
 			a.ask_category,
 			date_format(a.ask_date, '%Y-%m-%d %H:%i:%S') as ask_date,
-			b.withdrawal
+			b.withdrawal,
+			b.serviceyn
 		from
 			question_tbl a  join user_tbl b on a.phone = b.phone
 		where 
 			ask_category = "탈퇴";
+		
 	</select>
 	
 </mapper>
