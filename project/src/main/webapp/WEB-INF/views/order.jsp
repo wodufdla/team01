@@ -198,8 +198,8 @@ function checkLink(element) {
 <!-- 서비스 가입 시 -->
 <c:if test="${not empty session_orderno }">
 <div class="container">	
-	<h2> 서비스 가입/이용 중입니다.</h2>	
-	<table class="table table-hover">
+	<br><br><h2> 서비스 가입/이용 중입니다.</h2><br><br>
+	<table class="table table-hover" style="text-align: center;">
 		<colgroup>
 		 <col width="40%">
 		 <col width="60%">
@@ -231,7 +231,7 @@ function checkLink(element) {
 		 <td>다음 결제일자</td>
 		 <td><fmt:formatDate pattern = "yyyy/MM/dd" value="${session_nextorderdate}"/></td>
 		</tr>		
-	</table>	
+	</table><br><br><br><br><br>
 </div>	
 </c:if>
 <!-- 서비스 미가입 시 -->
