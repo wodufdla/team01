@@ -166,7 +166,15 @@ select:focus {
    					<td>${vo.nickname }</td>
    					<td>${vo.email }</td>
    					<td>${vo.phone }</td>
-   					<td>${vo.withdrawal }</td>
+   					<td>
+   					<c:if test="${vo.withdrawal eq 'Y'}">
+						탈퇴 완료
+					</c:if>
+					<c:if test="${vo.withdrawal eq 'N'}">
+						회원 
+					</c:if>
+   					
+   					</td>
    					<td><fmt:formatDate value="${vo.joinDate }" pattern="YYYY.MM.dd HH:mm:ss"/></td>
    				</tr>
    			</c:forEach>
