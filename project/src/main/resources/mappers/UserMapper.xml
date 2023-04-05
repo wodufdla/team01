@@ -144,43 +144,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-<!-- order 서비스가입 되면  회원 서비스가입여부 Y 처리 -->
+	<!-- order 서비스가입 되면  회원 서비스가입여부 Y 처리 -->
 	<update id="userServiceynY" parameterType="User">
 		update user_tbl
 		set serviceyn = 'Y'
 		where phone = #{phone}
 	</update>
 	
-<!-- 회원탈퇴  Y, 서비스 해지 N 처리 -->
+	<!-- 회원탈퇴  Y, 서비스 해지 N 처리 -->
 	<update id="userwithdrawal" parameterType="User">
 		update user_tbl
 		set withdrawal = 'Y', serviceyn='N'
 		where phone = #{phone}
 	</update>
 
-
-	
-	
 	<!-- 결제내역 -->
 	<select id="selectOrder" parameterType="User" resultType="Order">
-		select * from order_tbl where phone = #{phone}
+		select * from order_tbl
+		where
+		phone = #{phone} and status = 1
+		order by success_time desc
+		limit 1
 	</select>
 	
-	
-	
-	
-		<!-- 회원 등록 카카오통해서 -->
+	<!-- 회원 등록 카카오통해서 -->
 	<insert id="regAll2" parameterType="User">
 
 		insert into user_tbl (phone, email, nickname, banner)
 		values (#{phone}, #{email}, #{nickname}, #{banner})
 		
 	</insert>
-	
-	
-	
-	
-	
-	
 	
 </mapper>
