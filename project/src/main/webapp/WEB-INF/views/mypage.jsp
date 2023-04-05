@@ -31,7 +31,6 @@ $(document).ready(function() {
 	width: 70%;
 	min-height: 100%;
 	padding-top: 60px;
-  	padding-bottom: 60px;
 }
 .table {
 	text-align: center;
@@ -41,7 +40,7 @@ $(document).ready(function() {
 	margin-top: 30px;
 }
 #modify, #paymentHistory {
-	width: 20%;
+	width: 22%;
 	margin: 0px auto 50px auto;
 	background-color: #1a374f;
 	color: #fff;
@@ -56,6 +55,7 @@ $(document).ready(function() {
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
+
 	<div class="container">
 		<div>
 			<h2> > 내 정보</h2>	
@@ -110,7 +110,6 @@ $(document).ready(function() {
 			<input id="paymentHistory" type="button" value="결제내역" >
 		</div>
 	</div>
-
     <jsp:include page="common/footer.jsp" />
 
 </body>
