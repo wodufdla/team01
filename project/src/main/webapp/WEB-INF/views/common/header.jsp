@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!-- jstl 추가	황선필-->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
@@ -118,6 +118,17 @@ a.btn_primary {
     line-height: 1.3;
     color: #333;
 }
+.nav-link_m2 {
+	text-align:center;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 1.3;
+    color: #333;
+}
 </style>
 <script type="text/javascript">
 /* 모바일 버전 체크 */
@@ -125,25 +136,29 @@ var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userA
 
 $(document).ready(function(){
 	/* logout 알러트 수정 황선필 */
-	$("#logout").click(function() {
+/*	$("#logout").click(function() {
 		alert("로그아웃 됐습니다!");
 		location.href="logout";
 	});
-	
+*/	
+	$('.logout').each(function(i){
+		$(this).click(function(e){
+			e.preventDefault();
+			alert("로그아웃 됐습니다!");
+			location.href="logout";
+		});
+	});
 	/*모바일 btnIPO Event*/
 	$(".open_menu_layer").click(function() {
-	//    background: url(https://cdn.jejujini.kr/resources/KR/img/web/btn_gnb_menu_gray.png) no-repeat center;
-	  //      background: url(../img/web/btn_layer_close.png) no-repeat center;
-
-		
 		if('none' == $("#menuLayer").css("display")) {
 			$("#menuLayer").show();
+			
 		} else {
 			$("#menuLayer").hide();
 		}
 		//margin top 
-		var mgnTop		= $("#headerDiv").height()+'px';
-		$("#menuLayer").css("margin-top", mgnTop);
+		var mgnTop		= $("#headerDiv").height();
+		$("#menuLayer").css("margin-top", mgnTop)+'px';
 	});
 	
 	/*모바일 화면 구성*/
@@ -156,13 +171,12 @@ function fnSetScreen() {
 	var bodyWth		= 1200;
 	if($(document.body).length > 0) {
 		if($(document.body.clientWidth)[0] <= 1200) {
-			//console.log("screen size : "+$(document.body.clientWidth)[0]);
 			isMobile		= true;
 		} else {
+			$("#menuLayer").hide();
 			isMobile		= false;
 		}
 	}
-	var menuNm	= ["서비스 소개", "서비스 가입", "FAQ", "1:1 문의", "서비스 해지"];
 	if(!isMobile) {
 		//PC
 		$("#navPC").show();
@@ -223,14 +237,14 @@ function withdrawal() {
 		<div class="collapse navbar-collapse" >
 			<ul class="navbar-nav" style="width: 100%;">
 				<!-- 이해리 메뉴 수정 -->
-				<li class="nav-item"><!-- <a class="nav-link" href="serviceInfo">서비스 소개</a> -->
+				<li class="nav-item">
 					<div class="dropdown">
 						<span class="dropbtn">서비스 소개</span>
 						<div class="dropdown-content">
-							<a class="dropdown-item" href="#" onclick="joinchk(3);">실시간 공개현황</a>
-							<a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
-							<a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
-							<a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
+							<a class="dropdown-item" href="/rtPublicStatus">실시간 공개현황</a>
+						<a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
+						<a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
+						<a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
 						</div>
 					</div>
 				</li>
@@ -257,12 +271,12 @@ function withdrawal() {
 					<a id="register" class="nav-link" style="float: right; cursor : pointer;" onclick="window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');">회원가입</a>
 				</c:if>
 				<c:if test="${phone!=null}"><!-- style 수정 황선필 -->
-					<a href="#" id="logout" class="nav-link" style="width: 10%;	float: right; display:inline-block;">로그아웃</a>
+					<a href="#" id="logout" class="nav-link logout" style="float: right; display:inline-block;">로그아웃</a>
 					<a href="javascript:mypage();" id="mypage" class="nav-link" style="width: 20%; float: right; cursor : pointer;" >마이페이지</a>
 					<a href="javascript:void(0);" class="nav-link" style="width: 30%; font-weight: bold; float: right; cursor: auto;">${session_nickname}님 환영합니다!</a>
 				</c:if>
 				<c:if test="${admin != null }"><!-- 관리자 환영합니다 스타일 수정 황선필-->
-					<a href="#" id="logout" class="nav-link" style="width: 10%; float: right; display:inline-block;">로그아웃</a>
+					<a href="#" id="logout" class="nav-link logout" style="width: 10%; float: right; display:inline-block;">로그아웃</a>
 					<a href="product" id="product_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">매출 관리</a>
 					<a href="customer" id="customer_management" class="nav-link" style="width: 10%; float: right;cursor : pointer">고객 관리</a>					
 					<a href="ask" class="nav-link" style="width: 10%; float: right;cursor : pointer">1:1 문의</a>
@@ -272,7 +286,7 @@ function withdrawal() {
 		</div>
 	</div>
 	<%-- Mobile --%>
-	<div id="navMo" style="min-height:70px;">
+	<div id="navMo" style="min-height:70px; ">
 		<a class="navbar-brand" href="crime"><img src="/resources/img/logo.png" style="height: 30px;"></a>
 		<button type="button" class="open_menu_layer ui_btn_pop" data-href="#menuLayer"><span class="blind">메뉴</span></button>
 	</div>
@@ -287,17 +301,31 @@ function withdrawal() {
 		<!-- //로그인 전 -->
 		<!-- 로그인 후 -->
 		<c:if test="${phone!=null}"><!-- style 수정 황선필 -->
+		<div id="webLogin_m" class="webLogin_m" style="font-size: 1.7rem; line-height: 1.3; text-align:center;">
 			<p class="text"><strong class="txt_primary">${session_nickname}님 환영합니다!</strong></p>
-			<li class="nav-item"><a id="a-login" class="nav-link" href="javascript:onLogin();">로그아웃</a></li>
-		</c:if>
-		<div class="">
+			<a class="btn_primary logout" href="#">로그아웃</a>
+		</div>
+		<%-- <div id="webLogin_m" class="webLogin_m" style="font-size: 1.9rem; line-height: 1.3; text-align:center;">
+			<p class="text"><strong class="txt_primary">${session_nickname}님의 남은 서비스 이용 기간</strong></p>
+			<p class="text">현재 0일 0시간 남아있습니다.</p>
+		</div> --%>
+		<div id="webLogin_m" class="webLogin_m" style="font-size: 1.7rem; line-height: 1.3; text-align:center;">
 			<ul class="" style="width: 100%;">
-				<li class="nav-item"><a class="nav-link_m" href="order">서비스 가입</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="faq">FAQ</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="question">1:1 문의</a></li>
-				<li class="nav-item"><a class="nav-link_m" href="#" onclick="withdrawal();">서비스 해지</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="">> 서비스 소개</a></li>
+				<ul class="" style="width: 100%;">
+					<li class="nav-item"><a class="nav-link_m2" href="/rtPublicStatus"> > 실시간 공개현황</a></li>
+					<li class="nav-item"><a class="nav-link_m2" href="#" onclick="joinchk(1);"> > 성범죄자 찾아보기</a></li>
+					<li class="nav-item"><a class="nav-link_m2" href="#" onclick="joinchk(2);"> > 범죄주의 구간 확인</a></li>
+				</ul>
+				<li class="nav-item"><a class="nav-link_m" href="order">> 서비스 가입</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="faq">> FAQ</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="question">> 1:1 문의</a></li>
+				<li class="nav-item"><a class="nav-link_m" href="#" onclick="withdrawal();">> 서비스 해지</a></li>
 			</ul>
 		</div>
+		<div id="webLogin_m" class="webLogin_m" style="font-size: 1.7rem; line-height: 1.3; text-align:center;">
+		</div>
+		</c:if>
 	</div>
 </nav>
 </div>
