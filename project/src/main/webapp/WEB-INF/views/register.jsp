@@ -105,8 +105,18 @@
 												     		 success:function(data){
 												     			 if(data==1){
 												     				alert("회원등록완료");
+												     				$.ajax({
+												     					url:"./login",
+															     		 type:"post",
+															     		 data:{
+															     			 "phone":phone,
+															     			 "password":pw,
+															     		 },
+															     		success:function(data){
+												     						window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
+															     		}
+												     				});
 												     					//window.close();												     					
-												     					window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
 // 												     					opener.location.href="/orderEvent";
 												     			 }else{
 												     					 alert("회원else");
@@ -188,12 +198,7 @@
 		     		 
 				 }); 
 	          
-					$.ajax({
-						url : "./eventJoin",
-						type : "POST",
-						dataType : "JSON",
-						data : {"phone" : phone}
-					})
+
 			
 			})
 
