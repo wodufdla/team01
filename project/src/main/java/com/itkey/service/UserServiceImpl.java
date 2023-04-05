@@ -15,11 +15,10 @@ import com.itkey.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	@Autowired
 	private UserDAO userDAO;
-		
-	
+
 	@Override
 	public List<UserVO> readAll() {
 		log.info("read() 호출");
@@ -49,24 +48,24 @@ public class UserServiceImpl implements UserService {
 		log.info("read_login() 호출 : phone = " + phone);
 		return userDAO.select_login(phone);
 	}
-	
-	//정보수정 황선필
+
+	// 정보수정 황선필
 	@Override
 	public int modifyAll(UserVO uv) {
 		// TODO Auto-generated method stub
 		int MMI = userDAO.modifyAll(uv);
 		return MMI;
 	}
-	
-	//회원가입 번호 체크 황선필
+
+	// 회원가입 번호 체크 황선필
 	@Override
 	public UserVO regphonecheck(UserVO uv) {
 		// TODO Auto-generated method stub
-		UserVO uvreg=userDAO.regphonecheck(uv);
+		UserVO uvreg = userDAO.regphonecheck(uv);
 		return uvreg;
 	}
-	
-	//회원가입 모두 등록 황선필
+
+	// 회원가입 모두 등록 황선필
 	@Override
 	public int regAll(UserVO uv) {
 		// TODO Auto-generated method stub
@@ -92,21 +91,21 @@ public class UserServiceImpl implements UserService {
 		log.info("totalCounts() 호출");
 		return userDAO.totalCounts(criteria);
 	}
-	
+
 	@Override
-	public int  adminMemberCount() throws Exception {
+	public int adminMemberCount() throws Exception {
 		log.info("adminMemberCount() 호출");
 		int result = userDAO.adminMemberCount();
 		return result;
 	}
-	
+
 	@Override
 	public int getTodayMemberCount(String today) throws Exception {
 		log.info("getTodayMemberCount(String today) 호출");
 		int result = userDAO.selectTodayMemberCount(today);
 		return result;
 	}
-	
+
 	@Override
 	public int getserviceStatusY() {
 		log.info("getserviceStatusY() 호출");
@@ -120,50 +119,63 @@ public class UserServiceImpl implements UserService {
 		int result = userDAO.getwithdrawalMember();
 		return result;
 	}
-	
-	//황선필
-	//cashclick
+
+	// 황선필
+	// cashclick
 	@Override
 	public int cashClickCount() {
 		int result = userDAO.cashClickCount();
 		return result;
 	}
-	//cashclickcount
+
+	// cashclickcount
 	@Override
 	public int selectBannerClick() {
 		int result = userDAO.selectBannerClick();
 		return result;
 	}
-	////배너 통해서 가입한 회원수
+
+	//// 배너 통해서 가입한 회원수
 	@Override
 	public int selectBannerUserCount() {
 		int result = userDAO.selectBannerUserCount();
 		return result;
 	}
-	//회원탈퇴
+
+	// 회원탈퇴
 	@Override
 	public int userwithdrawal(UserVO uv) {
 		log.info("* [SERVICE] Input  ◀ (Controller) : " + uv.toString());
 		int result = userDAO.userwithdrawal(uv);
 		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
-		
+
 		return result;
 	}
 
+	// order 서비스가입 되면 회원 서비스가입여부 Y 처리 :황선애
+	@Override
+	public int userServiceynY(UserVO uv) {
+		log.info("* [SERVICE] Input  ◀ (Controller) : " + uv.toString());
+		int result = userDAO.userServiceynY(uv);
+		log.info("* [SERVICE] Output ◀ (DAO) : " + result);
 
-	//결제내역
+		return result;
+	}
+
+	// 결제내역
 	@Override
 	public OrderVO selectOrder(UserVO vo) {
 		// TODO Auto-generated method stub
 		OrderVO ov = userDAO.selectOrder(vo);
 		return ov;
 	}
-	//카카오 회원가입
+
+	// 카카오 회원가입
 	@Override
 	public int regAll2(UserVO uv) {
 		// TODO Auto-generated method stub
 		int regnum = userDAO.regAll2(uv);
 		return regnum;
 	}
-	
+
 }

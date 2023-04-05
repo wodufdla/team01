@@ -27,6 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${phone} = #{phone}
 	</update>
 	
+	
+	
 	<select id="select_login" resultType="User">
 		select * from ${user_tbl}
 		where ${phone} = #{phone}
@@ -141,12 +143,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(banner) FROM user_tbl where banner = 1
 	</select>
 	
-	<!-- 회원탈퇴 -->
-	<update id="userwithdrawal" parameterType="User">
+	
+<!-- order 서비스가입 되면  회원 서비스가입여부 Y 처리 -->
+	<update id="userServiceynY" parameterType="User">
 		update user_tbl
-		set withdrawal = 'Y'
+		set serviceyn = 'Y'
 		where phone = #{phone}
 	</update>
+	
+<!-- 회원탈퇴  Y, 서비스 해지 N 처리 -->
+	<update id="userwithdrawal" parameterType="User">
+		update user_tbl
+		set withdrawal = 'Y', serviceyn='N'
+		where phone = #{phone}
+	</update>
+
+
+	
 	
 	<!-- 결제내역 -->
 	<select id="selectOrder" parameterType="User" resultType="Order">

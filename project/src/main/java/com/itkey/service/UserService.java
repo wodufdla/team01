@@ -43,10 +43,13 @@ public interface UserService {
 	int selectBannerUserCount();
 	
 	
-	//회원탈퇴
+	//회원탈퇴 : 황선애 
 	int userwithdrawal(UserVO uv);
 	
-	
+	//order 서비스가입 되면  회원 서비스가입여부 Y 처리 :황선애
+	int userServiceynY(UserVO uv);
+
+		
 	//결제내역
 	OrderVO selectOrder(UserVO vo);
 
