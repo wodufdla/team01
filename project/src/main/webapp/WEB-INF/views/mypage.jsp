@@ -39,7 +39,7 @@ $(document).ready(function() {
 	width: 100%;
 	margin-top: 30px;
 }
-#modify, #paymentHistory {
+#modify, #paymentHistory,#withdrawal {
 	width: 22%;
 	margin: 0px auto 50px auto;
 	background-color: #1a374f;
@@ -107,10 +107,34 @@ $(document).ready(function() {
 
 		<div class="btn">
 			<input id="modify" type="button" value="정보수정">
+			<input id="withdrawal" type="button" value="회원탈퇴">
+			
 			<input id="paymentHistory" type="button" value="결제내역" >
 		</div>
 	</div>
     <jsp:include page="common/footer.jsp" />
+<script type="text/javascript">
+$("#withdrawal").click(function() {
+	var phone = "${phone}"
+	var userJoinDate = "${session_join_date}"
+	
+	
+	/* 7일 이후 조건넣기 */
+	var today = new Date(); //오늘날짜
+    var joinDate = new Date(userJoinDate); //가입날짜
+    
+    joinDate.setDate(joinDate.getDate() + 7);
+	 // alert(today.getTime());// 현재날짜
+	
+    if(today.getTime() > joinDate.getTime()){
+    	alert("1:1 문의 게시판을 이용해주세요."); //가입일자 7일 이후에 나오는 멘트
+      } else{
+    	  alert("가입후 7일이후에 해지하실 수 있습니다."); //가입후 7일 이전까지 멘트
+         return false;
+      }
 
+});
+
+</script>
 </body>
 </html>

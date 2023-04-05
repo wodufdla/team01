@@ -138,6 +138,7 @@
    			<tr>
    				<th>순번</th>
    				<th>핸드폰번호</th>
+   				<th>가입날짜</th>
    				<th>요청일자</th>
    				<th>문의분류</th>
    				<th>문의답변여부</th>
@@ -150,9 +151,12 @@
    				<c:forEach var="vo" items="${reqWithdrawal}" varStatus="status">
    				<tr>
    					<input type="hidden" name="phone" id="phone" value="${vo.phone}">
+   					<input type="hidden" name="joinDate" id="joinDate" value="${vo.joinDate}">
    					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
    					<td>${vo.phone}</td>
-   					<td>${vo.askDate}</td>
+   					<td>${vo.joinDate}</td>
+   					<td>${vo.askDate}
+   					</td>
    					<td>${vo.askCategory}</td>
    					<td>
    					<c:if test="${vo.replyYn eq 'Y'}">
@@ -171,20 +175,21 @@
 					</c:if>
    					</td>
    					<td>
-   					<c:if test="${vo.serviceyn eq 'N'}">
+   					<c:if test="${vo.serviceyn eq 'Y'}">
 						서비스 가입
 					</c:if>
-					<c:if test="${vo.serviceyn eq 'Y'}">
+					<c:if test="${vo.serviceyn eq 'N'}">
 						서비스 해지
    					</c:if>
-   					
    					</td>
+   				<!-- 	<td id="withdrawalDay">
+   					</td> -->
    					<td>
    					<c:if test="${vo.withdrawal eq 'Y'}">
    					<!-- <a>탈퇴 완료</a> -->
 					<button type="button" class="btn2">탈퇴 완료</button> 
 					</c:if>
-					<c:if test="${vo.serviceyn eq 'N'}">
+					<c:if test="${vo.withdrawal eq 'N'}">
 						<button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button>
    					</c:if>
 					</td>
@@ -228,6 +233,21 @@
     	});
     }
      
+    var date = $("#joinDate").val();
+    alert(date);
+    
+     var joinDate = new Date(date); //가입날짜
+     //joinDate.setDate(joinDate.getDate() + 7);
+     
+     //alert(joinDate);
+     
+     var year = joinDate.getFullYear();
+     var month = joinDate.getMonth() + 1;
+     var date = joinDate.getDate() + 7;
+     
+    	var withdrawalDay = year + "-" + month + "-" + date;
+    	$("#withdrawalDay").html(withdrawalDay);
+
      </script>
    	<br>
    	<c:choose>

@@ -21,5 +21,7 @@ public class QuestionVO {
 	private String askDate;      // 문의작성일자
 	private String replyYn;      // 문의답변여부
 	private String withdrawal;   // 탈퇴여부
-	private String serviceyn;   // 탈퇴여부
+	private String serviceyn;   // 서비스 가입여부
+	private String joinDate;     //가입날짜
+	
 }
