@@ -104,7 +104,7 @@
 												     		 },
 												     		 success:function(data){
 												     			 if(data==1){
-												     				alert("회원등록완료");
+												     				alert(" 회원가입이 완료되었습니다.");
 												     				$.ajax({
 												     					url:"./login",
 															     		 type:"post",

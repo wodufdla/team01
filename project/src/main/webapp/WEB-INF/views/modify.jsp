@@ -72,15 +72,7 @@ input[type=button] {
 </style>
 <script type="text/javascript">
 		$(function() {
-			$("#withdrawal").click(function() {
-				var phone = "${phone}"
-				alert("1:1 문의 게시판을 이용해주세요.");
-/* 				var wc = confirm("정말 회원탈퇴 하시겠습니까?");
-				if(wc==1){
-					alert("회원탈퇴 되었습니다.");
-					location.href="withdrawal?phone="+phone;
-				} */
-			});
+			
 			//수정버튼 황선필
 			$("#modify").click(function() {
 				
@@ -124,7 +116,7 @@ input[type=button] {
 							     		 success:function(data){
 							     			 //alert("alertmodify:"+data)
 							     			 if(data==1){
-							     				 alert("회원 정보 수정 완료");
+							     				 alert("회원 정보 수정 완료 되었습니다.");
 							     				 location.href="crime";
 							     			 }else{
 							     				 alert("else");
@@ -198,7 +190,6 @@ input[type=button] {
 		      <!-- 스타일 추가 황선필 -->
 		    <div style="text-align:center; padding:20px; margin:auto;"> 
 				<input id="modify" type="button" value="수정">
-				<input id="withdrawal" type="button" value="회원탈퇴">
 				<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)">
 			</div>
 		</form>
