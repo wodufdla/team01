@@ -202,23 +202,16 @@ public class UserController {
         return "redirect:/crime";
     }
     
-    //정보수정 화면 접속 황선필
     @RequestMapping("/modify")
-    public String modify() {
-    	
-    	return "modify";
-    }
-    //정보수정2 화면 접속 황선필
-    @RequestMapping("/modify2")
-    public String modify2(Model model, HttpServletRequest request) {
+    public String modify(Model model, HttpServletRequest request) {
     	HttpSession session = request.getSession();
 		String phone = (String) session.getAttribute("phone");
 		UserVO uv = userService.read_login(phone);
 		
 		model.addAttribute("user", uv);
-    	return "modify2";
+    	return "modify";
     }
-	
+
 	//실질 정보수정 황선필
 	@ResponseBody
 	@PostMapping("/modifydo")

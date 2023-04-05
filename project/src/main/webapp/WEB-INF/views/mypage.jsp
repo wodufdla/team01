@@ -17,7 +17,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#modify").click(function() {
-		location.href="./modify2";
+		location.href="./modify";
 	});
 	
 	$("#paymentHistory").click(function() {

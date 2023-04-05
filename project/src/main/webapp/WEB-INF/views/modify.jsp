@@ -1,22 +1,86 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title></title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
-    
-    
-    <script type="text/javascript">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title></title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+KR:100,200,300,400,500,600,700&amp;subset=korean&amp;display=swap">
+<style>
+.container {
+	height: auto;
+	width: 60%;
+	min-height: 100%;
+	padding-top: 60px;
+  	padding-bottom: 60px;
+  	font-size: 0.8em;
+}
+/* .modify_cont {
+	margin: auto;
+	padding: 20px 0;
+	font-size: 0.8em;
+} */
+#sub {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	width: 35%;
+	display: block;
+	height: 50px;
+	margin:10px auto 50px;
+}
+h2 {
+	padding-bottom: 20px;
+}
+.normal-font {
+	display: block;
+	padding: 8px;
+}
+input[type=text] {
+	width: 100%;
+	padding: 5px;
+}
+#pw, #repw {
+	width: 100%;
+	padding: 5px;
+}
+ul {
+	padding: 0;
+	display: flex;
+	list-style:none;
+}
+input[type=button] {
+	width: 30%;
+	background-color: #1a374f;
+	color: #fff;
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+
+}
+</style>
+<script type="text/javascript">
 		$(function() {
-			
+			$("#withdrawal").click(function() {
+				var phone = "${phone}"
+				alert("1:1 문의 게시판을 이용해주세요.");
+/* 				var wc = confirm("정말 회원탈퇴 하시겠습니까?");
+				if(wc==1){
+					alert("회원탈퇴 되었습니다.");
+					location.href="withdrawal?phone="+phone;
+				} */
+			});
 			//수정버튼 황선필
 			$("#modify").click(function() {
 				
@@ -61,8 +125,7 @@
 							     			 //alert("alertmodify:"+data)
 							     			 if(data==1){
 							     				 alert("회원 정보 수정 완료");
-							     				opener.location.reload();
-							     				window.close();
+							     				 location.href="crime";
 							     			 }else{
 							     				 alert("else");
 							     				 }
@@ -81,60 +144,65 @@
 		})
 		//제이쿼리
 	
-	</script>
+</script>
     
 </head>
 <body>
-	<a href="javascript:close();" style="position: absolute;right: 0;">
-		<img src="/resources/img/popup_close.png" style="padding: 14px;width: 50px;">
-	</a>
-	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원수정</span>
-	<form action="modifyform" method="post">
-		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
-	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px; list-style:none;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
-	          </li>
-	          <li style="display: flex;width: 100%;">
-	          	<input type="text" id="user_id" name="user_id" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;" readonly="readonly" value="${phone}">
-	          </li>
-	      </ul>
-	      <ul style="padding: 0;display: flex; list-style:none;">
-	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">비밀번호</span>
-	          </li>
-	          <li style="width: 100%;display: flex;">
-	          	<input type="password" id="pw" name="pw" placeholder="비밀번호 입력"  maxlength="24" style="width: 100%; padding: 5px;">
-	          </li>
-	      </ul>
-	      <ul style="padding: 0;display: flex; list-style:none;">
-	          <li style="width: 40%;max-width: 100px;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">PW재입력</span>
-	          </li>
-	          <li style="width: 100%;display: flex;">
-	          	<input type="password" id="repw" name="repw" placeholder="비밀번호 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
-	          </li>
-	      </ul>
-	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px; list-style:none;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">이메일</span>
-	          </li>
-	          <li style="width: 100%;display: flex;">
-	          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24" style="width: 100%; padding: 5px;">
-	          </li>
-	      </ul>
-	      <ul style="padding: 0;display: flex;">
-	          <li style="width: 40%;max-width: 100px; list-style:none;">
-	          	<span class="normal-font" style="display: block;padding: 8px;">닉네임</span>
-	          </li>
-	          <li style="width: 100%;display: flex;">
-	          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24" style="width: 100%; padding: 5px;">
-	          </li>
-	      </ul>
-	      <!-- 스타일 추가 황선필 -->
-		<input id="modify" type="button" value="수정" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-		</div>
-	</form>
-
+	<jsp:include page="common/header.jsp" />
+	<div class=container>
+		<!-- <span id="sub">정보수정</span> -->
+		<form action="modifyform" method="post">
+			<div>
+			<h2> > 정보수정</h2>	
+		      <ul>
+		          <li style="width: 40%; list-style:none;">
+		          	<span class="normal-font">핸드폰 번호</span>
+		          </li>
+		          <li style="display: flex;width: 80%;">
+		          	<input type="text" id="user_id" name="user_id" placeholder="'-' 제외하고 번호만 입력" maxlength="11" readonly="readonly" value="${user.phone}">
+		          </li>
+		      </ul>
+		      <ul>
+		          <li style="width: 40%; list-style:none;">
+		          	<span class="normal-font">비밀번호</span>
+		          </li>
+		          <li style="width: 80%;display: flex;">
+		          	<input type="password" id="pw" name="pw" placeholder="비밀번호 입력"  maxlength="24">
+		          </li>
+		      </ul>
+		      <ul>
+		          <li style="width: 40%; list-style:none;">
+		          	<span class="normal-font">PW재입력</span>
+		          </li>
+		          <li style="width: 80%;display: flex;">
+		          	<input type="password" id="repw" name="repw" placeholder="비밀번호 재입력"  maxlength="24">
+		          </li>
+		      </ul>
+		      <ul>
+		          <li style="width: 40%; list-style:none;">
+		          	<span class="normal-font">이메일</span>
+		          </li>
+		          <li style="width: 80%;display: flex;">
+		          	<input type="text" id="email" name="email" placeholder="이메일 입력"  maxlength="24">
+		          </li>
+		      </ul>
+		      <ul>
+		          <li style="width: 40%; list-style:none;">
+		          	<span class="normal-font">닉네임</span>
+		          </li>
+		          <li style="width: 80%;display: flex;">
+		          	<input type="text" id="nickname" name="nickname" placeholder="닉네임 입력"  maxlength="24">
+		          </li>
+		      </ul>
+		      </div>
+		      <!-- 스타일 추가 황선필 -->
+		    <div style="text-align:center; padding:20px; margin:auto;"> 
+				<input id="modify" type="button" value="수정">
+				<input id="withdrawal" type="button" value="회원탈퇴">
+				<input id="back" type="button" value="뒤로가기" onclick="history.go(-1)">
+			</div>
+		</form>
+	</div>
+ 	<jsp:include page="common/footer.jsp" />
 </body>
 </html>

@@ -189,7 +189,7 @@ margin: 3px;
 		});
 		
 		$("#modify").click(function() {
-			location.href="modify2";
+			location.href="modify";
 		});
 		
 		$("#withdrawal").click(function() {
