@@ -253,11 +253,13 @@ function checkLink(element) {
 						<div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"	onclick="checkLink(this)" dataid="5000" value="5000"	id="check-2"><label class="form-check-label" for="check-2">5,000/월</label></div>
 					</td>
 				</tr>
-				<tr>
+
+<!-- 				<tr>
 					<td>단품결제<td>7일 범죄 알리미의 컨텐츠 이용 체험<td>
 						<div class="form-check checkbox-plan"><input class="form-check-input checkbox-plan" type="checkbox" name="check-link"	onclick="checkLink(this)" dataid="100" value="100"	id="check-3"><label class="form-check-label" for="check-3">100/월</label></div>
 					</td>
-				</tr>
+				</tr> -->
+				
 				</tbody>
 			</table>
 		</div>
@@ -276,7 +278,6 @@ function checkLink(element) {
 								2. 한달 의무 사용 이후 자유롭게 해지가능합니다.<br><br>
 								* 보상을 받으시고 가입하신 경우 최초 한달은 약정기간으로 의무사용이 적용되니 신중히 가입하시기를 부탁드립니다.</span></td>
 					<td style="padding: 0;">
-						<div class="form-check checkbox-plan" style="padding: 5px 20px; margin: 10px;"><input class="form-check-input" type="checkbox" id="check-card" onclick="checkCard(this);"><label class="form-check-label" for="check-card" style="font-weight: 600;color: #fff;">카드결제</label></div>
 						<a id="a-pay" class="a-pay" href="#" onclick="iamport();" style="margin-top:80px;">상품 선택후<br>결제해주세요.</a></td>
 				</tr>
 				</tbody>
