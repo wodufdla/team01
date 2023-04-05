@@ -138,20 +138,22 @@
    			<tr>
    				<th>순번</th>
    				<th>핸드폰번호</th>
+   				<th>회원가입날짜</th>
    				<th>요청일자</th>
    				<th>문의분류</th>
    				<th>문의답변여부</th>
-   				<th>탈퇴여부</th>
    				<th>서비스가입여부</th>
-   				<th>요청처리</th>
+   				<th>탈퇴여부</th>
    			</tr>
    		</thead>
    		<tbody>
    				<c:forEach var="vo" items="${reqWithdrawal}" varStatus="status">
    				<tr>
    					<input type="hidden" name="phone" id="phone" value="${vo.phone}">
+   					<input type="hidden" name="joinDate" id="joinDate" value="${vo.joinDate}">
    					<td><c:out value="${(pageMaker.totalCount-status.index)-((pageMaker.criteria.page-1)*pageMaker.criteria.numsPerPage)}" /></td>
    					<td>${vo.phone}</td>
+   					<td>${vo.joinDate}</td>
    					<td>${vo.askDate}</td>
    					<td>${vo.askCategory}</td>
    					<td>
@@ -163,28 +165,19 @@
 					</c:if>
    					</td>
    					<td>
-   					<c:if test="${vo.withdrawal eq 'Y'}">
-						탈퇴 완료
-					</c:if>
-					<c:if test="${vo.withdrawal eq 'N'}">
-						회원 
-					</c:if>
-   					</td>
-   					<td>
-   					<c:if test="${vo.serviceyn eq 'N'}">
+   					<c:if test="${vo.serviceyn eq 'Y'}">
 						서비스 가입
 					</c:if>
-					<c:if test="${vo.serviceyn eq 'Y'}">
+					<c:if test="${vo.serviceyn eq 'N'}">
 						서비스 해지
    					</c:if>
-   					
    					</td>
    					<td>
    					<c:if test="${vo.withdrawal eq 'Y'}">
    					<!-- <a>탈퇴 완료</a> -->
-					<button type="button" class="btn2">탈퇴 완료</button> 
+					<button type="button" class="btn2"  name="deletBtnY" >탈퇴 완료</button> 
 					</c:if>
-					<c:if test="${vo.serviceyn eq 'N'}">
+					<c:if test="${vo.withdrawal eq 'N'}">
 						<button type="button" class="btn1"  name="deletBtn" data-idx="${vo.phone}" >탈퇴</button>
    					</c:if>
 					</td>
@@ -196,23 +189,29 @@
   <script type="text/javascript">
    //회원탈퇴 버튼 클릭시 
      $("button[name=deletBtn]").on("click",function(e){
-    	// var formData = $("#frmadminbDel").serialize();
+    	
     	var phone = $(this).attr('data-idx');
+    	
     	 if (!confirm("탈퇴처리 하시겠습니까?")) {
 			 location.reload();
 	    } else {
 	    	//boardWriterIdx 가지고 가기 
-	    	deleteWrite(phone);
+			deleteWrite(phone);
 	    }
     	
      });
+ //회원탈퇴 완료 
+     $("button[name=deletBtnY]").on("click",function(e){
+    	 alert("이미 회원 탈퇴 처리 되었습니다.");
+      });
 
+   
     //회원 탈퇴처리 이벤트(값 가지고) 
     function deleteWrite(phone){
     
     	$.ajax({
     		type : "get",
-    		url : "abc",
+    		url : "deleteWrite",
     		data :{phone : phone},
     		contentType : 'application/text; charset=UTF-8',
     		success : function(data) {
