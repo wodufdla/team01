@@ -35,9 +35,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.OrderService;
+import com.itkey.service.UidService;
 import com.itkey.service.UserService;
 import com.itkey.util.MainInfo;
 import com.itkey.vo.OrderVO;
+import com.itkey.vo.UidVO;
 import com.itkey.vo.UserVO;
 
 @EnableScheduling
@@ -54,7 +56,21 @@ public class OrderController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UidService uidService;
 
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@ResponseBody
+	public void test(Model model) {
+		
+		List<UidVO> list = uidService.getUid();
+		model.addAttribute("list", list);
+		
+		System.out.println("=====");
+		System.out.println(list);
+	}
+	
 	// 정기결제
 	@ResponseBody
 	@PostMapping(value = "/order", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -98,7 +114,8 @@ public class OrderController {
 
 		System.out.println("DB저장결과 : " + result);
 		String result2 = String.valueOf(result);
-
+		
+		
 		String token = orderService.getToken();
 		System.out.println("/token : " + token);
 		return new ResponseEntity<String>(token, HttpStatus.OK);
@@ -231,10 +248,15 @@ public class OrderController {
 	public void run() throws Exception {
 
 		String token = orderService.getToken();
+		
+		// 정기 결제 돌려야 할 데이터 추출
+		List<UidVO> list = uidService.getUid();
+		
 		String id = "ffs_test";
 		String cUid = "c_2ffs_test"; // db가져오고 customeruid
 		String phone = "01092726751";
 
+		// for
 		Map<String, Object> param = new HashMap<>();
 
 		param.put("token", token);

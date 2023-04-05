@@ -43,6 +43,7 @@
 		<typeAlias alias="Answer"  type="com.itkey.vo.AnswerVo" />
 		<!-- 페이먼트  -->
 		<typeAlias alias="Payment"  type="com.itkey.vo.PaymentVO" />
+		<typeAlias alias="Uid"  type="com.itkey.vo.UidVO" />
 		
 	</typeAliases>
 	
