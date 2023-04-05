@@ -180,8 +180,8 @@ function fnShowLogin() {
 //서비스 가입, 서비스 해지, 1:1 문의 로그인 안할때 클릭시 알람 뜨게 하고 로그인 창 뜸
 function registeralarm() {
 	alert("로그인 후 이용 가능합니다!");
-	window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
-	
+	window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+	//window.open('register','register','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 }
 //mypage
 function mypage() {
@@ -193,8 +193,9 @@ function joinchk(num){
 
 	// 서비스 가입 여부 확인 후 미가입시 안내창
 	// alert("서비스 가입 후 이용 가능합니다.");
-	if ('<%=(String)session.getAttribute("serviceYN")%>' == 'N'){
+	if ('<%=(String)session.getAttribute("session_status")%>' != '1'){
 		alert("서비스 가입 후 이용 가능합니다.");
+		window.open('login','login','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
 	} else {
 		if (num==1) {
 			window.open("https://www.sexoffender.go.kr/m1s2_login.nsc", "_blank")
@@ -202,6 +203,8 @@ function joinchk(num){
 		} else if (num==2){
 			/* window.open("https://www.safemap.go.kr/main/smap.do?flag=2", "_blank"); */
 			location.href ="/safetyMap";
+		} else if (num==3){
+			location.href ="/rtPublicStatus";
 		}
 	}
 }
@@ -224,10 +227,10 @@ function withdrawal() {
 					<div class="dropdown">
 						<span class="dropbtn">서비스 소개</span>
 						<div class="dropdown-content">
-							<a class="dropdown-item" href="/rtPublicStatus">실시간 공개현황</a>
-						<a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
-						<a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
-						<a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
+							<a class="dropdown-item" href="#" onclick="joinchk(3);">실시간 공개현황</a>
+							<a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
+							<a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
+							<a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
 						</div>
 					</div>
 				</li>
