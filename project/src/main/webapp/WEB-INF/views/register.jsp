@@ -17,7 +17,6 @@
     
     
     <script type="text/javascript">
-    
     	//jquery
 		$(function() {
 			
@@ -27,7 +26,6 @@
 			
 			//등록버튼 황선필
 			$("#register").click(function() {
-				
 				//배너 체크
 				//alert(banner);
 				//각 빈칸들 변수
@@ -38,7 +36,7 @@
 				var nickname=$("#nickname").val();
 				
 				//핸드폰 패턴
-				var patternPhoneNumber=/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+				var patternPhoneNumber=/^01([0|1|6|7|8|9]?)-?([0-9]{4})-?([0-9]{4})$/;
 	            //이메일 체크 양식
 	            var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 				//폰번호 형식 확인1.
@@ -78,7 +76,8 @@
 								     		 },
 								     		 success:function(data){
 								     			 if(data==1){
-								     				 alert("중복된 번호입니다.");
+								     				 alert("이미 가입완료된 번호입니다.");
+													 var regsubmit=confirm("결제를 진행 하시겠습니까? ");      
 								     			 }else{
 								     				 alert("사용가능한 번호입니다.");
 								     				 var regsubmit=confirm("작성한 내용으로 가입이 진행됩니다. 계속하시겠습니까? ");
@@ -108,7 +107,7 @@
 												     				alert("회원등록완료");
 												     					window.close();												     					
 												     					window.open('orderEvent','orderEvent','width=850,height=700,location=no,status=no,scrollbars=no,left=700,top=200');
-												     					//opener.location.href="/orderEvent";
+// 												     					opener.location.href="/orderEvent";
 												     			 }else{
 												     					 alert("회원else");
 												     				 }
@@ -133,11 +132,88 @@
 				            }
 						}
 			})
-			//등록버튼
+			
+			$("#fn_checkId").click(function() {
+				var phone=$("#phone").val();
+				//핸드폰 패턴
+				var patternPhoneNumber=/^01([0|1|6|7|8|9]?)-?([0-9]{4})-?([0-9]{4})$/;
+				var checkReg = /^[-0-9]*$/;
+				var phone1 = checkReg.test(phone);
+				
+				if(phone ==""|| phone.length == 0){
+					alert("핸드폰번호를 입력해주세요.");
+					return false;
+				}
+				//숫자만 검색
+	            if(phone1==false){
+		            alert("전화번호 양식에 맞춰 작성해주시기 바랍니다.");
+		            return false;
+	            }
+	            //번호 양식 검색
+	            if(patternPhoneNumber.test($("#phone").val())!=true){
+	                alert("전화번호 양식에 맞춰 작성해주시기 바랍니다.");
+	                $("#phone").focus();
+	                return false;
+	            }
+	            
+	          //폰 중복 체크 아작스
+				 $.ajax({
+		     		 url:"./autoComplete",
+		     		 type:"POST",
+		     		 data:{
+		     			 "phone":phone,
+		     		 },
+		     		 success:function(data){
+		     			 //console.info(">>>> \n", data);
+		     			if(data.phone != undefined) {
+		     				 alert("이미 가입완료된 번호입니다.");
+					     			    if (confirm("로그인 진행하시겠습니까?")) {
+					     			    	//window.close();
+					     			    	
+					     			    	//alert($('#phone').val())
+					     			    	//window.open('login2','login2','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
+					     			   	
+					     			    	
+ 					     			    	$('#password').val(data.password);
+ 					     			    	$('#password').attr('disabled', true);
+ 					     			    	$('#email').val(data.email);
+ 					     			    	$('#nickname').val(data.nickname);
+ 					     			    	document.getElementById( 'login' ).setAttribute( 'type', 'button' );
+ 					     			    	document.getElementById( 'register' ).setAttribute( 'type', 'hidden' );
+					     			     }
+		     			 }else{
+		     				 alert("사용가능한 번호입니다.");
+		     				 var regsubmit=confirm("작성한 내용으로 가입이 진행됩니다. 계속하시겠습니까?")};
+		     		 }
+		     		 
+				 }); 
+	          
+					$.ajax({
+						url : "./eventJoin",
+						type : "POST",
+						dataType : "JSON",
+						data : {"phone" : phone}
+					})
+			
+			})
 
+			//등록버튼
+			/* $("#login").click(function() {
+				location = "./crime"
+			});
+			 */
+			/* $("#login").click(function(){
+				
+				
+				});
+			  */
 			
 		})
 		//제이쿼리
+// 		$(document).ready(function() {
+		
+// 	});
+
 	</script>
     
 </head>
@@ -148,7 +224,6 @@
 	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원가입</span>
 	<form action="registerform" method="post">
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
-		
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
 	          	<span class="normal-font" style="display: block;padding: 8px;">핸드폰 번호</span>
@@ -156,6 +231,10 @@
 	          <li style="display: flex;width: 100%;">
 	          	<input type="text" id="phone" name="phone" placeholder="'-' 제외하고 번호만 입력" maxlength="11" style="width: 100%; padding: 5px;" >
 	          </li>
+	          
+	          <button type="button" id="fn_checkId" class="checkId">중복 확인</button>
+	          <input type="hidden" name="idUncheck" value="idUncheck" />
+	          
 	      </ul>
 	      
 	      <ul style="padding: 0;display: flex;">
@@ -197,6 +276,7 @@
 
 	      <!-- 스타일 추가 황선필 -->
 		<input id="register" type="button" value="가입" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="login" type="hidden" value="로그인" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
 		</div>
 	</form>
 

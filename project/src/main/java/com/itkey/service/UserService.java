@@ -56,6 +56,8 @@ public interface UserService {
 	
 	int regAll2(UserVO uv);
 		
-	
+	//자동완성
+	UserVO autoComplete(UserVO uv);
+
 	
 }

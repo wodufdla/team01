@@ -178,4 +178,11 @@ public class UserServiceImpl implements UserService {
 		return regnum;
 	}
 
+   @Override
+   public UserVO autoComplete(UserVO uv) {
+      // TODO Auto-generated method stub
+      UserVO uvauto=userDAO.autoComplete(uv);
+      return uvauto;
+   }
+
 }

@@ -505,13 +505,16 @@ public class UserController {
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
+	// autoComplete
+	@ResponseBody
+   @PostMapping("/autoComplete")
+   public UserVO autoComplete(UserVO uv) {
+      UserVO uvauto=userService.autoComplete(uv);
+      if(uvauto!=null) {
+         return uvauto;
+      } else {
+         return new UserVO();
+      }
+   }
 	
 }
