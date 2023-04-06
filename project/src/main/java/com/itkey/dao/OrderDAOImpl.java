@@ -12,6 +12,7 @@ import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
 import com.itkey.vo.PaymentVO;
 import com.itkey.vo.QuestionVO;
+import com.itkey.vo.UidVO;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -69,4 +70,9 @@ public class OrderDAOImpl implements OrderDAO {
 		log.debug("* [SERVICE] Output ◀ (vo) : " + result);
 	return result;
 	}
+
+	public List<UidVO> getUid() {
+		log.info("getUid() 호출");
+		return sqlSession.selectList(NAMESPACE + ".getUid");
+	}	
 }

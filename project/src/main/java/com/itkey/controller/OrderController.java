@@ -35,7 +35,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.pageutil.PageMaker;
 import com.itkey.service.OrderService;
-import com.itkey.service.UidService;
 import com.itkey.service.UserService;
 import com.itkey.util.MainInfo;
 import com.itkey.vo.OrderVO;
@@ -56,21 +55,7 @@ public class OrderController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private UidService uidService;
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	@ResponseBody
-	public void test(Model model) {
-		
-		List<UidVO> list = uidService.getUid();
-		model.addAttribute("list", list);
-		
-		System.out.println("=====");
-		System.out.println(list);
-	}
-	
 	// 정기결제
 	@ResponseBody
 	@PostMapping(value = "/order", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -250,7 +235,12 @@ public class OrderController {
 		String token = orderService.getToken();
 		
 		// 정기 결제 돌려야 할 데이터 추출
-		List<UidVO> list = uidService.getUid();
+		List<UidVO> list = orderService.getUid();
+		
+		System.out.println("=====");
+		System.out.println(list);
+		
+		
 		
 		String id = "ffs_test";
 		String cUid = "c_2ffs_test"; // db가져오고 customeruid
@@ -266,5 +256,15 @@ public class OrderController {
 
 		orderService.bilingCredit(param);
 
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public void test() {
+		// 정기 결제 돌려야 할 데이터 추출
+		List<UidVO> list = orderService.getUid();
+		
+		System.out.println("=====");
+		System.out.println(list);
+		
 	}
 }

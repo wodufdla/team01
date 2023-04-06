@@ -6,6 +6,7 @@ import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
 import com.itkey.vo.PaymentVO;
 import com.itkey.vo.QuestionVO;
+import com.itkey.vo.UidVO;
 
 public interface OrderDAO {
 
@@ -26,4 +27,7 @@ public interface OrderDAO {
 	
 	//주문 insert paymentOk 
 	public int insertPayment(OrderVO odVo) throws Exception;
+
+	// 정기결제 대상 건 추출
+	List<UidVO> getUid();
 }
