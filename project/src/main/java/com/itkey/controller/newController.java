@@ -30,7 +30,7 @@ public class newController {
 
 	// 관리자 회원탈퇴 및 서비스 해지 기능(탈퇴 Y, 서비스 N)
 	@ResponseBody
-	@RequestMapping(value = "/abc", produces = "text/plain; charset=UTF-8")
+	@RequestMapping(value = "/deleteWrite", produces = "text/plain; charset=UTF-8")
 	public String abc(@RequestParam Map<String, Object> reqMap
 			, HttpServletRequest request
 			) {

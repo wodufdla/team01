@@ -178,7 +178,7 @@
 		     			if(data.phone != undefined) {
 		     				 alert("이미 가입완료된 번호입니다.");
 					     			    if (confirm("로그인 진행하시겠습니까?")) {
-					     			    	//window.close();
+					     			    	/* //window.close();
 					     			    	
 					     			    	//alert($('#phone').val())
 					     			    	//window.open('login2','login2','width=585,height=450,location=no,status=no,scrollbars=yes,left=700,top=200');
@@ -189,7 +189,17 @@
  					     			    	$('#email').val(data.email);
  					     			    	$('#nickname').val(data.nickname);
  					     			    	document.getElementById( 'login' ).setAttribute( 'type', 'button' );
+ 					     			    	document.getElementById( 'register' ).setAttribute( 'type', 'hidden' ); */
+ 					     			    	
+					     			    	
+ 					     			    	$('#password').val(data.password);
+ 					     			    	$('#password').attr('readonly', true);
+ 					     			    	$('#email').val(data.email);
+ 					     			    	$('#nickname').val(data.nickname);
+ 					     			    	document.getElementById( 'login' ).setAttribute( 'type', 'submit' );
  					     			    	document.getElementById( 'register' ).setAttribute( 'type', 'hidden' );
+ 					     			    	
+ 					     			    	
 					     			     }
 		     			 }else{
 		     				 alert("사용가능한 번호입니다.");
@@ -223,11 +233,12 @@
     
 </head>
 <body>
-	<a href="javascript:close();" style="position: absolute;right: 0;">
+
+<!-- 	<a href="javascript:close();" style="position: absolute;right: 0;"> -->
 		<img src="/resources/img/popup_close.png" style="padding: 14px;width: 50px;">
 	</a>
 	<span style="background-color: #1a374f;font-weight: bold;font-size: 20px;line-height: 50px;text-align: center;width: 100%;display: block;height: 50px;color: #fff;box-shadow: 0px 5px 10px 0px #aaaa;">회원가입</span>
-	<form action="registerform" method="post">
+	<form action="/login" method="post">
 		<div style="width: 90%;margin: auto;padding: 20px 0;font-size: 13px;">
 	      <ul style="padding: 0;display: flex;">
 	          <li style="width: 40%;max-width: 100px; list-style:none;">
@@ -256,7 +267,7 @@
 	          	<span class="normal-font" style="display: block;padding: 8px;">PW 재입력</span>
 	          </li>
 	          <li style="width: 100%;display: flex;">
-	          	<input type="password" id="repassword" name="repassword" placeholder="비밀번호 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
+	          	<input type="password"  id="repassword" name="repassword" placeholder="비밀번호 재입력"  maxlength="24" style="width: 100%; padding: 5px;">
 	          </li>
 	      </ul>
 	      
@@ -281,9 +292,10 @@
 
 	      <!-- 스타일 추가 황선필 -->
 		<input id="register" type="button" value="가입" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
-		<input id="login" type="hidden" value="로그인" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		<input id="login"  type="hidden" value="로그인" style="width: 50%;display: block;margin: 0 auto 20px auto;background-color: #1a374f;color: #fff;font-size: 20px;font-weight: bold;text-align: center;height: 50px;line-height: 50px;">
+		
 		</div>
 	</form>
-
+	
 </body>
 </html>

@@ -59,5 +59,5 @@ public interface UserService {
 	//자동완성
 	UserVO autoComplete(UserVO uv);
 
-	
+	UserVO popLogin(UserVO uv);
 }

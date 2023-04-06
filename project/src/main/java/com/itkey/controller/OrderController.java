@@ -102,7 +102,7 @@ public class OrderController {
 		
 		
 		String token = orderService.getToken();
-		System.out.println("/token : " + token);
+		//System.out.println("/token : " + token);
 		return new ResponseEntity<String>(token, HttpStatus.OK);
 	}
 
@@ -229,7 +229,7 @@ public class OrderController {
 
 	// 매일 오전 10시 체크 @Scheduled(cron = "10 * * * * *") 매분 10초마다
 	// @Scheduled(cron = "0 0 10 * * *") // 매일 오전 10시
-	// @Scheduled(cron = "10 * * * * *")
+	//@Scheduled(cron = "5 * * * * *")   
 	public void run() throws Exception {
 
 		String token = orderService.getToken();
@@ -237,16 +237,25 @@ public class OrderController {
 		// 정기 결제 돌려야 할 데이터 추출
 		List<UidVO> list = orderService.getUid();
 		
-		System.out.println("=====");
-		System.out.println(list);
+		String id = "";
+		String cUid = ""; // db가져오고 customeruid
+		String phone = "";
 		
-		
-		
-		String id = "ffs_test";
-		String cUid = "c_2ffs_test"; // db가져오고 customeruid
-		String phone = "01092726751";
+		for (int i=0;i<list.size();i++) {
+			Map<String, Object> param = new HashMap<>();
+			
+			id = list.get(i).getId();   
+			phone = list.get(i).getPhone(); 
+			cUid = list.get(i).getCUid();
 
-		// for
+			param.put("token", token);
+			param.put("id", id);
+			param.put("phone", phone);
+			param.put("cuid", cUid);
+			
+			orderService.bilingCredit(param);
+		}
+		/*
 		Map<String, Object> param = new HashMap<>();
 
 		param.put("token", token);
@@ -255,16 +264,7 @@ public class OrderController {
 		param.put("cuid", cUid);
 
 		orderService.bilingCredit(param);
-
+		*/
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public void test() {
-		// 정기 결제 돌려야 할 데이터 추출
-		List<UidVO> list = orderService.getUid();
-		
-		System.out.println("=====");
-		System.out.println(list);
-		
-	}
 }

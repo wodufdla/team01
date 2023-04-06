@@ -184,5 +184,11 @@ public class UserServiceImpl implements UserService {
       UserVO uvauto=userDAO.autoComplete(uv);
       return uvauto;
    }
+   
+   @Override
+   public UserVO popLogin(UserVO uv) {
+   	
+   	return userDAO.popLogin(uv);
+   }
 
 }

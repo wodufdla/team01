@@ -200,10 +200,17 @@ public class UserDAOImpl implements UserDAO {
 		return regnum;
 	}
 
-   //    //회원가입-아이디 중복 시 자동완성 곽승환
+   // 회원가입-아이디 중복 시 자동완성 곽승환
    @Override
    public UserVO autoComplete(UserVO uv) {
       UserVO uvauto=sqlSession.selectOne("regphonecheck", uv);
       return uvauto;
+   }
+   
+   @Override
+   public UserVO popLogin(UserVO uv) {
+   	log.info("popLogin() 호출");
+   	UserVO userSession=sqlSession.selectOne("regphonecheck", uv);
+   	return userSession;
    }
 }

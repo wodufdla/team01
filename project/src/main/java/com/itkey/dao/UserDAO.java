@@ -70,7 +70,9 @@ public interface UserDAO {
 	// 카카오회원가입
 	int regAll2(UserVO uv);
 	
-	//자동완성
+	// 자동완성
 	UserVO autoComplete(UserVO uv);
 
+	// 배너 통해 가입 - 아이디 중복 시 로그인
+	UserVO popLogin(UserVO uv);
 }

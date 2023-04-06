@@ -195,8 +195,9 @@ public class OrderServiceImpl implements OrderService {
 		String token = (String)param.get("token");
 		String customer_uid = (String)param.get("cuid");
 		
-		String merchant_uid = "order_" + format_time1;
-		String amount = "10000";
+		//String merchant_uid = "order_" + format_time1;
+		String merchant_uid = customer_uid;
+		String amount = "100";
 		String name = "범죄알리미 정기권";
 		
 		Map<String, Object> Cparam = new HashMap<String, Object>();
@@ -211,7 +212,7 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			JSONObject reqParams = new JSONObject();
 			reqParams.put("customer_uid", customer_uid);
-			reqParams.put("merchant_uid", merchant_uid);
+			reqParams.put("merchant_uid", customer_uid);
 			reqParams.put("amount", amount);
 			reqParams.put("name", name);
 
