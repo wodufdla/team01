@@ -30,6 +30,7 @@ import com.itkey.dao.OrderDAO;
 import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
 import com.itkey.vo.QuestionVO;
+import com.itkey.vo.UidVO;
 import com.itkey.vo.UserVO;
 
 @Service
@@ -194,8 +195,8 @@ public class OrderServiceImpl implements OrderService {
 		String token = (String)param.get("token");
 		String customer_uid = (String)param.get("cuid");
 		
-		String merchant_uid = "order" + format_time1;
-		String amount = "900";
+		String merchant_uid = "order_" + format_time1;
+		String amount = "10000";
 		String name = "범죄알리미 정기권";
 		
 		Map<String, Object> Cparam = new HashMap<String, Object>();
@@ -255,5 +256,11 @@ public class OrderServiceImpl implements OrderService {
 		log.debug("* [SERVICE] Output ◀ (vo) : " + result);
 		return result;
 	}
-	
+
+	// 정기결제 대상 건 추출
+	@Override
+	public List<UidVO> getUid() {
+		log.debug("* [SERVICE] Input  ◀ (Controller) : getUid");
+		return orderDAO.getUid();
+	}
 }

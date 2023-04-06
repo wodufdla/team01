@@ -7,6 +7,7 @@ import com.itkey.pageutil.PageCriteria;
 import com.itkey.vo.OrderVO;
 import com.itkey.vo.PaymentVO;
 import com.itkey.vo.QuestionVO;
+import com.itkey.vo.UidVO;
 
 public interface OrderService {
 
@@ -29,7 +30,6 @@ public interface OrderService {
 	
 	// 토큰
 	public String getToken() throws Exception;
-	
 	public String bilingCredit(Map<String,Object> param) throws Exception;
 	
 	
@@ -37,7 +37,8 @@ public interface OrderService {
 	
 	public int insertPayment(OrderVO odVo) throws Exception;
 	
-	
+	// 정기결제 대상 건 추출
+	List<UidVO> getUid();
 
 	
 }
