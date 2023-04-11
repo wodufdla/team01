@@ -1,5 +1,6 @@
 package com.itkey.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.itkey.service.ApiService;
+import com.itkey.util.ApiExplorer;
 
 
 /**
@@ -30,6 +33,16 @@ public class ApiController{
 	@Autowired
 	private ApiService apiService;
 	
+	// 불법 주정차 단속 정보
+    @RequestMapping("/illegalParking")
+    public String illegalParking(Model model) throws IOException, ParseException {
+    	
+    	List<Map<String,Object>> result = apiService.getIllegalParking();
+    	
+    	model.addAttribute("list", result);
+    	
+    	return "illegalParking";
+    }
 	
 	/*
 	@RequestMapping("/apiTest")
