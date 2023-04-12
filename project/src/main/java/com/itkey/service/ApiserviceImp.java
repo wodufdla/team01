@@ -84,43 +84,9 @@ public class ApiserviceImp implements ApiService{
 
 		return list;
 	}
-	
-//	public String TbOpendataFixedcctv() throws IOException {
-//		StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /*URL*/
-//		urlBuilder.append("/" +  URLEncoder.encode("50444a797673756e3131397052427148","UTF-8") ); /*인증키  +sun입력  (sample사용시에는 호출시 제한됩니다.)*/
-//		urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*+sun 입력 //요청파일타입 (xml,xmlf,xls,json) */
-//		urlBuilder.append("/" + URLEncoder.encode("TbOpendataFixedcctv","UTF-8")); /*서비스명  +sun입력 (대소문자 구분 필수입니다.)*/
-//		urlBuilder.append("/" + URLEncoder.encode("1","UTF-8")); /*요청시작위치 (sample인증키 사용시 5이내 숫자)*/
-//		urlBuilder.append("/" + URLEncoder.encode("5","UTF-8")); /*요청종료위치(sample인증키 사용시 5이상 숫자 선택 안 됨)*/
-//		// 상위 5개는 필수적으로 순서바꾸지 않고 호출해야 합니다.
-//		
-//		// 서비스별 추가 요청 인자이며 자세한 내용은 각 서비스별 '요청인자'부분에 자세히 나와 있습니다.
-//		//urlBuilder.append("/" + URLEncoder.encode("20220301","UTF-8")); /* 서비스별 추가 요청인자들*/
-//		
-//		URL url = new URL(urlBuilder.toString());
-//		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//		conn.setRequestMethod("GET");
-//		conn.setRequestProperty("Content-type", "application/json");
-//		System.out.println("Response code: " + conn.getResponseCode()); /* 연결 자체에 대한 확인이 필요하므로 추가합니다.*/
-//		BufferedReader rd;
-//
-//		// 서비스코드가 정상이면 200~300사이의 숫자가 나옵니다.
-//		if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-//				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//		} else {
-//				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-//		}
-//		StringBuilder sb = new StringBuilder();
-//		String line;
-//		while ((line = rd.readLine()) != null) {
-//				sb.append(line);
-//		}
-//		rd.close();
-//		conn.disconnect();
-//		return sb.toString();
-//	}
+
 	//공공데이터_주차장 시설정보 api
-	public String PrkSttusInfo() throws IOException {
+	public String prkSttusInfo() throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B553881/Parking/PrkSttusInfo"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -149,11 +115,11 @@ public class ApiserviceImp implements ApiService{
     }
 		
 	//공공데이터_주차장 운영정보 api
-		public String PrkOprInfo() throws IOException {
+		public String prkOprInfo() throws IOException {
 			StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B553881/Parking/PrkOprInfo"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D"); /*Service Key*/
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 	        urlBuilder.append("&" + URLEncoder.encode("format","UTF-8") + "=" + URLEncoder.encode("2", "UTF-8")); /*XML : 1, JSON : 2*/
 	        URL url = new URL(urlBuilder.toString());
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -178,11 +144,11 @@ public class ApiserviceImp implements ApiService{
 	    }	
 		
 		//공공데이터_주차장 실시간 정보 api
-		public String PrkRealtimeInfo() throws IOException {
+		public String prkRealtimeInfo() throws IOException {
 			StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B553881/Parking/PrkRealtimeInfo"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=yokAkHtjTw0vyvU9zRTnifTovmWD2Zl8cR57jk85VMqARcRRe%2Fdbu%2B1Agt%2BN%2FU7SXynB4NukTFd4qE4k5%2FMGRQ%3D%3D"); /*Service Key*/
 	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 	        urlBuilder.append("&" + URLEncoder.encode("format","UTF-8") + "=" + URLEncoder.encode("2", "UTF-8")); /*XML : 1, JSON : 2*/
 	        URL url = new URL(urlBuilder.toString());
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
