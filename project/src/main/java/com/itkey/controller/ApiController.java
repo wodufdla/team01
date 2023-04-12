@@ -18,8 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.itkey.service.ApiService;
+import com.itkey.service.JsonUtil;
 
 /**
+ * 
  * Handles requests for the application home page.
  */
 @Controller
@@ -41,120 +43,88 @@ public class ApiController {
 		return "illegalParking";
 	}
 
-	/*
-	 * @RequestMapping("/apiTest") public String apiTest(Model model) throws
-	 * Exception {
-	 * 
-	 * String sb = apiService.TbOpendataFixedcctv();
-	 * 
-	 * log.debug(sb);
-	 * 
-	 * // JSONParser로 JSONObject로 변환 JSONParser parser = new JSONParser();
-	 * JSONObject jsonObject = (JSONObject) parser.parse(sb);
-	 * 
-	 * // JSON 객체의 값 읽어서 출력하기 System.out.println("========111======");
-	 * System.out.println(jsonObject.get("TbOpendataFixedcctv")); // apple
-	 * JSONObject jsonObject2 = (JSONObject) jsonObject.get("TbOpendataFixedcctv");
-	 * System.out.println("======22222========");
-	 * System.out.println(jsonObject2.get("row")); JSONObject jsonObject3 =
-	 * (JSONObject) jsonObject2.get("row");
-	 * 
-	 * System.out.println(jsonObject3.get("LATITUDE")); // 1
-	 * System.out.println(jsonObject3.get("LONGITUDE")); // 1000
-	 * System.out.println(jsonObject3.get("PSTINST_CD"));
-	 * System.out.println(jsonObject3.get("REGLT_SPOT_NM"));
-	 * System.out.println(jsonObject3.get("SPT_KIND_CD"));
-	 * System.out.println(jsonObject3.get("ADRES"));
-	 * 
-	 * //전체 : sb -> json -> map -> model .add(map)
-	 * 
-	 * //1번 : sb -> json : 구글 검색 결과 https://hianna.tistory.com/623 //2번 : json-> map
-	 * //3번 : model .add(map)
-	 * 
-	 * 
-	 * // model.addAttribute("map", map); //3번 return "apiTest";
-	 * 
-	 * }
-	 */
-
-	// 공공데이터_주차장 시설정보 api
+	// 공공데이터_ 주차정보제공 api
 	@RequestMapping("/PrkSttusInfo")
-	public String PrkSttusInfo(Model model) throws Exception {
-		
-		// 공공데이터_주차장 시설정보 PrkSttusInfo api
-		String sb = apiService.PrkSttusInfo();
-		//log.debug(sb);
-		
+	public String prkSttusInfo(Model model) throws Exception {
+		log.debug("===========공공데이터_전국 주차api=============");
+
+		// 공공데이터_1.주차장 시설정보 PrkSttusInfo api
+		String sb = apiService.prkSttusInfo();
+		log.debug("===공공데이터_1.주차장 시설정보 PrkSttusInfo api====");
+		log.debug(sb);
+
 		// JSONParser로 JSONObject로 변환
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObjectPSI = (JSONObject) parser.parse(sb);
-		// JSON 객체의 값 읽어서 출력하기
-		// System.out.println("========111======");
-		// System.out.println(jsonObjectPSI.get("PrkSttusInfo")); // apple
-		// JSONObject jsonObj = (JSONObject) jsonObjectPSI.get("PrkSttusInfo");
-		Object obj1 = parser.parse(jsonObjectPSI.get("PrkSttusInfo").toString());
+		Map<String, Object> mapPsi = JsonUtil.getMapFromJsonObject(jsonObjectPSI);
+		log.debug("========mapPsi======");
+		log.debug(mapPsi.toString());
 
-		// Object obj1 = parser.parse(jsonObj.toString());
-		JSONArray jsonArr = (JSONArray) obj1;
+		List<Map<String, Object>> listPsi = (List<Map<String, Object>>) mapPsi.get("PrkSttusInfo");
+		log.debug("========listPsi======");
+		log.debug(listPsi.size() + "");
 
-		// System.out.println("========jsonArr======");
-		// System.out.println(jsonArr);
+		// 공공데이터_2.주차장 운영정보 api
+		String prkOprInfo = apiService.prkOprInfo();
+		log.debug("===공공데이터_2.주차장 운영정보 api====");
+		log.debug(prkOprInfo);
 
-		List<Map<String, Object>> listPSI = new ArrayList<Map<String, Object>>();
+		JSONParser parserPoi = new JSONParser();
+		JSONObject jsonObjectPOI = (JSONObject) parserPoi.parse(prkOprInfo); // json 처리
+		Map<String, Object> mapPoi = JsonUtil.getMapFromJsonObject(jsonObjectPOI);// json > map 처리
+		log.debug("========mapPoi======");
+		log.debug(mapPoi.toString());
 
-		// int sum=0;
-		for (int i = 0; i < jsonArr.size(); i++) {
-			JSONObject jsonObj3 = (JSONObject) jsonArr.get(i);
-			if (!((String) jsonObj3.get("prk_plce_nm")).equals("")) {
-				// sum += 1;
-				// System.out.println("id ::: "
-				// +(String)jsonObj3.get("prk_center_id")+"/prk_plce_nm
-				// :::"+(String)jsonObj3.get("prk_plce_nm"));
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("prk_cmprt_co", (String) jsonObj3.get("prk_cmprt_co")); // 주차장의 총 주차 구획 수
-				map.put("prk_center_id", (String) jsonObj3.get("prk_center_id")); // 주차장 관리 ID (또는 확장ID)
-				map.put("prk_plce_entrc_la", (String) jsonObj3.get("prk_plce_entrc_la")); // 위도
-				map.put("prk_plce_entrc_lo", (String) jsonObj3.get("prk_plce_entrc_lo")); // 경도
-				map.put("prk_plce_adres", (String) jsonObj3.get("prk_plce_adres")); // 주차장 도로명 주소 (도로명주소 공백 시 지번주소)
-				map.put("prk_plce_nm", (String) jsonObj3.get("prk_plce_nm")); // 주차장명
+		List<Map<String, Object>> listPoi = (List<Map<String, Object>>) mapPoi.get("PrkOprInfo"); // mapdmf list 변환
+		log.debug("========listPrkOpr======");
+		log.debug(listPoi.size() + "");
 
-				listPSI.add(map);
-				// (String)jsonObj3.get("prk_center_id").equals("")
-			}
-		}
-		// System.out.println("sum === " + sum);
-		
-		
-		// 공공데이터_주차장 운영정보 api
-		String PrkOprInfo = apiService.PrkOprInfo();
-		log.debug(PrkOprInfo);
-		
-		// JSONParser로 JSONObject로 변환
-		JSONObject jsonObjectPOI = (JSONObject) parser.parse(PrkOprInfo);
-		
-		// JSON 객체의 값 읽어서 출력하기
-		 System.out.println("======주차장 운영정보 api========");
-		 System.out.println(jsonObjectPOI.get("PrkOprInfo")); // apple
-		
-		
-		
-				
-		// 공공데이터_주차장 실시간 정보 api
-		//String PrkRealtimeInfo = apiService.PrkRealtimeInfo();
-		//log.debug(PrkRealtimeInfo);
-		// JSONParser로 JSONObject로 변환
-	   // JSONObject jsonObjectPRI = (JSONObject) parser.parse(PrkRealtimeInfo);
-		
-		
-		
-		
-		model.addAttribute("listPSI", listPSI); 
-		//model.addAttribute("listPOI", listPOI);
-		//model.addAttribute("listPRI", listPRI);
+		// 공공데이터_3.주차장 실시간 정보 api
+		String prkRealtimeInfo = apiService.prkRealtimeInfo();
+		log.debug("===3.주차장 실시간 정보 api====");
+		log.debug(prkRealtimeInfo);
+
+		JSONParser parserPri = new JSONParser();
+		JSONObject jsonObjectPRI = (JSONObject) parserPri.parse(prkRealtimeInfo);
+		Map<String, Object> mapPri = JsonUtil.getMapFromJsonObject(jsonObjectPRI);
+		log.debug("========mapPri======");
+		log.debug(mapPri.toString());
+
+		List<Map<String, Object>> listPri = (List<Map<String, Object>>) mapPri.get("PrkRealtimeInfo");
+		log.debug("========listPri======");
+		log.debug(listPri.size() + "");
+		/*
+		 * Object obj1 = parser.parse(jsonObjectPSI.get("PrkSttusInfo").toString());
+		 * JSONArray jsonArr = (JSONArray) obj1; List<Map<String, Object>> listPsi2 =
+		 * JsonUtil.getListMapFromJsonArray(jsonArr);
+		 * log.debug("========listPsi======"); log.debug(listPsi.size()+"");
+		 * log.debug(listPsi.get(0)+"");
+		 * 
+		 * List<Map<String, Object>> listPSI = new ArrayList<Map<String, Object>>();
+		 * 
+		 * // int sum=0; for (int i = 0; i < jsonArr.size(); i++) { JSONObject jsonObj3
+		 * = (JSONObject)jsonArr.get(i); if (!((String)
+		 * jsonObj3.get("prk_plce_nm")).equals("")) { // sum += 1; //
+		 * System.out.println("id ::: " //
+		 * +(String)jsonObj3.get("prk_center_id")+"/prk_plce_nm //
+		 * :::"+(String)jsonObj3.get("prk_plce_nm")); Map<String, Object> map = new
+		 * HashMap<String, Object>(); map.put("prk_cmprt_co", (String)
+		 * jsonObj3.get("prk_cmprt_co")); // 주차장의 총 주차 구획 수 map.put("prk_center_id",
+		 * (String) jsonObj3.get("prk_center_id")); // 주차장 관리 ID (또는 확장ID)
+		 * map.put("prk_plce_entrc_la", (String) jsonObj3.get("prk_plce_entrc_la")); //
+		 * 위도 map.put("prk_plce_entrc_lo", (String) jsonObj3.get("prk_plce_entrc_lo"));
+		 * // 경도 map.put("prk_plce_adres", (String) jsonObj3.get("prk_plce_adres")); //
+		 * 주차장 도로명 주소 (도로명주소 공백 시 지번주소) map.put("prk_plce_nm", (String)
+		 * jsonObj3.get("prk_plce_nm")); // 주차장명
+		 * 
+		 * listPSI.add(map); // (String)jsonObj3.get("prk_center_id").equals("") } } //
+		 * System.out.println("sum === " + sum);
+		 */
+		model.addAttribute("listPSI", listPsi);
+		model.addAttribute("listPOI", listPoi);
+		model.addAttribute("listPRI", listPri);
 		return "PrkSttusInfo";
 
 	}
-
-	
 
 }
