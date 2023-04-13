@@ -237,7 +237,7 @@ function withdrawal() {
 		<div class="collapse navbar-collapse" >
 			<ul class="navbar-nav" style="width: 100%;">
 				<!-- 이해리 메뉴 수정 -->
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<div class="dropdown">
 						<span class="dropbtn">서비스 소개</span>
 							<div class="dropdown-content">
@@ -245,9 +245,11 @@ function withdrawal() {
 							<a class="dropdown-item" href="#" onclick="joinchk(1);">성범죄자 찾아보기</a>
 							<a class="dropdown-item" href="#" onclick="joinchk(2);">범죄주의 구간 확인</a>
 							<a class="dropdown-item" href="/howRespond">성범죄 대응법</a>
+							<a class="dropdown-item" href="/PrkSttusInfo">주차장 위치 확인</a>
+							<a class="dropdown-item" href="/illegalParking">주정차위반 위치 확인</a>
 						</div>
 					</div>
-				</li>
+				</li> -->
 				<!-- 황선필 메뉴 수정 스타일 수정 등록 창으로 연결 -->
 				<!-- 이해리 메뉴 수정(admin) -->
 				<c:if test="${phone!=null}">
@@ -257,6 +259,11 @@ function withdrawal() {
 					<li class="nav-item"><a class="nav-link" href="#" onclick="withdrawal();">서비스 해지</a></li>
 				</c:if>
 				<c:if test="${phone==null && admin==null}">
+				
+					<li class="nav-item"><a class="nav-link" href="/PrkSttusInfo">주차장 위치</a></li>
+					<li class="nav-item"><a class="nav-link" href="/illegalParking">주정차위반</a></li>
+							
+							
 					<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">서비스 가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
 					<li class="nav-item"><a href="javascript:registeralarm();" class="nav-link" style="cursor : pointer;">1:1 문의</a></li>
