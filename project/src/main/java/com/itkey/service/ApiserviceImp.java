@@ -24,13 +24,12 @@ public class ApiserviceImp implements ApiService{
 	public List<Map<String,Object>> getIllegalParking() throws IOException, ParseException {
 		Map<String, Object> resultMap = new HashMap<>();
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /*URL*/
-		//StringBuilder urlBuilder = new StringBuilder("http://t-data.seoul.go.kr/apig/apiman-gateway/tapi/v2xIllegalParkingPositionInformation/1.0");
-		//urlBuilder.append("/" +  URLEncoder.encode("414c646a49726b31363667717a5242","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
-		urlBuilder.append("/" +  URLEncoder.encode("sample","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
+		urlBuilder.append("/" +  URLEncoder.encode("414c646a49726b31363667717a5242","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
+		//urlBuilder.append("/" +  URLEncoder.encode("sample","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
 		urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*요청파일타입 (xml,xmlf,xls,json) */
 		urlBuilder.append("/" + URLEncoder.encode("TbOpendataFixedcctv","UTF-8")); /*서비스명 (대소문자 구분 필수입니다.)*/
 		urlBuilder.append("/" + URLEncoder.encode("1","UTF-8")); /*요청시작위치 (sample인증키 사용시 5이내 숫자)*/
-		urlBuilder.append("/" + URLEncoder.encode("5","UTF-8")); /*요청종료위치(sample인증키 사용시 5이상 숫자 선택 안 됨)*/
+		urlBuilder.append("/" + URLEncoder.encode("999","UTF-8")); /*요청종료위치(sample인증키 사용시 5이상 숫자 선택 안 됨)*/
 		// 상위 5개는 필수적으로 순서바꾸지 않고 호출해야 합니다.
 		
 		// 서비스별 추가 요청 인자이며 자세한 내용은 각 서비스별 '요청인자'부분에 자세히 나와 있습니다.

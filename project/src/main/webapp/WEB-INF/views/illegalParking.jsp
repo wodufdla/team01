@@ -7,24 +7,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>불법주정차 단속 위치 확인</title>
 <script language=JavaScript>
-    var arr = new Array();
-    <c:forEach items="${list}" var="item">        
-            arr.push({LATITUDE: "${item.LATITUDE}"
-                    ,LONGITUDE : "${item.LONGITUDE}"
-                   	,ADRES : "${item.ADRES}"
-                   	,PSTINST_CD : "${item.PSTINST_CD}"
-            		,REGLT_SPOT_NM : "${item.REGLT_SPOT_NM}"
-            });
-    </c:forEach>
-    const json = JSON.stringify(arr, ['LATITUDE', 'LONGITUDE']);
+	/* 모바일 버전 체크 */
+	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+	var arr = new Array();
+	<c:forEach items="${list}" var="item">        
+	    arr.push({LATITUDE: "${item.LATITUDE}"
+	            ,LONGITUDE : "${item.LONGITUDE}"
+	           	,ADRES : "${item.ADRES}"
+	           	,PSTINST_CD : "${item.PSTINST_CD}"
+	    		,REGLT_SPOT_NM : "${item.REGLT_SPOT_NM}"
+	    });
+	</c:forEach>
+	const json = JSON.stringify(arr, ['LATITUDE', 'LONGITUDE']);
+    
 </script>
 </head>
 <body>
-	<div id="map" style="width:600px;height:600px;padding:10px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624004e4c75704cb568252115e1bcde6&libraries=clusterer""></script>
+
+	<jsp:include page="common/header.jsp" />
+	<center><div id="map" style="width:90%;height:80vh;padding:10px;"></div></center>
+	
+	
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=624004e4c75704cb568252115e1bcde6"></script>
 	<script>
 		//console.log("arr", arr.length);
 		let lat = '';
@@ -55,13 +62,13 @@
 				// 지도에 표시할 원을 생성합니다
 				var circle = new kakao.maps.Circle({
 				    center : new kakao.maps.LatLng(lat, lon),  // 원의 중심좌표 입니다. 현재 위치 좌표 가져올 것
-				    radius: 50, // 미터 단위의 원의 반지름입니다 
+				    radius: 200, // 미터 단위의 원의 반지름입니다 
 				    strokeWeight: 1, // 선의 두께입니다 
 				    strokeColor: '#B70000', // 선의 색깔입니다
 				    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 				    strokeStyle: 'solid', // 선의 스타일 입니다
 				    fillColor: '#FFC6C6', // 채우기 색깔입니다
-				    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+				    fillOpacity: 0.5  // 채우기 불투명도 입니다   
 				}); 
 				console.log("circle ::: ", lat, lon);
 				// 지도에 원을 표시합니다 
@@ -82,14 +89,7 @@
 
 		var map = new kakao.maps.Map(container, options);
 		
-		// 마커 이미지 변경
-		var imageSrc = '/resources/img/curPosition.png', // 마커이미지의 주소입니다    
-	       imageSize = new kakao.maps.Size(36, 39), // 마커이미지의 크기입니다
-	       imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-	         
-		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다.
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-			markerPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치입니다
+		
 		
 		// 불법주정차단속위치
 		// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다.
@@ -121,42 +121,6 @@
 		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		}
 		
-
-		function getInfo() {
-		    // 지도의 현재 중심좌표를 얻어옵니다 
-		    var center = map.getCenter(); 
-		    
-		    // 지도의 현재 레벨을 얻어옵니다
-		    var level = map.getLevel();
-		    
-		    // 지도타입을 얻어옵니다
-		    var mapTypeId = map.getMapTypeId(); 
-		    
-		    // 지도의 현재 영역을 얻어옵니다 
-		    var bounds = map.getBounds();
-		    
-		    // 영역의 남서쪽 좌표를 얻어옵니다 
-		    var swLatLng = bounds.getSouthWest(); 
-		    
-		    // 영역의 북동쪽 좌표를 얻어옵니다 
-		    var neLatLng = bounds.getNorthEast(); 
-		    
-		    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
-		    var boundsStr = bounds.toString();
-		    
-		    
-		    var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
-		    message += '경도 ' + center.getLng() + ' 이고 <br>';
-		    message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
-		    message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
-		    message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' 이고 <br>';
-		    message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
-		    
-		    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
-		    // ex) console.log(message);
-		    alert(message);
-		}
-	    
 		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 		function makeOverListener(map, marker, infowindow) {
 		    return function() {
@@ -170,8 +134,6 @@
 		        infowindow.close();
 		    };
 		}
-		
-		
 
 		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 		function displayMarker(locPosition, message) {
@@ -198,10 +160,8 @@
 		    // 지도 중심좌표를 접속위치로 변경합니다
 		    map.setCenter(locPosition);      
 		}
-		
-		
-		
 	</script>
 	
+	<jsp:include page="common/footer.jsp" />
 </body>
 </html>
